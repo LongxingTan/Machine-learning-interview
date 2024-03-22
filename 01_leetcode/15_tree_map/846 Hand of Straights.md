@@ -1,0 +1,31 @@
+# 846 Hand of Straights
+[https://leetcode.com/problems/hand-of-straights/](https://leetcode.com/problems/hand-of-straights/)
+
+
+## solution
+
+```python
+
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+- 原写法，速度不快
+```python
+class Solution:
+    def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        if len(hand) < groupSize or len(hand) % groupSize != 0:
+            return False
+        
+        hand.sort()
+        while hand:
+            mini = hand[0]
+            for _ in range(groupSize):
+                if mini in hand:
+                    hand.remove(mini)
+                    mini += 1
+                else:
+                    return False
+        return True
+```

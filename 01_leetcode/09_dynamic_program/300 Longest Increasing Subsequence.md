@@ -1,0 +1,38 @@
+# 300 Longest Increasing Subsequence
+[https://leetcode.com/problems/longest-increasing-subsequence/](https://leetcode.com/problems/longest-increasing-subsequence/)
+
+
+## solution
+
+- dp
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        if not nums:
+            return 
+        
+        dp = [1] * len(nums)
+        for i in range(1, len(nums)):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j]+1)
+        return max(dp)
+```
+时间复杂度：O(n^2) <br>
+空间复杂度：O(n)
+
+- binary search
+```python
+
+```
+
+
+## follow up
+
+[674 Longest Continuous Increasing Subsequence](./674%20Longest%20Continuous%20Increasing%20Subsequence.md)
+- 最长连续递增序列，由于要求必须连续，因此只需要dp(i)与dp(i-1)比较即可
+
+[646. Maximum Length of Pair Chain]()
+```python
+
+```
