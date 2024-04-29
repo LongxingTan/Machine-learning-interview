@@ -1,0 +1,11 @@
+# 1062 Longest Repeating Substring
+[https://leetcode.com/problems/longest-repeating-substring/](https://leetcode.com/problems/longest-repeating-substring/)
+
+
+## solution
+
+```python
+
+```
+时间复杂度：O() <br>
+空间复杂度：O()

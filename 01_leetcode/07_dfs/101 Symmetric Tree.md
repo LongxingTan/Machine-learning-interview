@@ -1,0 +1,40 @@
+# 101 Symmetric Tree
+[https://leetcode.com/problems/symmetric-tree/](https://leetcode.com/problems/symmetric-tree/)
+
+
+## solution
+
+- 关于递归的返回。注释掉的返回，导致结果错误，甚至没有继续向下判断
+
+```python
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+        
+        return self.isSym(root.left, root.right)
+
+    def isSym(self, l, r):
+        if l is None and r is not None:
+            return False
+        elif l is not None and r is None:
+            return False
+        elif l is None and r is None:
+            return True
+        
+        if l.val != r.val:
+            return False
+        # else:
+        #     return True
+        
+        return self.isSym(l.left, r.right) and self.isSym(l.right, r.left)        
+```
+时间复杂度：O(n) <br>
+空间复杂度：O(h)
