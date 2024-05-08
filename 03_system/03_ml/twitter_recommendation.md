@@ -6,7 +6,6 @@ twitter比较关注social graph的挖掘
 ## 1. requirements
 
 
-
 ## 2. metrics
 
 
@@ -30,15 +29,18 @@ twitter比较关注social graph的挖掘
 ## 6. model
 
 ### 6.1 retrieval
+
 - In-Network召回
 - Out-of-Network 召回
 
 
 ### 6.2 ranking
+
 - MaskNet
 
 
 ### 6.3 reranking
+
 - 过滤已屏蔽用户的推文、NSFW内容和已看过的推文
 
 

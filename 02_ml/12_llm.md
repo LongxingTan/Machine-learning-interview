@@ -156,6 +156,7 @@ Flash Decoding
   - 预填充（Prefill）：prompt token一次性读进显存；生成（Completion）：自回归方式一次生成一个新 Token
   - https://mp.weixin.qq.com/s/N0sjdNo-qWdZJ4UkXm-bdw
 - 随着模型的增大，学习率越来越小。学习率与数据量、批量大小都没有明显的关系，且一般使用1e-3左右的学习率
+- reducing LLM latency at inference time
 
 
 ## reference

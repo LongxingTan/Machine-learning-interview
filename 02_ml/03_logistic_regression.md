@@ -83,6 +83,10 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
   - follow up: 为什么GBDT做分类也用回归树呢？
 
 - Logistic regression和naive bayes的区别
+  - LR数据较多时优于NB。NB假设前提是个体独立，无法处理词组
+
+- Logistic regression和SVM的区别
+  - loss的不同，以及输出的不同（一个是概率输出一个是score）
 
 - LR中连续特征为什么要做离散化
   - 数据角度：离散化的特征对异常数据有很强的鲁棒性；离散化特征利于进行特征交叉。 

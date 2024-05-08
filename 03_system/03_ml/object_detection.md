@@ -32,7 +32,6 @@
 
 
 ## Reference
-
 - [仪表识别](https://github.com/hjptriplebee/meterReader)
 - [安全帽](https://github.com/PeterH0323/Smart_Construction)
 - [万字长文细说工业缺陷检测 - 皮特潘的文章 - 知乎](https://zhuanlan.zhihu.com/p/375828501)

@@ -47,3 +47,4 @@
 - [Using Sentiment Score to Assess Customer Service Quality](https://medium.com/airbnb-engineering/using-sentiment-score-to-assess-customer-service-quality-43434dbe199b)
 - [System Design of Extreme Multi-label Query Classification using a Hybrid Model](https://sigir-ecom.github.io/ecom2019/ecom19Papers/paper19.pdf)
 - [Query理解在美团搜索中的应用 - DataFunTalk的文章 - 知乎](https://zhuanlan.zhihu.com/p/370576330)
+- [How to Fine-Tune BERT for Text Classification?](https://arxiv.org/pdf/1905.05583)

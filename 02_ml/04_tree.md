@@ -3,24 +3,27 @@
 决策树的角度和之前不同，优化思路也不同。其演化过程需要结合ensemble原理（bagging、boosting）。
 
 ## 决策树
+优化目标: To find the best split that maximize the separation between different classes or reduces the impurity with each resulting node
+
 分裂依据
 
 ![](../.github/assets/02ml-tree.png)
 
-- 熵
+- 熵 Entropy
   - 熵、联合熵、条件熵、交叉熵、KL散度（相对熵）
 
 entropy公式：
 
 
-- 信息增益
+- 信息增益 Information Gain
 
-- 基尼系数
+- 基尼系数 Gini impurity
 
 - squared loss
 
 
 ## adaboost
+
 - 损失函数exp
 - 对分类正确的样本降低权重，对错误分类的样本升高或者保持全中不变。在模型融合过程中，根据错误率对基分类器器进行加权融合，错误率低的分类器拥有更大的“话语权”
 
@@ -135,4 +138,5 @@ class Decision_tree():
 - [【机器学习】决策树（中）——Random Forest、Adaboost、GBDT](https://zhuanlan.zhihu.com/p/86263786)
 - [【机器学习】决策树（下）——XGBoost、LightGBM](https://zhuanlan.zhihu.com/p/87885678)
 - [机器学习-LightGBM - 马一凡的文章 - 知乎](https://zhuanlan.zhihu.com/p/105954452)
-- 
+- [Productionizing Distributed XGBoost to Train Deep Tree Models with Large Data Sets at Uber](https://www.uber.com/en-HK/blog/productionizing-distributed-xgboost/)
+- [Use XGBoost with the SageMaker Python SDK](https://sagemaker.readthedocs.io/en/stable/frameworks/xgboost/using_xgboost.html)

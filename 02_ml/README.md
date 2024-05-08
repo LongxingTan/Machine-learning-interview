@@ -124,3 +124,5 @@
 - [https://github.com/ctgk/PRML](https://github.com/ctgk/PRML)
 - [https://github.com/nxpeng9235/MachineLearningFAQ/blob/main/bagu.md](https://github.com/nxpeng9235/MachineLearningFAQ/blob/main/bagu.md)
 - [https://docs.qq.com/doc/DR0ZBbmNKc0l3RGR2](https://docs.qq.com/doc/DR0ZBbmNKc0l3RGR2)
+- [机器学习八股文的答案](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=998257&page=1&extra=)
+- [ML, DL学习面试交流总结](https://www.1point3acres.com/bbs/thread-788612-1-1.html)

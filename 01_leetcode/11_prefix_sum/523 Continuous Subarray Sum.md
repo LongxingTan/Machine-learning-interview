@@ -34,20 +34,25 @@ class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         if len(nums) < 2:
             return False
-
+        
         prefix_sum = 0
-        sum = {0: -1} # 遇到mode为0直接为True
+        mydict = {0: -1}  # 如果第一个元素到中间元素可以被整除, [13, 2], 3
+        # 同时题目要求至少2个元素, 如果是前两个的和，也就是需要一个-1
 
-        for i in range(len(nums)):
-            prefix_sum += nums[i]
-            remainder = prefix_sum % k
+        for i, num in enumerate(nums):
+            prefix_sum += num
+
             # 如果两个数除k都余同一个a，那么二者之差可以整除k
-            if remainder in sum and i - sum[remainder] > 1:
+            remainder = prefix_sum % k
+            if remainder not in mydict:
+                mydict[remainder] = i
+            
+            if i - mydict[remainder] >= 2:  # 其实是题目要求至少2个元素和
                 return True
-            if remainder not in sum:
-                sum[remainder] = i
         return False
 ```
+时间复杂度：O(n) <br>
+空间复杂度：O(n)
 
 
 ## follow up

@@ -105,4 +105,10 @@ class Solution:
 空间复杂度：O()
 
 
+- Trie
+```python
+# https://algo.monster/liteproblems/140
+```
+
+
 [472 Concatenated Words](./472%20Concatenated%20Words.md)

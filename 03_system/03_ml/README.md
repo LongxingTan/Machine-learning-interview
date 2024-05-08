@@ -8,6 +8,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
   - design youtube violent content detection system
   - detecting unsafe content
   - design a monitoring system to realtime measure ML models, including features, score distribution, qps 
+  - abusive user detection
 
 **业务目标**
   - improve engagement on a feed
@@ -27,6 +28,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 - **明确需求**
   - 场景，功能，目标(engagement Or revenue)，约束，如何转化为机器学习问题(如推荐转化为二分类模型和原因)
 - **数据**
+  - positive label and negative label
   - scale of the system, user和item有哪些数据和量级，一些可做特征的数据是否有log
   - 从2个方面identify data：training + label, testing + ground truth
   - label来源: 从交互中收集, 人工标注, 人工标注加无监督辅助, 增强数据
@@ -35,6 +37,8 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
   - train/test data和product上distribution不一样怎么办
   - data distribution随时间改变怎么办
 - **特征工程**
+  - user, item and cross, context
+  - sparse and dense feature
   - 实际工作中，每个ML组都有自己不同的embedding set。互相使用别人的embedding set。怎么pre-train, fine-train, 怎么combine feature非常重要
   - feature的ABtest怎么做？不同traffic做
 - **模型**
@@ -42,12 +46,14 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
   - 每个design的选择，像平时写design doc一样比较不同选项的优劣
   - 大多数场景，模型之外都需要额外的策略兜底
 - **评价**
+  - offline and online
   - 模型的评价，比如：点击，转化，是否有广告？考察的是GMV，还是转化订单？
 - **部署**
   - server or device
   - all users or a part of users
   - statically, dynamically(server or device) or model streaming
 - **serving**
+  - batch prediction or online prediction
 - **monitoring**
   - 监控latency，QPS，precision，recall等参数
 - **maintain**
@@ -56,9 +62,9 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 ### 过程
 
 - 一边白板画框图，一边告知面试官我要讲某几个部分
-- 整个过程，讲清楚主题之前，不要陷入任何一部分的细节挖掘。随着问题介绍，data都会告诉你
-- 每个部分，尤其是你熟悉的方面，要自己主动讲，因为每个部分都很重要
-- 最后确认：Is there anywhere that you feel I missed?
+- 整个过程，讲清楚主题之前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
+- 每个部分，尤其是自己熟悉的方面，要主动讲，因为每个部分都很重要
+- move之前最后确认：Is there anywhere that you feel I missed?
 
 
 ## 问答
@@ -104,6 +110,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 
 
 ## 参考
+
 - [https://github.com/ByteByteGoHq/ml-bytebytego](https://github.com/ByteByteGoHq/ml-bytebytego)
 - [https://developers.google.com/machine-learning/recommendation](https://developers.google.com/machine-learning/recommendation)
 - [https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/](https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/)
@@ -135,3 +142,5 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 - [https://github.com/eugeneyan/ml-design-docs](https://github.com/eugeneyan/ml-design-docs)
 - [https://www.machinelearninginterviews.com/ml-design-template/](https://www.machinelearninginterviews.com/ml-design-template/)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
+- [买它 MLE E6 昂赛过经](https://www.1point3acres.com/bbs/thread-1018808-1-1.html)
+- 

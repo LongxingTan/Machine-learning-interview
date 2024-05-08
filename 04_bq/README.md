@@ -1,15 +1,18 @@
 # 行为面试 Behavior question
+ 
 行为面试不可小觑，甚至软实力本身就是工作中更重要的能力。面试也是考察是否是值得合作的同事，有针对的准备BQ是**非常**有必要的，BQ主要考察沟通理解能力、文化匹配、资深程度
 
-- 面试，不是考试，而是一个交流、学习的过程. 谈笑风生
-- 准备工作要做好，BQ一定准备好若干故事
+- 面试，不是考试，而是一个交流、学习的过程
+- 准备工作要做好，BQ一定准备好若干故事. 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略)，注重给出足够的信号
 - selling your stories and zooming at the right things
 - 目标级别高的话，重点强调自己cross-team/ cross functional的leadership
 
 
 ## 个人项目介绍
+
 - star原则：situation, task, action, results
   - negative question: + learns
+  - context之前先用一句话对故事进行总结
 - 难点和深度
 - 项目中的细节
   - 机器学习项目：the data, labelling, modeling, evaluation metrics
@@ -17,6 +20,7 @@
 
 
 ## 常见问题
+
 **一定提前准备若干的工作小故事，并且背后对应着leadership principles**
 
 
@@ -60,9 +64,11 @@
   - 在scheduling项目中，试图直接用强化学习进行排产
   - 稳扎稳打，技术路线选择上要务实，要深入理解
 - data-driven的方式来说服合作者和领导
+- Most ambiguous(模糊) work and how you deal with it
 
 
 ## 阅读
+
 - [U-shape: Man in a hole](https://youtu.be/hU6BVxtGd5g)
 - [Dan Croitor @youtube](https://www.youtube.com/c/DanCroitor/videos)
 - [Don't Get Down-Leveled or How to Tell a Good Story (From a Principal at Amazon)](https://www.youtube.com/watch?v=hU6BVxtGd5g)
@@ -77,4 +83,4 @@
 - [https://www.indeed.com/career-advice/interviewing/interview-questions-about-conflict](https://www.indeed.com/career-advice/interviewing/interview-questions-about-conflict)
 - [Amazon Behavioral Interview Questions个人总结和回答](https://www.1point3acres.com/bbs/thread-837688-1-1.html)
 - [2022最强bq问题集合，400题不限专业](https://www.1point3acres.com/bbs/thread-891102-1-1.html)
-- 
+- [请问behavior question应该怎么抓着重点](https://www.1point3acres.com/bbs/thread-1024731-1-1.html)

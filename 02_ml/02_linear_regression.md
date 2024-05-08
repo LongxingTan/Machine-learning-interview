@@ -6,6 +6,13 @@
 - 最大后验法与正则化
 - 贝叶斯线性回归与高斯过程回归
 
+其基础假设：
+- There is a linear relationship between the independent variables(X) and the dependent variables (y)
+- Independence: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
+- Normality: The residuals of the linear regression model are assumed to be normally distributed.
+- Homoscedasticity: Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
+- No Multicollinearity between features
+
 
 ## 1.最小二乘法
 
@@ -151,6 +158,7 @@ $$ w=(X^TX+\lambda I)^{-1}X^TY $$
   - 自变量之间由于存在高度相关关系而使模型的权重参数估计失真或难以估计准确的一种特性
   - 共线性不影响模型的预测而是影响对模型的解释
   - 可以尝试l2正则；可以使用PCA，将特征转为独立的变量
+  - feature selection, ridge regression, PCA
 
 
 ## 代码

@@ -1,13 +1,18 @@
 # k-means
 
+partitioning a dataset into k distinct clusters based on similarity measures. 
+It aims to minimize the within-cluster sum of squares (WCSS) or the average squared distance between data points and their assigned cluster centroids
+
 ## 过程
 
 
 ## PCA
+
 - explained variance ratio
 
 
 ## 问答
+
 - cons
   - 对outlier敏感
 

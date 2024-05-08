@@ -1,6 +1,8 @@
 # Youtube 视频推荐
 
+
 ## 1. 需求 requirements
+
 **场景/功能类**
 - Use case
   - Homepage?
@@ -34,6 +36,7 @@
 
 
 ## 2. 指标 metrics
+
 - North star metric
   - Watch time, Other metrics : No. of photos watched, engaged with ( by clicking, commenting, liking etc.) DAU, WAU, MAU, Stickiness, Weekly retention, 30 day retention etc
 - offline
@@ -47,6 +50,7 @@
 
 
 ## 3. 架构 architectural components
+
 ![03ml-youtube-reco-structure](../../.github/assets/03ml-youtube-reco-structure.png)
 - The reason for two stages is to make the system scale.
 - [1] In this first stage, the system starts from a potentially huge corpus and generates a much smaller subset of candidates. For example, the candidate generator in YouTube reduces billions of videos down to hundreds or thousands. The model needs to evaluate queries quickly given the enormous size of the corpus. A given model may provide multiple candidate generators, each nominating a different subset of candidates.
@@ -55,6 +59,7 @@
 
 
 ## 4. 数据收集 data collection
+
 - Collect data on ad impressions, clicks, conversions, and user interactions.
 - Capture user behavior data on your website or platform to understand post-click engagement.
 - Gather ad creative data, such as headlines, images, and ad copy.
@@ -66,6 +71,8 @@
 - filling missing values
 - normalizing data
 
+### 4.2正负样本
+
 
 ## 5. 特征 feature
 - 用户特征，item特征，场景特征
@@ -73,14 +80,15 @@
   - item：
   - 用户与item交叉特征：
   - 场景特征：有缺失，重要特征提升其覆盖率
-- 区分sparse和dense
-- 离散特征(ID，类目)做embedding
-- 连续特征（）转换 log1p, 分桶变成离散特征
+- sparse和dense特征
+  - 离散特征(ID，类目)做embedding
+  - 连续特征（）转换 log1p, 分桶变成离散特征
 - 根据特征需要的时效性（例如历史engagement）、变化频率(例如用户与item基本信息)、数据大小与计算快慢决定其存储与服务时获取的方式
   - 内存数据库：用户画像(少，偏静态)、item画像(多，静态)、统计特征（用户少，item多，时效要求高）
 
 
 ## 6. 模型 model
+
 ### 召回
 
 ![](../../.github/assets/03ml-youtube-reco-retrieval.png)
@@ -130,13 +138,13 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 
 ## 7. prediction service
+
 - 视频要否要先通过审核
 - application server
 - candidate generation service
   - two-tower network inference: find the k-top most relevant items given a user ->
   - It's a classic nearest neighbor problem -> use approximate nearest neighbor (ANN) algorithms
 - ranking service
-
 
 
 ## 8. ops
@@ -158,6 +166,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 
 ## 参考
+
 - 论文: Deep Neural Networks for YouTube Recommendations
 - [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations]()
 - 论文: Recommending What Video to Watch Next: A Multitask Ranking System
@@ -172,4 +181,3 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - [双塔模型Batch内负采样如何解决热度降权和SSB的问题](https://zhuanlan.zhihu.com/p/574752588)
 - [Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations](https://research.google/pubs/pub50257/)
 - [mgtv-用户下一个观看视频预测](https://challenge.ai.mgtv.com/#/track/16)
-- 

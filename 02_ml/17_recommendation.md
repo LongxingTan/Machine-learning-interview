@@ -1,6 +1,7 @@
 # 推荐系统
 配合[ML系统设计：推荐系统设计](../03_system/03_ml/recommendation.md)
 
+
 ## 1. 业务
 
 推荐系统本质上也是，设定目标，然后让优化目标最大化。推荐系统大多是i2u，把物品推荐给用户，不过也有friend recommendation这种u2u的推荐。
@@ -85,13 +86,24 @@
 
 
 ### 2.3 策略
+
 - 新手扶持流量，试试效果再决定
 - 多样性抽样(MMR，DPP)
 - 插入广告
 
 
 ### 2.4 探索与发现
+
 - bandit、Q-Learning、DQN
+
+
+### 2.5 Infra
+
+- Realtime approximate nearest neighbours systems (eg. Annoy, Faiss.)
+- Text indexing systems (Lucene, Elasticsearch)
+- Database and distributed data systems like Spark
+- Serving systems (TFX)
+- Model tracking and Management systems (Kubeflow, MLFlow)
 
 
 ## 3. 问题
@@ -105,6 +117,7 @@
 
 
 ### Bias
+
 - selection bias: 用户倾向于给非常喜欢或者非常不喜欢的打分
 - positional bias: 用户倾向于点击位置靠前的
   - As A Feature: 训练时将 position 当作一个特征进行输入，在预测时以一个默认值(如 0)进行输入
@@ -119,6 +132,7 @@
 
 
 ### 冷启动
+
 - 冷启动推荐效果不佳，主要在于交互数量少，ID embedding学不好
 - user冷启动影响留存，item冷启动影响生态。关键是利用好side info
   - Airbnb根据side information人工将user/item分群的方式
@@ -214,6 +228,7 @@ item average_pooling和sum_pooling的区别
 
 
 ## 参考
+- [Recommender Systems: The Most Valuable Application of Machine Learning (Part 1)](https://towardsdatascience.com/recommender-systems-the-most-valuable-application-of-machine-learning-part-1-f96ecbc4b7f5)
 - [https://github.com/twitter/the-algorithm](https://github.com/twitter/the-algorithm)
 - [https://github.com/tangxyw/RecSysPapers](https://github.com/tangxyw/RecSysPapers)
 - [互联网大厂的这些推荐算法面试题，你都能答上来吗？ - 石塔西的文章 - 知乎](https://zhuanlan.zhihu.com/p/627578461)
@@ -237,3 +252,4 @@ item average_pooling和sum_pooling的区别
 - [再思考双塔 Embedding-based Retrieval 工业界比对 - 亓逸的文章 - 知乎](https://zhuanlan.zhihu.com/p/676513444)
 - [推荐系统重排打散](https://zhuanlan.zhihu.com/p/566498545)
 - [大模型LLM之混合专家模型MoE（下-实现篇） - 爱吃牛油果的璐璐的文章 - 知乎](https://zhuanlan.zhihu.com/p/673048264)
+- [推荐系统embedding过大如何压缩一下？最近正在解决这个问题？ - 知乎](https://www.zhihu.com/question/522006535)

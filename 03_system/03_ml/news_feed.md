@@ -5,6 +5,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 
 
 ## 1. requirements
+
 **场景/功能类**
 - 是否涉及到不同user的networking
 - 是否需要热点推荐: 及时发现热点事件， 并挖掘出来对应报道，才能有效帮助热点进行推荐和分发。
@@ -28,6 +29,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 
 
 ## 2. metrics
+
 - DAU和留存
 
 
@@ -37,10 +39,12 @@ a default recommendation system based on their location and country can serve as
 
 By observing user behavior, such as the articles they read and the time they spend on them, the algorithm can suggest related articles and gauge user engagement. The 'You May Also Like' (YMAL) approach, based on users' past reading history, is another valuable recommendation strategy. It suggests content similar to what users have previously engaged with, enhancing the overall user experience
 
+
 ## 4. data collection
 
 
 ## 5.feature
+
 **retrieval**
 
 
@@ -48,6 +52,7 @@ By observing user behavior, such as the articles they read and the time they spe
 
 
 ## 6. model
+
 **retrieval**
 
 
@@ -55,7 +60,10 @@ By observing user behavior, such as the articles they read and the time they spe
 
 
 ## cold start
-it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience. When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily. Additionally, asking users to list the specific topics they are interested in can be a game-changer in addressing the 'cold start' problem, which occurs when users provide minimal initial interaction data.
+
+it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience. 
+When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily. 
+Additionally, asking users to list the specific topics they are interested in can be a game-changer in addressing the 'cold start' problem, which occurs when users provide minimal initial interaction data.
 
 
 ## reference

@@ -116,6 +116,7 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 
 
 ## reference
+
 - [On the Factory Floor: ML Engineering for Industrial-Scale Ads Recommendation Models](https://arxiv.org/abs/2209.05310)
 - [snap: Machine Learning for Snapchat Ad Ranking](https://eng.snap.com/machine-learning-snap-ad-ranking)
 - [架构设计之广告系统架构解密](https://zhuanlan.zhihu.com/p/300167370)

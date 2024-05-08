@@ -1,10 +1,16 @@
 # 设计推荐系统
-配合[推荐系统理论](../../02_ml/17_recommendation.md)
+
+配合[推荐系统理论](../../02_ml/17_recommendation.md). 
+
+推荐系统是经典的机器学习系统设计题目，要通过自己的思考把各个环节串联起来，形成系统性框架性的思考。
+例如大规模推荐，为什么需要召回加排序的漏斗结构？是因为召回能快速把大规模candidate显著减小，常见的双塔模型为什么能够快速召回呢？因为通过ANN快速计算索引，不需要模型本身对item进行推理计算。
+因此也决定了召回模型是late fusion, 而排序模型是early fusion(较早进行特征融合能够提升预测精度).
 
 推荐系统的重要性源自**信息过载**与**人们行为的长尾分布**. 目的是Link user with items in a reasonable way.
 
 
 ### Functional requirement
+
 - what is the product for which we have to build a recommendation system
 - which part should we focus on
 - Who is the producer/consumer
@@ -18,6 +24,7 @@
 
 
 ### NonFunctional requirement
+
 - MVP and Non-MVP
 - users should have a real time/ near real time / small latency experience Idempotency/ exact-once/ at-least-once/ at-most-once
 - reliability: data not get lost/ job not executed in parallel retention policy
@@ -26,6 +33,7 @@
 
 
 ### Capacity planning
+
 - dau
 - qps
 - peak qps
@@ -80,6 +88,7 @@
 
 
 ### Diagram & API
+
 - pagination + sort_key / video start timestamp / offset, page_size
 - user context/ client info(ios, network condition) diagram
 - list high level diagram first, then each component
@@ -92,6 +101,7 @@
 ### DataSchema & Scale
 
 ### Monitoring & Metrics
+
 注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试。
 - 电商：根据业务需要，在 GMV (商品交易总额) 主目标之外，通常还要兼顾 IPV、转化率、人均订单数等多个次目标
 - ctr（点击率）和 CVR (Conversion Rate) 转化率
@@ -103,6 +113,7 @@
 
 
 ## 特定情况
+
 针对不同领域，如电商、O2O，针对领域提出针对性的优化
 - 电商推荐业务：曝光->点击->购买
 - 地点约束，例如yelp的饭馆推荐涉及geolocation information
@@ -115,12 +126,13 @@
 
 
 ## 问答
+
 - 数据采集和处理
   - 如何建立index
 - 怎么做counterfactual evaluation
 - 怎么deploy?
   - embedding retrieval
-  - **real time or batch**
+  - **real time or batch**, Batch Prediction Versus Online Prediction
 - 怎么上线？
   - A/B testing, metric
 - 连续特征离散化方法以及为什么需要对连续特征离散化
@@ -131,6 +143,7 @@
 - DPP多样性算法
 - 冷启动
   - 如何冷启动
+  - [embedding 冷启动](https://zhuanlan.zhihu.com/p/351390011)
 - bias
   - 如何解决 position bias/popularity bias
 - 对热门的打压
@@ -186,3 +199,12 @@
 - [https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/](https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/)
 - [推荐系统架构](https://www.zhihu.com/people/yan-yiceng/posts)
 - [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
+- [CTR/推荐系统 特征工程文章汇总](https://zhuanlan.zhihu.com/p/564479089)
+- [CTR/推荐系统中embedding应用概述文章汇总](https://zhuanlan.zhihu.com/p/369236413)
+- [CTR/推荐系统中多任务/多目标学习应用概述文章汇总](https://zhuanlan.zhihu.com/p/369289378)
+- [CTR/推荐系统冷启动文章汇总](https://zhuanlan.zhihu.com/p/530948093)
+- [CTR/推荐系统 冷启动Exploitation & Exploration文章汇总](https://zhuanlan.zhihu.com/p/531020134)
+- [CTR/推荐系统中Debias应用概述文章汇总](https://zhuanlan.zhihu.com/p/518175104)
+- [CTR/推荐系统线上线下不一致讨论文章汇总](https://zhuanlan.zhihu.com/p/518353056)
+- [CTR/推荐系统 转化延迟文章汇总](https://zhuanlan.zhihu.com/p/531949459)
+- 

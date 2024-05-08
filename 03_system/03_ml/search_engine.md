@@ -1,7 +1,9 @@
 # 搜索引擎
+
 搜索的基本是"拉动"，由用户检索拉动。推荐的基本是"推动"，由系统进行推动。二者都是向用户提供用户需要的信息。
 
 有的业务场景中，通过q2i的用户反馈信息进行排序，进一步提升业务指标。
+
 
 ## 1. requirements
 - Is it a generalized search engine (like google) or specialized (like amazon product)?
