@@ -2,6 +2,7 @@
 
 
 ## 概率统计
+
 有的面试会直接考察统计与数学知识。即使不是直接考察，在ML环节用数学佐证自己的观点是非常有裨益的。
 
 - 中心极限定理
@@ -39,6 +40,7 @@
 
 
 ## AB test
+
 - sample size计算
 - 不同element increase/decrease对power的影响
 
@@ -54,12 +56,12 @@
 
 
 ## 微积分
+
 机器学习中使用的微积分主要在于优化。
 
 
 ## 问答
-- a/b testing如何确定sample size
-  - 
+- a/b testing如何确定sample size  
 - What is p-value? What is confidence interval? Explain them to a product manager or non-technical person.
 - How do you understand the "Power" of a statistical test?
 - If a distribution is right-skewed, what's the relationship between medium, mode, and mean?
@@ -80,7 +82,6 @@
 
 ## Reference
 - [https://brilliant.org/](https://brilliant.org/)
-- Xinfeng Zhou: A practical guide to quantitative finance interviews
 - [Udacity AB test](https://www.udacity.com/course/ab-testing--ud257)
 - [bittiger AB test](https://drive.google.com/file/d/15F2lpaW0wGU5WK9lR46ygUsBReYig_YE/view)
 - [Lets Python do AB testing analysis](https://github.com/tlentali/leab)
@@ -96,3 +97,6 @@
 - [ABTest知识总结 - Steven的文章 - 知乎](https://zhuanlan.zhihu.com/p/450660183)
 - [冠军/挑战者试验（A/B Test） - 过一点画一条直线的文章 - 知乎](https://zhuanlan.zhihu.com/p/144924899)
 - [如何通俗地理解协方差和相关系数？ - 马同学的文章 - 知乎](https://zhuanlan.zhihu.com/p/70644127)
+- A practical guide to quantitative finance interviews
+- [P-Value](https://zhuanlan.zhihu.com/p/23806765)
+- 

@@ -39,6 +39,7 @@ class Solution:
 
 
 ## follow up
+
 [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
 
 ```python
@@ -63,7 +64,46 @@ class Solution:
 时间复杂度：O(n) <br>
 空间复杂度：O(n)
 
+[*536. Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/description/)
+```python
+# 首先树的构造必须从root开始, 根据示例可以找出规律, 遇到左括号就赋给左子树, 遇到右括号就往根结点回一层
+
+```
 
 [*1485 Clone Binary Tree With Random Pointer](./1485%20Clone%20Binary%20Tree%20With%20Random%20Pointer.md)
 
+
 [133. Clone Graph](../08_bfs/133.%20Clone%20Graph.md)
+
+
+[1382. Balance a Binary Search Tree](https://leetcode.com/problems/balance-a-binary-search-tree/)
+```python
+class Solution:
+    def __init__(self):
+        self.nodes = []
+
+    def balanceBST(self, root: TreeNode) -> TreeNode:
+        self.dfs(root)
+        self.nodes = sorted(self.nodes, key=lambda x: x.val)
+        return self.construct(self.nodes)
+    
+    def dfs(self, root):
+        if not root:
+            return
+        
+        self.nodes.append(root)
+        if root.left:
+            self.dfs(root.left)
+        if root.right:
+            self.dfs(root.right)
+    
+    def construct(self, nodes):
+        if not nodes:
+            return
+        
+        idx = len(nodes) // 2
+        root = nodes[idx]
+        root.left = self.construct(nodes[:idx])
+        root.right = self.construct(nodes[idx+1:])
+        return root
+```

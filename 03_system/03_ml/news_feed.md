@@ -74,4 +74,5 @@ Additionally, asking users to list the specific topics they are interested in ca
 - [How machine learning powers Facebook’s News Feed ranking algorithm](https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/)
 - [交互式推荐在外卖场景的探索与应用](https://mp.weixin.qq.com/s/s7yoJXgc_7txSooeuE-3sg)
 - [深度召回在飞猪旅行推荐系统中的探索和实践](https://mp.weixin.qq.com/s/AyMmfixX8rXUgGIf94uBkw)
+- [Personalized News Recommendation: Methods and Challenges](https://arxiv.org/pdf/2106.08934)
 - 

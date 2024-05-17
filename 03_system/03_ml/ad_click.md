@@ -11,6 +11,7 @@
 
 
 ## 1. requirement
+
 **场景类**
 - We have a bidding server which makes bids and produces logs. Also we have information about impressions and conversions (usually with some delays). We want to have a model which using this data will predict a probability of click (conversion)
 - 转化漏斗：曝光 —> 点击 —> 转化

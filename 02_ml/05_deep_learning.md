@@ -132,6 +132,7 @@ class FocalLoss(nn.Module):
 ## 网络模型
 
 ### MLP
+
 向量内积
 - 表征两个向量的夹角，表征一个向量在另一个向量上的投影
 - 表征加权平均
@@ -268,7 +269,9 @@ def conv2d(inputs, kernels, bias, stride, padding):
 
 - 梯度爆炸与梯度消失
   - 梯度消失：在反向传播过程中累计梯度一直相乘，当很多小于1的梯度出现时导致前面的梯度很小，难以学习long-term dependencies
+    - 一般改进: 改进模型
   - 梯度爆炸：the exploding gradient problem当梯度较大，链式法则导致连乘过大,数值不稳定
+    - 一般改进: 梯度截断, 权重衰减
   - 通过多个gate
 - 长距离依赖问题
 - 计算复杂度：

@@ -12,6 +12,7 @@
 
 
 ## 2. metrics
+
 - Offline
   - Precision@k, mAP, Recall@k, MRR
   - we choose MRR (avg rank of first relevant element in results) due to the format of our eval data <video, text> pair

@@ -97,16 +97,22 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
     - Randomly assign users into control and treatment groups (discuss with the interviewer whether we will split the candidates on the user level or the request level)
     - Measure and analyze results using the appropriate test. Also, we should ensure that the model does not have any biases.
   - If we are serving batch features they have to be handled offline and served at real time so we have to have daily/weekly jobs for generating this data.
-  - If we are serving real time features then they need to be fetched/derived at request time and we need to be aware of scalability or latency issues (load balancing), we may need to create a feature store to lookup features at serve time and maybe some caching depending on the use case.
-  - Monitoring Performance
-    - Latency (P99 latency every X minutes)
-    - Biases and misuses of your model
-    - Performance Drop
-    - Data Drift
-    - CPU load
-    - Memory Usage
+  - If we are serving real time features then they need to be fetched/derived at request time and we need to be aware of scalability or latency issues (load balancing), we may need to create a feature store to lookup features at serve time and maybe some caching depending on the use case.  
   - Where to run inference: if we run the model on the user’s phone/computer then it would use their memory/battery but latency would be quick, on the other hand, if we store the model on our own service we increase latency and privacy concerns but removes the burden of taking up memory and battery on the user’s device.
   - how often we would retrain the model. Some models need to be retrained every day, some every week and others monthly/yearly. Always discuss the pros and cons of the retraining regime you choose
+- deploy
+  - model serving是典型的low latency high qps
+  - 负载均衡和自动伸缩：
+  - latency如何优化
+  - 这么多server如何deploy，以及如何push新的model version，在更新的时候如何保证qps不degrade
+
+- Monitoring Performance
+  - Latency (P99 latency every X minutes)
+  - Biases and misuses of your model
+  - Performance Drop
+  - Data Drift
+  - CPU load
+  - Memory Usage
 
 
 ## 参考

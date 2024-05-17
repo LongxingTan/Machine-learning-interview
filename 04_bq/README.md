@@ -76,7 +76,7 @@
 - Engineers survival guide
 - [https://www.youtube.com/@Fred_Talk](https://www.youtube.com/@Fred_Talk)
 - [https://www.youtube.com/@CareerSchool](https://www.youtube.com/@CareerSchool)
-- [可能是对你最有帮助的BQ教程](https://www.1point3acres.com/bbs/thread-895663-1-1.html)
+- [彻底击碎行为问题-可能是对你最有帮助的BQ教程](https://www.1point3acres.com/bbs/thread-895663-1-1.html)
 - [situational-scenario-based-interview-questions-answers](https://www.interviewkickstart.com/career-advice/situational-scenario-based-interview-questions-answers)
 - [https://www.youtube.com/@SelfMadeMillennial](https://www.youtube.com/@SelfMadeMillennial)
 - [https://www.knowledgehut.com/interview-questions/team-leader-interview-questions](https://www.knowledgehut.com/interview-questions/team-leader-interview-questions)

@@ -60,6 +60,8 @@ def find_Kth_smallest_number(nums, k):
   - Heaps are arrays for which heap[k] <= heap[2*k+1] and heap[k] <= heap[2*k+2] for all k
 
 ```python
+# 其他: 1382. Balance a Binary Search Tree
+
 def heappush(heap, item):
     # 将新元素添加到列表末尾
     heap.append(item)

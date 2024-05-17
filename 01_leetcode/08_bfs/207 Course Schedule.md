@@ -162,7 +162,7 @@ class Solution:
 [621 Task Scheduler](../10_greedy/621.%20Task%20Scheduler.md)
 
 
-[2365 Task Scheduler II]()
+[2365 Task Scheduler II](https://leetcode.com/problems/task-scheduler-ii/description/)
 ```python
 
 ```
@@ -184,6 +184,7 @@ class Solution:
 ```
 
 [1235 Maximum Profit in Job Scheduling](../09_dynamic_program/1235%20Maximum%20Profit%20in%20Job%20Scheduling.md)
+
 
 [2050. Parallel Courses III](https://leetcode.com/problems/parallel-courses-iii/description/)
 ```python
@@ -285,7 +286,7 @@ class Solution:
         return res
 ```
 
-[1386. Cinema Seat Allocation]()
+[1386. Cinema Seat Allocation](https://leetcode.com/problems/cinema-seat-allocation/description/)
 ```python
 
 ```

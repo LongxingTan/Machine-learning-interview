@@ -57,19 +57,19 @@ class Solution:
 ```python
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        res = 0
+        if len(nums) < 1:
+            return 0
+
         prefix_sum = 0
-        d = {0: 1}  # 注意初始化
+        prefix_count_dict = collections.defaultdict(int)
+        prefix_count_dict[0] = 1  # 注意初始化, 元素自身恰好等于k时加1
 
+        res = 0
         for num in nums:
-            prefix_sum = prefix_sum + num
+            prefix_sum += num
+            res += prefix_count_dict[prefix_sum - k]   # 注意和dict更新的顺序会影响结果
 
-            if prefix_sum - k in d:
-                res += d[prefix_sum - k]
-            if prefix_sum not in d:
-                d[prefix_sum] = 1
-            else:
-                d[prefix_sum] += 1
+            prefix_count_dict[prefix_sum] += 1         
         return res
 ```
 时间复杂度：O(n) <br>
@@ -128,4 +128,31 @@ class Solution:
             dp_pos.append(max(nums[i], dp_pos[i-1] * nums[i], dp_neg[i-1] * nums[i]))
             dp_neg.append(min(nums[i], dp_pos[i-1] * nums[i], dp_neg[i-1] * nums[i]))
         return max(dp_pos)
+```
+
+
+[1186. Maximum Subarray Sum with One Deletion](https://leetcode.com/problems/maximum-subarray-sum-with-one-deletion/description/)
+- 动态规划
+```python
+# dp(i, d): 删除d个元素的arr[:i + 1]最大子序和
+
+class Solution:
+    def maximumSum(self, arr: List[int]) -> int:
+
+        dp = [[0] * 2 for _ in range(len(arr))]
+
+        dp[0][0] = arr[0]
+        dp[0][1] = 0
+
+        res = arr[0]
+        for i in range(1, len(arr)):
+            dp[i][0] = max(dp[i-1][0] + arr[i], arr[i])
+            dp[i][1] = max(dp[i-1][1] + arr[i], dp[i-1][0])
+            res = max(res, dp[i][0], dp[i][1])         
+        return res
+```
+
+- 前缀和+后缀和
+```python
+
 ```

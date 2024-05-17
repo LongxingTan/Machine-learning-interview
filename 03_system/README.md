@@ -5,7 +5,7 @@
 
 ## 面试过程
 
-- 面试者要自己主导整个流程和对话，多说，多自己主动找反馈
+- 面试者要自己主导整个流程和对话，多说(framework、bullet point、one sentence summary first)，多自己主动找反馈
 - 先花时间沟通清楚需求，分析需求中的重点与难点，从big picture开始
 - 讲述时采用框架思维，并在每一块都尽量展现自己思维的广度和深度.主动给面试官多个选项和自己的倾向来说明trade-off
 - 注意比较不同的 option 的优劣trade-off，然后再提出自己的 proposal

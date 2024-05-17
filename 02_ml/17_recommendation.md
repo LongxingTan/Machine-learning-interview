@@ -15,7 +15,7 @@
 - 多目标训练
 
 
-如何进行优化？ (方法论角度, + 找到关键问题)
+如何进行优化？ (方法论角度 + 找到关键问题)
 - 用户体验角度
 - 指标优化角度
 
@@ -27,6 +27,7 @@
 - 统计类，热度，LBS
 - 协同过滤类，UserCF、ItemCF
   - 协同过滤，推荐时同时考虑了该用户交互过的"物品"，以及与该用户相似的其他"用户"，是为协同。Content-based filtering doesn't look at other users
+  - [基于物品的协同过滤i2i--算法、trick及分布式实现](https://zhuanlan.zhihu.com/p/350447698)
 - U2T2I，如基于user tag召回
 - **I2I**，如Embedding（Word2Vec、FastText），GraphEmbedding（Node2Vec、DeepWalk、EGES）
 - U2I，如DSSM、YouTube DNN、Sentence Bert
@@ -45,8 +46,9 @@
 - 召回精度：衡量召回链路Top-N召回的准确性。
   - 一般采用Recall@K、Precision@K、F1@K、Hit-rate@K, AUC, MRR(Mean Reciprocal Rank), GAUC(计算同一个广告不同用户的auc加权平均)
   - Hit Ratio (HR, 命中率)
-  - Mean Reciprocal Rank (MRR, 平均倒数排名)
-  - Normalized Discounted Cumulative Gain (NDCG, 归一化折损累计增益)
+  - Mean Reciprocal Rank (MRR, 平均倒数排名, focuses on the rank of the first relevant item in the list)
+  - Normalized Discounted Cumulative Gain (NDCG, 归一化折损累计增益, works well when the relevance score between a user and an item is non-binary)
+  - 此外，mAP: works only when the relevance scores are binary
 - 召回覆盖率：衡量召回链路对于长尾item的挖掘能力。
   - 召回item在整个物料池的占比；
   - 去掉top1%的item，在比较召回精度。
@@ -65,6 +67,7 @@
 
 
 ### 2.2 排序
+
 多目标排序。learning to rank 流程三大模式（point-wise、pair-wise、list-wise），主要是特征工程和CTR模型预估。pairwise在搜索排序中提出，在推荐排序中效果有可能比pointwise差。
 - 常见的特征挖掘（user、item、context，以及相互交叉）
 - 粗排：**双塔**, 小规模神经网络
@@ -204,7 +207,6 @@ item average_pooling和sum_pooling的区别
     - 没有采用原始用户日志，而是对每个用户提取等数量的训练样本：防止活跃用户带偏 model
   - 特征：
     - example age: 用户对新视频有偏好
-    - 
 
 - 排序
   - 模型
@@ -228,6 +230,7 @@ item average_pooling和sum_pooling的区别
 
 
 ## 参考
+
 - [Recommender Systems: The Most Valuable Application of Machine Learning (Part 1)](https://towardsdatascience.com/recommender-systems-the-most-valuable-application-of-machine-learning-part-1-f96ecbc4b7f5)
 - [https://github.com/twitter/the-algorithm](https://github.com/twitter/the-algorithm)
 - [https://github.com/tangxyw/RecSysPapers](https://github.com/tangxyw/RecSysPapers)
@@ -253,3 +256,5 @@ item average_pooling和sum_pooling的区别
 - [推荐系统重排打散](https://zhuanlan.zhihu.com/p/566498545)
 - [大模型LLM之混合专家模型MoE（下-实现篇） - 爱吃牛油果的璐璐的文章 - 知乎](https://zhuanlan.zhihu.com/p/673048264)
 - [推荐系统embedding过大如何压缩一下？最近正在解决这个问题？ - 知乎](https://www.zhihu.com/question/522006535)
+- [浅谈多任务学习（Multi-task Learning）](https://zhuanlan.zhihu.com/p/348873723)
+- [双塔召回模型的前世今生（上篇） - iwtbs的文章 - 知乎](https://zhuanlan.zhihu.com/p/430503952)

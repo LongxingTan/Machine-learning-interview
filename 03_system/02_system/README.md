@@ -2,6 +2,7 @@
 
 - 第一步理解系统设计需求，需要明确系统所用于何种商业目的，要求的功能&技术，来成功定义面试官内心的“标答” 【功能性需求】
 - 第二步明确所设计系统需求的资源, 例如分析QPS 【非功能性需求】
+  - latency sensitive的场景，要避免使用msg queue
 - 第三步画出关系清晰的架构图，搞清楚service怎么划分
 - 第四步设计数据结构与存储、核心子服务、接口等，接上database
   - 技术选型：SQL vs No-SQL，Sync VS Async，RPC VS MQ等技术选择
@@ -48,6 +49,8 @@
 - Design website building platform
 - Design giftcard system
 - Design large scale devices location tracker
+- auto complete: trie database
+
 
 瓶颈，scale, tradeoff
 
@@ -125,6 +128,7 @@ NOSQL
 - Horizontal scaling
 - caching
 - database sharding(partition)
+- horizontal scaling, sharded by userId, caching, etc
 
 
 ### 大数据

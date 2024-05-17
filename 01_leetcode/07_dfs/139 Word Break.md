@@ -77,7 +77,7 @@ class Solution:
 ```python
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        memory = {}
+        memory: dict[str: list[str]] = {}
         return self.dfs(s, wordDict, memory)
     
     def dfs(self, s, wordDict, memory):

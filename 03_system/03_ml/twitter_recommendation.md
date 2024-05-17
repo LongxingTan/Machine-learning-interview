@@ -48,8 +48,7 @@ twitter比较关注social graph的挖掘
 - [https://github.com/twitter/the-algorithm](https://github.com/twitter/the-algorithm)
 - [https://github.com/twitter/the-algorithm-ml](https://github.com/twitter/the-algorithm-ml)
 - [Twitter's Recommendation Algorithm](https://blog.twitter.com/engineering/en_us/topics/open-source/2023/twitter-recommendation-algorithm)
-- [MaskNet: Introducing Feature-Wise Multiplication to CTR
-Ranking Models by Instance-Guided Mask](https://arxiv.org/pdf/2102.07619.pdf)
+- [MaskNet: Introducing Feature-Wise Multiplication to CTR Ranking Models by Instance-Guided Mask](https://arxiv.org/pdf/2102.07619.pdf)
 - [Twitter是怎么做推荐的？马斯克开源代码梳理](https://zhuanlan.zhihu.com/p/618667508) 
 - [微博推荐实时大模型的技术演进](https://mp.weixin.qq.com/s/wRi0YJLpru5M1My0H2Ww0w)
 - 

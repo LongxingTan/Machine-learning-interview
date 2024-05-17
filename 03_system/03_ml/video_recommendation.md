@@ -65,6 +65,7 @@
 - Gather ad creative data, such as headlines, images, and ad copy.
 
 ### 4.1 前处理
+
 - Segment data by ad type, campaign, audience demographics, and other relevant factors to analyze performance at different levels.
 - Clean and preprocess data to remove anomalies, missing values, and outliers.
 - Removing duplicates
@@ -116,6 +117,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 
 ### 排序
+
 ![](../../.github/assets/03ml-youtube-reco-rank.png)
 
 排序算法给召回的每一个物品ID打分。优化目标有：pairwise，pointwise，listwise。pairwise是搜索排序提出的，正负例之间是有明显界限。对于推荐排序，是基于场景的，用户的反馈具有随机性，因此推荐排序pointwise经常优于parewise。

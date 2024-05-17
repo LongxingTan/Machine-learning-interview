@@ -7,6 +7,9 @@
 因此也决定了召回模型是late fusion, 而排序模型是early fusion(较早进行特征融合能够提升预测精度).
 
 推荐系统的重要性源自**信息过载**与**人们行为的长尾分布**. 目的是Link user with items in a reasonable way.
+- 长尾/热门
+- 记忆/探索
+- 稀疏/embedding
 
 
 ### Functional requirement
@@ -51,6 +54,7 @@
 - 处理完后一般会放在特征存储中，如 KV 存储:  Redis、阿里的 iGraph 等
 
 
+
 **特征**
 
 ![](../../.github/assets/03ml-reco-otto-sirus.png)
@@ -65,14 +69,24 @@
 
 
 **召回**
+
+> - Neighborhood models are most effective at detecting very localized relationships, but unable to capture the totality of weak signals encompassed in all of a user’s ratings. 
+> - Latent factor models are generally effective at estimating overall structure that relates simultaneously to most or all items. However, these models are poor at detecting strong associations among a small set of closely related items.
+
 - 召回系统的要求是，“低延时”与“高精度（precision）
+- 多路召回
 - 负样本选择
+  - 全局负采样
+  - Batch内负采样： batch内的物品都是热门物品，导致采样后的负样本中也大都为热门物品，造成对热门物品的过度打压
 - model
   - 规则：热度高，同一作者、tag
   - itemCF
+    - 无需训练，长于记忆
+    - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中普遍存在的马太效应或长尾效应
   - two power 
   - embedding: graph, picture, text
 - 局部敏感哈希，KD树
+
 
 **排序**
 - 粗排、精排、重排
@@ -85,6 +99,7 @@
   - matrix factorization
   - factorization machine
   - wide and deep learning
+
 
 
 ### Diagram & API
@@ -129,33 +144,46 @@
 
 - 数据采集和处理
   - 如何建立index
+- 召回
+  - faiss: faiss使用了PCA和PQ(Product quantization乘积量化)两种技术进行向量压缩和编码
+  - 向量召回、排序没用实时行为序列特征
 - 怎么做counterfactual evaluation
 - 怎么deploy?
   - embedding retrieval
   - **real time or batch**, Batch Prediction Versus Online Prediction
 - 怎么上线？
   - A/B testing, metric
+  - 热启动与冷启动
+  - 老汤模型的本质，是样本空间不一致导致的公平性问题
+    - 方案一：回滚历史数据，对齐样本空间
+    - 方案二：模型热启动warm-up  
+- 实时化
+  - 特征实时化难点：实时数据处理能力（Flink等），并将处理结果实时写入Redis
+  - 模型实时化
+    - 样本数据流：实时样本落地、实时样本拼接（反馈延时问题）
+    - 模型训练：在线学习（资源和稳定性问题）、实时模型纠偏
 - 连续特征离散化方法以及为什么需要对连续特征离散化
 - FM、FFM的参数量以及时间复杂度
 - 多目标模型
   - 参数共享及不共享参数各自的优缺点  
 - 用户长期兴趣和多兴趣怎么建模
 - DPP多样性算法
-- 冷启动
-  - 如何冷启动
+- 如何冷启动
+  - 思路一: 尽可能应用side information/多模态进行推荐
+  - 思路二: 尽可能用小流量探索出新物料的真实质量
   - [embedding 冷启动](https://zhuanlan.zhihu.com/p/351390011)
 - bias
   - 如何解决 position bias/popularity bias
 - 对热门的打压
   - swing相似度计算中，把共同点击商品A和B的用户pair对的交集放在分母，对热门用户行为的打击
 - 模型更新策略, retrain plan
+  - 按天增量训练，实时训练(在线学习)，或者 在线学习+天级增量结合
   - embedding的更新
   - 全量更新：可以每天更新一次，shuffle, 更新ID embedding 和全连接层，1 epoch。每次更新的还是上一天的全量的模型更新，而不是增量
   - 增量更新：不停做，可以几十分钟更新一次，online learning只更新ID embedding参数, 尽量实时追踪用户兴趣。但其实是有偏的
 - 怎么加user and item metadata
 - 线上评价，线上线性不一致
 - model debugging, offline online inconsistency, light ranking, ab test, heavy ranking, two tower
-- 向量召回、排序没用实时行为序列特征
 - 统计特征用等宽分桶导致特征值聚集
 - 召回没做场景适配，比如相关推荐场景还在用猜你喜欢的召回
 - 多语言搜索召回率低
@@ -166,8 +194,6 @@
 - E&E
   - embedding: 特征转化为可以学习的向量，模糊查找
   - embedding in sequence: 共现
-- 向量召回
-  - faiss: faiss使用了PCA和PQ(Product quantization乘积量化)两种技术进行向量压缩和编码
 - 多任务
 - 多场景
   - 不同用户群体（如新老用户）、APP不同频道模块、不同客户端等
@@ -200,6 +226,7 @@
 - [推荐系统架构](https://www.zhihu.com/people/yan-yiceng/posts)
 - [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
 - [CTR/推荐系统 特征工程文章汇总](https://zhuanlan.zhihu.com/p/564479089)
+  - [推荐系统简介之特征工程笔记 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/671291077)
 - [CTR/推荐系统中embedding应用概述文章汇总](https://zhuanlan.zhihu.com/p/369236413)
 - [CTR/推荐系统中多任务/多目标学习应用概述文章汇总](https://zhuanlan.zhihu.com/p/369289378)
 - [CTR/推荐系统冷启动文章汇总](https://zhuanlan.zhihu.com/p/530948093)
@@ -207,4 +234,4 @@
 - [CTR/推荐系统中Debias应用概述文章汇总](https://zhuanlan.zhihu.com/p/518175104)
 - [CTR/推荐系统线上线下不一致讨论文章汇总](https://zhuanlan.zhihu.com/p/518353056)
 - [CTR/推荐系统 转化延迟文章汇总](https://zhuanlan.zhihu.com/p/531949459)
-- 
+  - [推荐系统简介之标签拼接和延迟反馈 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/668885759)

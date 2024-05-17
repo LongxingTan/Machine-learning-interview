@@ -117,6 +117,39 @@ use smaller models (this reduces weights to train)
 
 Flash Decoding
 
+top_k llm token decoding
+```python
+def top_k_sampling(logits, k=5):
+    """
+    Perform top-k sampling on the logits array.
+
+    Parameters:
+    logits (numpy array): Array of logits representing the probability distribution over tokens.
+    k (int): Number of top tokens to consider.
+
+    Returns:
+    sampled_token (int): The sampled token index.
+    """
+
+    # Calculate the probabilities from logits
+    probabilities = np.exp(logits) / np.sum(np.exp(logits))
+
+    # Get the indices of the top-k tokens
+    top_k_indices = np.argsort(probabilities)[-k:]
+
+    # Normalize probabilities of top-k tokens
+    top_k_probs = probabilities[top_k_indices] / np.sum(probabilities[top_k_indices])
+
+    # Sample a token from the top-k tokens based on their probabilities
+    sampled_token = np.random.choice(top_k_indices, p=top_k_probs)
+
+    return sampled_token
+
+# Example usage:
+logits = np.array([1.2, 0.8, 0.5, 2.0, 1.5])  # Example logits
+sampled_token = top_k_sampling(logits, k=3)
+print("Sampled token index:", sampled_token)
+```
 
 
 ## 问答

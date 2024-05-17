@@ -117,6 +117,32 @@ class Solution(object):
 ```
 
 [*1676. Lowest Common Ancestor of a Binary Tree IV](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iv/description/)
+```python
+
+```
 
 
-[1123. Lowest Common Ancestor of Deepest Leaves]()
+[1123. Lowest Common Ancestor of Deepest Leaves](https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/description/)
+```python
+# 865. Smallest Subtree with all the Deepest Nodes
+
+class Solution:
+    def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        def dfs(root):
+            if not root: return 0, None
+            
+            leftMaxDepth, leftNode = dfs(root.left)
+            rightMaxDepth, rightNode = dfs(root.right)
+            
+            if leftMaxDepth == rightMaxDepth:
+                return leftMaxDepth + 1, root
+            
+            elif leftMaxDepth > rightMaxDepth:
+                return leftMaxDepth + 1, leftNode
+            
+            else:
+                return rightMaxDepth + 1, rightNode
+            
+        maxDepth, ancestor = dfs(root)
+        return ancestor
+```

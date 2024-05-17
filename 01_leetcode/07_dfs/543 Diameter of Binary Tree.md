@@ -7,19 +7,19 @@
 ```python
 class Solution:
     def __init__(self):
-        self.d = 0
+        self.res = 0
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.dfs(root)
-        return self.d  # 注意最终要输出过程中最大的需要一个额外global变量
+        return self.res # 注意最终要输出过程中最大的需要一个额外global变量
     
     def dfs(self, root):  # 注意因为返回的因素，需要额外定义一个dfs
         if not root:
             return 0
         
         l = self.dfs(root.left)
-        r = self.dfs(root.right)
-        self.d = max(l + r, self.d)
+        r = self.dfs(root.right)        
+        self.res = max(l + r, self.res)
         return max(l, r) + 1
 ```
 时间复杂度：O(n) <br>
@@ -34,7 +34,7 @@ class Solution:
 ```
 
 [*1245. Tree Diameter](https://leetcode.com/problems/tree-diameter/description/)
-- 经典做法: 两次bfs，从树中任意节点bfs走到距离最远的节点，然后从这个最远节点再bfs走到最远节点，两个节点距离就是树的直径
+- 经典做法: 两次dfs，从树中任意节点dfs走到距离最远的节点，然后从这个最远节点再dfs走到最远节点，两个节点距离就是树的直径
 ```python
 
 ```
