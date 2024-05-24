@@ -15,6 +15,10 @@
 
 
 ## 2. metrics
+- 传统生成指标n-gram based metrics (BLEU、ROUGE)
+- 基于语义距离的指标 BERT-Score
+- MT-bench和Chatbot Arena进行人工排序
+- 使用GPT4等模型进行打分
 
 
 ## 3. pipeline

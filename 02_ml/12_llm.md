@@ -114,6 +114,7 @@ use smaller models (this reduces weights to train)
 
 
 ## 推理
+- dynamic batching, continuous batching, flash attention, quantization
 
 Flash Decoding
 

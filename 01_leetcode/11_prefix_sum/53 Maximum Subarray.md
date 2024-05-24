@@ -10,16 +10,16 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         maxSum = float('-inf')
         currentSum = 0
-        
+
         for num in nums:
             currentSum += num
-            
+
             if currentSum > maxSum:
                 maxSum = currentSum
-            
+
             if currentSum < 0:
                 currentSum = 0
-        
+
         return maxSum
 ```
 时间复杂度：O(n) <br>
@@ -34,10 +34,10 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         if not nums:
             return
-        
+
         if len(nums) == 1:
             return nums[0]
-        
+
         dp = [0] * len(nums)
         dp[0] = nums[0]
 
@@ -62,14 +62,14 @@ class Solution:
 
         prefix_sum = 0
         prefix_count_dict = collections.defaultdict(int)
-        prefix_count_dict[0] = 1  # 注意初始化, 元素自身恰好等于k时加1
+        prefix_count_dict[0] = 1  # 注意初始化, 当从0开始截止到现在的和等于k时
 
         res = 0
         for num in nums:
             prefix_sum += num
             res += prefix_count_dict[prefix_sum - k]   # 注意和dict更新的顺序会影响结果
 
-            prefix_count_dict[prefix_sum] += 1         
+            prefix_count_dict[prefix_sum] += 1
         return res
 ```
 时间复杂度：O(n) <br>
@@ -87,16 +87,16 @@ class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
         if max(nums) <= 0:
             return max(nums)
-        
+
         cur_min = nums[0]
         cur_max = nums[0]
         res = nums[0]
 
-        for i in range(1, len(nums)):            
+        for i in range(1, len(nums)):
             cur_max = max(cur_max + nums[i], nums[i])
-            res = max(res, cur_max)            
+            res = max(res, cur_max)
             cur_min = min(cur_min + nums[i], nums[i])
-            res = max(res, sum(nums)-cur_min)       
+            res = max(res, sum(nums)-cur_min)
         return res
 ```
 
@@ -148,7 +148,7 @@ class Solution:
         for i in range(1, len(arr)):
             dp[i][0] = max(dp[i-1][0] + arr[i], arr[i])
             dp[i][1] = max(dp[i-1][1] + arr[i], dp[i-1][0])
-            res = max(res, dp[i][0], dp[i][1])         
+            res = max(res, dp[i][0], dp[i][1])
         return res
 ```
 

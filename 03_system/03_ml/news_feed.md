@@ -19,6 +19,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 - How do we collect negative samples? (not clicked, negative feedback).
 - Is personalization needed? Yes
 
+
 **目标类**
 - What is the primary business objective of the system? (increase user engagement)
 
@@ -33,11 +34,15 @@ News is an inherently diverse category, spanning various topics and catering to 
 - DAU和留存
 
 
+
 ## 3. pipeline
 
 a default recommendation system based on their location and country can serve as a starting point. However, the primary focus should be on gathering signals from returning users to refine the algorithm's understanding of their preferences and homepage experience. This could include monitoring how much time they spend on specific news categories and soliciting feedback. The feedback mechanism should give users the option to indicate their preferences, such as whether they appreciate a particular recommendation or would rather avoid certain types of news. Given the sensitivity of news topics, especially in areas like war or other contentious subjects, providing users with the option to opt out of future recommendations in such categories is crucial.
 
 By observing user behavior, such as the articles they read and the time they spend on them, the algorithm can suggest related articles and gauge user engagement. The 'You May Also Like' (YMAL) approach, based on users' past reading history, is another valuable recommendation strategy. It suggests content similar to what users have previously engaged with, enhancing the overall user experience
+
+
+**trade-off**
 
 
 ## 4. data collection
@@ -61,8 +66,8 @@ By observing user behavior, such as the articles they read and the time they spe
 
 ## cold start
 
-it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience. 
-When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily. 
+it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience.
+When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily.
 Additionally, asking users to list the specific topics they are interested in can be a game-changer in addressing the 'cold start' problem, which occurs when users provide minimal initial interaction data.
 
 
@@ -75,4 +80,4 @@ Additionally, asking users to list the specific topics they are interested in ca
 - [交互式推荐在外卖场景的探索与应用](https://mp.weixin.qq.com/s/s7yoJXgc_7txSooeuE-3sg)
 - [深度召回在飞猪旅行推荐系统中的探索和实践](https://mp.weixin.qq.com/s/AyMmfixX8rXUgGIf94uBkw)
 - [Personalized News Recommendation: Methods and Challenges](https://arxiv.org/pdf/2106.08934)
-- 
+-

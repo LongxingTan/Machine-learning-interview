@@ -12,7 +12,7 @@ class Solution:
         memo = {}
         wordSet = set(wordDict)
         return self.dfs(s, wordSet, memo)
-    
+
     def dfs(self, s, wordSet, memo):
         if s in memo:
             return memo[s]
@@ -36,9 +36,9 @@ class Solution:
 # dp[i]: s[i-1]是否可被word切割
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        n = len(s)        
+        n = len(s)
         dp = [False] * (n + 1)
-        dp[0] = True        
+        dp[0] = True
 
         for i in range(1, n + 1):
             for j in range(i):
@@ -79,16 +79,16 @@ class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         memory: dict[str: list[str]] = {}
         return self.dfs(s, wordDict, memory)
-    
+
     def dfs(self, s, wordDict, memory):
-        if s in memory:
-            return memory[s]
-        
         if not s:
             return []
-        
+
+        if s in memory:
+            return memory[s]
+
         res = []
-        for word in wordDict:
+        for word in wordDict:  # 139代码中对分割点遍历, 也可以是对字典的单词
             if not s.startswith(word):
                 continue
             if len(word) == len(s):

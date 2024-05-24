@@ -37,13 +37,13 @@
 - Design large scale rate limiter
 - Design Netflix
 - Design Amazon inventory system
-- Design Venmo 
+- Design Venmo
 - Design large scale notification platform
-- Design AirBNB platform 
+- Design AirBNB platform
 - Design Ticket master
 - Design high velocity bank account platform
 - Design top10 scorersina large scale mobilegame
-- Design large scale real time chat platform 
+- Design large scale real time chat platform
 - Design electric bike rental platform
 - Design grocery store order processing system
 - Design website building platform
@@ -164,4 +164,4 @@ NOSQL
 - [在线广告系统----计算机王冠上的明珠](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=890389&ctid=9)
 - [RESTful Service API 设计](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=909427&ctid=9)
 - [我是如何准备系统设计的](https://www.1point3acres.com/bbs/thread-660847-1-1.html)
-- 
+- [题目类型](https://codemia.io/system-design)

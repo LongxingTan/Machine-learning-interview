@@ -84,12 +84,13 @@
 
 **评价指标**
 - 排序模型的评估指标，比较常见的有NDCG(Normalized Discounted Cumulative Gain)、MRR、MAP、PNR
-- counterfactual evaluation (offline policy evaluation): 
+- counterfactual evaluation (offline policy evaluation):
   - [Counterfactual Evaluation of Slate Recommendations with Sequential Reward Interactions](https://arxiv.org/abs/2007.12986)
 
 
 ### 2.3 策略
 
+- 目标：提升结果的效率（点击、购买、GMV等）；提升结果的多样性、发现性和用户体验；降低负反馈（结果同质化严重、看/点/买了还推）
 - 新手扶持流量，试试效果再决定
 - 多样性抽样(MMR，DPP)
 - 插入广告
@@ -124,7 +125,7 @@
 - selection bias: 用户倾向于给非常喜欢或者非常不喜欢的打分
 - positional bias: 用户倾向于点击位置靠前的
   - As A Feature: 训练时将 position 当作一个特征进行输入，在预测时以一个默认值(如 0)进行输入
-  - As A Module: 通过一个浅层的子网络来学习位置偏置，然后在预测时去除偏置 module 
+  - As A Module: 通过一个浅层的子网络来学习位置偏置，然后在预测时去除偏置 module
   - Inverse Propensity Weighting: 对 position bias 进行量化，将其作为训练样本的权重来实现消偏的效果
 - online/offline data distribution bias
 - fairness: 数据不均匀导致某些推荐结果有偏，例如在做新闻的时候，同性恋、宗教类文章
@@ -198,7 +199,7 @@ item average_pooling和sum_pooling的区别
 - 目标：观看时长 （为减少标题党推荐，是否会影响长短视频bias）
   - 通过改变样本权重来预测观看时长。正样本权重就是时长，负样本权重为1
 
-- 召回 
+- 召回
   - 抽象成一个海量类别的多分类问题。对于一个用户，在当前的上下文场景下，观看每个视频的概率
   - 模型：单塔 embed -> avg -> concat embed -> MLP
   - 训练：超多分类通过sample negative classes, in-batch loss 随机采样
@@ -258,3 +259,4 @@ item average_pooling和sum_pooling的区别
 - [推荐系统embedding过大如何压缩一下？最近正在解决这个问题？ - 知乎](https://www.zhihu.com/question/522006535)
 - [浅谈多任务学习（Multi-task Learning）](https://zhuanlan.zhihu.com/p/348873723)
 - [双塔召回模型的前世今生（上篇） - iwtbs的文章 - 知乎](https://zhuanlan.zhihu.com/p/430503952)
+- [推荐系统中的重排算法 - 杨旭东的文章 - 知乎](https://zhuanlan.zhihu.com/p/647143887)

@@ -10,3 +10,8 @@
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
+
+
+## follow up
+
+[回文类](../01_two_pointers/5.%20Longest%20Palindromic%20Substring.md)

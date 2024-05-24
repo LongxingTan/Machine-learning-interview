@@ -88,3 +88,4 @@ coverage.xml
 /data/
 /weights/
 /reference/*
+.pre-commit-config.yaml
