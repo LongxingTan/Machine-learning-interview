@@ -23,7 +23,7 @@
 ## 2. 模型
 
 ### 2.1 召回
-召回从海量物品库里，快速找回用户可能感兴趣的物品 （亿 -> 千）。多通道召回
+召回从海量物品库里，快速找回用户可能感兴趣的物品 （亿 -> 千）。多通道召回, Negative Sampling
 - 统计类，热度，LBS
 - 协同过滤类，UserCF、ItemCF
   - 协同过滤，推荐时同时考虑了该用户交互过的"物品"，以及与该用户相似的其他"用户"，是为协同。Content-based filtering doesn't look at other users
@@ -260,3 +260,5 @@ item average_pooling和sum_pooling的区别
 - [浅谈多任务学习（Multi-task Learning）](https://zhuanlan.zhihu.com/p/348873723)
 - [双塔召回模型的前世今生（上篇） - iwtbs的文章 - 知乎](https://zhuanlan.zhihu.com/p/430503952)
 - [推荐系统中的重排算法 - 杨旭东的文章 - 知乎](https://zhuanlan.zhihu.com/p/647143887)
+- [精排最终也是样本的艺术 - 古德猫宁的文章 - 知乎](https://zhuanlan.zhihu.com/p/699725252)
+- [搜推广生死判官：重排技术发展 - kaiyuan的文章 - 知乎](https://zhuanlan.zhihu.com/p/699976339)

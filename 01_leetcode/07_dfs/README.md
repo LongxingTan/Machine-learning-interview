@@ -1,12 +1,11 @@
 # 深度优先搜索
 
+主函数用于遍历所有的搜索位置，判断是否可以开始搜索，如果可以即在辅函数进行搜索。辅函数则负责深度优先搜索的递归调用
 
 **搜索类**
 - 树、图等节点
 - 序列等位于前面的关系
 
-
-主函数用于遍历所有的搜索位置，判断是否可以开始搜索，如果 可以即在辅函数进行搜索。辅函数则负责深度优先搜索的递归调用
 
 - 一维 or 二维(二叉树) dfs
 - 记录状态的dfs (图)
@@ -54,7 +53,7 @@ return
 
 
 ## 回溯
-需要记录节点状态的深度优先搜索。回溯的本质仍然是穷举所有可能。记录节点状态的原因是
+回溯的本质仍然是穷举所有可能，需要记录节点状态的深度优先搜索，可以返回所有解。
 
 - N叉树
   - 树的深度为总的选项个数
@@ -185,7 +184,7 @@ for direction in self.directions:
 DFS辅助函数
 ```python
 def dfs(self, i, j, matrix, visited, m, n):
-    if visited: 
+    if visited:
         # return or return a value
     for dir in self.directions:
         x, y = i + direction[0], j + direction[1]

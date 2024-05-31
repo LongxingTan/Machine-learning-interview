@@ -18,7 +18,7 @@ class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         if not preorder:
             return None
-        
+
         root_val = preorder[0]
         root = TreeNode(root_val)
 
@@ -67,7 +67,31 @@ class Solution:
 [*536. Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/description/)
 ```python
 # 首先树的构造必须从root开始, 根据示例可以找出规律, 遇到左括号就赋给左子树, 遇到右括号就往根结点回一层
+# 同时参考 前中序构建二叉树, 394 decode string, 以及计算器题目
 
+class Solution:
+    def str2tree(self, s: str) -> TreeNode:
+        def dfs(s):
+            if not s:
+                return None
+
+            if '(' not in s:
+                return TreeNode(int(s))
+
+            i = s.index('(')
+            node = TreeNode(int(s[:i]))
+            q = ['(']
+            k = i + 1
+
+            while(q):  # 找到完整的括号和左子树
+                if s[k]=='(':
+                    q.append('(')
+                elif s[k]==')':
+                    q.pop()
+                k += 1
+            node.left, node.right = dfs(s[i+1:k-1]), dfs(s[k+1:-1])
+            return node
+        return dfs(s)
 ```
 
 [*1485 Clone Binary Tree With Random Pointer](./1485%20Clone%20Binary%20Tree%20With%20Random%20Pointer.md)
@@ -86,21 +110,21 @@ class Solution:
         self.dfs(root)
         self.nodes = sorted(self.nodes, key=lambda x: x.val)
         return self.construct(self.nodes)
-    
+
     def dfs(self, root):
         if not root:
             return
-        
+
         self.nodes.append(root)
         if root.left:
             self.dfs(root.left)
         if root.right:
             self.dfs(root.right)
-    
+
     def construct(self, nodes):
         if not nodes:
             return
-        
+
         idx = len(nodes) // 2
         root = nodes[idx]
         root.left = self.construct(nodes[:idx])

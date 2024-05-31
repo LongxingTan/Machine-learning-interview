@@ -286,13 +286,13 @@ def get_stats(vocab):
     pairs = collections.defaultdict(int) # 设置字典，默认值为0
     for word, freq in vocab.items():
         symbols = word.split()          # 使用空格进行区分
-        for i in range(len(symbols)-1): # 连续字符组成一个字符对 
+        for i in range(len(symbols)-1): # 连续字符组成一个字符对
             pairs[symbols[i], symbols[i+1]] += freq # 频率
     return pairs
 
 def merge_vocab(pair, v_in):
     v_out = {}
-    bigram = re.escape(' '.join(pair)) 
+    bigram = re.escape(' '.join(pair))
     p = re.compile(r'(?<!\S)' + bigram + r'(?!\S)')
     for word in v_in:
         w_out = p.sub(''.join(pair), word) # 合并字符对
@@ -305,7 +305,7 @@ words = text.strip().split(" ")
 word_freq_dict = collections.defaultdict(int)
 for word in words:
     word_freq_dict[' '.join(word) + ' </w>'] += 1
-    
+
 vocab = {'l o w</w>' : 5, 'l o w e s t</w>' : 2,
     'n e w e r</w>':6, 'w i d e r</w>':3}
 num_merges = 10 # 迭代次数
@@ -327,6 +327,8 @@ for i in range(num_merges):
 - [NLP 任务中有哪些巧妙的 idea？ - 邱锡鹏的回答 - 知乎](https://www.zhihu.com/question/356132676/answer/901244271)
 - [CS224N](https://web.stanford.edu/class/cs224n/index.html#schedule)
 - [https://github.com/firechecking/CleanTransformer](https://github.com/firechecking/CleanTransformer)
+- [秒懂词向量Word2vec的本质 - 穆文的文章 - 知乎](https://zhuanlan.zhihu.com/p/26306795)
+- [https://github.com/deborausujono/word2vecpy](https://github.com/deborausujono/word2vecpy)
 - [information-retrieval-book](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
 - [The Evolution of Tokenization – Byte Pair Encoding in NLP](https://www.freecodecamp.org/news/evolution-of-tokenization/)
 - [前处理 Tokenizer- Byte Pair Encoder](https://github.com/karpathy/minGPT/blob/master/mingpt/bpe.py)
@@ -349,4 +351,4 @@ for i in range(num_merges):
 - [Pytorch data Samplers & Sequence bucketing](https://www.kaggle.com/code/shahules/guide-pytorch-data-samplers-sequence-bucketing)
 - [Pytorch BERT beginner's room](https://www.kaggle.com/code/chumajin/pytorch-bert-beginner-s-room)
 - [https://transformers.run/c3/2022-03-18-transformers-note-6/](https://transformers.run/c3/2022-03-18-transformers-note-6/)
-- 
+-

@@ -19,7 +19,7 @@ class Solution:
         if len(path) == len(nums):
             res.append(path[:])
             return
-        
+
         for i in range(0, len(nums)):
             if used[i]:
                 continue
@@ -29,8 +29,8 @@ class Solution:
             path.pop()
             used[i] = False
 ```
-时间复杂度：O(n⋅n!) <br>
-空间复杂度：O(n⋅n!)
+时间复杂度：O(n!) <br>
+空间复杂度：O(n)
 
 
 ```python
@@ -38,16 +38,16 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         if not nums:
             return []
-        
+
         path = []
         res = []
         self.dfs(path, res, nums)
-        return res        
-    
+        return res
+
     def dfs(self, path, res, nums):
         if len(path) == len(nums):
             res.append(path.copy())
-        
+
         for num in nums:
             if num not in path:
                 path.append(num)
@@ -74,7 +74,7 @@ class Solution:
         if len(path) == len(nums):
             res.append(path[:])
             return
-        
+
         for i in range(0, len(nums)):
             if used[i]:
                 continue
@@ -86,5 +86,5 @@ class Solution:
             path.pop()
             used[i] = False
 ```
-时间复杂度：O(n⋅n!) <br>
-空间复杂度：O(n⋅n!)
+时间复杂度：O(n!) <br>
+空间复杂度：O(n)

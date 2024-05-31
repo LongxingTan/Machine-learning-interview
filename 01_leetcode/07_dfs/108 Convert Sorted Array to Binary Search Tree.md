@@ -32,4 +32,32 @@ class Solution:
 ```python
 # 中序，记录前一个pre
 
+class Solution:
+    def __init__(self):
+        self.first = None
+        self.pre = None
+
+    def treeToDoublyList(self, root):
+        self.dfs(root)
+
+        self.first.left = self.pre  # 循环链表
+        self.pre.right = self.first
+        return self.first
+
+
+    def dfs(self, root):
+        if not root:
+            return
+
+        self.dfs(root.left)
+
+        if not self.first:  # 记录首位
+            self.first = root
+
+        if self.pre: # 遍历过程中，一直记录前一位
+            root.left = self.pre
+            self.pre.right = root
+        self.pre = root
+
+        self.dfs(root.right)
 ```

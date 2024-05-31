@@ -32,3 +32,5 @@ SWE1岗位面试时可能考察OOD，比系统设计简单一些
 - https://github.com/ycwkatie/OOD-Object-Oriented-Design
 - https://rajat19.github.io/system-design/category/system-designs.html
 - https://leetcode.com/playground/ay5RFRWQ
+- [python手写一个event loop😄 - Kittyhawk的文章 - 知乎](https://zhuanlan.zhihu.com/p/111656060)
+- [高并发，用Python适合吗？ - 骑蜗牛上月球的回答 - 知乎](https://www.zhihu.com/question/383946811/answer/3297627184)

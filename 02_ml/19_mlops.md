@@ -33,6 +33,9 @@
   - attention: flash attention, paged attention
   - MOE
 
+- gpu多实例部署
+
+
 ## 模型压缩
 
 - 蒸馏
@@ -61,4 +64,4 @@
 - https://github.com/rapidsai/cloud-ml-examples
 - [模型部署优化学习路线是什么？ - Leslie的回答 - 知乎](https://www.zhihu.com/question/411393222/answer/2359479242)
 - [Version and track Azure Machine Learning datasets](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-version-track-datasets?view=azureml-api-1)
-- 
+-

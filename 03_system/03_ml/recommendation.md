@@ -1,6 +1,6 @@
 # 设计推荐系统
 
-配合[推荐系统理论](../../02_ml/17_recommendation.md). 
+配合[推荐系统理论](../../02_ml/17_recommendation.md).
 
 推荐系统是经典的机器学习系统设计题目，要通过自己的思考把各个环节串联起来，形成系统性框架性的思考。
 例如大规模推荐，为什么需要召回加排序的漏斗结构？是因为召回能快速把大规模candidate显著减小，常见的双塔模型为什么能够快速召回呢？因为通过ANN快速计算索引，不需要模型本身对item进行推理计算。
@@ -70,7 +70,7 @@
 
 **召回**
 
-> - Neighborhood models are most effective at detecting very localized relationships, but unable to capture the totality of weak signals encompassed in all of a user’s ratings. 
+> - Neighborhood models are most effective at detecting very localized relationships, but unable to capture the totality of weak signals encompassed in all of a user’s ratings.
 > - Latent factor models are generally effective at estimating overall structure that relates simultaneously to most or all items. However, these models are poor at detecting strong associations among a small set of closely related items.
 
 - 召回系统的要求是，“低延时”与“高精度（precision）
@@ -83,7 +83,7 @@
   - itemCF
     - 无需训练，长于记忆
     - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中普遍存在的马太效应或长尾效应
-  - two power 
+  - two power
   - embedding: graph, picture, text
 - 局部敏感哈希，KD树
 
@@ -156,7 +156,7 @@
   - 热启动与冷启动
   - 老汤模型的本质，是样本空间不一致导致的公平性问题
     - 方案一：回滚历史数据，对齐样本空间
-    - 方案二：模型热启动warm-up  
+    - 方案二：模型热启动warm-up
 - 实时化
   - 特征实时化难点：实时数据处理能力（Flink等），并将处理结果实时写入Redis
   - 模型实时化
@@ -165,7 +165,7 @@
 - 连续特征离散化方法以及为什么需要对连续特征离散化
 - FM、FFM的参数量以及时间复杂度
 - 多目标模型
-  - 参数共享及不共享参数各自的优缺点  
+  - 参数共享及不共享参数各自的优缺点
 - 用户长期兴趣和多兴趣怎么建模
 - DPP多样性算法
 - 如何冷启动
@@ -216,7 +216,7 @@
 - [负样本为王：评Facebook的向量化召回算法](https://zhuanlan.zhihu.com/p/165064102)
 - [探讨特征工程的方法论](https://zhuanlan.zhihu.com/p/466685415)
 - [现在互联网公司还有做特征工程的工作吗？](https://www.zhihu.com/question/512722857)
-- [DLRM](https://arxiv.org/abs/1906.00091)
+- [facebook-DLRM](https://github.com/pytorch/torchrec/blob/main/torchrec/models/dlrm.py)
 - [Recommender Systems, Not Just Recommender Models](https://medium.com/nvidia-merlin/recommender-systems-not-just-recommender-models-485c161c755e)
 - [spotify_mpd_two_tower](https://github.com/jswortz/spotify_mpd_two_tower)
 - [在工业界，应用 Multi-Armed Bandit 的例子多吗？ - 曾文俊的回答 - 知乎](https://www.zhihu.com/question/293811863/answer/843666533)

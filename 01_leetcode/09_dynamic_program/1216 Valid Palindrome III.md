@@ -6,6 +6,7 @@
 
 ```python
 # https://www.geeksforgeeks.org/find-if-string-is-k-palindrome-or-not/
+# dp[i][j]: 字符串中i到j修正成回文串所需的最少操作次数, 子串 -> 子序列
 
 ```
 时间复杂度：O() <br>
