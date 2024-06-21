@@ -11,20 +11,20 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = collections.defaultdict(list)
-        degree = [0] * numCourses
+        degree = [0] * numCourses  # 也可以collections.defaultdict(int)
 
         for (cur, pre) in prerequisites:
             graph[pre].append(cur)  # bfs往后走所以记录后面
             degree[cur] += 1  # 后面是否可开始依赖前面
-        
+
         start_course = [i for (i, d) in enumerate(degree) if d == 0]
         queue = collections.deque(start_course)
         visited = 0
         while queue:
             cur = queue.popleft()
             visited += 1
-            for adj in graph[cur]:
-                degree[adj] -= 1
+            for adj in graph[cur]:  # graph记录后续可以开始的课程
+                degree[adj] -= 1  # 后续课程的前依赖 - 1
                 if not degree[adj]:
                     queue.append(adj)
         return visited == numCourses
@@ -43,8 +43,8 @@ class Solution:
 
         for x, y in prerequisites:
             pres[x].add(y)
-            courses[y].add(x)            
-        
+            courses[y].add(x)
+
         # 注意是从全体课程中选择可开始
         no_pre_stack = [i for i in range(numCourses) if not pres[i]]
         count = 0
@@ -56,14 +56,14 @@ class Solution:
                 pres[x].remove(take_course)
                 if not pres[x]:
                     no_pre_stack.append(x)
-        
+
         return count == numCourses
 ```
 时间复杂度：O(E+V) <br>
 空间复杂度：O(E+V)
 
 
-## Follow-up 
+## Follow-up
 ### 调度类
 
 [210. Course Schedule II](./210.%20Course%20Schedule%20II.md)
@@ -97,7 +97,7 @@ class Solution:
 
                 if degree[cur] == 0:
                     queue.append(cur)
-        
+
         res = []
         for q in queries:
             if q[0] in pre_lookup[q[1]]:
@@ -123,12 +123,12 @@ class Solution:
             while heap and time < earliest_time:
                 processing, idx, earliest = heapq.heappop(heap)
                 res.append(idx)
-                time = max(time, earliest) + processing             
+                time = max(time, earliest) + processing
             heapq.heappush(heap, (processing_time, i, earliest_time))
-        
+
         while heap:
             res.append(heapq.heappop(heap)[1])
-        return res 
+        return res
 ```
 
 - 超时: 用heap 代替BFS的deque
@@ -138,13 +138,13 @@ class Solution:
         new_tasks = []
         for i, task in enumerate(tasks):
             new_tasks.append([task[1], i, task[0]])
-        
-        new_tasks.sort(key=lambda x: (x[2], x[0]))        
-        
-        res = []       
-        global_time = new_tasks[0][2] 
-        
-        pq = []   
+
+        new_tasks.sort(key=lambda x: (x[2], x[0]))
+
+        res = []
+        global_time = new_tasks[0][2]
+
+        pq = []
         heapq.heappush(pq, new_tasks[0])
 
         while pq:
@@ -164,7 +164,15 @@ class Solution:
 
 [2365 Task Scheduler II](https://leetcode.com/problems/task-scheduler-ii/description/)
 ```python
+class Solution:
+    def taskSchedulerII(self, tasks: List[int], space: int) -> int:
 
+        my_dict = collections.defaultdict(int)
+        time = 0
+        for task in tasks:
+            time = max(time + 1, my_dict[task])
+            my_dict[task] = time + space + 1
+        return time
 ```
 
 
@@ -190,7 +198,7 @@ class Solution:
 ```python
 class Solution:
     def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
-        
+
         graph = collections.defaultdict(list)
         degree = [0] * (n + 1)
         complete_time = collections.defaultdict(list)
@@ -200,15 +208,15 @@ class Solution:
         for pre, cur in relations:
             graph[pre].append(cur)
             degree[cur] += 1
-        
+
         queue = collections.deque([i for i in range(1, n + 1) if degree[i] == 0])
-        
+
         for node in queue:
             res_time[node] = time[node-1]
-        
+
         while queue:
             node = queue.popleft()
-            for nex in graph[node]:                
+            for nex in graph[node]:
                 degree[nex] -= 1
                 complete_time[nex].append(res_time[node])
                 if degree[nex] == 0:
@@ -238,20 +246,20 @@ class Solution:
 
         for i, server in enumerate(servers):
             heapq.heappush(idling_servers, [server, i])
-        
+
         time = 0
         res = []
         for index, task in enumerate(tasks):  # 每个单位时间一个task abailable
             if time < index:
                 time = index
-                
+
             if not idling_servers:
                 time = working_servers[0][0]
-            
+
             while working_servers and working_servers[0][0] == time:
                 _, i, server = heapq.heappop(working_servers)
                 heapq.heappush(idling_servers, [server, i])
-            
+
             server, i = heapq.heappop(idling_servers)
             heapq.heappush(working_servers, [time + task, i, server])
             res.append(i)
@@ -268,17 +276,17 @@ class Solution:
 
         res = []
         stack = [tasks[0]]
-  
+
         while stack:
             if min(servers_available_time) <= time:
                 processing_time = stack.pop(0)
                 candidates = [i for i, x in enumerate(servers_available_time) if x <= time]
 
-                candidates_servers = [servers[i] for i in candidates]              
+                candidates_servers = [servers[i] for i in candidates]
                 i = candidates_servers.index(min(candidates_servers))
                 res.append(candidates[i])
-                servers_available_time[candidates[i]] = time + processing_time            
-            
+                servers_available_time[candidates[i]] = time + processing_time
+
             time += 1
             if time < len(tasks):
                 stack.append(tasks[time])

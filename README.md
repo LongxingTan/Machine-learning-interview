@@ -3,6 +3,7 @@
 📗该仓库是一份面试指南，介绍如何准备海外/外企/大厂的软件岗位
 
 - 适用岗位：软件工程师、机器学习工程师、数据科学家、应用科学家、AI工程师
+- 一句话总结技术面试: **有逻辑，有框架，有重点**
 - 在线书籍： [https://longxingtan.gitbook.io/ml-interview/](https://longxingtan.gitbook.io/ml-interview/)
 
 
@@ -43,13 +44,13 @@
   - [CS 自学指南](https://github.com/PKUFlyingPig/cs-self-learning)
   - [名校公开课程评价网](https://github.com/conanhujinming/comments-for-awesome-courses)
 
-- 简历优化 
+- 简历优化
   - [RESUMES and COVER LETTERS - Harvard University](https://hwpi.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf)
   - [Interviewing and Resume Writing in English Specialization](https://www.coursera.org/specializations/english-interview-resume)
 
 - 信息
-  - [linkedin](https://www.linkedin.com/) 
+  - [linkedin](https://www.linkedin.com/)
   - [Indeed](https://indeed.com/)
-  - [glassdoor](https://www.glassdoor.com/) 
+  - [glassdoor](https://www.glassdoor.com/)
   - [levels.fyi](https://www.levels.fyi/)
   - [一亩三分地](https://www.1point3acres.com/bbs/forum-145-1.html)

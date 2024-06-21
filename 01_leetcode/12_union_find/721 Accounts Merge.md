@@ -8,7 +8,38 @@
 
 - 并查集
 ```python
+# https://leetcode.com/problems/accounts-merge/solutions/1084738/python-the-clean-union-find-solution-you-are-looking-for/
+class UF:
+    def __init__(self, n):
+        self.parents = list(range(n))
 
+    def union(self, child, parent):
+        self.parents[self.find(child)] = self.find(parent)
+
+    def find(self, x):
+        if x != self.parents[x]:
+            self.parents[x] = self.find(self.parents[x])
+        return self.parents[x]
+
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        uf = UF(n=len(accounts))
+
+        email_to_index = {}
+        for i, account in enumerate(accounts):
+            emails = account[1:]
+
+            for email in emails:
+                if email in email_to_index:
+                    uf.union(i, email_to_index[email])
+                email_to_index[email] = i
+
+        ans = collections.defaultdict(list)
+        for email, index in email_to_index.items():
+            ans[uf.find(index)].append(email)
+
+        return [[accounts[i][0]] + sorted(emails) for i, emails in ans.items()]
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
@@ -20,7 +51,7 @@
 # 同时, 一个错误思路是, 每次去历史列表里找，找不到则新加一个list, 可能现在找不到，但未来有别的牵桥搭线就可以找到
 
 class Solution:
-    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:  
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
         from collections import defaultdict
         if not accounts:
             return
@@ -33,38 +64,38 @@ class Solution:
             lookup[name].append(email)
             for e in lookup[name][:-1]:
                 # a\b\c搭桥相连, a:123, b:45, c:15
-                # a先进入c, 之后b并入c. 
+                # a先进入c, 之后b并入c.
                 if e & email:
                     lookup[name].remove(e)
                     lookup[name][-1].update(e)
-        
+
         for key, val in lookup.items():
             for tmp in val:
                 res.append([key] + list(sorted(tmp)))
         return res
 
-    
+
 # class Solution:
 #     def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
 #         mydict = collections.defaultdict(list)
-# 
+#
 #         for account in accounts:
 #             name = account[0]
 #             email = set(account[1:])
-# 
+#
 #             already_in = False
 #             if name in mydict:
 #                 for prev_email in mydict[name]:
-#                     if prev_email.intersection(set(email)):                        
+#                     if prev_email.intersection(set(email)):
 #                         prev_email.update(email)
 #                         already_in = True
-#                         break            
-#             
-#                 if not already_in:                    
+#                         break
+#
+#                 if not already_in:
 #                     mydict[name].append(set(email))
 #             else:
-#                 mydict[name].append(set(email))                    
-#         
+#                 mydict[name].append(set(email))
+#
 #         res = []
 #         for key, value in mydict.items():
 #             for val in value:
@@ -74,17 +105,30 @@ class Solution:
 
 - dfs
 ```python
+"""
+# emails_accounts_map of email to account ID
+{
+  "johnsmith@mail.com": [0, 2],
+  "john00@mail.com": [0],
+  "johnnybravo@mail.com": [1],
+  "john_newyork@mail.com": [2],
+  "mary@mail.com": [3]
+}
+"""
+
 class Solution(object):
     def accountsMerge(self, accounts):
         from collections import defaultdict
         visited_accounts = [False] * len(accounts)
         emails_accounts_map = defaultdict(list)
         res = []
+
         # Build up the graph.
         for i, account in enumerate(accounts):
             for j in range(1, len(account)):
                 email = account[j]
                 emails_accounts_map[email].append(i)
+
         # DFS code for traversing accounts.
         def dfs(i, emails):
             if visited_accounts[i]:
@@ -95,6 +139,7 @@ class Solution(object):
                 emails.add(email)
                 for neighbor in emails_accounts_map[email]:
                     dfs(neighbor, emails)
+
         # Perform DFS for accounts and add to results.
         for i, account in enumerate(accounts):
             if visited_accounts[i]:

@@ -1,5 +1,5 @@
 # Harmful content detection
-harmful content/weapon ads注意考察多模态场景
+多模态场景, harmful content/weapon ads
 
 
 ## 1. requirements

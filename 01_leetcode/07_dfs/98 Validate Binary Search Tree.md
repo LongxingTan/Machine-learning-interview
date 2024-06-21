@@ -23,7 +23,7 @@ class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
         if not root:
             return True
-        
+
         # 注意左右需要返回
         left = self.isValidBST(root.left)
 
@@ -67,7 +67,26 @@ class Solution:
 - bfs: 一个是否最后一层的flag (节点个数), 一个是否应该stop的flag (是否有空的左或右节点)
 ```python
 # https://zhuanlan.zhihu.com/p/360523724
+class Solution:
+    def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
 
+        queue = collections.deque()
+        queue.append(root)
+
+        while queue:
+            node = queue.popleft()
+
+            if node is None:
+                break  # 需要完全退出循环，如果通常bfs按层，还有一层for导致有问题
+
+            queue.append(node.left)
+            queue.append(node.right)
+
+
+        for i in queue:
+            if i is not None:
+                return False
+        return True
 ```
 
 - bfs: None也加入到queue中, 最后把None pop出去，检查是否还有额外node.
@@ -77,14 +96,14 @@ class Solution:
     def isCompleteTree(self, root: Optional[TreeNode]) -> bool:
         if not root:
             return True
-        
-        queue = collections.deque([root])    
-        while queue[0] is not None:           
-            node = queue.popleft()                
+
+        queue = collections.deque([root])
+        while queue[0] is not None:
+            node = queue.popleft()
             # 显著不同是: 把None也加进去, 注意判断条件的改变
             queue.append(node.left)
             queue.append(node.right)
-        
+
         for node in queue:
             if node:
                 return False

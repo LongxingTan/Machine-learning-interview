@@ -8,7 +8,7 @@
     - MAE
     - MAPE
   - classification
-    - accuracy    
+    - accuracy
     - recall
     - F1 score
     - AUC
@@ -66,7 +66,7 @@ def f1(actual, predicted, label):
     tp = np.sum((actual==label) & (predicted==label))
     fp = np.sum((actual!=label) & (predicted==label))
     fn = np.sum((predicted!=label) & (actual==label))
-    
+
     precision = tp / (tp + fp)
     recall = tp / (tp + fn)
     f1 = 2 * (precision * recall) / (precision + recall)
@@ -84,7 +84,7 @@ def f1_macro(actual, predicted):
   - 横轴为 FPR（假阳率）：FP/(FP+TN)，等同于 1-TNR，FPR 越大，预测为正的样本中负类越多
   - 纵轴为 TPR（真阳率）：TP/(TP+FN)，TPR 越大，预测为正的样本中正类越多
 - AUC越大，说明模型把正例放在前面的可能性越大，用来衡量模型的排序能力。**随机从正样本和负样本中各选一个，分类器对于该正样本打分大于该负样本打分的概率**
-- Group AUC 
+- Group AUC
 - pros
   - AUC衡量的是一种排序能力，因此特别适合排序类业务
   - AUC对正负样本均衡并不敏感，在样本不均衡的情况下，也可以做出合理的评估
@@ -100,7 +100,7 @@ def f1_macro(actual, predicted):
 # 按预测概率排序，依次计算每个点，得到所有正样本打分大于负样本的个数  / 所有情况随机取一正一负总数m*n
 # 类似蒙特卡洛的逆？
 
-import numpy as np 
+import numpy as np
 from numba import jit
 
 @jit
@@ -150,17 +150,17 @@ def average_precision_score(y_true, y_scores):
     Returns:
     - average_precision: The average precision score.
     """
-    
+
     # Combine true labels and predicted scores into a sorted list of (true label, score) pairs.
     data = list(zip(y_true, y_scores))
     data.sort(key=lambda x: x[1], reverse=True)
-    
+
     # Initialize variables for precision, recall, and total positive examples.
     precision_values = []
     recall_values = []
     true_positives = 0
     num_positive_examples = sum(y_true)
-    
+
     # Calculate precision and recall at each threshold.
     for i, (true_label, score) in enumerate(data, start=1):
         if true_label == 1:
@@ -169,12 +169,11 @@ def average_precision_score(y_true, y_scores):
         recall = true_positives / num_positive_examples
         precision_values.append(precision)
         recall_values.append(recall)
-    
+
     # Calculate the average precision by integrating the precision-recall curve.
-    average_precision = np.trapz(precision_values, recall_values)    
+    average_precision = np.trapz(precision_values, recall_values)
     return average_precision
 ```
-
 
 
 ## 问题
@@ -190,3 +189,6 @@ MAP与NDCG的比较，以及pros和cons
 - [https://scikit-learn.org/stable/modules/model_evaluation.html](https://scikit-learn.org/stable/modules/model_evaluation.html)
 - [看完这篇AUC文章，搞定任何有关AUC的面试不成问题](https://zhuanlan.zhihu.com/p/360765777)
 - [图解AUC和GAUC - 千寻的文章 - 知乎](https://zhuanlan.zhihu.com/p/84350940)
+- [NDCG排序评估指标 - Satellite的文章 - 知乎](https://zhuanlan.zhihu.com/p/448686098)
+- [Evaluating recommendation systems (mAP, MMR, NDCG)](https://www.shaped.ai/blog/evaluating-recommendation-systems-map-mmr-ndcg)
+-

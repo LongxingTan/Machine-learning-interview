@@ -7,7 +7,7 @@
 - Use case
   - Homepage?
   - Does user sends a text query as well?
-- Similar to previously played, or personalized for the user? 
+- Similar to previously played, or personalized for the user?
 - explicit feedback? (thumbs up/down, in-product surveys)
 - implicit user history
 - User locations? Worldwide (multiple languages)
@@ -18,11 +18,13 @@
 - Free or Paid?
 - 是否都是冷启动数据，还是都已经有了交互
 
+
 **目标类**
 - Business objective?
   - Increase user engagement (play, like, click, share), purchase?, create a better ultimate gaming experience
   - maximize users’ engagement and recommend new types of content to users
 - For online recommendations, it’s important to find the balance between exploration vs. exploitation. If the model over-exploits historical data, new videos might not get exposed to users. We want to balance between relevancy and fresh new content.
+
 
 **约束类**
 - Latency requirements - 200msec?

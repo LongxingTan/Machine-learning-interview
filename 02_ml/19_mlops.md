@@ -3,6 +3,18 @@
 
 ## ML部署
 
+### strategies
+
+![deployment](../.github/assets/02ml-deployment.png)
+
+- Shadow deployment strategy
+- A/B testing
+- Multi Armed Bandit
+- Blue-green deployment strategy
+- Canary deployment strategy
+
+
+### 应用工具
 - tf-serving
   - 支持热部署，不会使服务失效
 
@@ -64,4 +76,6 @@
 - https://github.com/rapidsai/cloud-ml-examples
 - [模型部署优化学习路线是什么？ - Leslie的回答 - 知乎](https://www.zhihu.com/question/411393222/answer/2359479242)
 - [Version and track Azure Machine Learning datasets](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-version-track-datasets?view=azureml-api-1)
+- [Model Deployment Strategies](https://neptune.ai/blog/model-deployment-strategies)
+- [ML Model Deployment Strategies](https://www.tensorops.ai/post/ml-model-deployment-strategies)
 -

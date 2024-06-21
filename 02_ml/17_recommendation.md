@@ -1,5 +1,5 @@
 # 推荐系统
-配合[ML系统设计：推荐系统设计](../03_system/03_ml/recommendation.md)
+配合 [机器学习系统设计：推荐系统](../03_system/03_ml/recommendation.md)
 
 
 ## 1. 业务
@@ -262,3 +262,5 @@ item average_pooling和sum_pooling的区别
 - [推荐系统中的重排算法 - 杨旭东的文章 - 知乎](https://zhuanlan.zhihu.com/p/647143887)
 - [精排最终也是样本的艺术 - 古德猫宁的文章 - 知乎](https://zhuanlan.zhihu.com/p/699725252)
 - [搜推广生死判官：重排技术发展 - kaiyuan的文章 - 知乎](https://zhuanlan.zhihu.com/p/699976339)
+- [搜推广算法关键知识点 - 石疯的文章 - 知乎](https://zhuanlan.zhihu.com/p/689575936)
+- [推荐系统传统召回是怎么实现热门item的打压? - 石塔西的回答 - 知乎](https://www.zhihu.com/question/426543628/answer/1631702878)

@@ -1,4 +1,5 @@
 # 机器学习系统设计
+
 ML design的核心，本质是训练一个**model**来实现某个任务，如prediction/ranking/classification
 - 建模design, 包括优化目标，feature，data，模型结构，评价标准等
 - 系统design, 偏重于在线serve大模型，包括feature store, ANN, ETL pipeline, MLOps等
@@ -7,7 +8,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
   - youtube recommendation/doordash search box/auto suggestion
   - design youtube violent content detection system
   - detecting unsafe content
-  - design a monitoring system to realtime measure ML models, including features, score distribution, qps 
+  - design a monitoring system to realtime measure ML models, including features, score distribution, qps
   - abusive user detection
 
 **业务目标**
@@ -97,7 +98,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
     - Randomly assign users into control and treatment groups (discuss with the interviewer whether we will split the candidates on the user level or the request level)
     - Measure and analyze results using the appropriate test. Also, we should ensure that the model does not have any biases.
   - If we are serving batch features they have to be handled offline and served at real time so we have to have daily/weekly jobs for generating this data.
-  - If we are serving real time features then they need to be fetched/derived at request time and we need to be aware of scalability or latency issues (load balancing), we may need to create a feature store to lookup features at serve time and maybe some caching depending on the use case.  
+  - If we are serving real time features then they need to be fetched/derived at request time and we need to be aware of scalability or latency issues (load balancing), we may need to create a feature store to lookup features at serve time and maybe some caching depending on the use case.
   - Where to run inference: if we run the model on the user’s phone/computer then it would use their memory/battery but latency would be quick, on the other hand, if we store the model on our own service we increase latency and privacy concerns but removes the burden of taking up memory and battery on the user’s device.
   - how often we would retrain the model. Some models need to be retrained every day, some every week and others monthly/yearly. Always discuss the pros and cons of the retraining regime you choose
 - deploy
@@ -149,4 +150,4 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 - [https://www.machinelearninginterviews.com/ml-design-template/](https://www.machinelearninginterviews.com/ml-design-template/)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
 - [买它 MLE E6 昂赛过经](https://www.1point3acres.com/bbs/thread-1018808-1-1.html)
-- 
+-

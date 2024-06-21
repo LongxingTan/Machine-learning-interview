@@ -23,16 +23,16 @@ class Solution:
             graph[j].append(i)
             indegree[i] += 1
             indegree[j] += 1
-        
+
         queue = collections.deque([i for i, v in indegree.items() if v == 1])
-        
+
         while queue:
             node = queue.popleft()
             for i in graph[node]:
                 indegree[i] -= 1
-                if indegree[i] == 1:                    
+                if indegree[i] == 1:
                     queue.append(i)
-        
+
         for a, b in edges[::-1]:
             if indegree[a] == 2 and indegree[b] == 2:
                 return [a, b]
@@ -42,6 +42,7 @@ class Solution:
 
 
 ## follow up
+
 [685. Redundant Connection II](https://leetcode.com/problems/redundant-connection-ii/)
 
 ```python

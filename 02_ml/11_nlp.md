@@ -332,6 +332,7 @@ for i in range(num_merges):
 - [information-retrieval-book](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
 - [The Evolution of Tokenization – Byte Pair Encoding in NLP](https://www.freecodecamp.org/news/evolution-of-tokenization/)
 - [前处理 Tokenizer- Byte Pair Encoder](https://github.com/karpathy/minGPT/blob/master/mingpt/bpe.py)
+- [【LLM拆了再装】 Tokenizer篇 - coreyzhong的文章 - 知乎](https://zhuanlan.zhihu.com/p/700283095)
 - [Text clustering with K-means and tf-idf](https://medium.com/@MSalnikov/text-clustering-with-k-means-and-tf-idf-f099bcf95183)
 - [https://github.com/wangle1218/KBQA-for-Diagnosis](https://github.com/wangle1218/KBQA-for-Diagnosis)
 - [https://github.com/wangle1218/faq-qa-sys-v2](https://github.com/wangle1218/faq-qa-sys-v2)

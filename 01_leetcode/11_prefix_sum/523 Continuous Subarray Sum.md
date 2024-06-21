@@ -4,39 +4,16 @@
 
 ## solution
 
-- 暴力(超时)
-  - 另外，prefix的精华在于两个不同位置的prefix相减
-```python
-class Solution:
-    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        if len(nums) < 2:
-            return False
-
-        prefix_sum = [nums[0]]
-        for i in range(1, len(nums)):
-            news = []
-            for pre in prefix_sum:
-                new = pre + nums[i]
-                if new % k == 0:
-                    return True
-                news.append(new)
-            news.append(nums[i])
-            prefix_sum = news
-        return False
-```
-时间复杂度：O() <br>
-空间复杂度：O()
-
-
 - 根据mode的数学特点, 前缀+贪心
+  - prefix的精华在于两个不同位置的prefix相减, 据此到此怎么玩就需要随机应变(多练习)
 ```python
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         if len(nums) < 2:
             return False
-        
+
         prefix_sum = 0
-        mydict = {0: -1}  # 如果第一个元素到中间元素可以被整除, [13, 2], 3
+        mydict = {0: -1}  #  注意包含第一个元素的序列, 如果第一个元素到中间元素可以被整除, [13, 2], 3
         # 同时题目要求至少2个元素, 如果是前两个的和，也就是需要一个-1
 
         for i, num in enumerate(nums):
@@ -46,7 +23,7 @@ class Solution:
             remainder = prefix_sum % k
             if remainder not in mydict:
                 mydict[remainder] = i
-            
+
             if i - mydict[remainder] >= 2:  # 其实是题目要求至少2个元素和
                 return True
         return False

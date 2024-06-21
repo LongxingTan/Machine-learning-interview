@@ -1,5 +1,5 @@
 # 行为面试 Behavior question
- 
+
 行为面试不可小觑，甚至软实力本身就是工作中更重要的能力。面试也是考察是否是值得合作的同事，有针对的准备BQ是**非常**有必要的，BQ主要考察沟通理解能力、文化匹配、资深程度
 
 - 面试，不是考试，而是一个交流、学习的过程
@@ -13,6 +13,7 @@
 - star原则：situation, task, action, results
   - negative question: + learns
   - context之前先用一句话对故事进行总结
+  - action分3-5点讲，同样每点先用一句话总结 总分的结构
 - 难点和深度
 - 项目中的细节
   - 机器学习项目：the data, labelling, modeling, evaluation metrics
@@ -56,7 +57,7 @@
 - 怎么给一个完全没有ML背景的客户介绍相关技术概念
 
 - 跳槽原因
-  - 提升技术深度和广度 
+  - 提升技术深度和广度
 - 优点缺点
 - 最有挑战的project
 - 之前经历学到什么，如果现在再来做最大的改变会是什么
