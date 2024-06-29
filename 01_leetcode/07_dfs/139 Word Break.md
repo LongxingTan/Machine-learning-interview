@@ -75,10 +75,19 @@ class Solution:
 - DFS枚举每次切词的位置，使用Memorization优化(回溯+动态规划思想)，每个字符串只用求一遍
 
 ```python
+"""
+catsanddog，ans 依次变化是：
+['sand dog']  # 先是dog满足s[i:] in wordDict 出现append给ans, 继续出栈ans变为 'sand dog', 继续出栈'cat sand dog'
+['cat sand dog']
+['and dog'] # 另一条s[:i]的支线
+['cat sand dog', 'cats and dog']  # 支线完成，汇到之前已有结果的总线
+"""
+
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        memory: dict[str: list[str]] = {}
+        memory = {}
         return self.dfs(s, wordDict, memory)
+
 
     def dfs(self, s, wordDict, memory):
         if not s:
@@ -87,19 +96,18 @@ class Solution:
         if s in memory:
             return memory[s]
 
-        res = []
-        for word in wordDict:  # 139代码中对分割点遍历, 也可以是对字典的单词
-            if not s.startswith(word):
-                continue
-            if len(word) == len(s):
-                res.append(word)
-            else:
-                rest_res = self.dfs(s[len(word):], wordDict, memory)
-                for item in rest_res:
-                    item = word + ' ' + item
-                    res.append(item)
-        memory[s] = res
-        return res
+        ans = []
+        if s in wordDict:  # 整个s在字符串中, 不可或缺, 最后一个传递给ans并返回
+            ans.append(s)
+
+        for i in range(1, len(s)):
+            if s[:i] in wordDict:
+                sub_ans = self.dfs(s[i:], wordDict, memory)
+                for item in sub_ans:
+                    ans.append(s[:i] + ' ' + item)
+
+        memory[s] = ans
+        return ans
 ```
 时间复杂度：O() <br>
 空间复杂度：O()

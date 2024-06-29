@@ -37,6 +37,7 @@
 **双塔**
 - 训练时cosine similarity, 服务时knn搜索
 - 正样本：热度非均匀采样；负样本：简单负样本(全量item抽取)，困难负样本（粗排 精排筛选掉的），不能包含曝光未点击(可能有兴趣)
+  - 全局负采样最好，但实现成本更高。batch内负采样更简单，但热门的item更容易成为负样本，会打压热门，可以通过logQ矫正来解决。
 - point-wise，pair-wise, list-wise
 - 物料由于数量非常大，特性相对稳定，存入向量数据库。用户兴趣可能快速变化，embed根据权重重新计算，并从物料向量数据库中knn搜索
 
@@ -264,3 +265,4 @@ item average_pooling和sum_pooling的区别
 - [搜推广生死判官：重排技术发展 - kaiyuan的文章 - 知乎](https://zhuanlan.zhihu.com/p/699976339)
 - [搜推广算法关键知识点 - 石疯的文章 - 知乎](https://zhuanlan.zhihu.com/p/689575936)
 - [推荐系统传统召回是怎么实现热门item的打压? - 石塔西的回答 - 知乎](https://www.zhihu.com/question/426543628/answer/1631702878)
+- [冷启动推荐模型DropoutNet深度解析与改进 - 杨旭东的文章 - 知乎](https://zhuanlan.zhihu.com/p/475117993)

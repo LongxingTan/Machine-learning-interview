@@ -79,6 +79,6 @@ query understanding
 - [腾讯搜索词推荐算法探索实践](https://mp.weixin.qq.com/s/4j3VZ8yNqwm6FJI9UFOlnw)
 - [美团搜索中查询改写技术的探索与实践](https://tech.meituan.com/2022/02/17/exploration-and-practice-of-query-rewriting-in-meituan-search.html)
 - Ranking Relevance in Yahoo Search，KDD 2016
-- Embedding-based Retrieval in Facebook Search, KDD 2020
+- [Embedding-based Retrieval in Facebook Search, KDD 2020](https://arxiv.org/pdf/2006.11632)
 - Poly-encoders: Transformer Architectures and Pre-training Strategies for Fast and Accurate Multi-sentence Scoring，ICLR 2020
 - Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval, ICLR 2021

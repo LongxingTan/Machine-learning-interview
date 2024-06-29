@@ -66,7 +66,7 @@ class Solution:
 
 [*536. Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/description/)
 ```python
-# 首先树的构造必须从root开始, 根据示例可以找出规律, 遇到左括号就赋给左子树, 遇到右括号就往根结点回一层
+# 树的构造: 就是先从root开始, 再构建左子树、右子树
 # 同时参考 前中序构建二叉树, 394 decode string, 以及计算器题目
 
 class Solution:
@@ -79,7 +79,7 @@ class Solution:
                 return TreeNode(int(s))
 
             i = s.index('(')
-            node = TreeNode(int(s[:i]))
+            node = TreeNode(int(s[:i]))  # 第一个左括号以左是根节点
             q = ['(']
             k = i + 1
 
@@ -93,6 +93,7 @@ class Solution:
             return node
         return dfs(s)
 ```
+
 
 [*1485 Clone Binary Tree With Random Pointer](./1485%20Clone%20Binary%20Tree%20With%20Random%20Pointer.md)
 

@@ -9,25 +9,18 @@
 ```python
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
-        res = 0
-        mydict = collections.defaultdict(int)
-
         l = 0
-        for r, num in enumerate(nums):
-            mydict[num] += 1
-            while num == 0 and mydict[num] == k + 1:
-                mydict[nums[l]] -= 1
+        counter = collections.defaultdict(int)
+        res = 0
+
+        for r in range(len(nums)):
+            counter[nums[r]] += 1
+            while counter[0] > k:
+                counter[nums[l]] -= 1
                 l += 1
-            
+
             res = max(res, r - l + 1)
         return res
-```
-时间复杂度：O() <br>
-空间复杂度：O()
-
-
-```python
-
 ```
 时间复杂度：O(n) <br>
 空间复杂度：O(1)

@@ -79,6 +79,7 @@ client -> reverse proxy -> web service -> message queue -> application server ->
 - 一致性
 - 热点数据处理
 
+
 ## 基础
 
 push and pull
@@ -131,15 +132,10 @@ NOSQL
 - horizontal scaling, sharded by userId, caching, etc
 
 
-### 大数据
-
-
-
 
 
 ## Reference
 - Web Application and Software Architecture 101
-- [Grokking the system design interview]()
 - [Uber tech blog](https://www.uber.com/en-SE/blog/)
 - [pinterests tech blog](https://medium.com/pinterest-engineering)
 - [System design interview guide for Software Engineers](https://www.techinterviewhandbook.org/system-design/)

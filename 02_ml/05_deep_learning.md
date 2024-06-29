@@ -29,7 +29,7 @@ SGD原理
 Adam和adgrad区别和应用场景
 - Adam: 一阶动量和二阶动量，Adaptive + Momentum. 通过其来自适应控制步长，当梯度较小时，整体的学习率就会增加，反之会缩小
 
-RAdam 
+RAdam
 - 用指数滑动平均去估计梯度每个分量的一阶矩(动量)和二阶矩(自适应学习率)，并用二阶矩去 normalize 一阶矩，得到每一步的更新量
 
 对抗训练
@@ -43,20 +43,20 @@ RAdam
 # example of gradient descent for a one-dimensional function
 from numpy import asarray
 from numpy.random import rand
- 
+
 # objective function
 def objective(x):
 	return x**2.0
- 
+
 # derivative of objective function
 def derivative(x):
 	return x * 2.0
- 
+
 # gradient descent algorithm
 def gradient_descent(objective, derivative, bounds, n_iter, step_size):
 	# generate an initial point
 	solution = bounds[:, 0] + rand(len(bounds)) * (bounds[:, 1] - bounds[:, 0])
-	
+
 	# run the gradient descent
 	for i in range(n_iter):
 		# calculate gradient
@@ -68,7 +68,7 @@ def gradient_descent(objective, derivative, bounds, n_iter, step_size):
 		# report progress
 		print('>%d f(%s) = %.5f' % (i, solution, solution_eval))
 	return [solution, solution_eval]
- 
+
 # define range for input
 bounds = asarray([[-1.0, 1.0]])
 # define the total iterations
@@ -118,13 +118,13 @@ class FocalLoss(nn.Module):
     def __init__(self, gamma, eps=1e-7):
         super().__init__()
         self.gamma = gamma
-        self.eps = eps  
-        
+        self.eps = eps
+
     def forward(self, preds, targets):
         preds = preds.clamp(self.eps, 1 - self.eps)
         loss = (1 - preds) ** self.gamma * targets * torch.log(preds)  \
-               + preds ** self.gamma * (1 - targets) * torch.log(1 - preds) 
-    
+               + preds ** self.gamma * (1 - targets) * torch.log(1 - preds)
+
         return -torch.mean(loss)
 ```
 
@@ -210,22 +210,22 @@ def convolve2D(image, kernel, padding=0, strides=1):
     for y in range(image.shape[1]):
         for x in range(image.shape[0]):
             output[x, y] = (kernel * imagePadded[x: x + xKernShape, y: y + yKernShape]).sum() + bias
-						
+
     return output
 
 
 def activation_fn(self, x):
     """
     A method of FFL which contains the operation and defination of given activation function.
-    """        
+    """
     if self.activation == 'relu':
         x[x < 0] = 0
         return x
     if self.activation == None or self.activation == "linear":
-        return x        
+        return x
     if self.activation == 'tanh':
         return np.tanh(x)
-    if self.activation == 'sigmoid':    
+    if self.activation == 'sigmoid':
         return 1 / (1 + np.exp(-x))
     if self.activation == "softmax":
         x = x - np.max(x)
@@ -258,7 +258,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
     # 进行卷积操作
     for i in range(H_out):
         for j in range(W_out):  # 找到out图像对于的原始图像区域，然后对图像进行sum和bias
-            inputs_slice = inputs_pad[:, i*stride:i*stride+HH, j*stride:j*stride+WW] 
+            inputs_slice = inputs_pad[:, i*stride:i*stride+HH, j*stride:j*stride+WW]
             outputs[:, i, j] = np.sum(inputs_slice * kernels, axis=(1, 2, 3)) + bias
             # axis=(1, 2, 3)表示在通道、高度和宽度这三个轴上进行求和。
     return outputs
@@ -342,7 +342,7 @@ def scaled_dot_product(q, k, v, softmax, attention_mask, attention_dropout):
     outputs = outputs / dk
     # if attention_mask is not None:
     #     outputs = outputs + (1 - attention_mask) * -1e9
-        
+
     outputs = softmax(outputs, mask=attention_mask)
     outputs = Dropout(rate=attention_dropout)(outputs)
     outputs = tf.matmul(outputs, v)  # shape: (m,Tx,depth), same shape as q,k,v
@@ -362,19 +362,19 @@ class FullAttention(tf.keras.layers.Layer):
         self.wv = [Dense(self.depth//2, use_bias=False) for i in range(num_of_heads)]
         self.wo = Dense(d_model if d_out is None else d_out, use_bias=False)
         self.softmax = tf.keras.layers.Softmax()
-        
+
     def call(self, q, k, v, attention_mask=None, training=False):
-        
+
         multi_attn = []
         for i in range(self.num_of_heads):
             Q = self.wq[i](q)
             K = self.wk[i](k)
             V = self.wv[i](v)
             multi_attn.append(scaled_dot_product(Q, K, V, self.softmax, attention_mask, self.dropout))
-            
+
         multi_attn = tf.concat(multi_attn, axis=-1)
         multi_head_attention = self.wo(multi_attn)
-        
+
         return multi_head_attention
 ```
 
@@ -442,20 +442,20 @@ def GroupNorm(x, gamma, beta, G, eps=1e-5):
 def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
     # To store individual pools
     pools = []
-    
+
     # Iterate over all row blocks (single block has `stride` rows)
     for i in np.arange(img.shape[0], step=stride):
         # Iterate over all column blocks (single block has `stride` columns)
         for j in np.arange(img.shape[0], step=stride):
-            
+
             # Extract the current pool
             mat = img[i:i+pool_size, j:j+pool_size]
-            
+
             # Make sure it's rectangular - has the shape identical to the pool size
             if mat.shape == (pool_size, pool_size):
                 # Append to the list of pools
                 pools.append(mat)
-                
+
     # Return all pools as a Numpy array
     return np.array(pools)
 
@@ -464,7 +464,7 @@ def max_pooling(pools: np.array) -> np.array:
     num_pools = pools.shape[0]
     # Shape of the matrix after pooling - Square root of the number of pools
     tgt_shape = (int(np.sqrt(num_pools)), int(np.sqrt(num_pools)))
-    
+
 	pooled = []
 
     # Iterate over all pools
@@ -481,7 +481,7 @@ import matplotlib.pyplot as plt
 def plot_image(img: np.array):
     plt.figure(figsize=(6, 6))
     plt.imshow(img, cmap='gray');
-    
+
 def plot_two_images(img1: np.array, img2: np.array):
     _, ax = plt.subplots(1, 2, figsize=(12, 6))
     ax[0].imshow(img1, cmap='gray')
@@ -522,3 +522,4 @@ plot_image(img=img)
 - [史上最细节的自然语言处理NLP/Transformer/BERT/Attention面试问题与答案 - 海晨威的文章 - 知乎](https://zhuanlan.zhihu.com/p/348373259)
 - [Transformer学习笔记一：Positional Encoding（位置编码） - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/454482273)
 - [PyTorch 源码解读系列 - OpenMMLab的文章 - 知乎](https://zhuanlan.zhihu.com/p/328674159)
+- [对比pytorch中的BatchNorm和LayerNorm层 - 严昕的文章 - 知乎](https://zhuanlan.zhihu.com/p/656647661)

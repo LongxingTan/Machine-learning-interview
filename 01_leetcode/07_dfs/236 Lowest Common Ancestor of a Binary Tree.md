@@ -39,13 +39,13 @@ class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if not root:
             return
-        
+
         if root == p:  # 根据自身节点的性质, 节点返回
             return p
-        
+
         if root == q:
             return q
-        
+
         l = self.lowestCommonAncestor(root.left, p, q)
         r = self.lowestCommonAncestor(root.right, p, q)
 
@@ -64,6 +64,7 @@ class Solution:
 
 
 ## follow up
+
 [tree node 可以直接call parent or child](https://www.geeksforgeeks.org/lowest-common-ancestor-in-a-binary-tree-using-parent-pointer/)
 
 [1644. Lowest Common Ancestor of a Binary Tree II]()
@@ -82,31 +83,31 @@ class Node:
         self.right = None
         self.parent = None
 
-        
+
 class Solution(object):
-    def lowestCommonAncestor(self, p, q):      
+    def lowestCommonAncestor(self, p, q):
         node_set = set()
         while p:
             node_set.add(p)
             p = p.parent
-        
+
         while q not in node_set:
             q = q.parent
-        
+
         return q
 ```
 
 ```python
-# O1 space
+# O(1) space
 class Solution(object):
-    def lowestCommonAncestor(self, p, q):    
+    def lowestCommonAncestor(self, p, q):
         a = p
         b = q
-    
+
         while a != b:
             # If pointer_a has a parent, move to the parent; otherwise, go to the other node's initial position.
             a = a.parent if a else q
-            b = b.parent if b else p    
+            b = b.parent if b else p
         return a
 ```
 
@@ -130,19 +131,19 @@ class Solution:
     def lcaDeepestLeaves(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         def dfs(root):
             if not root: return 0, None
-            
+
             leftMaxDepth, leftNode = dfs(root.left)
             rightMaxDepth, rightNode = dfs(root.right)
-            
+
             if leftMaxDepth == rightMaxDepth:
                 return leftMaxDepth + 1, root
-            
+
             elif leftMaxDepth > rightMaxDepth:
                 return leftMaxDepth + 1, leftNode
-            
+
             else:
                 return rightMaxDepth + 1, rightNode
-            
+
         maxDepth, ancestor = dfs(root)
         return ancestor
 ```

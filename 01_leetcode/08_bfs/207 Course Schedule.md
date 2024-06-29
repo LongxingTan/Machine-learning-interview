@@ -166,7 +166,6 @@ class Solution:
 ```python
 class Solution:
     def taskSchedulerII(self, tasks: List[int], space: int) -> int:
-
         my_dict = collections.defaultdict(int)
         time = 0
         for task in tasks:

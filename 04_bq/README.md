@@ -71,6 +71,7 @@
 ## 阅读
 
 - [U-shape: Man in a hole](https://youtu.be/hU6BVxtGd5g)
+- [Career School @youtube](https://www.youtube.com/@CareerSchool)
 - [Dan Croitor @youtube](https://www.youtube.com/c/DanCroitor/videos)
 - [Don't Get Down-Leveled or How to Tell a Good Story (From a Principal at Amazon)](https://www.youtube.com/watch?v=hU6BVxtGd5g)
 - [grokking-the-behavioral-interview](https://www.educative.io/courses/grokking-the-behavioral-interview)

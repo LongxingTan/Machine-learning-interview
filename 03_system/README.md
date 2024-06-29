@@ -12,15 +12,15 @@
 
 
 ## Reference
-
+- [grokking-the-system-design-interview](https://www.educative.io/courses/grokking-the-system-design-interview)
+- [system design primer](https://github.com/donnemartin/system-design-primer)
+- [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
 - [CMU 15213 Introduction to Computer Systems](https://www.cs.cmu.edu/~213/)
 - [MIT 6.824 Distributed Systems](https://pdos.csail.mit.edu/6.824/)
-- [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
 - [CMU 15721: advance database](https://15721.courses.cs.cmu.edu/)
 - [CMU DLSys](https://catalyst.cs.cmu.edu/15-884-mlsys-sp21/)
 - [grokking system interview](https://www.educative.io/courses/grokking-modern-system-design-interview-for-engineers-managers)
 - [Alex Xu-system design interview](https://www.amazon.in/System-Design-Interview-Insiders-Guide-ebook/dp/B08B3FWYBX)
-- [system design primer](https://github.com/donnemartin/system-design-primer)
 - [https://learn.microsoft.com/en-us/azure/architecture/patterns/](https://learn.microsoft.com/en-us/azure/architecture/patterns/)
 - [https://www.youtube.com/@SDFC/videos](https://www.youtube.com/@SDFC/videos)
 - [https://systemdesign.one/categories/](https://systemdesign.one/categories/)

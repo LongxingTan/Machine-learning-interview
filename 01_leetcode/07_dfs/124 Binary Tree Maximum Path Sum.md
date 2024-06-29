@@ -19,7 +19,7 @@
 class Solution:
     def __init__(self):
         self.res = float('-inf')
-    
+
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
         self.dfs(root)
         return self.res
@@ -27,7 +27,7 @@ class Solution:
     def dfs(self, root):
         if root is None:
             return 0
-        
+
         l = self.dfs(root.left)
         r = self.dfs(root.right)
         self.res = max(self.res, l + r + root.val)
@@ -40,6 +40,16 @@ class Solution:
 ## follow up
 
 [*298. Binary Tree Longest Consecutive Sequence](https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/description/)
+```python
+
+```
+
+[*1120. Maximum Average Subtree]()
+```python
+
+```
+
+[*1973. Count Nodes Equal to Sum of Descendants]()
 ```python
 
 ```

@@ -16,7 +16,7 @@ class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         if not matrix:
             return 0
-        
+
         m = len(matrix)
         n = len(matrix[0])
 
@@ -26,11 +26,11 @@ class Solution:
             for j in range(n):
                 res = max(res, self.dfs(matrix, i, j, dp))
         return res
-    
+
     def dfs(self, matrix, i, j, dp):
         if dp[i][j]:
             return dp[i][j]
-        
+
         dp[i][j] = 1
         for x, y in self.dirs:
             new_i = i + x
@@ -52,7 +52,69 @@ class Solution:
 
 ```
 
-- 状态压缩BFS
+- 状态压缩BFS: 关键在于状态的表征
 ```python
+class Solution:
+    def minStickers(self, stickers: List[str], target: str) -> int:
+        queue = collections.deque([0])
+        steps = 0
+        n = len(target)
+        visited = [False] * (2 ** n)  # 1 << n
 
+        visited[0] = True
+
+        while queue:
+            for _ in range(len(queue)):
+                current_state = queue.popleft()
+
+                # 全部位 都是1则代表已凑成target
+                if current_state == 2 ** n - 1:
+                    return steps
+
+                for sticker in stickers:
+                    next_state = current_state
+                    sticker_count = collections.Counter(sticker)
+
+                    for i, char in enumerate(target):
+                        # If the character at position i is not yet added, and the sticker has the char.
+                        if not (next_state & (1 << i)) and sticker_count[char]:
+                            next_state |= 1 << i  # next_state += 1 << i
+                            sticker_count[char] -= 1
+
+                    # If the next state has not been visited, mark it as visited and add to the queue.
+                    if not visited[next_state]:
+                        visited[next_state] = True
+                        queue.append(next_state)
+            steps += 1
+        return -1
+```
+
+
+```python
+from typing import List
+from collections import deque, Counter
+
+class Solution:
+    def minStickers(self, stickers: List[str], target: str) -> int:
+        n = len(target)
+        state_size = 1 << n  # 2 ** n, 如果target[i]已有，则为1，否则为0
+        q = deque([0])
+        dist = {0: 0}
+
+        while q:
+            now = q.popleft()
+            for sticker in stickers:
+                state = now
+                cnt = Counter(sticker)
+                for i, c in enumerate(target):
+                    if now & (1 << i) == 0 and cnt[c] > 0:
+                        cnt[c] -= 1
+                        state += (1 << i)
+                if state in dist:
+                    continue
+                q.append(state)
+                dist[state] = dist[now] + 1
+                if state == state_size - 1:
+                    return dist[state]
+        return -1
 ```

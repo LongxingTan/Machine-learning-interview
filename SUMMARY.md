@@ -194,7 +194,6 @@
     * [934. Shortest Bridge](01_leetcode/08_bfs/934.%20Shortest%20Bridge.md)
     * [200. Number of Islands](01_leetcode/08_bfs/200.%20Number%20of%20Islands.md)
     * [133. Clone Graph](01_leetcode/08_bfs/133.%20Clone%20Graph.md)
-    * [323. Connected Component in Undirected Graph](01_leetcode/08_bfs/323.%20Connected%20Component%20in%20Undirected%20Graph.md)
     * [130. Surrounded Regions](01_leetcode/08_bfs/130.%20Surrounded%20Regions.md)
     * [752. Open the Lock](01_leetcode/08_bfs/752.%20Open%20the%20Lock.md)
     * [815. Bus Routes](01_leetcode/08_bfs/815.%20Bus%20Routes.md)
@@ -209,6 +208,7 @@
     * [994. Rotting Oranges](01_leetcode/08_bfs/994.%20Rotting%20Oranges.md)
     * [785. Is Graph Bipartite?](01_leetcode/08_bfs/785.%20Is%20Graph%20Bipartite%3F.md)
     * [*269 Alien Dictionary](01_leetcode/08_bfs/269%20Alien%20Dictionary.md)
+    * [*323. Connected Component in Undirected Graph](01_leetcode/08_bfs/323.%20Connected%20Component%20in%20Undirected%20Graph.md)
     * [*490. The Maze](01_leetcode/08_bfs/490.%20The%20Maze.md)
 
   * [动态规划](01_leetcode/09_dynamic_program)
