@@ -1,0 +1,44 @@
+# 700 Search in a Binary Search Tree
+[https://leetcode.com/problems/search-in-a-binary-search-tree/](https://leetcode.com/problems/search-in-a-binary-search-tree/)
+
+
+## solution
+
+- 注意递归部分需要return，这样才是找到节点就返回。不返回的话，整体输出反而是最后一个递归的返回None
+
+```python
+class Solution:
+    def searchBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if root is None:
+            return
+        if root.val == val:
+            return root
+
+        if root.val > val:
+            return self.searchBST(root.left, val)
+        if root.val < val:
+            return self.searchBST(root.right, val)
+```
+时间复杂度：O(n) <br>
+空间复杂度：O(h)
+
+
+## follow up
+
+[701. Insert into a Binary Search Tree](https://leetcode.com/problems/insert-into-a-binary-search-tree/)
+
+```python
+class Solution:
+    def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
+        if not root:
+            node = TreeNode(val)
+            return node
+
+        if root.val > val:
+            root.left = self.insertIntoBST(root.left, val)
+
+        else:
+            root.right = self.insertIntoBST(root.right, val)
+
+        return root
+```

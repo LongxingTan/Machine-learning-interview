@@ -1,0 +1,44 @@
+# 1048 Longest String Chain
+[https://leetcode.com/problems/longest-string-chain/](https://leetcode.com/problems/longest-string-chain/)
+
+
+## solution
+
+```python
+class Solution:
+    def longestStrChain(self, words: List[str]) -> int:
+        words.sort(key=len)
+        dp = {}
+        max_chain = 0
+        for word in words:
+            dp[word] = 1
+            for i in range(len(word)):
+                prev_word = word[:i] + word[i+1:]
+                if prev_word in dp:
+                    dp[word] = max(dp[word], dp[prev_word] + 1)
+            max_chain = max(max_chain, dp[word])
+        return max_chain
+```
+
+```python
+class Solution:
+    def isPredecessor(self, previous_word, current_word):
+        if len(previous_word) + 1 == len(current_word):
+            for k in range(len(current_word)):
+                if previous_word == current_word[0:k] + current_word[k+1:]:
+                    return True
+        return False
+
+    def longestStrChain(self, words: List[str]) -> int:
+        words.sort(key=len)
+        n = len(words)
+        # dp[i]: 词链最后一个词为已排序字符串数组第i个单词时，最长的词链长度
+        dp = [1 for _ in range(n)]
+        for current_word_index in range(n):
+            for previous_word_index in range(current_word_index):
+                if self.isPredecessor(words[previous_word_index], words[current_word_index]):
+                    dp[current_word_index] = max(dp[current_word_index], dp[previous_word_index] + 1)
+        return max(dp)
+```
+时间复杂度：O() <br>
+空间复杂度：O()

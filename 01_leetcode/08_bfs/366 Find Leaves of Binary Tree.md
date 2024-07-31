@@ -1,0 +1,30 @@
+# 366 Find Leaves of Binary Tree
+[https://leetcode.com/problems/find-leaves-of-binary-tree/](https://leetcode.com/problems/find-leaves-of-binary-tree/)
+
+
+## solution
+
+```python
+class Solution:
+    def findLeaves(self, root: Optional[TreeNode]) -> List[List[int]]:
+        ans = []
+
+        def dfs(root):
+            if not root:
+                return -1
+            
+            left = dfs(root.left)
+            right = dfs(root.right)
+            h = max(left, right) + 1  
+            
+            if len(ans) == h:
+                ans.append([])            
+          
+            ans[h].append(root.val)
+            return h
+
+        dfs(root)
+        return ans
+```
+时间复杂度：O(n) <br>
+空间复杂度：O(h)

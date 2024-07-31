@@ -1,0 +1,57 @@
+# 51 N-Queens
+[https://leetcode.com/problems/n-queens/](https://leetcode.com/problems/n-queens/)
+
+
+## solution
+
+```python
+# 棋盘的宽度就是for循环的长度，递归的深度就是棋盘的高度
+
+class Solution:
+    def solveNQueens(self, n: int) -> List[List[str]]:
+        res = []
+        board = ['.' * n for _ in range(n)]
+        self.dfs(n, 0, board, res)
+        return [[''.join(row) for row in solution] for solution in res]
+
+    def dfs(self, n, row, board, res):
+        if row == n:
+            res.append(board.copy())
+
+        for col in range(n):
+            if self.is_valid(row, col, board):
+                board[row] = board[row][:col] + 'Q' + board[row][col+1:]
+                self.dfs(n, row + 1, board, res)
+                board[row] = board[row][:col] + '.' + board[row][col+1:]
+
+    def is_valid(self, row, col, board):
+        for i in range(row):
+            if board[i][col] == 'Q':
+                return False
+
+        i, j = row - 1, col - 1
+        while i >= 0 and j >= 0:
+            if board[i][j] == 'Q':
+                return False
+            i -= 1
+            j -= 1
+
+        i, j = row - 1, col + 1
+        while i >= 0 and j < len(board):
+            if board[i][j] == 'Q':
+                return False
+            i -= 1
+            j += 1
+        return True
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+## follow up
+
+[52. N-Queens II](https://leetcode.com/problems/n-queens-ii/description/)
+
+```python
+
+```
