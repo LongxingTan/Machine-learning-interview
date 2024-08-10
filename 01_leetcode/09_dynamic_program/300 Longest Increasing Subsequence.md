@@ -32,7 +32,7 @@ class Solution:
 [674 Longest Continuous Increasing Subsequence](./674%20Longest%20Continuous%20Increasing%20Subsequence.md)
 - 最长连续递增序列，由于要求必须连续，因此只需要dp(i)与dp(i-1)比较即可
 
-[646. Maximum Length of Pair Chain]()
+[646. Maximum Length of Pair Chain](https://leetcode.com/problems/maximum-length-of-pair-chain/description/)
 ```python
 
 ```

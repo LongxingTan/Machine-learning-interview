@@ -5,8 +5,8 @@
 ## solution
 
 ```python
-# - 如果存在右节点，则右子树最左边的节点就是其下一个
-# - 如果不存在右节点，
+# 如果存在右节点，则右子树最左边的节点就是其下一个
+# 如果不存在右节点，
 class Solution(object):
     def inorderSuccessor(self, root, p):
         if not root:
@@ -24,7 +24,7 @@ class Solution(object):
 
 ```
 
-[173. Binary Search Tree Iterator]()
+[173. Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/description/)
 ```python
 
 ```

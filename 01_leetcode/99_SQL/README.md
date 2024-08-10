@@ -1,10 +1,9 @@
 # SQL
 
-数据科学岗位，也需要好好刷SQL题。
+数据科学岗位，需要好好刷SQL题。建议自己下载一个My SQL装到电脑上，模拟真实SQL环境来学习。
 
-对product和metrics的业务了解能够帮助我们更好的准备SQL面试，所有的SQL面试都是围绕着**与business相关的metrics**而展开。
+对product和metrics的业务了解能够帮助我们更好的准备SQL面试，SQL面试都是围绕着**与business相关的metrics**展开。
 
-建议自己下载一个My SQL装到电脑上，模拟真实SQL环境来学习。
 
 ## 知识点
 - 书写顺序: SELECT -> DISTINCT ->  FROM -> JOIN -> ON ->  WHERE -> GROUP BY -> HAVING -> ORDER BY -> LIMIT
@@ -37,11 +36,13 @@
 - Question 4: For each day, calculate a 30day rolling average purchase amount.
 - Question: what was the friend request acceptance rate for requests sent out on 2018-01-01?
 
+
 ## 实际
 关键配置参数
 - innodb_buffer_pool_size、sync_binlog、innodb_log_file_siz
 - SQL explain 优化
-- python\scala 三个连续双引号表示跨行字符串，.format() 
+- python\scala 三个连续双引号表示跨行字符串，`.format()`
+
 
 ## Reference
 - SQL ZOO 

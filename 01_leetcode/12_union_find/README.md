@@ -10,7 +10,7 @@ class DSU:
         self.parent = range(10001)  # 用一个数组来存储每个元素的父节点，初始时每个节点parent都是自己
 
     def find(self, x):  # 查询parent
-        if x != self.parent[x]:
+        if x != self.parent[x]:  # if
             self.parent[x] = self.find(self.parent[x])  # 一层一层访问父节点，直至根节点
         return self.parent[x]  # 返回父节点
     

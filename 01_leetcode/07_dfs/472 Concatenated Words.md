@@ -28,7 +28,6 @@ class Solution:
             if word[:i] in prev and self.dfs(prev, word[i:]):
                 return True
         return False
-
 ```
 时间复杂度：O() <br>
 空间复杂度：O()

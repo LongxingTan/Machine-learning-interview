@@ -12,7 +12,7 @@ from heapq import *
 class Solution:
     def alienOrder(self, words):
         # Construct Graph
-        in_degree = {ch: 0 for word in words for ch in word}
+        in_degree = {char: 0 for word in words for char in word}
         neighbors = collections.defaultdict(list)
         for pos in range(len(words) - 1):
             for i in range(min(len(words[pos]), len(words[pos+1]))):

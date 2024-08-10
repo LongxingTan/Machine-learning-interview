@@ -15,3 +15,37 @@
 ```python
 
 ```
+
+- 扫描线
+```python
+
+```
+
+
+```python
+class Solution:
+    def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
+        if not buildings:
+            return []
+        
+        events = []
+
+        for left, right, h in buildings:
+            events.append((left, -h, right))  # start point of building
+            events.append((right, 0, 0))  # end point of building
+        
+        events.sort()
+        res = [[0, 0]]
+        hp = [(0, float('inf'))]  # 结果存的就是高度，右边界
+
+        for pos, h, r in events:
+            while hp[0][1] <= pos:  # 本身已经按高度排序，如果右边比上一个小
+                heapq.heappop(hp)
+            
+            if h != 0:
+                heapq.heappush(hp, (h, r))
+            
+            if res[-1][1] != -hp[0][0]:
+                res.append([pos, -hp[0][0]])
+        return res[1:]
+```

@@ -2,6 +2,10 @@
 平时注意构建知识体系，通过读论文和做实验不断添砖加瓦、完善体系
 - [机器学习系统设计](../03_system/03_ml/README.md)
 
+重要概念
+- 归纳偏置（Inductive Bias）
+- 数据分布
+
 
 ## 面试要求
 - 熟悉常见模型的**原理、代码、如何实际应用、优缺点、常见面试问题**等
@@ -102,9 +106,7 @@
 
 - The bias-variance tradeoff is a central problem in supervised learning
   - Ideally, one wants to choose a model that both accurately captures the regularities in its training data, but also generalizes well to unseen data. Unfortunately, it is typically impossible to do both simultaneously. 
-
   - High-variance learning methods may be able to represent their training set well but are at risk of overfitting to noisy or unrepresentative training data. 
-
   - In contrast, algorithms with high bias typically produce simpler models that don't tend to overfit but may underfit their training data, failing to capture important regularities.
 
 

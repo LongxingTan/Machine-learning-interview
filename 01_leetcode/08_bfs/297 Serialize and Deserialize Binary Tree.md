@@ -53,6 +53,11 @@ class Codec:
 
 ## follow up-序列化和压缩类题目
 
+[449. Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/description/)
+```python
+
+```
+
 [*271. Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/)
 ```python
 

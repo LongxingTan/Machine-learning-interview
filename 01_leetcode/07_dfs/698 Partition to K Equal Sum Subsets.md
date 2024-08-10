@@ -13,7 +13,7 @@
 
 ## follow up
 
-[473.火柴拼正方形]()
+[473. Matchsticks to Square](https://leetcode.com/problems/matchsticks-to-square/description/)
 - 回溯
 ```python
 

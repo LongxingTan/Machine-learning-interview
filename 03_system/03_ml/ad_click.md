@@ -6,6 +6,7 @@
 
 
 ## 1. requirement
+
 **场景类**
 - We have a bidding server which makes bids and produces logs. Also we have information about impressions and conversions (usually with some delays). We want to have a model which using this data will predict a probability of click (conversion)
 - What is the primary business objective of the click prediction system?
@@ -85,11 +86,11 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 - Spend
 
 
-## 7. deployment and prediction service
+## 7. deployment and serving
 - A/B testing
 
 
-## 8. monitoring, and maintenance
+## 8. monitoring and maintenance
 
 
 ## 问答

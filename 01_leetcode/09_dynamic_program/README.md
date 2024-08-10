@@ -19,7 +19,7 @@
   - 结果: 有时候DP不是最后的结果，还需要用min/max/sum(dp)
 
 - 常见
-  - 背包问题
+  - 背包问题(Knapsack problem)
     - 递推公式中根据本次加入的数据(重量)决定了向上查找的状态
     - 01背包
     - 完全背包 Unbounded Knapsack

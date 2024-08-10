@@ -23,7 +23,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 **目标类**
 - What is the primary business objective of the system? (increase user engagement)
 
-**约束类**
+**约束类/non-functional**
 - What types of data do the posts include? (text, image, video)?
 - What is the scale of the system?
 - How fast the system needs to be?
@@ -75,6 +75,11 @@ By observing user behavior, such as the articles they read and the time they spe
 it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience.
 When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily.
 Additionally, asking users to list the specific topics they are interested in can be a game-changer in addressing the 'cold start' problem, which occurs when users provide minimal initial interaction data.
+
+
+## 混排
+- 多题材混排
+  - 先各自排序，再混排
 
 
 ## reference

@@ -18,7 +18,6 @@ class UF:
     def union(self, parent, child):
         self.parents[self.find(child)] = self.find(parent)
 
-
 class Solution:
     def findCircleNum(self, isConnected: List[List[int]]) -> int:
         uf = UF(n=len(isConnected))
@@ -38,3 +37,6 @@ class Solution:
 空间复杂度：O()
 
 - dfs
+```python
+
+```

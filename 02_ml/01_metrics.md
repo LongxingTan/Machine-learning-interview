@@ -19,7 +19,7 @@
     - V-measure
   - ranking
     - NDCG
-    - MAP
+    - [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision)
     - HR
     - recall
 - **online**

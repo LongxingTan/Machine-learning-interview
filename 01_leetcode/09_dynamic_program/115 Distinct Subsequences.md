@@ -4,16 +4,20 @@
 
 ## solution
 
-- 记忆化dfs
+- 递归-分治-记忆化dfs
 ```python
+# S 每个字母就是两种状态：选或者不选
+# https://leetcode.wang/leetcode-115-Distinct-Subsequences.html
 
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
 
+
 - 动态规划
-  - dp含义：以i-1结尾的子序列和以j-1结尾的子序列个数为dp[i][j]
+  - dp含义：dp[i][j], 以i-1结尾的子序列和以j-1结尾的子序列个数
   - dp推导：不同状态分别对待，如果相等时，用和不用
+
 ```python
 class Solution:
     def numDistinct(self, s: str, t: str) -> int:
@@ -28,7 +32,7 @@ class Solution:
             for j in range(1, n+1):
                 if s[i-1] == t[j-1]:
                     dp[i][j] = dp[i-1][j-1] + dp[i-1][j]
-                else:  # 根据dp含义, 不等也要传播下去
+                else:  # 根据dp含义, 不相等也要传播下去
                     dp[i][j] = dp[i-1][j]
         return dp[-1][-1]
 ```

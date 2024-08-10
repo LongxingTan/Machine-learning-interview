@@ -121,11 +121,7 @@ class Solution:
 
 
 [377. Combination Sum IV](../09_dynamic_program/377%20Combination%20Sum%20IV.md)
-- [动态规划](../09_dynamic_program/377%20Combination%20Sum%20IV.md)
 
-```python
-
-```
 
 
 [494. Target Sum](https://leetcode.com/problems/target-sum/)

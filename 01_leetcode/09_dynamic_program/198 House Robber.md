@@ -32,11 +32,6 @@ class Solution:
   - 此外，还有三角形DP [120. Triangle](https://leetcode.com/problems/triangle/description/)
 
 ```python
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
 class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:
         dp = self.traversal(root)

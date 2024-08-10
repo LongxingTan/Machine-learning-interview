@@ -40,8 +40,8 @@ class Solution:
 ## follow up
 
 [392.判断子序列](https://leetcode.com/problems/is-subsequence/)
-- easy，类似只允许删除的编辑距离，注意dp含义不是原本要求的定性是否问题，而是转化为定量多少问题
-- 同时dp含义还要融入，[之前最长重复子串](./718%20Maximum%20Length%20of%20Repeated%20Subarray.md)探讨过的dp含义，以-结尾的序列，还是截至到-的序列
+- 类似只允许删除的编辑距离，注意dp含义不是原本要求的定性是否问题，而是转化为定量多少问题
+- 同时dp含义还要融入，[最长重复子串](./718%20Maximum%20Length%20of%20Repeated%20Subarray.md)探讨过的dp含义，以-结尾的序列，还是截至到-的序列
 
 ```python
 # dp[i][j]: 以下标i-1为结尾的字符串s，和以下标j-1为结尾的字符串t，相同子序列的长度为dp[i][j]

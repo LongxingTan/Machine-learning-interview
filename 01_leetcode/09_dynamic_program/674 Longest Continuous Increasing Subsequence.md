@@ -25,6 +25,7 @@ class Solution:
 - 动态规划
   -  和[300 最长递增子序列](./300%20Longest%20Increasing%20Subsequence.md)的区别在于，连续只需要和上一个比较；不连续则需要和之前挨个比较
   -  可以认为其follow up [718. 最长重复子数组](./718%20Maximum%20Length%20of%20Repeated%20Subarray.md)，只有某个条件下进行更新，否则维持初始值
+
 ```python
 
 ```

@@ -15,20 +15,44 @@ class Solution:
 
         free_rooms = []
         intervals.sort(key= lambda x: x.start)
-        heapq.heappush(free_rooms, intervals[0].end)
+        heapq.heappush(free_rooms, intervals[0].end)  # 入堆的是结束时间, 便于判断是否已结束
 
         for i in intervals[1:]:
+            # 注意是if, 而不是while. 如果没有overlap, 则可以使用原本的会议室. pop相当于原本会议室的人走了
             if free_rooms[0] <= i.start:
                 heapq.heappop(free_rooms)
 
-            # If a new room is to be assigned, then also we add to the heap,
-            # If an old room is allocated, then also we have to add to the heap with updated end time.
+            # 新的会议室加入堆
             heapq.heappush(free_rooms, i.end)
 
         return len(free_rooms)
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
+
+
+- 扫描线
+```python
+class Solution:
+    def min_meeting_rooms(self, intervals: List[Interval]) -> int:
+        res = 0
+        count = 0
+        time = []
+        # 更直接方法是开始时间+1, 结束时间-1
+        for interval in intervals:
+            time.append([interval.start, 0])
+            time.append([interval.end, 1])
+
+        time.sort(key=lambda x: x[0])
+        for x, status in time:
+            if status == 0:
+                count += 1
+            else:
+                count -= 1
+            res = max(res, count)
+        return res
+```
+
 
 - sort
 ```python
@@ -55,28 +79,6 @@ class Solution:
             tmp = tmp + room[i]
             ans = max(ans, tmp)
         return ans
-```
-
-- 扫描线
-```python
-class Solution:
-    def min_meeting_rooms(self, intervals: List[Interval]) -> int:
-        res = 0
-        count = 0
-        time = []
-        # 更直接方法是开始时间+1, 结束时间-1
-        for interval in intervals:
-            time.append([interval.start, 0])
-            time.append([interval.end, 1])
-
-        time.sort(key=lambda x: x[0])
-        for x, status in time:
-            if status == 0:
-                count += 1
-            else:
-                count -= 1
-            res = max(res, count)
-        return res
 ```
 
 

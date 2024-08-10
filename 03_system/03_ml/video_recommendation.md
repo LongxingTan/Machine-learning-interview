@@ -87,6 +87,12 @@
 Candidate generation is the first stage of recommendation. Given a query (also known as context), the system generates a set of relevant candidates
 - content-based filtering: Uses similarity between items to recommend items similar to what the user likes.
 - collaborative filtering: Uses similarities between queries and items simultaneously to provide recommendations.
+  - pros
+    - Easy to discover users' new areas of interest
+    - Efficient. Models based on CF are usually faster and less compute-intensive
+  - cons
+    - Cold-start problem
+    - Cannot handle niche interests
 - for large scale system (Facebook, Google), we don’t use Collaborative Filtering and prefer low latency method to get candidate. One example is to leverage Inverted Index (commonly used in Lucene, Elastic Search). Another powerful technique can be found FAISS or Google ScaNN
 
 
@@ -102,6 +108,10 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - 步骤：1 离线训练得到user/item embedding, 2 离线建立item的索引，3 在线，计算user embedding，搜索item top n相似度
 - 损失函数：[计算the dot product representing their similarity，batch内负样本](https://github.com/tensorflow/recommenders/blob/main/tensorflow_recommenders/tasks/retrieval.py)
 - 数据：Training data is sourced from positive <query, candidate> pairs
+- pros
+  - latency and scalability
+- cons
+  - cold start
 
 
 ### 排序
@@ -120,6 +130,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 ### 重排
 
+- 视频要否要先通过审核
 - region restricted videos
 - videos freshness
 - video spreading misinformation
@@ -143,7 +154,13 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 ## 7. deployment and prediction service
 
-- 视频要否要先通过审核
+- [Online predictions](https://cloud.google.com/vertex-ai/docs/predictions/overview#online_predictions)
+  - are synchronous requests made to a model that is deployed to an endpoint. Therefore, before sending a request, you must first deploy the Model resource to an endpoint. This associates compute resources with the model so that it can serve online predictions with low latency. Use online predictions when you are making requests in response to application input or in situations that require timely inference.
+  - rest/grpc
+- Batch predictions 
+  - are asynchronous requests made to a model that isn't deployed to an endpoint. You send the request (as a BatchPredictionsJob resource) directly to the Model resource. Use batch predictions when you don't require an immediate response and want to process accumulated data by using a single request.
+  - precomputed, decouple compute from serving, lower load. 周期性更新，比如贷中评分，推荐系统的客户画像，一些dashboard，linkedin job推荐
+
 - application server
 - candidate generation service
   - two-tower network inference: find the k-top most relevant items given a user ->
@@ -171,17 +188,16 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 ## 参考
 
-- 论文: Deep Neural Networks for YouTube Recommendations
-- [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations]()
-- 论文: Recommending What Video to Watch Next: A Multitask Ranking System
+- [论文: Deep Neural Networks for YouTube Recommendations](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf)
+- [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://research.google/pubs/sampling-bias-corrected-neural-modeling-for-large-corpus-item-recommendations/)
+- [论文: Recommending What Video to Watch Next: A Multitask Ranking System](https://daiwk.github.io/assets/youtube-multitask.pdf)
 - [alirezadir/Machine-Learning-Interviews](https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/mlsd-video-recom.md)
 - [https://github.com/wangshusen/RecommenderSystem](https://github.com/wangshusen/RecommenderSystem)
 - [Scaling deep retrieval with TensorFlow Recommenders and Vertex AI Matching Engine](https://cloud.google.com/blog/products/ai-machine-learning/scaling-deep-retrieval-tensorflow-two-towers-architecture)
-- Machine learning system design interview
 - [Recommendations: What and Why?](https://developers.google.com/machine-learning/recommendation/overview)
 - [虎牙直播推荐系统架构详解](https://mp.weixin.qq.com/s/5XDR_KyZZdh2kndFOBSHeA)
 - [QQ音乐推荐系统算法架构实践](https://mp.weixin.qq.com/s/Si-zxdfcxaw2lmU9_qgOrw)
 - [网易云音乐推荐系统的冷启动技术](https://mp.weixin.qq.com/s/EDkoe3nxvQ_24nxC8ktd7g)
 - [双塔模型Batch内负采样如何解决热度降权和SSB的问题](https://zhuanlan.zhihu.com/p/574752588)
 - [Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations](https://research.google/pubs/pub50257/)
-- [mgtv-用户下一个观看视频预测](https://challenge.ai.mgtv.com/#/track/16)
+- [System Design for Recommendations and Search // Eugene Yan // MLOps Meetup #78](https://www.youtube.com/watch?v=lh9CNRDqKBk)

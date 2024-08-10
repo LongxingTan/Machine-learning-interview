@@ -56,6 +56,8 @@
 - 样本
   - 不均衡
   - 置信度: skip-above(点击的item位置以上的展现可以当做负样本, 最深位置以后的样本过滤掉); 完全无正样本session(可能是碰巧唤醒)
+- 延迟转化 Delayed Feedback
+
 
 **特征**
 
@@ -82,6 +84,7 @@
 
 
 **召回**
+
 > - low latency and computational cost
 > - Neighborhood models are most effective at detecting very localized relationships, but unable to capture the totality of weak signals encompassed in all of a user’s ratings.
 > - Latent factor models are generally effective at estimating overall structure that relates simultaneously to most or all items. However, these models are poor at detecting strong associations among a small set of closely related items.
@@ -94,6 +97,8 @@
   - 负采样带来的问题：CTR预估值漂移, 校正: p / (p + (1-p)/w)
 - model
   - 规则：热度高，同一作者、tag
+  - content based
+    - The model doesn't need any data about other users
   - itemCF
     - 无需训练，长于记忆
     - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中的马太效应或长尾效应
@@ -139,7 +144,7 @@
 - candidate count (from recall)
 - budget burn rate
 - 通用metrics：cpu, qps, latency
-- 淘宝主搜将 “全域成交 Hitrate” 作为粗排最重要的评价标准，提出两类评价指标，分别描述“粗排->精排损失”和“召回->粗排损失”。
+- 淘宝主搜将 “全域成交 Hit rate” 作为粗排最重要的评价标准，提出两类评价指标，分别描述“粗排->精排损失”和“召回->粗排损失”。
 
 
 ## 特定情况
@@ -152,7 +157,6 @@
 - Ins Story推荐，每条Story是独一无二的并且是有时间性的
 - O2O场景广告特点 1、移动化 2、本地化 3、场景化 4、多样性
 - Point of interest
-- Reels recommendation
 
 
 ## 问答

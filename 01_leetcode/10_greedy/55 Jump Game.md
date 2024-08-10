@@ -55,8 +55,7 @@ class Solution:
             return 0
 
         cur_pos = 0
-        next_pos = 0
-        i = 0
+        next_pos = 0  
         res = 0
         for i in range(len(nums)):
             next_pos = max(i+nums[i], next_pos)
@@ -85,6 +84,12 @@ class Solution:
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
+
+
+[1340. Jump Game V](https://leetcode.com/problems/jump-game-v/description/)
+```python
+
+```
 
 
 [1871. Jump Game VII](https://leetcode.com/problems/jump-game-vii/description/)

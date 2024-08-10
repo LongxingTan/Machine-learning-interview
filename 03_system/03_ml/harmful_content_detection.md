@@ -72,7 +72,7 @@ harmful content/weapon ads, 多模态场景, evolve rapidly
 - violation service (prob of harm with high confidence)
 
 
-## 8. monitoring and maintain
+## 8. monitoring and maintenance
 
 - 怎么部署这个系统，后续如何维护
 

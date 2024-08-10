@@ -46,7 +46,7 @@ class Solution:
         if not self.first:  # 记录首位
             self.first = root
 
-        if self.pre: # 遍历过程中，一直记录前一位
+        if self.pre: # 遍历过程中，一直记录前一位. 每一轮进行指针更新
             root.left = self.pre
             self.pre.right = root
         self.pre = root

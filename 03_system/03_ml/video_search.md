@@ -65,6 +65,7 @@ loss
 - [Que2Search: Fast and Accurate Query and Document Understanding for Search at Facebook](https://research.facebook.com/publications/que2search-fast-and-accurate-query-and-document-understanding-for-search-at-facebook/)
 - [System Design for Recommendations and Search](https://eugeneyan.com/writing/system-design-for-discovery/)
 - [Applying Deep Learning To Airbnb Search](https://arxiv.org/pdf/1810.09591.pdf)
+- [https://cloud.google.com/vertex-ai/docs/vector-search/overview?hl=en](https://cloud.google.com/vertex-ai/docs/vector-search/overview?hl=en)
 - [大众点评搜索相关性技术探索与实践](https://zhuanlan.zhihu.com/p/538820569)
 - [预训练技术在美团到店搜索广告中的应用](https://tech.meituan.com/2021/12/02/application-of-pre-training-technology-in-meituan-search-ads.html)
 - [深度学习在搜索业务中的探索与实践](https://tech.meituan.com/2019/01/10/deep-learning-in-meituan-hotel-search-engine.html)

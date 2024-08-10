@@ -27,7 +27,6 @@
 
 
 ## reference
-
 - [信息流场景下的AIGC实践](https://mp.weixin.qq.com/s/AOTP6oNXhtcCUhdtcEwMTg)
 - [https://github.com/microsoft/promptflow](https://github.com/microsoft/promptflow)
 - 

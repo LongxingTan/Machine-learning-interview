@@ -6,6 +6,7 @@
 
 ```python
 # 2D DP, 本题也可以写成1D DP（滚动数组）的形式减少空间复杂度
+
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         dp = [[1] * n for _ in range(m)]

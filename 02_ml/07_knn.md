@@ -105,8 +105,3 @@ y_train = [
 
 print(KNN(x_train, y_train, x_test, k))
 ```
-
-```python
-import faiss
-
-```

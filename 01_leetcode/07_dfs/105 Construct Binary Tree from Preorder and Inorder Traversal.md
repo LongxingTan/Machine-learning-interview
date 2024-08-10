@@ -87,6 +87,8 @@ class Solution:
         return dfs(s)
 ```
 
+[606. Construct String from Binary Tree](https://leetcode.com/problems/construct-string-from-binary-tree/description/)
+
 
 [*1485 Clone Binary Tree With Random Pointer](./1485%20Clone%20Binary%20Tree%20With%20Random%20Pointer.md)
 

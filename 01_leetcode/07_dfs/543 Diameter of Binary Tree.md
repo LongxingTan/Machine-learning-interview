@@ -93,3 +93,30 @@ class Solution:
 ```python
 
 ```
+
+[1448. Count Good Nodes in Binary Tree](https://leetcode.com/problems/count-good-nodes-in-binary-tree/description/)
+```python
+# 一般结构都是后序遍历，看一道前序的。尤其是带了另外参数的树的遍历
+
+class Solution:
+    def __init__(self):
+        self.res = 0
+
+    def goodNodes(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        
+        self.dfs(root, float('-inf'))
+        return self.res
+    
+    def dfs(self, root, max_val):
+        if not root:
+            return
+        
+        if max_val <= root.val:
+            self.res += 1
+            max_val = root.val
+        
+        self.dfs(root.left, max_val)
+        self.dfs(root.right, max_val)
+```

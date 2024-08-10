@@ -38,4 +38,5 @@ class Solution:
 
 
 ## follow op
+
 [括号类小结](../07_dfs/22%20Generate%20Parentheses.md)

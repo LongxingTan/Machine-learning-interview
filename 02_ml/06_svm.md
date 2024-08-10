@@ -148,3 +148,5 @@ if __name__ == "__main__":
 
 ## 参考
 - [支持向量机（SVM）是什么意思](https://www.zhihu.com/question/21094489)
+- [https://github.com/LasseRegin/SVM-w-SMO](https://github.com/LasseRegin/SVM-w-SMO)
+- 

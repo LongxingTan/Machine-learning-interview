@@ -9,6 +9,7 @@
   - 子数组的dp含义是: 以下标i - 1为结尾的A，和以下标j - 1为结尾的B，最长重复子数组长度为dp[i][j]
   - 公共子序列的dp含义是: 长度为[0, i - 1]的字符串text1与长度为[0, j - 1]的字符串text2的最长公共子序列为dp[i][j]
   - 为什么是以...结尾的，否则断开之后，再有相同值的就会dp值会继续累加上去。因此要求连续的含义需要以...结尾的，不要求连续则是长度为...的
+
 ```python
 class Solution:
     def findLength(self, nums1: List[int], nums2: List[int]) -> int:

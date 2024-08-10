@@ -34,4 +34,4 @@ class Solution:
 
 ## follow up
 
-[85. Maximal Rectangle](../05_stack_queue/85%20Maximum%20Rectangle.md)
+[85. Maximal Rectangle](../05_stack_queue/85.%20Maximum%20Rectangle.md)

@@ -13,7 +13,7 @@ class Solution:
                 max_time = max(max_time, dfs(subordinate) + inform_time[employee_id])
             return max_time
 
-        graph = defaultdict(list)
+        graph = collections.defaultdict(list)
         for i, mng_id in enumerate(managers):
             if mng_id != -1:
                 graph[mng_id].append(i)

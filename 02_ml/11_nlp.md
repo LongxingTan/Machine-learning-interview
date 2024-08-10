@@ -1,4 +1,5 @@
 # 自然语言处理
+
 NLP包括自然语言理解和自然语言生成，多个方向如文本分类、相似匹配、对话问答、机器翻译、序列标注、知识图谱、意图理解、词义消歧。
 
 - 视觉和nlp最大的区别：语义稀疏性，域间差异性，无限粒度性
@@ -107,7 +108,6 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
 ### CRF
 
 
-
 ### Transformer
 - Transformer时代几大模型范式, BERT: encoder-only, GPT: decoder-only, T5: encoder-decoder, GLM: prefix-lm
 - 预训练任务：Masked Language Model 和 Next Sentence Predict
@@ -148,7 +148,6 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
 
 
 ### GLM
-
 
 
 ## 应用
@@ -192,7 +191,6 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
 
 事件抽取 EE
 - djhee 和 plmee
-
 
 
 ### 文本摘要 Text summarization

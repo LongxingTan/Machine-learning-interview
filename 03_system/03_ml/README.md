@@ -58,6 +58,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 - **monitoring**
   - 监控latency，QPS，precision，recall等参数
 - **maintain**
+  - retrain strategy
 
 
 ### 过程
@@ -136,7 +137,6 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 - [模型生产环境中的反馈与数据回流 - 想飞的石头的文章 - 知乎](https://zhuanlan.zhihu.com/p/493080131)
 - [https://www.1point3acres.com/bbs/thread-901192-1-1.html](https://www.1point3acres.com/bbs/thread-901192-1-1.html)
 - [kuhung/machine-learning-systems-design](https://github.com/kuhung/machine-learning-systems-design)
-- [Machine Learning Systems Design Cases & Tests]()
 - [ML design 面试的答题模板，step by step-1point3acres](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=585908&ctid=230680)
 - [30+公司 MLE 面试准备经验分享-1point3acres](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=499352&ctid=230680)
 - [AI system](https://github.com/microsoft/AI-System)
@@ -144,10 +144,10 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 - [从大公司的博客里学最新机器学习](https://www.1point3acres.com/bbs/thread-893173-1-1.html)
 - [浅谈ML Design推荐系统面试心得, ask me anything](https://www.1point3acres.com/bbs/thread-490321-1-1.html)
 - [CS294: AI for Systems and Systems for AI](https://ucbrise.github.io/cs294-ai-sys-sp19/)
-- [CSE 599W: Systems for ML]()
+- [CSE 599W: Systems for ML](https://dlsys.cs.washington.edu/)
 - [https://github.com/microsoft/AI-System](https://github.com/microsoft/AI-System)
 - [https://github.com/eugeneyan/ml-design-docs](https://github.com/eugeneyan/ml-design-docs)
 - [https://www.machinelearninginterviews.com/ml-design-template/](https://www.machinelearninginterviews.com/ml-design-template/)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
 - [买它 MLE E6 昂赛过经](https://www.1point3acres.com/bbs/thread-1018808-1-1.html)
--
+- [https://www.evidentlyai.com/ml-system-design](https://www.evidentlyai.com/ml-system-design)

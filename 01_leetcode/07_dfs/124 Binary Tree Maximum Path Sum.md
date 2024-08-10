@@ -63,7 +63,7 @@ class Solution:
 
 ```
 
-[*1973. Count Nodes Equal to Sum of Descendants]()
+[*1973. Count Nodes Equal to Sum of Descendants](https://leetcode.com/problems/count-nodes-equal-to-sum-of-descendants/description/)
 ```python
 
 ```

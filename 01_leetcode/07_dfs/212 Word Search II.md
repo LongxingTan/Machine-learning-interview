@@ -4,15 +4,10 @@
 
 ## solution
 
-- 回溯
-```python
-
-```
-时间复杂度：O() <br>
-空间复杂度：O()
-
 - trie
 ```python
+# https://leetcode.com/problems/word-search-ii/solutions/59790/python-dfs-solution-directly-use-trie-implemented/
+
 from collections import defaultdict
 
 class Trie:
@@ -53,6 +48,13 @@ class Solution:
                 dfs(trie, i, j)
         return list(ans)
 ```
+
+- 回溯
+```python
+
+```
+时间复杂度：O() <br>
+空间复杂度：O()
 
 
 ## follow up

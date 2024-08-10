@@ -6,6 +6,7 @@
 
 ```python
 # 左括号更新深度，右括号更新结果
+
 class Solution:
     def scoreOfParentheses(self, s: str) -> int:
         score = 0
