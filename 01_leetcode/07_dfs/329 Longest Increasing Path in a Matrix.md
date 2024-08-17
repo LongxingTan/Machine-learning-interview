@@ -56,12 +56,14 @@ class Solution:
 
 - 状态压缩BFS(-> 最短路径): 关键在于状态的表征
 ```python
+# 想拼凑成的target共有n个字符, 从空到完全拼成需要2**n个状态表示.
+
 class Solution:
     def minStickers(self, stickers: List[str], target: str) -> int:
         queue = collections.deque([0])
         steps = 0
         n = len(target)
-        visited = [False] * (2 ** n)  # 1 << n, n位的字符，从全是0到全是1共有2^n个状态
+        visited = [False] * (2 ** n)  # 1 << n, n位字符，全是0到全是1共有2^n个状态
         visited[0] = True
 
         while queue:

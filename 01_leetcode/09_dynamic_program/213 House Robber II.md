@@ -5,7 +5,6 @@
 ## solution
 
 - 首尾相连, 从整体上分两个状态来考虑
-
 ```python
 class Solution:
     def rob(self, nums: List[int]) -> int:
@@ -18,7 +17,6 @@ class Solution:
         res2 = self._run_rob(nums, 1, len(nums)-1)
         return max(res1, res2)
 
-
     def _run_rob(self, nums, start, end):  # 左闭右闭
         if end == start:
             return nums[start]
@@ -30,8 +28,7 @@ class Solution:
             tmp = cur
             cur = max(pre+nums[i], cur)
             pre = tmp
-        return cur
-        
+        return cur        
 ```
 时间复杂度：O() <br>
 空间复杂度：O()

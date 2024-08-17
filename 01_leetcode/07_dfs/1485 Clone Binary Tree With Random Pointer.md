@@ -17,7 +17,6 @@ class Solution:
         copy.right = self.clone_random_tree(root.right)
         if root.random:
             copy.random = self.clone_random_tree(root.random)
-
         return copy
 ```
 时间复杂度：O(n) <br>

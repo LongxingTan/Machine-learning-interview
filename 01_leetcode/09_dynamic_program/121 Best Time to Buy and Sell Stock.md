@@ -13,9 +13,9 @@ class Solution:
         low = float('inf')
         profit = 0
         for price in prices:
-            if price < low:  # 可转化为 low = min(low, i)
+            if price < low:  # 可转化为 low = min(low, i), 截止到目前遇到的最低价格
                 low = price
-            if price - low > profit:  # 可转化为 profit = max(profit, i - low)
+            if price - low > profit:  # 可转化为 profit = max(profit, i - low), 截止目前的最大利润
                 profit = price - low
         return profit        
 ```

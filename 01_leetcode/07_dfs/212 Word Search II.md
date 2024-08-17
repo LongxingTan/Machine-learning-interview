@@ -7,7 +7,6 @@
 - trie
 ```python
 # https://leetcode.com/problems/word-search-ii/solutions/59790/python-dfs-solution-directly-use-trie-implemented/
-
 from collections import defaultdict
 
 class Trie:
@@ -28,18 +27,18 @@ class Solution:
         for word in words:
             trie.insert(word)
 
-        def dfs(now, i1, j1):
-            if board[i1][j1] not in now.children:
+        def dfs(cur, i1, j1):
+            if board[i1][j1] not in cur.children:
                 return
-            ch = board[i1][j1]
-            now = now.children[ch]
-            if now.word != "":
-                ans.add(now.word)
+            char = board[i1][j1]
+            cur = cur.children[char]
+            if cur.word != "":
+                ans.add(cur.word)
             board[i1][j1] = "#"
             for i2, j2 in [(i1 + 1, j1), (i1 - 1, j1), (i1, j1 + 1), (i1, j1 - 1)]:
                 if 0 <= i2 < m and 0 <= j2 < n:
-                    dfs(now, i2, j2)
-            board[i1][j1] = ch
+                    dfs(cur, i2, j2)
+            board[i1][j1] = char
 
         ans = set()
         m, n = len(board), len(board[0])

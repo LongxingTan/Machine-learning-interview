@@ -1,7 +1,7 @@
 # 深度学习
 
 深度学习已然成为最需要掌握的部分，其内容也相对较多。
-具体应用领域需要参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
+具体应用领域参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
 
 ## 前向后向传播
 - pytorch和jax的backprop
@@ -110,6 +110,7 @@ warmup_steps = int(batches_per_epoch * 5)
 
 
 - cross entropy/ 对数损失
+  - `nn.CrossEntropyLoss(pred, label) = nn.NLLLoss(torch.log(nn.Softmax(pred)), label)`
 
 $$ ce = - ylog(p) - (1-y)log(1-p)$$
 
@@ -119,6 +120,9 @@ $$ ce = - ylog(p) - (1-y)log(1-p)$$
 - Focal loss
   - 对CE loss增加了一个调制系数来降低容易样本的权重值，使得训练过程更加关注困难样本。增加的这个系数就是评价难易，也就是概率的gamma次方
 ```python
+import torch
+from torch import nn
+
 class FocalLoss(nn.Module):
     def __init__(self, gamma, eps=1e-7):
         super().__init__()

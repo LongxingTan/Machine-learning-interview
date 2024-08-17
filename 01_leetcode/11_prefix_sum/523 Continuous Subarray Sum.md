@@ -5,7 +5,7 @@
 ## solution
 
 - 根据mode的数学特点, 前缀+贪心
-  - prefix的精华在于两个不同位置的prefix相减, 据此到此怎么玩就需要随机应变(多练习)
+  - prefix的精华在于两个不同位置的prefix相减, 据此怎么玩就需要随机应变(多练习)
 ```python
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:

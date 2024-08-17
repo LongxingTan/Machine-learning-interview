@@ -83,7 +83,6 @@ Additionally, asking users to list the specific topics they are interested in ca
 
 
 ## reference
-
 - [Powered by AI: Instagram’s Explore recommender system](https://ai.meta.com/blog/powered-by-ai-instagrams-explore-recommender-system/)
 - [Lessons Learned at Instagram Stories and Feed Machine Learning](https://instagram-engineering.com/lessons-learned-at-instagram-stories-and-feed-machine-learning-54f3aaa09e56)
 - [Community-focused Feed optimization](https://engineering.linkedin.com/blog/2019/06/community-focused-feed-optimization)

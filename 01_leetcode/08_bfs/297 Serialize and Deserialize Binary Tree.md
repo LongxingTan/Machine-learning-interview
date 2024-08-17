@@ -55,11 +55,49 @@ class Codec:
 
 [449. Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/description/)
 ```python
+class Codec:
+    def serialize(self, root: Optional[TreeNode]) -> str:
+        """Encodes a tree to a single string.
+        """
+        if not root:
+            return ''
+        
+        queue = collections.deque([root])
+        res = []
+        while queue:
+            node = queue.popleft()
+            if node:
+                res.append(str(node.val))
+                queue.extend([node.left, node.right])
+            else:
+                res.append('*')
+        return ','.join(res)        
 
+    def deserialize(self, data: str) -> Optional[TreeNode]:
+        """Decodes your encoded data to tree.
+        """
+        if not data:
+            return
+        
+        tree = deque(data.split(','))
+        root = TreeNode(int(tree.popleft()))
+        queue = collections.deque([root])
+        while queue:
+            node = queue.popleft()
+            left = tree.popleft()
+            right = tree.popleft()
+            if left != '*':
+                node.left = TreeNode(int(left))
+                queue.append(node.left)
+            if right != '*':
+                node.right = TreeNode(int(right))
+                queue.append(node.right)
+        return root
 ```
 
 [*271. Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/)
 ```python
+# 长度标识
 
 ```
 
@@ -103,4 +141,9 @@ class Solution:
         
         dfs(root)
         return res
+```
+
+[*428. Serialize and Deserialize N-ary Tree](https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/description/)
+```python
+
 ```

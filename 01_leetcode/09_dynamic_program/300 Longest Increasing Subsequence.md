@@ -11,7 +11,7 @@ class Solution:
         if not nums:
             return 
         
-        dp = [1] * len(nums)
+        dp = [1] * len(nums)  # dp[i]: 以nums[i]结尾的最长子序列
         for i in range(1, len(nums)):
             for j in range(i):
                 if nums[i] > nums[j]:
@@ -23,8 +23,18 @@ class Solution:
 
 - binary search
 ```python
-
+class Solution:
+    def lengthOfLIS(self, nums: list[int]) -> int:
+        tails = []
+        for num in nums:
+            if not tails or num > tails[-1]:
+                tails.append(num)
+            else:
+                tails[bisect.bisect_left(tails, num)] = num
+        return len(tails)
 ```
+时间复杂度：O(nlog(n)) <br>
+空间复杂度：O(n)
 
 
 ## follow up

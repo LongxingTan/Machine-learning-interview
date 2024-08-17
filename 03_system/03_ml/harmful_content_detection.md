@@ -22,7 +22,6 @@ harmful content/weapon ads, 多模态场景, evolve rapidly
 ![](../../.github/assets/03ml-content-pipe.png)
 
 
-
 ## 3. data collection
 本题中，如何收集数据和label是比较关键的。比如先根据用户反馈(silver labels)，再根据人工审核(golden labels)
 

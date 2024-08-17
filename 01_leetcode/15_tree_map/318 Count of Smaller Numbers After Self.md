@@ -3,6 +3,7 @@
 
 
 ## solution
+
 - 线段树、二分索引树、TreeMap都可以
 
 ```python

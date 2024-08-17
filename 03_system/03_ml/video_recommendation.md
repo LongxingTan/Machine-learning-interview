@@ -1,11 +1,10 @@
 # Youtube 视频推荐
 
-
 ## 1. 需求 requirements
 
 **场景/功能类**
 - Use case
-  - Homepage?
+  - Homepage? similar item recommendation?
   - Does user sends a text query as well?
 - Similar to previously played, or personalized for the user?
 - explicit feedback? (thumbs up/down, in-product surveys)
@@ -187,7 +186,6 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 
 ## 参考
-
 - [论文: Deep Neural Networks for YouTube Recommendations](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf)
 - [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://research.google/pubs/sampling-bias-corrected-neural-modeling-for-large-corpus-item-recommendations/)
 - [论文: Recommending What Video to Watch Next: A Multitask Ranking System](https://daiwk.github.io/assets/youtube-multitask.pdf)

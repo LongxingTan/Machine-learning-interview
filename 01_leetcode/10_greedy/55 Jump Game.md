@@ -7,31 +7,15 @@
 ```python
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        if len(nums) == 1:
-            return True
-        
-        cover = 0  # 含义是目前能覆盖的最大范围
-
-        for i in range(len(nums)):
-            if i <= cover:  # 先要确保目前这一步能到
-                cover = max(cover, i+nums[i])
-                if cover >= len(nums) - 1:
-                    return True
-        return False
-```
-
-```python
-class Solution:
-    def canJump(self, nums: List[int]) -> bool:
         if not nums:
             return False
         if len(nums) == 1:
             return True
 
         i = 0
-        res = 0        
+        res = 0  # 含义是目前能覆盖的最大范围   
        
-        while i <= res:
+        while i <= res:  # 注意是 <=
             res = max(res, i + nums[i])
             if res >= len(nums) - 1:
                 return True    
@@ -39,11 +23,11 @@ class Solution:
 
         return False
 ```
-时间复杂度：O() <br>
-空间复杂度：O()
+时间复杂度：O(n) <br>
+空间复杂度：O(1)
 
 
-## follow up
+## follow up-jump game系列
 
 [45 Jump Game II](https://leetcode.com/problems/jump-game-ii/)
 
@@ -85,8 +69,47 @@ class Solution:
 时间复杂度：O() <br>
 空间复杂度：O()
 
+[1306. Jump Game III](https://leetcode.com/problems/jump-game-iii/description/)
+- bfs
+```python
+class Solution:
+    def canReach(self, arr: List[int], start: int) -> bool:
+        status = [False] * len(arr)
+        status[start] = True
+
+        queue = collections.deque()
+        queue.append(start)
+
+        while queue:
+            index = queue.popleft()
+            status[index] = True
+            if arr[index] == 0:
+                return True
+            
+            if 0 <= index + arr[index] < len(arr):
+                if not status[index + arr[index]]:
+                    queue.append(index + arr[index])
+            
+            if 0 <= index - arr[index] < len(arr):
+                if not status[index - arr[index]]:
+                    queue.append(index - arr[index])
+        return False
+```
+
+- dfs
+
+[1345. Jump Game IV](https://leetcode.com/problems/jump-game-iv/description/)
+```python
+
+```
 
 [1340. Jump Game V](https://leetcode.com/problems/jump-game-v/description/)
+```python
+# https://www.1point3acres.com/bbs/thread-746704-1-1.html
+
+```
+
+[1696. Jump Game VI](https://leetcode.com/problems/jump-game-vi/description/)
 ```python
 
 ```
@@ -119,4 +142,9 @@ class Solution:
                     dp[i] = True
                     break   
         return dp[-1]        
+```
+
+[*2297. Jump Game VIII](https://leetcode.com/problems/jump-game-viii/description/)
+```python
+
 ```

@@ -14,7 +14,6 @@
 ## follow up
 
 [588. Design In-Memory File System](https://leetcode.com/problems/design-in-memory-file-system/)
-
 ```python
 # https://zhuanlan.zhihu.com/p/601806380
 

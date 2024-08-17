@@ -18,7 +18,7 @@ class Solution:
         heapq.heappush(free_rooms, intervals[0].end)  # 入堆的是结束时间, 便于判断是否已结束
 
         for i in intervals[1:]:
-            # 注意是if, 而不是while. 如果没有overlap, 则可以使用原本的会议室. pop相当于原本会议室的人走了
+            # 注意是if, 不是while. 如果没有overlap, 则可以使用原本的会议室. pop相当于原本占据会议室的人离开
             if free_rooms[0] <= i.start:
                 heapq.heappop(free_rooms)
 
@@ -33,6 +33,8 @@ class Solution:
 
 - 扫描线
 ```python
+# 一个计数器cnt表示当前正在召开的会议数量，然后从小到大遍历所有的时间点。若当前时间点有会议召开，那么就将cnt加上1，反之，若当前时间有会议结束，那么就将cnt减去1
+
 class Solution:
     def min_meeting_rooms(self, intervals: List[Interval]) -> int:
         res = 0
@@ -51,13 +53,6 @@ class Solution:
                 count -= 1
             res = max(res, count)
         return res
-```
-
-
-- sort
-```python
-# 差分数组。使用一个计数器cnt表示当前正在召开的会议，然后从小到大遍历所有的时间点。若当前时间点有会议召开，那么就将cnt加上1，反之，若当前时间有会议结束，那么就将cnt减去1
-
 ```
 时间复杂度：O() <br>
 空间复杂度：O()

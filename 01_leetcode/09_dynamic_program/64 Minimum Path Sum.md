@@ -5,7 +5,7 @@
 ## solution
 
 ```python
-# 原grid作为dp可以进一步优化空间
+# 原grid直接作为dp可以进一步优化空间
 
 class Solution:
     def minPathSum(self, grid: List[List[int]]) -> int:

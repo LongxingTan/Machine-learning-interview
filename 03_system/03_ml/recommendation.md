@@ -24,7 +24,9 @@
 - Text or image/ video
 - Ranking / Localization
 - Permission management
-
+- Homepage recommendation or session based next item recommendation, Related item recommendations
+- 业务
+  - Explicit feedback or Implicit feedback
 
 ### NonFunctional requirement
 

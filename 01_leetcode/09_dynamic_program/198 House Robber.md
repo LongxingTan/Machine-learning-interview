@@ -30,7 +30,6 @@ class Solution:
 [337. House Robber III](https://leetcode.com/problems/house-robber-iii/)
 - 树形DP
   - 此外，还有三角形DP [120. Triangle](https://leetcode.com/problems/triangle/description/)
-
 ```python
 class Solution:
     def rob(self, root: Optional[TreeNode]) -> int:

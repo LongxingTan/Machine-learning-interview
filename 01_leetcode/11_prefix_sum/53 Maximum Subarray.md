@@ -4,6 +4,18 @@
 
 ## solution
 
+```python
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = -float('inf')
+        prefix_sum = 0
+
+        for num in nums:
+            prefix_sum = max(prefix_sum + num, num)
+            res = max(res, prefix_sum)
+        return res
+```
+
 - 前缀和+贪心
 ```python
 class Solution:
@@ -157,4 +169,23 @@ class Solution:
 - 前缀和+后缀和
 ```python
 
+```
+
+[713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/)
+```python
+class Solution:
+    def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        res = 0
+        prefix_prod = 1
+        l = 0 
+
+        for r, num in enumerate(nums):
+            prefix_prod *= num
+
+            while l <= r and prefix_prod >= k:
+                prefix_prod //= nums[l]
+                l += 1
+            
+            res += r - l + 1
+        return res
 ```

@@ -8,6 +8,8 @@
   - \* 意味着从前面转移而来
 
 ```python
+# dp[i][j]: s[0:i-1], p[0: j-1]的子字符串是否符合
+
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         m = len(s)

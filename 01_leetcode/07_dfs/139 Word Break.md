@@ -4,8 +4,30 @@
 
 ## solution
 
-- dfs with memorization
+- 动态规划
+```python
+# - 完全背包: dp[i]: s[i-1]是否可被word切割
+# - 1维dp: 容量为j的背包，所背的物品价值可以最大为dp[j]
+# - 先物品还是先背包：因为不完全背包1维需要从后往前，
+# - 背后从前到后还是从后到前
 
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        dp = [False] * (n + 1)
+        dp[0] = True
+
+        for i in range(1, n + 1):
+            for j in range(i):
+                # 注意是 s[j:i]
+                if dp[j] and s[j:i] in wordDict:
+                    dp[i] = True
+        return dp[-1]
+```
+时间复杂度：O(n^2 * k) <br>
+空间复杂度：O(n)
+
+- dfs with memorization
 ```python
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
@@ -28,31 +50,6 @@ class Solution:
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
-
-
-- 动态规划
-
-```python
-# - 完全背包: dp[i]: s[i-1]是否可被word切割
-# - 1维dp: 容量为j的背包，所背的物品价值可以最大为dp[j]
-# - 先物品还是先背包：因为不完全背包1维需要从后往前，
-# - 背后从前到后还是从后到前
-
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        n = len(s)
-        dp = [False] * (n + 1)
-        dp[0] = True
-
-        for i in range(1, n + 1):
-            for j in range(i):
-                # 注意是 s[j:i]
-                if dp[j] and s[j:i] in wordDict:
-                    dp[i] = True
-        return dp[-1]
-```
-时间复杂度：O(n^2 * k) <br>
-空间复杂度：O(n)
 
 
 ## follow up
