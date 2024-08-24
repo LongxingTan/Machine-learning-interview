@@ -58,6 +58,31 @@ class Solution:
 时间复杂度：O(n) <br>
 空间复杂度：O(n)
 
+
+[889. Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/description/)
+```python
+class Solution:
+    def constructFromPrePost(self, preorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        node_count = len(preorder)
+        if node_count == 0:
+            return None
+        
+        root = TreeNode(preorder[0])
+        if node_count == 1:
+            return root        
+
+        for i in range(node_count - 1):
+            if postorder[i] == preorder[1]:
+                root.left = self.constructFromPrePost(
+                    preorder[1: 1 + i + 1], postorder[:i + 1]
+                )
+                root.right = self.constructFromPrePost(
+                    preorder[1 + i + 1:], postorder[i + 1: -1]
+                )
+                return root
+```
+
+
 [*536. Construct Binary Tree from String](https://leetcode.com/problems/construct-binary-tree-from-string/description/)
 ```python
 # 树的构造: 就是先从root开始, 再构建左子树、右子树

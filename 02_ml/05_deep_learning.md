@@ -74,16 +74,10 @@ def gradient_descent(objective, derivative, bounds, n_iter, step_size):
 		print('>%d f(%s) = %.5f' % (i, solution, solution_eval))
 	return [solution, solution_eval]
 
-# define range for input
 bounds = asarray([[-1.0, 1.0]])
-# define the total iterations
 n_iter = 30
-# define the step size
 step_size = 0.1
-# perform the gradient descent search
 best, score = gradient_descent(objective, derivative, bounds, n_iter, step_size)
-print('Done!')
-print('f(%s) = %f' % (best, score))
 ```
 
 ### 学习率scheduler
@@ -162,10 +156,8 @@ class FClayer(Layer):
     def backward_propagation(self, output_error, learning_rate):
         input_error = np.dot(output_error, self.weights.T)
         weight_error = np.dot(self.input.T, output_error)
-
         self.weights -= learning_rate * weight_error
         self.bias -= learning_rate * output_error
-
         return input_error
 ```
 
@@ -271,8 +263,8 @@ def conv2d(inputs, kernels, bias, stride, padding):
     for i in range(H_out):
         for j in range(W_out):  # 找到out图像对于的原始图像区域，然后对图像进行sum和bias
             inputs_slice = inputs_pad[:, i*stride:i*stride+HH, j*stride:j*stride+WW]
-            outputs[:, i, j] = np.sum(inputs_slice * kernels, axis=(1, 2, 3)) + bias
-            # axis=(1, 2, 3)表示在通道、高度和宽度这三个轴上进行求和。
+            # axis=(1, 2, 3)表示在通道、高度和宽度这三个轴上进行求和
+            outputs[:, i, j] = np.sum(inputs_slice * kernels, axis=(1, 2, 3)) + bias            
     return outputs
 ```
 
@@ -345,10 +337,8 @@ def conv2d(inputs, kernels, bias, stride, padding):
 
 ```python
 
-def scaled_dot_product(q, k, v, softmax, attention_mask, attention_dropout):
-    # calculates Q . K(transpose)
+def scaled_dot_product(q, k, v, softmax, attention_mask, attention_dropout):   
     outputs = tf.matmul(q, k, transpose_b=True)
-    # caculates scaling factor
     dk = tf.math.sqrt(tf.cast(q.shape[-1], dtype=tf.float32))
     outputs = outputs / dk
     # if attention_mask is not None:
@@ -375,7 +365,6 @@ class FullAttention(tf.keras.layers.Layer):
         self.softmax = tf.keras.layers.Softmax()
 
     def call(self, q, k, v, attention_mask=None, training=False):
-
         multi_attn = []
         for i in range(self.num_of_heads):
             Q = self.wq[i](q)
@@ -451,17 +440,14 @@ def GroupNorm(x, gamma, beta, G, eps=1e-5):
 
 ```python
 def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
-    # To store individual pools
     pools = []
 
     # Iterate over all row blocks (single block has `stride` rows)
     for i in np.arange(img.shape[0], step=stride):
         # Iterate over all column blocks (single block has `stride` columns)
         for j in np.arange(img.shape[0], step=stride):
-
             # Extract the current pool
             mat = img[i:i+pool_size, j:j+pool_size]
-
             # Make sure it's rectangular - has the shape identical to the pool size
             if mat.shape == (pool_size, pool_size):
                 # Append to the list of pools
@@ -476,14 +462,9 @@ def max_pooling(pools: np.array) -> np.array:
     # Shape of the matrix after pooling - Square root of the number of pools
     tgt_shape = (int(np.sqrt(num_pools)), int(np.sqrt(num_pools)))
 
-	pooled = []
-
-    # Iterate over all pools
+    pooled = []
     for pool in pools:
-        # Append the max value only
         pooled.append(np.max(pool))
-
-    # Reshape to target shape
     return np.array(pooled).reshape(tgt_shape)
 
 from PIL import Image, ImageOps

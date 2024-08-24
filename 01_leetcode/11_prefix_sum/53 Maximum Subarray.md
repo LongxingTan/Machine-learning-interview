@@ -186,6 +186,6 @@ class Solution:
                 prefix_prod //= nums[l]
                 l += 1
             
-            res += r - l + 1
+            res += r - l + 1  # 结果加上从l开始，以r结果的数量
         return res
 ```

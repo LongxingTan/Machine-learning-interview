@@ -8,21 +8,18 @@
 
 
 ## 数据
-- 多样性：不同情景、背景、语境
-- 数量
-- 质量：重要
-- 采集方式：随机无偏差
+- 多样性(diversity)：不同情景、背景、语境
+  - 采集方式：随机无偏差
+- 数量(size)
+- 质量(quality)：重要
 
 
 ## 模型
 
-encoder-decoder：BERT，BART，T5，UL2
+encoder-decoder：BART，T5
+encoder: BERT，
 decoder-only：GPT3，Codex，PALM，Galactica，Chinchilla，LLaMA，OPT，BLOOM，Gopher
 
-
-GPT，BERT，Transformer等
-
-InstructGPT，LLama，ChatGLM
 
 **LLaMa**
 - llama的self-attention和mlp中没有bias
@@ -59,7 +56,24 @@ in context learning
   - QLoRA: Quantized LoRA, 使用QLoRA算法要结合bitsandbytes库和peft库
 
 ```python
+input_dim = 768 # 例如，预训练模型的隐藏大小
+output_dim = 768 # 例如，层的输出大小
+rank = 8 # 低秩适应的等级'r'
+W = ... # 来自预训练网络的权重，形状为 input_dim x output_dim
+W_A = nn.Parameter(torch.empty(input_dim, rank)) # LoRA权重A
+W_B = nn.Parameter(torch.empty(rank, output_dim)) # LoRA权重B
+# 初始化LoRA权重
+nn.init.kaiming_uniform_(W_A, a=math.sqrt(5))
+nn.init.zeros_(W_B)
 
+def regular_forward_matmul(x, W):
+  h = x @ W
+  return h
+
+def lora_forward_matmul(x, W, W_A, W_B):
+  h = x @ W  # 常规矩阵乘法
+  h += x @ (W_A @ W_B) * alpha  # 使用缩放的LoRA权重
+  return h
 ```
 
 ### RLHF
@@ -78,6 +92,68 @@ Flash-Attention
 
 ### MOE
 
+```python
+class Qwen2MoeSparseMoeBlock(nn.Module):
+    def __init__(self, config):
+        super().__init__()
+        self.num_experts = config.num_experts
+        self.top_k = config.num_experts_per_tok
+        self.norm_topk_prob = config.norm_topk_prob
+
+        # gating
+        self.gate = nn.Linear(config.hidden_size, config.num_experts, bias=False)
+        self.experts = nn.ModuleList(
+            [Qwen2MoeMLP(config, intermediate_size=config.moe_intermediate_size) for _ in range(self.num_experts)]
+        )
+
+        self.shared_expert = Qwen2MoeMLP(config, intermediate_size=config.shared_expert_intermediate_size)
+        self.shared_expert_gate = torch.nn.Linear(config.hidden_size, 1, bias=False)
+
+    def forward(self, hidden_states: torch.Tensor) -> torch.Tensor:
+        """ """
+        batch_size, sequence_length, hidden_dim = hidden_states.shape
+        hidden_states = hidden_states.view(-1, hidden_dim)
+        # router_logits: (batch * sequence_length, n_experts)
+        router_logits = self.gate(hidden_states)
+
+        routing_weights = F.softmax(router_logits, dim=1, dtype=torch.float)
+        routing_weights, selected_experts = torch.topk(routing_weights, self.top_k, dim=-1)
+        if self.norm_topk_prob:
+            routing_weights /= routing_weights.sum(dim=-1, keepdim=True)
+        # we cast back to the input dtype
+        routing_weights = routing_weights.to(hidden_states.dtype)
+
+        final_hidden_states = torch.zeros(
+            (batch_size * sequence_length, hidden_dim), dtype=hidden_states.dtype, device=hidden_states.device
+        )
+
+        # One hot encode the selected experts to create an expert mask
+        # this will be used to easily index which expert is going to be sollicitated
+        expert_mask = torch.nn.functional.one_hot(selected_experts, num_classes=self.num_experts).permute(2, 1, 0)
+
+        # Loop over all available experts in the model and perform the computation on each expert
+        for expert_idx in range(self.num_experts):
+            expert_layer = self.experts[expert_idx]
+            idx, top_x = torch.where(expert_mask[expert_idx])
+
+            # Index the correct hidden states and compute the expert hidden state for
+            # the current expert. We need to make sure to multiply the output hidden
+            # states by `routing_weights` on the corresponding tokens (top-1 and top-2)
+            current_state = hidden_states[None, top_x].reshape(-1, hidden_dim)
+            current_hidden_states = expert_layer(current_state) * routing_weights[top_x, idx, None]
+
+            # However `index_add_` only support torch tensors for indexing so we'll use
+            # the `top_x` tensor here.
+            final_hidden_states.index_add_(0, top_x, current_hidden_states.to(hidden_states.dtype))
+
+        shared_expert_output = self.shared_expert(hidden_states)
+        shared_expert_output = F.sigmoid(self.shared_expert_gate(hidden_states)) * shared_expert_output
+
+        final_hidden_states = final_hidden_states + shared_expert_output
+
+        final_hidden_states = final_hidden_states.reshape(batch_size, sequence_length, hidden_dim)
+        return final_hidden_states, router_logits
+```
 
 ### Long context
 

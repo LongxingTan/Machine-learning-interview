@@ -28,5 +28,5 @@ class Solution:
                 cur_str += char
         return cur_str
 ```
-时间复杂度：O() <br>
-空间复杂度：O()
+时间复杂度：O(n) <br>
+空间复杂度：O(n)

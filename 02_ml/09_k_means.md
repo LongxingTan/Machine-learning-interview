@@ -57,7 +57,7 @@ class KMeans:
     def _generate_centers(self, labels, X):
         return np.array([np.average(X[labels == i], axis=0) for i in np.arange(self._n_clusters)])
 
-    def fit_predict(self, X, n_iters=1000):
+    def fit_predict(self, X, n_iters=1000, tol=1e-4):
         # X: 样本, n_sample * n_feature
         k = self._n_clusters
 
@@ -80,6 +80,8 @@ class KMeans:
 
             # 新的中心点坐标
             center = self._generate_centers(labels, X)
+            # if np.linalg.norm(center - self.cluster_centers_) < tol:
+            #     break
             self.cluster_centers_ = center
 
             # 如果新计算得到的中心点，和上一次计算得到的点相同，说明迭代已经稳定了。
@@ -95,9 +97,12 @@ class KMeans:
 
 
 ```python
-# PCA
+# PCA: np.linalg.norm
 
 ```
+
+## dbscan
+
 
 
 ## 参考

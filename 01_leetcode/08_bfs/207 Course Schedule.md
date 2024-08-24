@@ -345,9 +345,32 @@ class Solution:
 
 ### 拓扑排序类
 
-[261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)
-```python
+[*261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)
 
+```python
+import collections
+
+class Solution:
+    def validTree(self, n, edges):
+        if n == 0:
+            return False
+        if len(edges) != n - 1:
+            return False
+        graph = collections.defaultdict(list)
+        for e in edges:
+            graph[e[0]].append(e[1])
+            graph[e[1]].append(e[0])
+
+        q = [0]
+        visited = set([0])
+        while q:
+            node = q.pop(0)
+            for i in graph[node]:
+                if i in visited:
+                    continue
+                q.append(i)
+                visited.add(i)
+        return len(visited) == n
 ```
 
 [*269 Alien Dictionary](./269%20Alien%20Dictionary.md)

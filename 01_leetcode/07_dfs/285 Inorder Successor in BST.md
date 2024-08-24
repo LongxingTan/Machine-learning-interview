@@ -5,6 +5,7 @@
 ## solution
 
 ```python
+# BST下一个, 也就是找到第一个比p大的节点
 # 如果存在右节点，则右子树最左边的节点就是其下一个
 # 如果不存在右节点，
 class Solution(object):
@@ -25,10 +26,28 @@ class Solution(object):
 空间复杂度：O(h)
 
 
+```python
+# 如果根节点小于或等于要查找的节点, 直接进入右子树递归;如果根节点大于要查找的节点, 则暂存左子树递归查找的结果, 如果是 null, 则直接返回当前根节点; 反之返回左子树递归查找的结果.
+
+class Solution:
+    def inorderSuccessor(self, root, p):
+        if root is None:
+            return None
+        
+        if root.val <= p.val:
+            return self.inorderSuccessor(root.right, p)
+        
+        left = self.inorderSuccessor(root.left, p)
+        if left is None:
+            return root
+        else:
+            return left
+```
+
+
 ## follow up
 
 [*510. Inorder Successor in BST II](https://leetcode.com/problems/inorder-successor-in-bst-ii/description/)
-
 ```python
 
 ```

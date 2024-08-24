@@ -56,6 +56,32 @@ class Solution:
 
 [140. Word Break II](https://leetcode.com/problems/word-break-ii/)
 
+```python
+# https://leetcode.com/problems/word-break-ii/solutions/44311/python-easy-to-understand-solution/
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        wordDict = set(wordDict)
+        path = []
+        res  = []
+        self.backtrack(s, wordDict, start=0, path=path, res=res)
+        return res
+		
+    def backtrack(self, s, wordDict, start, path, res):
+        if start == len(s):
+            res.append(' '.join(path))
+            return
+        
+        for end in range(start, len(s)):
+            if not s[start:end+1] in wordDict:
+                continue
+
+            path.append(s[start:end+1])
+            self.backtrack(s, wordDict, end+1, path, res)
+            path.pop()
+```
+
+
 - DFS枚举每次切词的位置，使用Memorization优化(回溯+动态规划思想)，每个字符串只用求一遍
 ```python
 """
@@ -99,5 +125,6 @@ class Solution:
 ```python
 # https://algo.monster/liteproblems/140
 ```
+
 
 [472 Concatenated Words](./472%20Concatenated%20Words.md)
