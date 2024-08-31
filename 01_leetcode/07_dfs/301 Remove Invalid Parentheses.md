@@ -44,7 +44,7 @@ class Solution:
         if l == 0 and r == 0 and self.is_valid(s):
             res.append(s)
 
-        for i in range(start, len(s)):
+        for i in range(start, len(s)):  # for循环来试图删掉每一个字符, 递归继续往下删除
             if i > start and s[i] == s[i-1]:  # 重复判断, 无论是左括号还是右括号
                 continue
             if r > 0 and s[i] == ')':  # 每一个位置，可能是去掉左括号，可能去掉右括号
@@ -55,6 +55,42 @@ class Solution:
 时间复杂度：O(2^n) <br>
 空间复杂度：O(n+|ans|)
 
+
+```python
+from collections import deque
+
+class Solution:
+    def removeInvalidParentheses(self, s):
+        if not s:
+            return ['']
+        queue = deque([s])
+        result, visited = [], set([s])
+        found = False
+        while queue:
+            cur = queue.popleft()
+            if self.is_valid_parentheses(cur):
+                found = True
+                result.append(cur)
+            elif not found:
+                for i in range(len(cur)):
+                    if cur[i] == '(' or cur[i] == ')':
+                        t = cur[:i] + cur[i + 1:]
+                        if t not in visited:
+                            queue.append(t)
+                            visited.add(t)
+        return result
+        
+    def is_valid_parentheses(self, s):
+        cnt = 0
+        for c in s:
+            if c == '(':
+                cnt += 1 
+            elif c == ')':
+                if cnt == 0:
+                    return False
+                cnt -= 1 
+        return cnt == 0
+```
 
 ## follow op
 

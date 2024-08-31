@@ -5,9 +5,10 @@
 ## solution
 
 ```python
-# BST下一个, 也就是找到第一个比p大的节点
+# BST下一个, 也就是找到第一个比p大的节点, 即最后一个访问的左节点
 # 如果存在右节点，则右子树最左边的节点就是其下一个
 # 如果不存在右节点，
+
 class Solution(object):
     def inorderSuccessor(self, root, p):
         if not root:

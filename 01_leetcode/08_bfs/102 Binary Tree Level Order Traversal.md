@@ -26,7 +26,6 @@ class Solution:
             res.append(levels)
         return res
 ```
-
 时间复杂度：O(n) <br>
 空间复杂度：O(n)
 

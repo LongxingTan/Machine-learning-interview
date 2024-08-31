@@ -63,6 +63,10 @@ query understanding
 
 ## 3. data collection
 
+- The ranking was good if the user clicked on some link and spent significant time reading the page. 
+- The ranking was not so good if the user clicked on a link to a result and then hit “back” quickly. 
+- The ranking was bad if the user clicked on the “next page” link.
+
 
 ## query reformulation
 

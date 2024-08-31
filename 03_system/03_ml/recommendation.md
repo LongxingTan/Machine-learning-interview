@@ -94,6 +94,7 @@
 - 召回系统的要求是，“低延时”与“高精度（precision）
 - 多路召回 (ensemble retrieval)
 - 负样本选择
+  - recommendation as extreme multiclass classification: 每一个正样本，意味着其他所有class都是负样本 -> negative sampling -> generation, accuracy
   - 全局负采样，采样方式: uniform subsampling, negative down sampling
   - Batch内负采样的问题： batch内都是热门物品，导致采样后的负样本中也大都为热门物品，造成对热门物品的过度打压，校正：
   - 负采样带来的问题：CTR预估值漂移, 校正: p / (p + (1-p)/w)
@@ -106,6 +107,7 @@
     - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中的马太效应或长尾效应
     - con: 泛化能力弱；容易产生马太效应，推荐的都是头部和中部产品
   - two power
+    - arbitrary continuous and categorical features can be easily added to the model
   - embedding: graph, picture, text
 - 局部敏感哈希，KD树
 

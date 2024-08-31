@@ -22,8 +22,8 @@
 
 
 ## 5. model
-- 模型选择。【传统的模型还是神经网络】
-- 考虑系统方面的constraint。比如prediction latency， memory。怎么合理的牺牲模型的性能以换取constraint方面的benefit
+- 模型选择【传统的模型还是神经网络】
+- 考虑系统方面的constraint, 如prediction latency, memory. 怎么合理的牺牲模型的性能以换取constraint方面的benefit
 
 
 ### 模型蒸馏

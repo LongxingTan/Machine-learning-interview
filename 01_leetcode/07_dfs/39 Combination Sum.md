@@ -115,7 +115,6 @@ class Solution:
             self.dfs(path, res, k, n, i+1)
             path.pop()
         return res
-
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
@@ -128,5 +127,20 @@ class Solution:
 [494. Target Sum](https://leetcode.com/problems/target-sum/)
 - 动态规划/背包
 ```python
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        total_sum = sum(nums)
+        if abs(target) > total_sum:
+            return 0
+        if (target + total_sum) % 2 == 1:
+            return 0
+        
+        target_sum = (total_sum + target) // 2
+        dp = [0] * (target_sum + 1)
+        dp[0] = 1
 
+        for i in nums:
+            for j in range(target_sum, i-1, -1):
+                dp[j] += dp[j-i]
+        return dp[target_sum]
 ```

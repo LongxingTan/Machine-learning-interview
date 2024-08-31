@@ -2,6 +2,10 @@
 
 工业部署模型需要掌握的相关知识
 
+- data/model version: DVC
+- feature store: feast
+- model version: MLFlow
+
 ## ML部署
 
 场景: low latency high qps

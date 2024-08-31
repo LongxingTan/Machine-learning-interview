@@ -1,11 +1,11 @@
 # 机器学习系统设计
 
-ML design的核心，本质是训练一个**model**来实现某个任务，如prediction/ranking/classification
+ML design的核心，本质是训练一个**model**来实现某个任务。如prediction，ranking，classification
 - 建模design, 包括优化目标，feature，data，模型结构，评价标准等
 - 系统design, 偏重于在线serve大模型，包括feature store, ANN, ETL pipeline, MLOps等
 
 **例子**
-  - youtube recommendation/doordash search box/auto suggestion
+  - youtube recommendation, doordash search box, auto suggestion
   - design youtube violent content detection system
   - detecting unsafe content
   - design a monitoring system to realtime measure ML models, including features, score distribution, qps
@@ -27,7 +27,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
 ### 回答框架
 
 - **明确需求**
-  - 场景，功能，目标(engagement Or revenue)，约束，如何转化为机器学习问题(如推荐转化为二分类模型和原因)
+  - 场景，功能，目标(engagement or revenue)，约束，如何转化为机器学习问题(如推荐转化为二分类模型和原因)
 - **数据**
   - positive label and negative label
   - scale of the system, user和item有哪些数据和量级，一些可做特征的数据是否有log
@@ -48,6 +48,7 @@ ML design的核心，本质是训练一个**model**来实现某个任务，如pr
   - 大多数场景，模型之外都需要额外的策略兜底
 - **评价**
   - offline and online
+  - AB testing
   - 模型的评价，比如：点击，转化，是否有广告？考察的是GMV，还是转化订单？
 - **部署**
   - server or device

@@ -40,7 +40,6 @@ class Solution:
                     this_level.append(i.right)
             level = this_level
             depth += 1
-
 ```
 时间复杂度：O() <br>
 空间复杂度：O()

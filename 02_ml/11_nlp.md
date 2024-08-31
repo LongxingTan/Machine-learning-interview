@@ -351,4 +351,4 @@ for i in range(num_merges):
 - [Let's build GPT: from scratch, in code, spelled out.]()
 - [Let's reproduce GPT-2 (124M)]()
 - [Stanford CS25: V2 I Introduction to Transformers w/ Andrej Karpathy]()
--
+- [https://github.com/karpathy/minbpe](https://github.com/karpathy/minbpe)

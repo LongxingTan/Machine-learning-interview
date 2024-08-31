@@ -38,7 +38,7 @@ class Solution:
         # order is invalid
         if len(order) != len(in_degree):
             return ""
-        return ''.join(order)     
+        return ''.join(order)
 ```
 时间复杂度：O(n * l) <br>
 空间复杂度：O(26)
