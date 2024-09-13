@@ -15,20 +15,20 @@
 ### Functional requirement
 
 - what is the product for which we have to build a recommendation system
-- which part should we focus on
+- 业务
+  - Homepage recommendation, session based next item recommendation, or related item recommendations
+  - Explicit feedback or Implicit feedback
 - Who is the producer/consumer
 - it's a new product, or we have some current product built already
+- the biggest goal of recommendation system is user engagement. Can I assume that to be the goal?
 - Is there any demography or country we are targeting
-- the biggest goal of any product recommendation system is user engagement. Can I assume that to be the goal?
 - How are we different from XX?
 - Text or image/ video
 - Ranking / Localization
 - Permission management
-- Homepage recommendation or session based next item recommendation, Related item recommendations
-- 业务
-  - Explicit feedback or Implicit feedback
 
-### NonFunctional requirement
+
+### Non-Functional requirement
 
 - MVP and Non-MVP
 - users should have a real time/ near real time / small latency experience Idempotency/ exact-once/ at-least-once/ at-most-once
@@ -87,9 +87,10 @@
 
 **召回**
 
-> - low latency and computational cost
-> - Neighborhood models are most effective at detecting very localized relationships, but unable to capture the totality of weak signals encompassed in all of a user’s ratings.
-> - Latent factor models are generally effective at estimating overall structure that relates simultaneously to most or all items. However, these models are poor at detecting strong associations among a small set of closely related items.
+> - Generates a much smaller subset of candidates from huge corpus with low latency and computational cost
+> - ensemble retrieval from different models (rule, filtering, nn). A given model may provide multiple candidate generators, each nominating a different subset of candidates
+> - Neighborhood models (itemCF, userCF) are most effective at detecting very localized relationships, but unable to capture the totality of weak signals encompassed in all of a user’s ratings.
+> - Latent factor models (MF) are generally effective at estimating overall structure that relates simultaneously to most or all items. However, these models are poor at detecting strong associations among a small set of closely related items.
 
 - 召回系统的要求是，“低延时”与“高精度（precision）
 - 多路召回 (ensemble retrieval)
@@ -106,10 +107,13 @@
     - 无需训练，长于记忆
     - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中的马太效应或长尾效应
     - con: 泛化能力弱；容易产生马太效应，推荐的都是头部和中部产品
+    - Cannot handle fresh items
+    - Hard to include side features for query/item
   - two power
     - arbitrary continuous and categorical features can be easily added to the model
   - embedding: graph, picture, text
 - 局部敏感哈希，KD树
+- similarity metrics
 
 
 **排序**
@@ -125,6 +129,9 @@
   - factorization machine
   - wide and deep learning
   - 深度学习优势：泛化能力，增量训练，推理速度
+- rerank
+  - take into account additional constraints for the final ranking
+
 
 ### Diagram & API
 
@@ -266,6 +273,7 @@
 - [CTR/推荐系统 转化延迟文章汇总](https://zhuanlan.zhihu.com/p/531949459)
   - [推荐系统简介之标签拼接和延迟反馈 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/668885759)
 - [都说数据是上限，推荐系统ctr模型中，构造正负样本有哪些实用的trick？ - 武侠超人的回答 - 知乎](https://www.zhihu.com/question/324986054/answer/1751584807)
+- [一文读懂「Parameter Server」的分布式机器学习训练原理 - 王喆的文章 - 知乎](https://zhuanlan.zhihu.com/p/82116922)
 
 
 **代码**

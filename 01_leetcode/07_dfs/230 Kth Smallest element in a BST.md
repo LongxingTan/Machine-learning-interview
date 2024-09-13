@@ -5,8 +5,10 @@
 ## solution
 
 ```python
+# 如果k作为参数传值，k -=1 并判断k == 0有问题，还是因为k本身是immutable
 class Solution:
     def __init__(self):
+        self.rank = 0
         self.res = 0
     
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:          
@@ -15,18 +17,16 @@ class Solution:
     
     def dfs(self, root, k):
         if not root:
-            return
+            return         
         
-        if root.left:
-            self.dfs(root.left, k)
+        self.dfs(root.left, k)
         
-        k -= 1
-        if k == 0:
+        self.rank += 1
+        if self.rank == k:
             self.res = root.val
             return   
 
-        if root.right:
-            self.dfs(root.right, k)
+        self.dfs(root.right, k)
 ```
 
 - 注意递归过程中的返回值

@@ -6,6 +6,7 @@
 - feature store: feast
 - model version: MLFlow
 
+
 ## ML部署
 
 场景: low latency high qps
@@ -86,3 +87,5 @@
 - [Model Deployment Strategies](https://neptune.ai/blog/model-deployment-strategies)
 - [ML Model Deployment Strategies](https://www.tensorops.ai/post/ml-model-deployment-strategies)
 - [推荐系统线上Serving简介与C++代码实现 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/659652013)
+- [使用TensorFlow C++ API构建线上预测服务 - 篇1](https://mathmach.com/6d246b32/)
+- 

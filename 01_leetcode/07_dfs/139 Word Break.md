@@ -4,6 +4,8 @@
 
 ## solution
 
+> An n-character string has 2^(n–1) different segmentations (there are n–1 positions between characters, each of which can either be or not be a word boundary).
+
 - 动态规划
 ```python
 # - 完全背包: dp[i]: s[i-1]是否可被word切割
@@ -126,5 +128,6 @@ class Solution:
 # https://algo.monster/liteproblems/140
 ```
 
-
 [472 Concatenated Words](./472%20Concatenated%20Words.md)
+
+[word segmentation by n-gram](https://norvig.com/ngrams/ch14.pdf)

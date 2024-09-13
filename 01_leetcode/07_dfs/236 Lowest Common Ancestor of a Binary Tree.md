@@ -90,7 +90,7 @@ class Solution(object):
 ```
 
 ```python
-# O(1) space
+# O(1) space, 类似160的思路
 class Solution(object):
     def lowestCommonAncestor(self, p, q):
         a = p

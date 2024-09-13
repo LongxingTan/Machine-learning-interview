@@ -57,8 +57,7 @@ class Codec:
 ```python
 class Codec:
     def serialize(self, root: Optional[TreeNode]) -> str:
-        """Encodes a tree to a single string.
-        """
+        """Encodes a tree to a single string."""
         if not root:
             return ''
         
@@ -74,8 +73,7 @@ class Codec:
         return ','.join(res)        
 
     def deserialize(self, data: str) -> Optional[TreeNode]:
-        """Decodes your encoded data to tree.
-        """
+        """Decodes your encoded data to tree."""
         if not data:
             return
         

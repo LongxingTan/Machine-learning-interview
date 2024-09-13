@@ -7,15 +7,14 @@
 - trie
 ```python
 # https://leetcode.com/problems/word-search-ii/solutions/59790/python-dfs-solution-directly-use-trie-implemented/
-from collections import defaultdict
 
 class Trie:
     def __init__(self):
-        self.children = defaultdict(Trie)
+        self.children = collections.defaultdict(Trie)
         self.word = ""
 
-    def insert(self, word):
-        cur = self
+    def insert(self, word):  # 单词插入一个word
+        cur = self  # 起点
         for c in word:
             cur = cur.children[c]
         cur.is_word = True

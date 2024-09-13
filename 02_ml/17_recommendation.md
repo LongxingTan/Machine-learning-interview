@@ -61,10 +61,11 @@
 - 召回新颖性：衡量召回链路能否给用户推荐没有过行为的item。
   - 计算召回item的平均流行度，平均流行度如果越低，那么可以认为召回的新颖度越高
 
-在线: ctr、cvr、gmv, pctr, pGMV, discovery=(#new categories)/(#all categories)，discovery分母是用户每天点击的总类别数，而分子是过去15天里头的新类别
+在线: 
+- ctr、cvr、gmv(商品交易总额), pctr, pGMV, discovery=(#new categories)/(#all categories)，discovery分母是用户每天点击的总类别数，而分子是过去15天里头的新类别
 - 日/月活跃用户（DAU/MAU），用户互动量/率（包括转赞评），用户停留时长
-- A/B Test：观测效率指标，曝光占比、点击率、多样性、新颖性等指标。
-  - 对于曝光占比少的链路，可进一步观测如下数据。
+- A/B Test：观测效率指标，曝光占比、点击率、多样性、新颖性等指标
+  - 对于曝光占比少的链路，可进一步观测如下数据
     - trigger用户覆盖度，这个衡量的是召回链路能够对多少用户产生影响；
     - trigger内容覆盖度，这个衡量的是我们所构建的trigger是否有相应的内容。
   - 对于效果差的链路，可分人群观测下效果，进一步精细化召回
@@ -282,3 +283,5 @@ counterfactual evaluation（反事实评估）
 - [冷启动推荐模型DropoutNet深度解析与改进 - 杨旭东的文章 - 知乎](https://zhuanlan.zhihu.com/p/475117993)
 - [特征工程](https://github.com/yangxudong/feature_engineering)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
+- [延迟反馈建模 - 基于样本回补的方案](https://mathmach.com/5f8a539b/)
+- 

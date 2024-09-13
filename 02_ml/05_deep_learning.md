@@ -27,7 +27,7 @@ SGD原理
 - Harder to handle the unobserved entries (need to use negative sampling or gravity)
 
 Adam和adgrad区别和应用场景
-- Adam: 一阶动量和二阶动量，Adaptive + Momentum. 通过其来自适应控制步长，当梯度较小时，整体的学习率就会增加，反之会缩小
+- Adam: 每个参数梯度增加了一阶动量（momentum）和二阶动量（variance），Adaptive + Momentum. 通过其来自适应控制步长，当梯度较小时，整体的学习率就会增加，反之会缩小
 
 RAdam
 - 用指数滑动平均去估计梯度每个分量的一阶矩(动量)和二阶矩(自适应学习率)，并用二阶矩去 normalize 一阶矩，得到每一步的更新量

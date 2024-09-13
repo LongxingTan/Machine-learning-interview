@@ -149,6 +149,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
   - **Return on Ad Spend (ROAS):** The revenue generated from an ad campaign divided by the cost, demonstrating the profitability of the campaign.
   - **Quality Score:** A score assigned to ads based on relevance, user experience, and expected click-through rate.
   - **Engagement Metrics:** Metrics like bounce rate, time on site, and pages per visit to assess the quality of user engagement with the landing page after clicking on the ad.
+- split the data
 
 
 ## 7. deployment and prediction service

@@ -261,6 +261,9 @@ BertScore
     - SentencePiece库: 基于BPE和uni-gram,根据不同任务或语料库需求，自定义分词模型，更好处理未登录或稀有词
     - chatGPT训练中文: BPE算法在中文上训，最小单元不再是汉字，而是 byte，UTF-8 编码中，一个汉字相当 3 个字节
 - BERT/GPT的区别
+  - decoder_only 模型通过逐步生成的方式处理信息，不会将信息**压缩**到单个表示中。
+  - BERT 则通过 CLS token 将信息汇总到一个单一的表示中，这种压缩的方式用于处理下游任务。
+  - 随着大模型时代，即使是传统NLP任务，在few shot或语义复杂场景的时候，GPT更有优势
 - adam/adamW区别
 - query理解
   - NER 品牌、品类等

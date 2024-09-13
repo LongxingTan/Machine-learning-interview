@@ -71,5 +71,4 @@ class Solution:
 
 [132. Palindrome Partitioning II](../09_dynamic_program/132%20Palindrome%20Partitioning%20II.md)
 
-
 [139 Word Break](./139%20Word%20Break.md)
