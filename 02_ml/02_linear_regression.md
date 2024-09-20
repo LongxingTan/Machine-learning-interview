@@ -1,20 +1,14 @@
 # 线性回归
 
-从从以下角度理解线性回归。思考的起点不同，但殊途同归，在解决问题时也可以从不同角度给出答案。
-- 最小二乘法
-- 最大似然法
-- 最大后验法与正则化
-- 贝叶斯线性回归与高斯过程回归
-
-其基础假设：
+基础假设：
 - There is a linear relationship between the independent variables(X) and the dependent variables (y)
 - Independence: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
 - Normality: The residuals of the linear regression model are assumed to be normally distributed.
 - Homoscedasticity: Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
-- No Multicollinearity between features
+- No Multi-collinearity between features
 
 
-## 1.最小二乘法
+## 1. 最小二乘法
 
 最小二乘法(ordinary least squares)对线性回归的假设是：误差（residual）符合正态分布。从几何角度看，误差距离最小。
 
@@ -58,7 +52,7 @@ $$ \frac{\partial{L}}{\partial{w}}=2X^TXw-2X^Ty$$
 $$ W=(X^TX)^{-1}X^Ty$$
 
 
-## 2.最大似然 Maximum likelihood estimation
+## 2. 最大似然法 Maximum likelihood estimation
 最小二乘与最大似然的等价，频率派(Frequentists)和贝叶斯派(Bayesians)角度的话，也都属于频率派。
 
 先看看什么是似然（likelihood）。在似然中，我们的所有数据对（x,y）集合，被看成是一个随机变量X，但X已经被观察到了，已经固定。以最常见的抛硬币模型来说，硬币出现正面或反面就是一个随机变量，正常硬币出现正面的概率为1/2。而似然是给定一个硬币，我们抛了10次之后出现了1次正面，随机变量出现1/10正面这个事件已经被观察到了并固定以后，这个硬币是正常硬币的可能性就被称为似然。
@@ -100,7 +94,7 @@ $$ P(y|x,w) \sim N(w^Tx,\sigma^2) $$
 $$ P(y|x,w)=\frac{1}{\sqrt{2\pi}\sigma}exp(-\frac{(y-w^Tx)^2}{2\sigma^2})$$
 
 
-## 3.最大后验 Maximum a posteriori estimation
+## 3. 最大后验法与正则 Maximum a posteriori estimation
 
 贝叶斯认为变量w也是一个随机变量，随机变量自带一个概率分布。因此在观察数据之前，我们可以提前根据经验预估一个w的分布，这个预估就是先验，并成为一个对参数的约束，即为最大后验法。
 
@@ -124,10 +118,10 @@ $$ w=argmax(P(w|X))=argmax(P(X|w).P(w)) $$
 
 $$ w=(X^TX+\lambda I)^{-1}X^TY $$
 
-## 4.高斯过程
+## 4. 贝叶斯线性回归与高斯过程回归
 
 
-## 问答
+## 5. 问答
 
 - pros:
   - explainable method
@@ -161,7 +155,7 @@ $$ w=(X^TX+\lambda I)^{-1}X^TY $$
   - feature selection, ridge regression, PCA
 
 
-## 代码
+## 6. 代码
 梯度下降
 - 对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度
 - 从几何意义上讲，梯度就是函数变化增加最快的方向。减梯度就是朝着减小的方向

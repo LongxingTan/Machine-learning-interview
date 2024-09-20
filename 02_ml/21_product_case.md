@@ -11,7 +11,7 @@
 - 每一项回答，都想清楚背后的取舍。把 trade-off讲清楚, 是能否拿到senior的关键。Junior pursues right or wrong; Senior looks for trade-offs
 
 
-## 范围
+## 1. 范围
 
 ### 纵向-题目类型
 - Launch or not: 公司想要针对产品某部分优化，开发某种新功能，该不该做？
@@ -34,7 +34,7 @@
 - 我们想要build a model 让FB groups的贴文出现在个人的newsfeed, 该怎麽做？
 
 
-## 回答时的框架Framework
+## 2. 回答框架Framework
 
 ### 目标
 以framework来说，第一步，也是最重要的，是订所谓的目标。目标有两种
@@ -69,7 +69,7 @@ Metrics有分成几种
 - 如果A/B test 不可行的时候，该怎麽办？为什麽不可行？
 - 如何 identify network effect? How to mitigate the risk?
 
-## 案例- Analytical Reasoning: Restaurant Recommendations
+## 3. 案例- Analytical Reasoning: Restaurant Recommendations
 
 FB在考虑build一个餐厅推荐system，插入到user的news feed里面
 How would you decide if this might be worth while？
@@ -96,6 +96,7 @@ When would you decide the time to ingest into newsfeed?
 2. Expected value of total people who see at least one impression
 3. We’ve run a prediction model and discovered 25% of our audience is high intent (90% probability of clicks) and 75% are low intent (10% clicks), how many clicks do we expect to see?
 4. If the advertiser are concerned of 0 clicks and want to increase the number of impression they buy. X axis is number of impressions purchased and Y is likelihood of getting 0 clicks, how does X and Y change (draw graph)
+
 
 ## 参考
 - [Meta Senior DS, Product Analytics 面试准备总结](https://www.1point3acres.com/bbs/thread-1012204-1-1.html)

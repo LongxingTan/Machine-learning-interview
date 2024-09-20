@@ -1,7 +1,7 @@
 # ML数学基础
 
 
-## 概率统计
+## 1. 概率统计
 
 有的面试会直接考察统计与数学知识。即使不是直接考察，在ML环节用数学佐证自己的观点是非常有裨益的。
 
@@ -39,13 +39,7 @@
   - 机器学习领域的重要假设
 
 
-## AB test
-
-- sample size计算
-- 不同element increase/decrease对power的影响
-
-
-## 矩阵
+## 2. 矩阵
 
 特征值与特征向量
 
@@ -55,12 +49,12 @@
 - 协方差矩阵的迹是样本方差的和
 
 
-## 微积分
+## 3. 微积分
 
 机器学习中使用的微积分主要在于优化。
 
 
-## 问答
+## 4. 问答
 - a/b testing如何确定sample size
 - What is p-value? What is confidence interval? Explain them to a product manager or non-technical person.
 - How do you understand the "Power" of a statistical test?

@@ -1,41 +1,72 @@
 # 大语言模型
+先了解和熟悉[深度学习](./05_deep_learning.md)与[自然语言理解](11_nlp.md)中的内容
 
-## scaling law
+
+## 1. scaling law
 - C(计算量) = 6 N(模型参数量) * D(数据集大小)
-- 1B 模型代表 1 billion参数，如果是全精度(fp32)，一个参数32 byte = 4个字节(1个字节8比特)，共需要 4 billion显存，也就是4G. 半精度就需要2G显存。
+- 基础：1个字节8比特，全精度(fp32)下，**1个参数** 32 byte = **4个字节**，半精度下1个参数等于2个字节
+- 1B 模型代表 1 billion参数，如果全精度，共需要 4 billion显存，也就是4G. 半精度需要2G显存。
 - 全量微调: 参数，梯度，优化器. 微调1B模型，全精度：参数4G, 梯度4G, 优化器状态（adam带二阶状态）8G = 16G. 半精度Adam微调需要 8G
-- LoRA微调: 主干参数仍然有前向和梯度显存消耗，节省显存主要在于优化器状态，优化器状态只有LoRA权重部分
+- LoRA微调: 主干网络前向和梯度显存消耗不变，节省的显存主要在优化器状态，优化器只有LoRA权重部分
 
 
-## 数据
+## 2. 数据
+
 - 多样性(diversity)：不同情景、背景、语境
   - 采集方式：随机无偏差
 - 数量(size)
 - 质量(quality)：重要
 
 
-## 模型
-
-encoder-decoder：BART，T5
-encoder: BERT，
-decoder-only：GPT3，Codex，PALM，Galactica，Chinchilla，LLaMA，OPT，BLOOM，Gopher
-
+## 3. 模型
 
 **LLaMa**
 - llama的self-attention和mlp中没有bias
 - 使用 rmsnorm而不是layernorm，少计算了均值
 
 
-## 评测
-- rouge
-- BLEU
-- perplexity
+**多模态**
+Diffusion/CLIP/BLIP/Llava
 
 
+**MOE**
+```python
+class MoeLayer(nn.Module):
+    def __init__(self, experts, gate, moe_args):
+        super().__init__()
+        assert len(experts) > 0
+        self.experts = nn.ModuleList(experts)
+        self.gate = gate
+        self.args = moe_args
+
+    def forward(self, inputs: torch.Tensor):
+        # (m, seq_len, dim) --> (m * seq_len, dim)
+        inputs_squashed = inputs.view(-1, inputs.shape[-1])
+        # (m * seq_len, num_experts)
+        gate_logits = self.gate(inputs_squashed)
+        # (m * seq_len, num_experts_per_tok),
+        weights, selected_experts = torch.topk(
+            gate_logits, self.args.num_experts_per_tok)
+        weights = nn.functional.softmax(
+            weights, dim=1, dtype=torch.float).type_as(inputs)
+        # (m * seq_len, dim)
+        results = torch.zeros_like(inputs_squashed)
+        for i, expert in enumerate(self.experts):
+            # index of batch and expert
+            batch_idx, nth_expert = torch.where(selected_experts == i)
+            # weightage * output of expert layers (selected_m, num_expert)
+            results[batch_idx] += ( weights[batch_idx, nth_expert, None] * expert(inputs_squashed[batch_idx]) )
+        # (m * seq_len, dim) --> (m, seq_len, dim)
+        return results.view_as(inputs)
+```
+
+
+## 4. 训练
 ### SFT
 in context learning
 
-#### 高效参数微调 PEFT
+高效参数微调 PEFT
+
 - Prompt tuning
   - 固定模型前馈层参数，仅仅更新部分embedding参数即可
 
@@ -88,78 +119,34 @@ Proximal Policy Optimization，近端策略优化
 - 两个网络，分别是Actor和Critic
 
 
-Flash-Attention
-
-### MOE
-
-```python
-class MoeLayer(nn.Module):
-    def __init__(self, experts, gate, moe_args):
-        super().__init__()
-        assert len(experts) > 0
-        self.experts = nn.ModuleList(experts)
-        self.gate = gate
-        self.args = moe_args
-
-    def forward(self, inputs: torch.Tensor):
-        # (m, seq_len, dim) --> (m * seq_len, dim)
-        inputs_squashed = inputs.view(-1, inputs.shape[-1])
-        # (m * seq_len, num_experts)
-        gate_logits = self.gate(inputs_squashed)
-        # (m * seq_len, num_experts_per_tok),
-        weights, selected_experts = torch.topk(
-            gate_logits, self.args.num_experts_per_tok)
-        weights = nn.functional.softmax(
-            weights, dim=1, dtype=torch.float).type_as(inputs)
-        # (m * seq_len, dim)
-        results = torch.zeros_like(inputs_squashed)
-        for i, expert in enumerate(self.experts):
-            # index of batch and expert
-            batch_idx, nth_expert = torch.where(selected_experts == i)
-            # weightage * output of expert layers (selected_m, num_expert)
-            results[batch_idx] += ( weights[batch_idx, nth_expert, None] * expert(inputs_squashed[batch_idx]) )
-        # (m * seq_len, dim) --> (m, seq_len, dim)
-        return results.view_as(inputs)
-```
-
-### Long context
-
-
-## 多模态
-Diffusion/GPT/CLIP/BLIP
-
-
-## 分布式训练
+### 分布式训练
 DeepSpeed
 - 选择 ZeRO Optimizer 的不同阶段。阶段0、1、2和3分别指禁用、优化器状态分区、优化器+梯度状态分区和优化器+梯度+参数分区。
 Megatron
 
 - limited GPU
-
-use fp16 (this speeds up training)
-use gradient_accumulation_steps (this simulates larger batch sizes)
-use gradient_checkpointing (this uses disk to save RAM)
-freeze model embeddings (this reduces weights to train)
-freeze some model layers (this reduces weights to train)
-use PEFT (this reduces weights to train)
-increase LR and decrease epochs (this reduces work)
-use smaller models (this reduces weights to train)
+  - use fp16 (this speeds up training)
+  - use gradient_accumulation_steps (this simulates larger batch sizes)
+  - use gradient_checkpointing (this uses disk to save RAM)
+  - freeze model embeddings (this reduces weights to train)
+  - freeze some model layers (this reduces weights to train)
+  - use PEFT (this reduces weights to train)
+  - increase LR and decrease epochs (this reduces work)
+  - use smaller models (this reduces weights to train)
 
 - 模型并行分为张量并行和流水线并行
 
-## prompt
+
+### Long context
 
 
-## RAG
-- 主要针对大语言模型的幻觉、数据时效性、数据安全问题。
-
-![](../.github/assets/02ml-llm-rag.png)
-
-
-## Agents
+## 5. 评测
+- rouge
+- BLEU
+- perplexity
 
 
-## 推理
+## 6. 推理
 - [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling) 
 - dynamic batching, continuous batching, flash attention, quantization
 
@@ -199,8 +186,27 @@ sampled_token = top_k_sampling(logits, k=3)
 print("Sampled token index:", sampled_token)
 ```
 
+量化
+- Post training quantization(PTQ)
+- Quantization aware training(QAT)
 
-## 问答
+
+## 7. 应用与优化
+
+### prompt
+
+
+### RAG
+- 主要针对大语言模型的幻觉、数据时效性、数据安全问题。
+
+![](../.github/assets/02ml-llm-rag.png)
+
+
+### Agents
+
+
+
+## 8. 问答
 - 一个给定任务，如何优化LLM的效果
   - 从prompt engineering开始
   - RAG
@@ -211,7 +217,7 @@ print("Sampled token index:", sampled_token)
   - position embedding的角度
   - [Advancing Transformer Architecture in Long-Context Large Language Models: A Comprehensive Survey](https://arxiv.org/abs/2311.12351v1)
 - 如何构建Instruction数据集
-  - 预料生成，格式构造，提示词
+  - 语料生成，格式构造，提示词
 - 如何处理训练中的loss spike
   - [adam在大模型预训练中的不稳定性分析及解决办法 - 丁晖的文章 - 知乎](https://zhuanlan.zhihu.com/p/675421518)
 - 分布式训练
@@ -223,6 +229,8 @@ print("Sampled token index:", sampled_token)
   - 温度参数调整
   - 后处理和过滤
 - 灾难性遗忘
+  - 微调过程中混合通用知识指令微调数据，数据配比
+  - full or LoRA
   - 重播缓冲区
   - 弹性权重共享
   - 增量学习
@@ -241,7 +249,6 @@ print("Sampled token index:", sampled_token)
 
 
 ## reference
-
 - [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
 - A Survey of Large Language Models
 - A Comprehensive Survey on Pretrained Foundation Models A History from BERT to ChatGPT
@@ -268,9 +275,7 @@ print("Sampled token index:", sampled_token)
 - [vllm](https://github.com/vllm-project/vllm)
 - [LLM inference in C/C++](https://github.com/ggerganov/llama.cpp)
 
-
-## course
-
+**course**
 - https://github.com/mlabonne/llm-course
 - https://github.com/InternLM/Tutorial/tree/camp2
 - https://github.com/datawhalechina/llm-universe

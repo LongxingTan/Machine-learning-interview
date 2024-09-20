@@ -11,7 +11,7 @@ class Solution:
         prefix_sum = 0
 
         for num in nums:
-            prefix_sum = max(prefix_sum + num, num)
+            prefix_sum = max(prefix_sum + num, num)  # 要么选这个数，要么不选
             res = max(res, prefix_sum)
         return res
 ```

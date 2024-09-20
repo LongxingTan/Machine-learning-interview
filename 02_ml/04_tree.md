@@ -2,7 +2,7 @@
 
 决策树的角度和之前不同，优化思路也不同。其演化过程需要结合ensemble原理（bagging、boosting）。
 
-## 决策树
+## 1. 决策树
 优化目标: To find the best split that maximize the separation between different classes or reduces the impurity with each resulting node
 
 分裂依据
@@ -22,20 +22,20 @@ entropy公式：
 - squared loss
 
 
-## adaboost
+## 2. adaboost
 
 - 损失函数exp
 - 对分类正确的样本降低权重，对错误分类的样本升高或者保持全中不变。在模型融合过程中，根据错误率对基分类器器进行加权融合，错误率低的分类器拥有更大的“话语权”
 
 
-## 随机森林
+## 3. 随机森林
 
 - 损失函数：
 
 - 可以并行训练，不容易过拟合
 
 
-## 梯度提升树GBDT
+## 4. 梯度提升树GBDT
 
 - GBDT拟合的是负梯度，下一棵树拟合的是前面的负梯度。当损失函数为平方损失的时候，负梯度正好为残差
 - 做分类任务时，GBDT内部每棵树是回归树，不论是回归还是分类任务
@@ -44,7 +44,7 @@ entropy公式：
 
 
 
-## xgboost
+## 5. xgboost
 - XGBoost使用二阶泰勒展开(taylor expansion)表示梯度，即每棵树拟合的是二阶泰勒的梯度，相比GBDT的一阶泰勒展开、对梯度的表示更准确
 - 损失函数中显式加入了正则项，对叶子数目和叶子权重做惩罚
 - 特征重要性
@@ -57,7 +57,7 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 
 
 
-## lightgbm
+## 6. lightgbm
 - 基于Histogram: lightgbm遍历每个特征寻找最优分裂点时，将每个特征进行了分桶，比如可指定分为64个桶，那么该特征所有的值都落入这64个桶中，遍历这个特征时，最多只需要遍历64次，则每次分裂的复杂度为O(特征数*桶数)，如果不分桶，则可能所有样本的值都不同，则复杂度为O(特征数*样本数)。
 为什么能分桶：因为每棵树都是弱分类器，不需要非常精准，且分桶一定程度上提高了泛化能力，降低了误差
 - lightgbm的分枝模式为leaf-wise，即遍历当前所有待分枝节点，不需要一定在最下边一层，谁的分裂增益大就分谁。而XGBoost的分枝模式为level-wise，即分完一层再分下一层，可能一层中有些叶子分裂增益极小，但是仍然要花费时间和空间去分裂
@@ -66,10 +66,10 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - Cache命中率优化
 
 
-## catboost
+## 7. catboost
 
 
-## 特征重要性
+## 8. 特征重要性
 - 所有树中作为划分属性的次数
 - 使用特征在作为划分属性时loss平均的降低量
 - 作为划分属性时对样本的覆盖度
@@ -78,7 +78,7 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - SHAP
 
 
-## 问答
+## 9. 问答
 
 - GBDT中的梯度与深度学习的梯度优化方法？
   - 二者都是借助梯度进行优化，GBDT是下一颗树拟合，深度学习是向后传播
@@ -112,7 +112,7 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - GBM中的gradient怎么定义
 
 
-## 代码
+## 10. 代码
 Decision Tree
 
 

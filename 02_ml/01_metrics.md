@@ -44,6 +44,12 @@
     - GAGR
 
 
+## AB test
+
+- sample size计算
+- 不同element increase/decrease对power的影响
+
+
 ## 精确率Precision/ 召回率Recall/ F1 / AUC
 
 ![](../.github/assets/02ml-confusion.png)

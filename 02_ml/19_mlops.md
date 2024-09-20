@@ -7,7 +7,7 @@
 - model version: MLFlow
 
 
-## ML部署
+## 1. ML部署
 
 场景: low latency high qps
 
@@ -56,7 +56,7 @@
 - gpu多实例部署
 
 
-## 模型压缩
+## 2. 模型压缩
 
 - 蒸馏
   - 如何设计合适的学生模型和损失函数
@@ -67,12 +67,12 @@
 - 低秩分解近似
 
 
-## retrain
+## 3. retrain
 > develop a strategy to trigger model invalidations and retrain models when performance degrades.
 > because of data drift, model bias, and explainability divergence
 
 
-## 问答
+## 4. 问答
 - 模型部署后，怎么检测模型流量
 
 

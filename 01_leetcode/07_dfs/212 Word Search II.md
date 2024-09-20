@@ -13,46 +13,43 @@ class Trie:
         self.children = collections.defaultdict(Trie)
         self.word = ""
 
-    def insert(self, word):  # 单词插入一个word
-        cur = self  # 起点
+    def insert(self, word):  # 插入一个单词
+        cur = self  # 起点从最外面开始
         for c in word:
             cur = cur.children[c]
-        cur.is_word = True
+        # cur.is_word = True
         cur.word = word
 
 class Solution:
-    def word_search_i_i(self, board: List[List[str]], words: List[str]) -> List[str]:
+    def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         trie = Trie()
         for word in words:
             trie.insert(word)
-
-        def dfs(cur, i1, j1):
-            if board[i1][j1] not in cur.children:
-                return
-            char = board[i1][j1]
-            cur = cur.children[char]
-            if cur.word != "":
-                ans.add(cur.word)
-            board[i1][j1] = "#"
-            for i2, j2 in [(i1 + 1, j1), (i1 - 1, j1), (i1, j1 + 1), (i1, j1 - 1)]:
-                if 0 <= i2 < m and 0 <= j2 < n:
-                    dfs(cur, i2, j2)
-            board[i1][j1] = char
-
+        
         ans = set()
-        m, n = len(board), len(board[0])
+        m = len(board)
+        n = len(board[0])
         for i in range(m):
             for j in range(n):
-                dfs(trie, i, j)
+                self.dfs(board, i, j, trie, ans)
         return list(ans)
-```
+    
+    def dfs(self, board, i, j, trie, ans):        
+        char = board[i][j]
+        cur = trie.children[char]
 
-- 回溯
-```python
-
+        if cur.word:
+            ans.add(cur.word)
+        
+        board[i][j] = '#'
+        for dx, dy in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
+            new_i = i + dx
+            new_j = j + dy
+            if 0 <= new_i < len(board) and 0 <= new_j < len(board[0]) and board[new_i][new_j] in cur.children:
+                self.dfs(board, new_i, new_j, cur, ans)
+        
+        board[i][j] = char
 ```
-时间复杂度：O() <br>
-空间复杂度：O()
 
 
 ## follow up

@@ -1,9 +1,9 @@
 # 深度学习
 
-深度学习已然成为最需要掌握的部分，其内容也相对较多。
-具体应用领域参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
+深度学习具体应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
 
-## 前向后向传播
+## 1. 优化
+### 前向后向传播 
 - pytorch和jax的backprop
 - 训练神经网络的一次迭代分为三步：（1）前向传递计算损失函数；（2）后向传递计算梯度；（3）优化器更新模型参数
   - 前向传播，根据预测值和标签计算损失函数，以及损失函数对应的梯度。损失函数类的设计有正向值计算方法和梯度计算方法, 损失函数对y_hat的偏微分
@@ -11,7 +11,7 @@
   - 根据参数值和参数梯度进行优化更新参数 【opt(w, w_grad)】
 
 
-## 参数优化
+### 参数优化
 梯度：
 - slope of a curve at a given point
 - 从单变量看，抖的时候就走的步子大一点，缓的时候就走的小一点?
@@ -98,7 +98,7 @@ warmup_steps = int(batches_per_epoch * 5)
   - 会导致激活后具有相同的值，网络相当于只有一个隐含层节点一样, hidden size失去意义
 
 
-## 损失函数
+## 2. 损失函数
 - MSE
   - prediction made by model trained with MSE loss is always normally distributed
 
@@ -132,7 +132,7 @@ class FocalLoss(nn.Module):
 ```
 
 
-## 网络模型
+## 3. 网络模型结构
 
 ### MLP
 
@@ -453,12 +453,10 @@ def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
                 # Append to the list of pools
                 pools.append(mat)
 
-    # Return all pools as a Numpy array
     return np.array(pools)
 
-def max_pooling(pools: np.array) -> np.array:
-    # Total number of pools
-    num_pools = pools.shape[0]
+def max_pooling(pools: np.array) -> np.array:    
+    num_pools = pools.shape[0]  # Total number of pools
     # Shape of the matrix after pooling - Square root of the number of pools
     tgt_shape = (int(np.sqrt(num_pools)), int(np.sqrt(num_pools)))
 
@@ -515,3 +513,4 @@ plot_image(img=img)
 - [Transformer学习笔记一：Positional Encoding（位置编码） - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/454482273)
 - [PyTorch 源码解读系列 - OpenMMLab的文章 - 知乎](https://zhuanlan.zhihu.com/p/328674159)
 - [对比pytorch中的BatchNorm和LayerNorm层 - 严昕的文章 - 知乎](https://zhuanlan.zhihu.com/p/656647661)
+- [万字综述，核心开发者全面解读PyTorch内部机制](https://mp.weixin.qq.com/s/8J-vsOukt7xwWQFtwnSnWw)

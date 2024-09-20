@@ -1,13 +1,6 @@
 # 逻辑回归
 
-从以下角度理解逻辑回归。
-- 最小经验损失函数
-- 最大似然法
-- 最大后验法
-- 最大熵法
-
-
-## 1.最小经验损失函数
+## 1. 最小经验损失函数
 
 最小化cross entropy等价于最大化log softmax probability
 
@@ -33,7 +26,7 @@ KL散度
 3. 计算sigmoid对权重w的微分 (传播到层)
 
 
-## 2.最大似然法 Maximum likelihood estimation
+## 2. 最大似然法 Maximum likelihood estimation
 
 最大似然与最小交叉熵损失函数等价，可以从最大似然推导出逻辑回归使用的交叉熵损失函数。
 - 假设样本服从[伯努利分布/二项分布 Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)
@@ -42,13 +35,13 @@ $$ L(w)=\prod[p(x_{i})]^{y_{i}}[1-p(x_{i})]^{1-y_{i}}  $$
 
 $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 
-## 3.最大熵法
+## 3. 最大熵法
 
 最大熵原理：对于概率模型，在所有可能分布的概率模型中，熵最大的模型是最好的模型
 
 
 
-## 4.最大后验
+## 4. 最大后验法
 
 
 ## 5. 优化
@@ -58,11 +51,11 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 - 用ftrl优化可以得到稀疏权重，从而降低serving的复杂度
 
 
-## naive bayes 朴素贝叶斯
+## 6. naive bayes 朴素贝叶斯
 - 朴素贝叶斯的条件概率 P(X|Y=c) 服从高斯分布时，它计算出来的 P(Y=1|X) 形式跟逻辑回归一样
 
 
-## 问答
+## 7. 问答
 - pros:
     - interpretable and explainable method
     - less prone to overfitting when using regulation
@@ -99,7 +92,7 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 - 什么是最大似然估计，其假设是什么？
 
 
-## 代码
+## 8. 代码
 
 - numpy手写一个logistic regression
 

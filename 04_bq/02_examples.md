@@ -40,6 +40,8 @@ It was challenging because I was supposed to come up with the solution and imple
 So I started with composing a visual solution first, the work I’ve done included researching online collaborative products, listing core features I needed, building wireframes, and designing UI. With the visual solution, I had a good understanding on how the application would work. Then, I googled and read a lot of system design solutions for products with similar features, like Google doc, online chatting room, etc. With what I’ve read, I was able to draft out my own solutions and selected corresponding technologies.
 I implemented it successfully within the given time, and my solution received a positive feedback because it is not only working well, but also visually pleasing. Throughout this process, I learned that it is important to be curious and keep learning, try to read as many technical blogs or articles as you can, the more you read, the better you’ll ace a problem or design. The feeling of ownership is very important, some other students just gave up with the excuse “I don’t how to do it"
 
+(Deliver Results)
+
 
 ## Tell me about the most difficult interaction you had at work.
 Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting. Leaders have conviction and are tenacious. They do not compromise for the sake of social cohesion. Once a decision is determined, they commit wholly.
@@ -49,6 +51,8 @@ If I have different idea with my manager or boss, I will try to collect data or 
 when we released the service for US Logistics. The client complaint that some invoices were missed. I checked around and found that Telamon Network blocked some of the emails sent by the client. I talked the problem to the network administrator and they couldn’t change the email restrictions due to the policy.
 Therefore, I brought this problem up to my manager and suggested to register another business mailbox provided by gmail or microsoft. The manager disagreed at first because he thought it was unprofessional if we didn’t use our own corporate email domain. I thought solving this problem was more important because our client would lose the trust on the quality of our data. In order to convince him, I showed him the data of email missing rate and the impacts on our client, and also I registered a good domain name composed by our company and department name, so we could still be professional on that part.
 Finally, the manager was convinced and agreed on my suggestion. We barely have any missed emails after we switched our mailbox. And because of the good result, we started to use the domain for other projects gradually.
+
+(Have Backbone; Disagree and Commit)
 
 
 ## CUSTOMER OBSESSION: Walk us through a time when you helped a customer through a difficult process and what that looked like.
@@ -168,40 +172,44 @@ once I argue with the manager about issue the corporate email, I want to registe
 
 - 如何处理模糊不清的目标? 与项目发起人和关键利益相关者进行深入的讨论, 而且经过很多迭代之后，我们也发现，会有一些直觉。有些设计听上去比较别扭，那么很可能就是有问题的。这种时候就要进一步讨论，即使
 
-
-## What are your weaknesses?
-
-
-## What are the areas where you need to improve your skills?
+(Bias for Action)
 
 
-## Are there areas where you need to develop your skills further?
+## Learn and Be Curious: What are your weaknesses?
+
+
+## Learn and Be Curious: What are the areas where you need to improve your skills?
 
 
 ## What do you like least about your previous job/internship?
 
+(Earn Trust, Customer Obsession)
 
 ## What do you dislike the most about your last job?
 - 换个角度，回答这个问题：What do you wish you had done differently at your previous company?
 - 这个问题在未来可以非常容易改正. The problem can be easily changed in the future.
 - What you have learned from the previous experience.
 
+(Earn Trust, Invent and Simplify)
+
+
 ## 下一份工作的预期是什么？
 
 
-## most impactful project
+## Deliver Results: most impactful project
 
 
-## direct conflicts
+## Have Backbone; Disagree and Commit: direct conflicts
 
 - 开放和诚实的沟通
 - 识别冲突双方的共同点和分歧。强调共同目标
 
-## most challenge working experience
+## Deliver Results: most challenge working experience
 
 
 ## constructive feedback received
 
+（Learn and Be Curious, Earn trust）
 
 ## grow junior ICs
 - 循序渐进，分配好任务(能力范围内，又有助于成长的)，做好review
@@ -210,7 +218,7 @@ once I argue with the manager about issue the corporate email, I want to registe
 - 组织定期分享
 
 
-## Tell me a time you have to work under the tight deadline
+## Deliver Results: Tell me a time you have to work under the tight deadline
 
 **Situation:**
 I have faced quite a few instances in my career where I have had to work to tight deadlines. However, one occasion that particularly stands out was during my tenure as a Lead Software Developer at my previous organization. We were working on a major product launch but midway through the project, our senior management made the difficult decision to move the deadline up by several weeks, due to change of the market condition. This left us with significant amount of work to complete in a much shorter time frame.

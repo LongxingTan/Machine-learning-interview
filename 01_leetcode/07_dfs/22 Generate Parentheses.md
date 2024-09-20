@@ -4,7 +4,7 @@
 
 ## solution
 
-- dfs
+- dfs: 回溯从多叉树的角度理解，每个位置都试图增加左括号或右括号
 ```python
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
