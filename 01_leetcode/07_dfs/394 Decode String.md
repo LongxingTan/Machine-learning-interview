@@ -14,14 +14,14 @@ class Solution:
 
         for char in s:
             if char == '[':
-                stack.append(cur_str)  # 栈也可以直接保存元素 (cur_str, cur_num)
+                stack.append(cur_str)  # 栈也可以直接保存元素 (cur_str, cur_num), 思路关键是字母和次数都分别进栈, 方便重新开始统计
                 stack.append(cur_num)
                 cur_str = ''
                 cur_num = 0
             elif char == ']':
                 num = stack.pop()
                 prev_str = stack.pop()
-                cur_str = prev_str + num * cur_str
+                cur_str = prev_str + num * cur_str  # 更新
             elif char.isdigit():
                 cur_num = cur_num * 10 + int(char)
             else:

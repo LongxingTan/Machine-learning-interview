@@ -21,7 +21,7 @@ class Solution:
         if left < n:  # 左右条件是关键
             path.append('(')
             self.dfs(left + 1, right, n , path, res)
-            path.pop()
+            path.pop()  # 这里，为什么在加入右上面就pop
 
         if right < left:
             path.append(')')
@@ -30,6 +30,24 @@ class Solution:
 ```
 时间复杂度：O(4^n / sqrt(n)) <br>
 空间复杂度：O(n)
+
+```python
+def generateParenthesis(self, n: int) -> List[str]:
+	def dfs(left, right, s):
+		if len(s) == n * 2:
+			res.append(s)
+			return 
+
+		if left < n:
+			dfs(left + 1, right, s + '(')
+
+		if right < left:
+			dfs(left, right + 1, s + ')')
+
+	res = []
+	dfs(0, 0, '')
+	return res
+```
 
 
 ## follow op

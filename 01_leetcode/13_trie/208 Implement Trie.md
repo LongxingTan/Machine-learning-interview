@@ -43,55 +43,38 @@ class Trie:
 
 
 ```python
-class TrieNode(object):
+class Node:
     def __init__(self):
-        self.children: Dict[str, TrieNode] = {}
+        self.children = collections.defaultdict(Node)
         self.is_word = False
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode()
+        self.root = Node()        
 
-    def insert(self, word):
-        node = self.root
+    def insert(self, word: str) -> None:
+        cur = self.root
         for char in word:
-            # set_default: 查找key, 如果存在， 返回对应值； 如果不存在，则在字典中添加key，并将值设置为指定值
-            node = node.children.setdefault(char, TrieNode())
-        node.is_word = True
+            # cur = cur.children.setdefault(char, Node())  # set_default: 查找key, 存在则返回对应value；不存在，则在字典中添加key，并将值设置为指定值
+            if char not in cur.children:
+                cur.children[char] = Node()
+            cur = cur.children[char]  # 没有新建，有则往下
+        
+        cur.is_word = True        
 
-    def search(self, word):
-        node = self.root
+    def search(self, word: str) -> bool:
+        cur = self.root
         for char in word:
-            if char not in node.children:
+            if char not in cur.children:
                 return False
-            node = node.children[char]
-        return node.is_word
+            cur = cur.children[char]
+        return cur.is_word        
 
-    def startsWith(self, prefix):
-        node = self.root
+    def startsWith(self, prefix: str) -> bool:
+        cur = self.root
         for char in prefix:
-            node = node.children.get(char)
-            if not node:
+            if char not in cur.children:
                 return False
+            cur = cur.children[char]
         return True
-
-    def get_start(self, prefix):
-        def get_key(pre, pre_node):
-            word_list = []
-            if pre_node.is_word:
-                word_list.append(pre)
-            for x in pre_node.children.keys():
-                word_list.extend(get_key(pre + str(x), pre_node.children.get(x)))
-            return word_list
-
-        words = []
-        if not self.startsWith(prefix):
-            return words
-        if self.search(prefix):
-            words.append(prefix)
-            return words
-        node = self.root
-        for char in prefix:
-            node = node.children.get(char)
-        return get_key(prefix, node)
 ```

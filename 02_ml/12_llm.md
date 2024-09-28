@@ -1,5 +1,5 @@
 # 大语言模型
-先了解和熟悉[深度学习](./05_deep_learning.md)与[自然语言理解](11_nlp.md)中的内容
+先了解和熟悉[深度学习](./05_deep_learning.md)与[自然语言理解](11_nlp.md)
 
 
 ## 1. scaling law

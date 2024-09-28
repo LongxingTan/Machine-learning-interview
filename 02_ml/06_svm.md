@@ -32,8 +32,8 @@ KKT
 ## 6. 代码
 
 ```python
-'''Support vector machine is a classical classification method,
-Learning policy is to maximum the margin solved by the convex quadratic programming'''
+# Learning policy is to maximum the margin solved by the convex quadratic programming
+
 import numpy as np
 import random
 from sklearn import datasets

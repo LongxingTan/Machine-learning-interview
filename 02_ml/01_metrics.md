@@ -46,14 +46,13 @@
 
 ## AB test
 
-- sample size计算
+- a/b testing如何确定sample size
 - 不同element increase/decrease对power的影响
 
 
 ## 精确率Precision/ 召回率Recall/ F1 / AUC
 
 ![](../.github/assets/02ml-confusion.png)
-
 
 **Precision** = True Positives / (True Positives + False Positives)
 
@@ -183,10 +182,11 @@ def average_precision_score(y_true, y_scores):
 
 ## 问题
 
-准确率的局限性
-- 标签不平衡时
+- 准确率的局限性
+  - 标签不平衡
 
-MAP与NDCG的比较，以及pros和cons
+- MAP与NDCG的比较，以及pros和cons
+  - NDCG考虑位置权重
 
 
 ## 参考

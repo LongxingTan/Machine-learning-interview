@@ -1,9 +1,9 @@
 # ML数学基础
 
+部分机器学习面试会直接考察统计与数学知识。即使不直接考察，在ML环节用数学佐证自己的观点也是非常有裨益的。
+
 
 ## 1. 概率统计
-
-有的面试会直接考察统计与数学知识。即使不是直接考察，在ML环节用数学佐证自己的观点是非常有裨益的。
 
 - 中心极限定理
   - 中心极限定理指的是给定一个任意分布的总体。每次从这些总体中随机抽取 n 个抽样，一共抽 m 次。 然后把这 m 组抽样分别求出平均值。 这些平均值的分布接近正态分布。
@@ -35,9 +35,6 @@
 
 - 蒙特卡洛
 
-- 独立同分布IID
-  - 机器学习领域的重要假设
-
 
 ## 2. 矩阵
 
@@ -51,11 +48,11 @@
 
 ## 3. 微积分
 
-机器学习中使用的微积分主要在于优化。
+机器学习中使用的微积分主要在于优化和反向传播。
 
 
 ## 4. 问答
-- a/b testing如何确定sample size
+
 - What is p-value? What is confidence interval? Explain them to a product manager or non-technical person.
 - How do you understand the "Power" of a statistical test?
 - If a distribution is right-skewed, what's the relationship between medium, mode, and mean?
@@ -67,7 +64,7 @@
 - How do you calculate the sample size for an A/B testing?
 - If after running an A/B testing you find the fact that the desired metric(i.e, Click Through Rate) is going up while another metric is decreasing(i.e., Clicks). How would you make a decision?
 - Now assuming you have an A/B testing result reflecting your test result is kind of negative (i.e, p-value ~= 20%). How will you communicate with the product manager? If given the above 20% p-value, the product manager still decides to launch this new feature, how would you claim your suggestions and alerts?
-- 给你一些visitors and conversations，怎么计算significance
+- 给定visitors and conversations，怎么计算significance
 - 什么是type I/II error
 - 圆周上任取三个点，能组成锐角三角形的概率是多大？
 - rejection sampling

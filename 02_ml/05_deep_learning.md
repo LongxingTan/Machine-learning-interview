@@ -5,41 +5,41 @@
 ## 1. 优化
 ### 前向后向传播 
 - pytorch和jax的backprop
-- 训练神经网络的一次迭代分为三步：（1）前向传递计算损失函数；（2）后向传递计算梯度；（3）优化器更新模型参数
+- 训练神经网络的一次迭代分三步：（1）前向传递计算损失函数；（2）后向传递计算梯度；（3）优化器更新模型参数
   - 前向传播，根据预测值和标签计算损失函数，以及损失函数对应的梯度。损失函数类的设计有正向值计算方法和梯度计算方法, 损失函数对y_hat的偏微分
   - 从loss梯度后向传播，计算每一个训练参数的grad。每一层后向传播的输入都是后面层的梯度。每一层有前向方法f(x)和后向方法f(grad)
-  - 根据参数值和参数梯度进行优化更新参数 【opt(w, w_grad)】
+  - 根据参数值和参数梯度进行优化更新参数: optimizer(w, w_grad)
 
 
 ### 参数优化
-梯度：
+**梯度：**
 - slope of a curve at a given point
-- 从单变量看，抖的时候就走的步子大一点，缓的时候就走的小一点?
+- 从单变量看，抖的时候就走的步子大一点，缓的时候就走的小一点. 多个变量的不同变化决定了整体优化方向
 
-动量
+**动量**
 - 除了此刻的输入外，还考虑上一时刻的输出. 有的优化根据历史梯度计算一阶动量和二阶动量
 
-SGD原理
-- 可以考虑加入惯性，引入一阶动量，SGD with Momentum
+**SGD原理**
+- 考虑加入惯性，引入一阶动量，SGD with Momentum
 - Very flexible—can use other loss functions
 - Can be parallelized
 - Slower—does not converge as quickly
 - Harder to handle the unobserved entries (need to use negative sampling or gravity)
 
-Adam和adgrad区别和应用场景
+**Adam和adgrad区别和应用场景**
 - Adam: 每个参数梯度增加了一阶动量（momentum）和二阶动量（variance），Adaptive + Momentum. 通过其来自适应控制步长，当梯度较小时，整体的学习率就会增加，反之会缩小
 
-RAdam
+**RAdam**
 - 用指数滑动平均去估计梯度每个分量的一阶矩(动量)和二阶矩(自适应学习率)，并用二阶矩去 normalize 一阶矩，得到每一步的更新量
 
-对抗训练
+**对抗训练**
 - 在训练过程中产生一些攻击样本，相当于是加了一层正则化，给神经网络的随机梯度优化限制了一个李普希茨的约束
 
-牛顿法
+**牛顿法**
 - 梯度下降是用平面来逼近局部，牛顿法是用曲面逼近局部
 
-Batch Size
-- 用尽可能能塞进内存的batch size去train模型，来提升速度. 但其中也存在trade-off
+**Batch Size**
+- 用尽可能能塞进内存的batch size去train模型，提升训练速度. 但也存在trade-off
   - batch size过小，波动会比较大，不太容易收敛。但这种波峰，也有助于跳出局部最优，模型更容易有更好的泛化能力
   - batch size变大，步数整体变少，训练的步数更少，本来就波动就小，步数也少，同样本的情况下，你收敛的会更慢
 
@@ -186,7 +186,7 @@ def conv1d(x, scope, nf, *, w_init_stdev=0.02):
 ```python
 import numpy as np
 
-def convolve2D(image, kernel, padding=0, strides=1):
+def conv2D(image, kernel, padding=0, strides=1):
     # Cross Correlation
     kernel = np.flipud(np.fliplr(kernel))
 
@@ -218,7 +218,7 @@ def convolve2D(image, kernel, padding=0, strides=1):
 
 def activation_fn(self, x):
     """
-    A method of FFL which contains the operation and defination of given activation function.
+    A method of FFL which contains the operation and definition of given activation function.
     """
     if self.activation == 'relu':
         x[x < 0] = 0
@@ -239,8 +239,7 @@ def activation_fn(self, x):
 import numpy as np
 
 def conv2d(inputs, kernels, bias, stride, padding):
-    """
-    正向卷积操作
+    """ 正向卷积操作
     inputs: 输入数据，形状为 (C, H, W)
     kernels: 卷积核，形状为 (F, C, HH, WW)，C是图片输入层数，F是图片输出层数
     bias: 偏置，形状为 (F,)
@@ -251,7 +250,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
     C, H, W = inputs.shape
     F, _, HH, WW = kernels.shape
 
-    # 对输入数据进行填充。在第一个轴（通常是通道轴）上不进行填充，在第二个轴和第三个轴（通常是高度和宽度轴）上在开始和结束位置都填充padding个值。
+    # 对输入数据进行填充。在第一个轴（通常是通道轴）上不进行填充，在第二个轴和第三个轴（通常是高度和宽度轴）上在开始和结束位置都填充padding个值
     inputs_pad = np.pad(inputs, ((0, 0), (padding, padding), (padding, padding)))
 
     # 初始化输出数据，卷积后的图像size大小
@@ -280,7 +279,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
 - 长距离依赖问题
 - 计算复杂度：
   - LSTM: 序列长度*（hidden**2）
-- RNN的inductive bias是sequentiality和time invariance，即序列顺序上的timesteps有联系，和时间变换的不变性（rnn权重共享）
+- RNN的inductive bias是sequentiality和time invariance，即序列顺序上的time-steps有联系，和**时间变换的不变性**（rnn权重共享）
 
 
 ### Transformer
@@ -464,23 +463,6 @@ def max_pooling(pools: np.array) -> np.array:
     for pool in pools:
         pooled.append(np.max(pool))
     return np.array(pooled).reshape(tgt_shape)
-
-from PIL import Image, ImageOps
-import matplotlib.pyplot as plt
-
-def plot_image(img: np.array):
-    plt.figure(figsize=(6, 6))
-    plt.imshow(img, cmap='gray');
-
-def plot_two_images(img1: np.array, img2: np.array):
-    _, ax = plt.subplots(1, 2, figsize=(12, 6))
-    ax[0].imshow(img1, cmap='gray')
-    ax[1].imshow(img2, cmap='gray');
-
-img = Image.open('data/train/cat/1.jpg')
-img = ImageOps.grayscale(img)
-img = img.resize(size=(224, 224))
-plot_image(img=img)
 ```
 
 ### dropout

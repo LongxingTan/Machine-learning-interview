@@ -40,7 +40,7 @@ tf(w, d) = count(w, d) / total(d)
 ```python
 def compute_term_frequency(text: str, vocabularies: dict[str, int]) -> dict:
     """
-    calculate term frequency
+    calculate term frequency: 每个document中，一个词出现次数越多越重要
     Args:
         text (str): input text
         vocabularies (dict[str, int]): vocabulary list from corpus
@@ -58,7 +58,7 @@ def compute_term_frequency(text: str, vocabularies: dict[str, int]) -> dict:
             word_count_norm["[UNK]"] += 1
     for word, count in word_count_norm.items():
         word_count_norm[word] = count / len(words)
-    return word_count_norm
+    return word_count_norm  # 结果按vocab排序, 一个document可以根据tf转化为一个向量
 ```
 
 Inverse Document Frequency: N is the total number of documents while df means the document frequency
@@ -68,14 +68,13 @@ idf(w) = log(N / df(w))
 ```python
 def compute_inverse_document_frequency(documents: List[str]) -> dict[str, float]:
     """
-    calculate the idf
+    calculate the idf: 一个单词出现在越多document中，证明这个单词越不重要
     Args:
         documents (List[str]): a list of documents
 
     Returns:
         dict[str, float]: idf
     """
-    # Total number of all documents
     N = len(documents)
     idf_dict = {}
 
@@ -88,31 +87,18 @@ def compute_inverse_document_frequency(documents: List[str]) -> dict[str, float]
     idf_dict = {word: math.log(N / count)
                 for word, count in idf_dict.items()}
     # Consider unknown words in the testing
-    # If we regard the query as an additional document
-    # The unknown word only appear in the query document
-    # And the total number of documents should increase by 1
-    # This is just a toy attempt for solving the unk word in testing
     idf_dict['[UNK]'] = math.log(N + 1 / 1)
     return idf_dict
 ```
 
 综合tfidf
 ```python
-def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_frequency: dict[str, int]) -> np.ndarray:
-    """
-    calculate `tf_word * idf` and collect them in a feature vector
-    Args:
-        term_frequency (dict[str, int]): tf
-        inverse_document_frequency (dict[str, int]): idf
+def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_frequency: dict[str, int]):      
+    tfidf = dict()
+    for word, tf_word in term_frequency.items():
+      tfidf[word] = tf_word * inverse_document_frequency[word]
 
-    Returns:
-        np.ndarray: feature vector
-    """
-
-    tfidf = {word: tf_word * inverse_document_frequency[word]
-             for word, tf_word in term_frequency.items()}
-    tfidf_vector = np.array([tfidf_word
-                             for _, tfidf_word in tfidf.items()])
+    tfidf_vector = np.array([tfidf_word for _, tfidf_word in tfidf.items()])
     return tfidf_vector
 ```
 

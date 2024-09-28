@@ -40,7 +40,6 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 最大熵原理：对于概率模型，在所有可能分布的概率模型中，熵最大的模型是最好的模型
 
 
-
 ## 4. 最大后验法
 
 
@@ -98,7 +97,6 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 
 ```python
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 np.random.seed(1)

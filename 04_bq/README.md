@@ -9,19 +9,7 @@
 - 注意: 体现impact/scope, data driven, 足够细节，使用`I`而不是`We`
 
 
-## 个人项目介绍
-
-- star原则：situation, task, action, results
-  - negative question: + learns
-  - context之前先用一句话对故事进行总结
-  - action分3-5点讲，同样每点先用一句话总结 总分的结构
-- 难点和深度
-- 项目中的细节
-  - 机器学习项目：the data, labelling, modeling, evaluation metrics
-- 是否有不足之处，怎么改善/或现在让你重新来做，会如何改善
-
-
-## 常见问题
+## 1. BQ常见问题
 
 **一定提前准备若干的工作小故事，并且背后对应着leadership principles**
 
@@ -66,9 +54,23 @@
   - 稳扎稳打，技术路线选择上要务实，要深入理解
 - data-driven的方式来说服合作者和领导
 - Most ambiguous(模糊) work and how you deal with it
+- 你和manager意见不一致的时候怎么办，是尽量讨论并做一些trade-off还是无条件服从经理的命令?
+  - 无条件服从经理的命令
 
 
-## 阅读
+## 2. 简历项目介绍
+
+- star原则：situation, task, action, results
+  - negative question: + learns
+  - context之前先用一句话对故事进行总结
+  - action分3-5点讲，同样每点先用一句话总结 总分的结构
+- 难点和深度
+- 项目中的细节
+  - 机器学习项目：the data, labelling, modeling, evaluation metrics
+- 是否有不足之处，怎么改善/或现在让你重新来做，会如何改善
+
+
+## 3. 可参考复习资料
 
 - [U-shape: Man in a hole](https://youtu.be/hU6BVxtGd5g)
 - [Career School @youtube](https://www.youtube.com/@CareerSchool)

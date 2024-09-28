@@ -40,3 +40,4 @@ Huggingface、LangChain
 - https://github.com/hua1995116/awesome-ai-painting
 - https://www.zhihu.com/question/577079491/answer/2954363993
 - https://www.zhihu.com/question/596230048
+- [生成模型大道至简｜Rectified Flow基础概念｜代码 - 养生的控制人的文章 - 知乎](https://zhuanlan.zhihu.com/p/687740527)

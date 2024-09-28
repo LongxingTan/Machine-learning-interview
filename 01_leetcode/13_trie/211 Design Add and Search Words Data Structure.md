@@ -3,7 +3,6 @@
 
 
 ## solution
-
 ```python
 class TrieNode:
     def __init__(self):
@@ -21,10 +20,10 @@ class WordDictionary:
         cur.is_word = True        
 
     def search(self, word: str) -> bool:
-        def dfs(node, index):
+        def dfs(node, index):  # 按字母从trie中获取
             if index == len(word):
                 return node.is_word
-            if word[index] == '.':
+            if word[index] == '.':  # 通配符的搜索
                 for child in node.data.values():
                     if dfs(child, index + 1):
                         return True
@@ -36,3 +35,8 @@ class WordDictionary:
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
+
+
+## follow up
+
+[676. Implement Magic Dictionary]()

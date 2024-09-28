@@ -126,7 +126,7 @@ class Decision_tree():
     pass
 ```
 
-我们再次回到损失函数中，例如xgboost如何自定义损失函数
+回到损失函数，如xgboost中如何自定义损失函数
 ```python
 
 ```

@@ -32,3 +32,54 @@ class Solution:
 ```python
 
 ```
+
+- trie
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = {}
+        self.word = None
+
+class Solution:
+    def suggestedProducts(self, products: list[str], searchWord: str) -> list[list[str]]:
+        root = TrieNode()
+        ans = []
+        
+        def insert(word):
+            node = root
+            for char in word:
+                node = node.children.setdefault(char, TrieNode())
+            node.word = word
+        
+        def search(node):
+            res = []
+            dfs(node, res)
+            return res
+        
+        def dfs(node, res):
+            if len(res) == 3:
+                return
+            if not node:
+                return
+            
+            if node.word:
+                res.append(node.word)
+            
+                for char in string.ascii_lowercase:
+                    if char in node.children:
+                        dfs(node.children[char], res)
+            return
+        
+        for product in products:
+            insert(product)
+        
+        node = root
+        for char in searchWord:
+            if not node or char not in node.children:
+                node = None
+                ans.append([])
+                continue
+            node = node.children[char]
+            ans.append(search(node))
+        return ans
+```

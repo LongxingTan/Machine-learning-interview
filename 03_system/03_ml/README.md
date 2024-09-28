@@ -4,27 +4,15 @@ ML design的核心，本质是训练一个**model**来实现某个任务。如pr
 - 建模design, 包括优化目标，feature，data，模型结构，评价标准等
 - 系统design, 偏重于在线serve大模型，包括feature store, ANN, ETL pipeline, MLOps等
 
-**例子**
-  - youtube recommendation, doordash search box, auto suggestion
-  - design youtube violent content detection system
-  - detecting unsafe content
-  - design a monitoring system to realtime measure ML models, including features, score distribution, qps
-  - abusive user detection
+## 1. 面试过程
 
-**业务目标**
-  - improve engagement on a feed
-  - improve customer churn
-  - return items from search engine query
-
-**名词解释**
-  - 曝光(impression): 文档被用户看到
-  - 点击率(click-through-rate，CTR): 文档d曝光的前提下，用户点击d的概率
-  - 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论。电商的加购物车、下单、付款
+- 一边白板画框图，一边告知面试官我要讲某几个部分
+- 整个过程，讲清楚主题之前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
+- 每个部分，尤其是自己熟悉的方面，要主动讲，积极展现自己的知识宽度和深度
+- move之前最后确认：Is there anywhere that you feel I missed?
 
 
-## 面试过程
-
-### 回答框架
+## 2. 回答框架
 
 - **明确需求**
   - 场景，功能，目标(engagement or revenue)，约束，如何转化为机器学习问题(如推荐转化为二分类模型和原因)
@@ -62,15 +50,26 @@ ML design的核心，本质是训练一个**model**来实现某个任务。如pr
   - retrain strategy
 
 
-### 过程
+## 3. 面试实例
+**例子**
+  - youtube recommendation, doordash search box, auto suggestion
+  - design youtube violent content detection system
+  - detecting unsafe content
+  - design a monitoring system to realtime measure ML models, including features, score distribution, qps
+  - abusive user detection
 
-- 一边白板画框图，一边告知面试官我要讲某几个部分
-- 整个过程，讲清楚主题之前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
-- 每个部分，尤其是自己熟悉的方面，要主动讲，因为每个部分都很重要
-- move之前最后确认：Is there anywhere that you feel I missed?
+**业务目标**
+  - improve engagement on a feed
+  - improve customer churn
+  - return items from search engine query
+
+**名词解释**
+  - 曝光(impression): 文档被用户看到
+  - 点击率(click-through-rate，CTR): 文档d曝光的前提下，用户点击d的概率
+  - 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论。电商的加购物车、下单、付款
 
 
-## 问答
+## 4. 常见问答
 
 - how to scale
   - Scaling general SW system (distributed servers, load balancer, sharding, replication, caching, etc)
@@ -87,6 +86,8 @@ ML design的核心，本质是训练一个**model**来实现某个任务。如pr
     - NLLB
   - [embedding-> Deep Hash Embedding](https://zhuanlan.zhihu.com/p/397600084)
 - Monitoring, failure tolerance, updating (below)
+  - data drift
+  - concept drift: spam detection
 - Auto ML (soft: HP tuning, hard: arch search (NAS))
 - 线上线下不一致
   - [推荐系统有哪些坑？](https://www.zhihu.com/question/28247353/answer/2126590086)

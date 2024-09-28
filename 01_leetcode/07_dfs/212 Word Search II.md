@@ -11,7 +11,7 @@
 class Trie:
     def __init__(self):
         self.children = collections.defaultdict(Trie)
-        self.word = ""
+        self.word = ""  # 直接在结尾的node标记整个word
 
     def insert(self, word):  # 插入一个单词
         cur = self  # 起点从最外面开始
@@ -42,7 +42,7 @@ class Solution:
             ans.add(cur.word)
         
         board[i][j] = '#'
-        for dx, dy in [[1, 0], [0, 1], [-1, 0], [0, -1]]:
+        for dx, dy in [[1, 0], [0, 1], [-1, 0], [0, -1]]:  # 每一个位置可以朝四个方向查找, 如果新的可以从trie中找到则继续递归
             new_i = i + dx
             new_j = j + dy
             if 0 <= new_i < len(board) and 0 <= new_j < len(board[0]) and board[new_i][new_j] in cur.children:

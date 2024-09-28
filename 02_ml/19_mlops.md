@@ -71,21 +71,30 @@
 > develop a strategy to trigger model invalidations and retrain models when performance degrades.
 > because of data drift, model bias, and explainability divergence
 
+![](../.github/assets/02ml-retraining.png)
+
+什么时候触发新的训练？
+- amount of additional data becomes available
+- model’s performance is degrading
+
 
 ## 4. 问答
 - 模型部署后，怎么检测模型流量
 
 
 ## 参考
+- [mlops-zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
+- [Made With ML](https://madewithml.com/)
+- [youtube-MLOps - Machine Learning Operations](https://www.youtube.com/playlist?list=PL3N9eeOlCrP5a6OA473MA4KnOXWnUyV_J)
+- Machine Learning Engineering for Production (MLOps) Specialization
+- [Version and track Azure Machine Learning datasets](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-version-track-datasets?view=azureml-api-1)
+- [Model Deployment Strategies](https://neptune.ai/blog/model-deployment-strategies)
+- [ML Model Deployment Strategies](https://www.tensorops.ai/post/ml-model-deployment-strategies)
 - [python实时语音识别服务部署 - 叫我小康的文章 - 知乎](https://zhuanlan.zhihu.com/p/467364921)
 - [通用目标检测开源框架YOLOv6在美团的量化部署实战](https://tech.meituan.com/2022/09/22/yolov6-quantization-in-meituan.html)
 - [炼丹师的工程修养之五：KubeFlow介绍和源码分析](https://zhuanlan.zhihu.com/p/98889237)
 - 模型推理服务化框架Triton
 - https://github.com/rapidsai/cloud-ml-examples
 - [模型部署优化学习路线是什么？ - Leslie的回答 - 知乎](https://www.zhihu.com/question/411393222/answer/2359479242)
-- [Version and track Azure Machine Learning datasets](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-version-track-datasets?view=azureml-api-1)
-- [Model Deployment Strategies](https://neptune.ai/blog/model-deployment-strategies)
-- [ML Model Deployment Strategies](https://www.tensorops.ai/post/ml-model-deployment-strategies)
 - [推荐系统线上Serving简介与C++代码实现 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/659652013)
 - [使用TensorFlow C++ API构建线上预测服务 - 篇1](https://mathmach.com/6d246b32/)
-- 
