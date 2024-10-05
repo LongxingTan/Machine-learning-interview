@@ -90,3 +90,4 @@
 - [2022最强bq问题集合，400题不限专业](https://www.1point3acres.com/bbs/thread-891102-1-1.html)
 - [请问behavior question应该怎么抓着重点](https://www.1point3acres.com/bbs/thread-1024731-1-1.html)
 - [亚麻Leadership Principle准备经验心得](https://www.1point3acres.com/bbs/thread-839216-1-1.html)
+- [刷项目-个人经验分享-新手村指南](https://www.1point3acres.com/bbs/thread-1019713-1-1.html)

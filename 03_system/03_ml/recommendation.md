@@ -146,6 +146,10 @@
 
 ### DataSchema & Scale
 
+- parameter server
+  - 本质是一个: 分布式键值存储系统
+
+
 ### Monitoring & Metrics
 
 注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试。

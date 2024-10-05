@@ -55,6 +55,9 @@ class Solution:
 
 ```
 
+- 返回两个目标node之间的路‍‌径
+  - 分别求从LCA到两个node之间的路径，然后merge
+
 
 ## follow up
 

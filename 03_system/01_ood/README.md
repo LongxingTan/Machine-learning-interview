@@ -4,13 +4,13 @@ SWE1岗位面试时可能考察OOD，比系统设计简单一些
 - 考核关键是如何设计class，class的properties和methods定义好，同时掌握class的继承
 
 
-## 步骤
+## 1. 面试过程
 - 先把业务流程理清楚
 - 根据流程图，找到core object，写出class和重点method
 - 完善整体设计
 
 
-## 案例
+## 2. 案例
 - 设计一个操作系统内存管理分页分段的API
 - parking lot
 - 电梯
@@ -22,7 +22,7 @@ SWE1岗位面试时可能考察OOD，比系统设计简单一些
 - 中国象棋
 
 
-## 参考
+## 3. 参考
 - Grokking the Object Oriented Design Interview
 - https://github.com/ycwkatie/OOD-Object-Oriented-Design
 - https://github.com/rajat19/system-design

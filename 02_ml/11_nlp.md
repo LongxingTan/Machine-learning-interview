@@ -207,6 +207,7 @@ BertScore
 
 实体识别 NER
 - Nested NER/ Flat NER
+- lower layers of a pre-trained LLM tend to reflect “syntax” while higher levels tend to reflect “semantics”
 
 
 关系抽取 RE

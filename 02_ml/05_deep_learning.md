@@ -496,3 +496,5 @@ def max_pooling(pools: np.array) -> np.array:
 - [PyTorch 源码解读系列 - OpenMMLab的文章 - 知乎](https://zhuanlan.zhihu.com/p/328674159)
 - [对比pytorch中的BatchNorm和LayerNorm层 - 严昕的文章 - 知乎](https://zhuanlan.zhihu.com/p/656647661)
 - [万字综述，核心开发者全面解读PyTorch内部机制](https://mp.weixin.qq.com/s/8J-vsOukt7xwWQFtwnSnWw)
+- [一文搞懂混合精度训练原理 (常用O1) - APlayBoy的文章 - 知乎](https://zhuanlan.zhihu.com/p/701452410)
+- [一文讲明白大模型分布式逻辑（从GPU通信原语到Megatron、Deepspeed） - 然荻的文章 - 知乎](https://zhuanlan.zhihu.com/p/721941928)
