@@ -5,7 +5,7 @@
 ## solution
 
 ```python
-# 2D DP, 本题也可以写成1D DP（滚动数组）的形式减少空间复杂度
+# 2D DP, 注意本题也可以写成1D DP（滚动数组）减少空间复杂度
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:

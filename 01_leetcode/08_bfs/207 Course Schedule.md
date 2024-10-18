@@ -348,6 +348,7 @@ class Solution:
 [*261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)
 
 ```python
+# 1.判断edges数目必须等于n-1 2.连通图总集合数为1。这样就保证了图中所有点连通且无环。
 import collections
 
 class Solution:
@@ -371,6 +372,38 @@ class Solution:
                 q.append(i)
                 visited.add(i)
         return len(visited) == n
+```
+
+```python
+# 显式检查是否成环
+class Solution:
+    def validTree(self, n, edges):
+        if n == 0:
+            return False
+        if len(edges) != n - 1:
+            return False
+        graph = collections.defaultdict(list)
+        for e in edges:
+            graph[e[0]].append(e[1])
+            graph[e[1]].append(e[0])
+
+        q = [(0, -1)]  # (current_node, parent_node)
+        visited = set([0])
+        while q:
+            node, parent = q.pop(0)
+            for i in graph[node]:
+                if i == parent:
+                    continue  # Skip the parent node
+                if i in visited:
+                    return False  # Found a cycle
+                q.append((i, node))
+                visited.add(i)
+        return len(visited) == n
+```
+
+- union find
+```python
+
 ```
 
 [*269 Alien Dictionary](./269%20Alien%20Dictionary.md)

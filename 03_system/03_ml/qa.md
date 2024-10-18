@@ -13,6 +13,8 @@
 - 多领域
 - 多语言
 
+- non-functional 注重latency 和 throughput
+
 
 ## 2. pipeline
 - 检索式（Retrieval），生成式（Generative），任务式

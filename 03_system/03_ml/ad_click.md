@@ -124,3 +124,4 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 - [Ad Click Prediction | Machine learning system design](https://medium.com/@mumbaiyachori/ad-click-prediction-machine-learning-system-design-6e553d7ccc1c)
 - [广告和推荐在召回候选集时的区别？ - 武侠超人的回答 - 知乎](https://www.zhihu.com/question/56781383/answer/3069396264)
 - [计算广告与推荐系统有哪些区别？ - 刍狗的回答 - 知乎](https://www.zhihu.com/question/19662693/answer/3547885313)
+- [推荐算法岗是否存在严重人才过剩? - 程序员老刘的回答 - 知乎](https://www.zhihu.com/question/320805246/answer/2735102802)

@@ -200,3 +200,4 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - [双塔模型Batch内负采样如何解决热度降权和SSB的问题](https://zhuanlan.zhihu.com/p/574752588)
 - [Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations](https://research.google/pubs/pub50257/)
 - [System Design for Recommendations and Search // Eugene Yan // MLOps Meetup #78](https://www.youtube.com/watch?v=lh9CNRDqKBk)
+- [推荐系统-短视频推荐中的一些记录 - tangwang的文章 - 知乎](https://zhuanlan.zhihu.com/p/720272682)

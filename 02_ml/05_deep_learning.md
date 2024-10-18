@@ -11,7 +11,7 @@
   - 根据参数值和参数梯度进行优化更新参数: optimizer(w, w_grad)
 
 
-### 参数优化
+### 优化
 **梯度：**
 - slope of a curve at a given point
 - 从单变量看，抖的时候就走的步子大一点，缓的时候就走的小一点. 多个变量的不同变化决定了整体优化方向
@@ -31,6 +31,8 @@
 
 **RAdam**
 - 用指数滑动平均去估计梯度每个分量的一阶矩(动量)和二阶矩(自适应学习率)，并用二阶矩去 normalize 一阶矩，得到每一步的更新量
+
+**AdamW**
 
 **对抗训练**
 - 在训练过程中产生一些攻击样本，相当于是加了一层正则化，给神经网络的随机梯度优化限制了一个李普希茨的约束
@@ -143,7 +145,7 @@ class FocalLoss(nn.Module):
 ```python
 import numpy as np
 
-class FClayer(Layer):
+class Dense(Layer):
     def __init__(self, input_size, output_size):
         self.weights = np.random.rand(input_size, output_size) - 0.5
         self.bias = np.random.rand(1, output_size) - 0.5

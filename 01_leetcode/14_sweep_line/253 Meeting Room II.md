@@ -42,15 +42,12 @@ class Solution:
         time = []
         # 更直接方法是开始时间+1, 结束时间-1
         for interval in intervals:
-            time.append([interval.start, 0])
-            time.append([interval.end, 1])
+            time.append([interval.start, 1])
+            time.append([interval.end, -1])
 
         time.sort(key=lambda x: x[0])
         for x, status in time:
-            if status == 0:
-                count += 1
-            else:
-                count -= 1
+            count += status
             res = max(res, count)
         return res
 ```

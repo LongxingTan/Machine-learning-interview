@@ -23,9 +23,8 @@ Dimension reduction techniques
 
 
 ## 深度学习自监督
-- contrastive learning 对比学习
-
-相似的实例在投影空间中比较接近，不相似的实例在投影空间中距离比较远
+contrastive learning 对比学习
+> 相似的实例在投影空间中比较接近，不相似的实例在投影空间中距离比较远
 
 
 ## 应用场景

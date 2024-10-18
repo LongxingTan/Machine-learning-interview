@@ -47,6 +47,8 @@
 
 ```python
 # https://towardsdatascience.com/create-your-own-k-nearest-neighbors-algorithm-in-python-eb7093fc6339
+# 考虑 max heap
+
 import numpy as np
 
 def eu_dist(x_train, x_test):

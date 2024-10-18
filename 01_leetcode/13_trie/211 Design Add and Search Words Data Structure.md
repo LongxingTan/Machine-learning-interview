@@ -19,19 +19,21 @@ class WordDictionary:
             cur = cur.data.setdefault(char, TrieNode())
         cur.is_word = True        
 
-    def search(self, word: str) -> bool:
-        def dfs(node, index):  # 按字母从trie中获取
-            if index == len(word):
-                return node.is_word
-            if word[index] == '.':  # 通配符的搜索
-                for child in node.data.values():
-                    if dfs(child, index + 1):
-                        return True
-            if word[index] in node.data:
-                return dfs(node.data[word[index]], index+1)
-            return False
+    def search(self, word: str) -> bool:        
+        return self.dfs(self.root, 0, word)
+
+    def dfs(self, node, index, word):  # 按字母从trie中获取
+        if index == len(word):
+            return node.is_word
         
-        return dfs(self.root, 0)
+        if word[index] == '.':  # 通配符的搜索
+            for child in node.data.values():
+                if self.dfs(child, index + 1, word):
+                    return True
+                
+        if word[index] in node.data:  # 非通配符
+            return self.dfs(node.data[word[index]], index+1, word)
+        return False
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
