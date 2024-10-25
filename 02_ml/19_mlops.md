@@ -78,7 +78,14 @@
 - model’s performance is degrading
 
 
-## 4. 问答
+## 4. Monitoring
+- 模型性能: 准确性指标，延迟和吞吐性能
+- 数据：drift
+- 系统：资源使用情况
+- 日志
+
+
+## 5. 问答
 - 模型部署后，怎么检测模型流量
 
 

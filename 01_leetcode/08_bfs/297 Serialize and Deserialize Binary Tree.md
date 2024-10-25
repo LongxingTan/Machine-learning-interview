@@ -143,5 +143,43 @@ class Solution:
 
 [*428. Serialize and Deserialize N-ary Tree](https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/description/)
 ```python
+class Codec:
+    def serialize(self, root):
+        if root is None:
+            return []
 
+        queue = [root]
+        result = [root.val]  # add root value
+
+        while queue:
+            node = queue.pop(0)
+            if node is None:
+                continue
+
+            for child in node.children:
+                queue.append(child)
+            result.append(len(node.children))  # add count of children, 先记录一个长度
+            result.extend([child.val for child in node.children])  # add children values
+
+        return result
+
+    def deserialize(self, data):
+        if not data:
+            return None
+
+        root = Node(data[0])  # get root from first index
+        data = data[1:]  # remove root from data 
+        queue = [root]
+
+        while queue:
+            node = queue.pop(0)
+            if node is None:
+                continue
+
+            for _ in range(data.pop(0)):  # check children count
+                child = Node(data.pop(0))  # get child value
+                node.children.append(child)
+                queue.append(child)
+        
+        return root
 ```

@@ -19,9 +19,9 @@ class Solution:
                 cur_str = ''
                 cur_num = 0
             elif char == ']':
-                num = stack.pop()
+                prev_num = stack.pop()  # 注意这里两个pop出来的都要用新的名字
                 prev_str = stack.pop()
-                cur_str = prev_str + num * cur_str  # 更新
+                cur_str = prev_str + prev_num * cur_str  # 更新
             elif char.isdigit():
                 cur_num = cur_num * 10 + int(char)
             else:

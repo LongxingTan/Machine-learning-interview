@@ -127,8 +127,7 @@ class FocalLoss(nn.Module):
 
     def forward(self, preds, targets):
         preds = preds.clamp(self.eps, 1 - self.eps)
-        loss = (1 - preds) ** self.gamma * targets * torch.log(preds)  \
-               + preds ** self.gamma * (1 - targets) * torch.log(1 - preds)
+        loss = (1 - preds) ** self.gamma * targets * torch.log(preds)  + preds ** self.gamma * (1 - targets) * torch.log(1 - preds)
 
         return -torch.mean(loss)
 ```

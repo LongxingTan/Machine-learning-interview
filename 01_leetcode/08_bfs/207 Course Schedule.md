@@ -348,7 +348,7 @@ class Solution:
 [*261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)
 
 ```python
-# 1.判断edges数目必须等于n-1 2.连通图总集合数为1。这样就保证了图中所有点连通且无环。
+# 图联通且无环的必要条件: 1.判断edges数目必须等于n-1 2.连通图总集合数为1
 import collections
 
 class Solution:
