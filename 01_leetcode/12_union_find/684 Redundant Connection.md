@@ -1,0 +1,52 @@
+# 684. Redundant Connection
+[https://leetcode.com/problems/redundant-connection/](https://leetcode.com/problems/redundant-connection/)
+
+
+## solution
+
+- 并查集
+```python
+
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+- bfs
+```python
+class Solution:
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
+        graph = collections.defaultdict(list)
+        indegree = collections.defaultdict(int)
+        for i, j in edges:
+            graph[i].append(j)
+            graph[j].append(i)
+            indegree[i] += 1
+            indegree[j] += 1
+
+        queue = collections.deque([i for i, v in indegree.items() if v == 1])
+
+        while queue:
+            node = queue.popleft()
+            for i in graph[node]:
+                indegree[i] -= 1
+                if indegree[i] == 1:
+                    queue.append(i)
+
+        for a, b in edges[::-1]:
+            if indegree[a] == 2 and indegree[b] == 2:
+                return [a, b]
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+## follow up
+
+[685. Redundant Connection II](https://leetcode.com/problems/redundant-connection-ii/)
+
+```python
+
+```
+时间复杂度：O() <br>
+空间复杂度：O()

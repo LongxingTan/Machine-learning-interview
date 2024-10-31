@@ -1,0 +1,31 @@
+# 1658 Minimum Operations to Reduce X to Zero
+[https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/](https://leetcode.com/problems/minimum-operations-to-reduce-x-to-zero/)
+
+
+## solution
+
+- 任务转化为求等于(sum-x)的最长子串，等于时更新结果
+```python
+class Solution:
+    def minOperations(self, nums: List[int], x: int) -> int:   
+        target = sum(nums) - x
+
+        l = 0
+        prefix_sum = 0
+        res = 0
+        found = False
+        for r, num in enumerate(nums):
+            prefix_sum += num
+            
+            while l <= r and prefix_sum > target:                
+                prefix_sum -= nums[l]
+                l += 1
+            
+            if prefix_sum == target:
+                found = True
+                res = max(res, r - l + 1)
+            
+        return len(nums) - res if found else -1
+```
+时间复杂度：O(n) <br>
+空间复杂度：O(1)

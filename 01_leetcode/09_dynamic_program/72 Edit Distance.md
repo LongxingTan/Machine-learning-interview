@@ -1,0 +1,73 @@
+# 72 Edit Distance
+[https://leetcode.com/problems/edit-distance/](https://leetcode.com/problems/edit-distance/)
+
+
+## solution
+
+- 动态规划
+```python
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m = len(word1)
+        n = len(word2)
+
+        dp = [[0] * (n + 1) for _ in range(m+1)]
+
+        for i in range(m+1):
+            dp[i][0] = i
+        for j in range(n+1):
+            dp[0][j] = j
+        
+        for i in range(1, m+1):  # 注意递推范围一开始写错了
+            for j in range(1, n+1):
+                if word1[i-1] == word2[j-1]:
+                    dp[i][j] = dp[i-1][j-1]
+                else:
+                    dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1
+        return dp[-1][-1]
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+- dfs
+```python
+
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+## follow up
+
+[392.判断子序列](https://leetcode.com/problems/is-subsequence/)
+- 类似只允许删除的编辑距离，注意dp含义不是原本要求的定性是否问题，而是转化为定量多少问题
+- 同时dp含义还要融入，[最长重复子串](./718%20Maximum%20Length%20of%20Repeated%20Subarray.md)探讨过的dp含义，以-结尾的序列，还是截至到-的序列
+
+```python
+# dp[i][j]: 以下标i-1为结尾的字符串s，和以下标j-1为结尾的字符串t，相同子序列的长度为dp[i][j]
+class Solution:
+    def isSubsequence(self, s: str, t: str) -> bool:
+        dp = [[0] * (len(t)+1) for _ in range(len(s)+1)]
+        for i in range(1, len(s)+1):
+            for j in range(1, len(t)+1):
+                if s[i-1] == t[j-1]:
+                    dp[i][j] = dp[i-1][j-1] + 1
+                else:
+                    dp[i][j] = dp[i][j-1]
+        if dp[-1][-1] == len(s):
+            return True
+        return False
+```
+
+双指针
+```python
+def isSubsequence(self, s: str, t: str) -> bool:
+    i, j  = 0, 0
+
+    while i < len(s) and j < len(t):
+        if s[i] == t[j]:
+            i += 1
+        j += 1
+    
+    return i == len(s)
+```

@@ -1,0 +1,55 @@
+# 62 Unique Paths
+[https://leetcode.com/problems/unique-paths/](https://leetcode.com/problems/unique-paths/)
+
+
+## solution
+
+```python
+# 2D DP, 注意本题也可以写成1D DP（滚动数组）减少空间复杂度
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        dp = [[1] * n for _ in range(m)]
+        for i in range(1, m):
+            for j in range(1, n):
+                dp[i][j] = dp[i-1][j] + dp[i][j-1]
+        return dp[-1][-1]
+```
+时间复杂度：O(mn) <br>
+空间复杂度：O(mn)
+
+
+## follow up
+
+[63. Unique Paths II](https://leetcode.com/problems/unique-paths-ii/)
+
+```python
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: List[List[int]]) -> int:
+        n_row = len(obstacleGrid)
+        n_col = len(obstacleGrid[0])
+
+        if obstacleGrid[n_row - 1][n_col - 1] == 1 or obstacleGrid[0][0] == 1:
+            return 0
+
+        res = [[0 for _ in range(n_col)] for _ in range(n_row)]
+        for i in range(n_row):
+            if obstacleGrid[i][0] == 1:
+                break
+            res[i][0] = 1
+        
+        for i in range(n_col):
+            if obstacleGrid[0][i] == 1:
+                break
+            res[0][i] = 1
+        
+        for i in range(1, n_row):
+            for j in range(1, n_col):
+                if obstacleGrid[i][j] == 1:
+                    continue
+                else:
+                    res[i][j] = res[i-1][j] + res[i][j-1]
+        return res[-1][-1]
+```
+时间复杂度：O(mn) <br>
+空间复杂度：O(mn)

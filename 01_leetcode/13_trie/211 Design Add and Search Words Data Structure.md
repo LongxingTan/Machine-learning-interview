@@ -1,0 +1,83 @@
+# 211 Design Add and Search Words Data Structure
+[https://leetcode.com/problems/design-add-and-search-words-data-structure/](https://leetcode.com/problems/design-add-and-search-words-data-structure/)
+
+
+## solution
+```python
+class TrieNode:
+    def __init__(self):
+        self.data = {}
+        self.is_word = False
+
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def addWord(self, word: str) -> None:
+        cur = self.root
+        for char in word:
+            cur = cur.data.setdefault(char, TrieNode())
+        cur.is_word = True        
+
+    def search(self, word: str) -> bool:        
+        return self.dfs(self.root, 0, word)
+
+    def dfs(self, node, index, word):  # 按字母从trie中获取
+        if index == len(word):
+            return node.is_word
+        
+        if word[index] == '.':  # 通配符的搜索
+            for child in node.data.values():
+                if self.dfs(child, index + 1, word):
+                    return True
+                
+        if word[index] in node.data:  # 非通配符
+            return self.dfs(node.data[word[index]], index+1, word)
+        return False
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+## follow up
+
+[676. Implement Magic Dictionary]()
+
+[720. Longest Word in Dictionary]()
+```python
+class TrieNode(object):
+    def __init__(self):
+        self.children = collections.defaultdict(TrieNode)
+        self.isEnd = False
+        self.word = ''
+        
+class Trie(object):
+    def __init__(self):
+        self.root=TrieNode()
+        
+    def insert(self, word):
+        node=self.root
+        for c in word:
+            node =node.children[c]
+        node.isEnd=True
+        node.word=word
+    
+    def bfs(self):
+        q = collections.deque([self.root])
+        res = ''
+        while q:
+            cur = q.popleft()
+            for n in cur.children.values():
+                if n.isEnd:
+                    q.append(n)
+                    if len(n.word) > len(res) or n.word < res:
+                        res = n.word
+        return res 
+    
+class Solution(object):
+    def longestWord(self, words):
+        trie = Trie()
+        for w in words: 
+            trie.insert(w)
+        return trie.bfs()
+```

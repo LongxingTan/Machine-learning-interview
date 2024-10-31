@@ -1,0 +1,34 @@
+# 213 House Robber II
+[https://leetcode.com/problems/house-robber-ii/](https://leetcode.com/problems/house-robber-ii/)
+
+
+## solution
+
+- 首尾相连, 从整体上分两个状态来考虑
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 0:
+            return 0
+        if len(nums) == 1:
+            return nums[0]
+        
+        res1 = self._run_rob(nums, 0, len(nums)-2)
+        res2 = self._run_rob(nums, 1, len(nums)-1)
+        return max(res1, res2)
+
+    def _run_rob(self, nums, start, end):  # 左闭右闭
+        if end == start:
+            return nums[start]
+        
+        pre = nums[start]
+        cur = max(nums[start], nums[start+1])
+
+        for i in range(start+2, end+1):
+            tmp = cur
+            cur = max(pre+nums[i], cur)
+            pre = tmp
+        return cur        
+```
+时间复杂度：O() <br>
+空间复杂度：O()

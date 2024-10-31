@@ -1,0 +1,54 @@
+# 126 Word Ladder II
+[https://leetcode.com/problems/word-ladder-ii/](https://leetcode.com/problems/word-ladder-ii/)
+
+
+## solution
+
+```python
+# 1. BFS
+# 2. DFS 回溯记录
+class Solution:
+    def findLadders(self, start, end, wordList):
+        if end not in wordList:
+            return []
+
+        wordList = set(wordList)
+        queue = set([start])
+        visited = set([start])
+        parent = collections.defaultdict(list)  # 记录了某个单词ladder，能往前走的单词
+
+        while queue:
+            next_queue = set()  # 下一层的queue
+            for node in queue:
+                if node == end:
+                    next_queue = set()
+                    break
+                for i in range(len(node)):
+                    for c in 'abcdefghijklmnopqrstuvwxyz':
+                        newnode = node[:i] + c + node[i+1:]
+                        if newnode not in visited and newnode in wordList:
+                            next_queue.add(newnode)
+                            parent[newnode].append(node)
+            
+            queue = next_queue
+            visited = visited | next_queue
+
+        res = []
+        self.getPath(start, parent, [end], end, res)
+        return res
+
+    def getPath(self, start, parent, path, node, res):
+        # 根据parent, 找到从node到start的所有路径
+        if node == start:
+            res.append(path[::-1])
+        
+        for p in parent[node]:
+            self.getPath(start, parent, path + [p] , p, res)
+```
+时间复杂度：O() <br>
+空间复杂度：O()
+
+
+## follow up
+
+[127. Word Ladder](../08_bfs/127.%20Word%20Ladder.md)

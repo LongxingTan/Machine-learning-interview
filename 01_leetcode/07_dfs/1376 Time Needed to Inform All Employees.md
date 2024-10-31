@@ -1,0 +1,24 @@
+# 1376 Time Needed to Inform All Employees
+[https://leetcode.com/problems/time-needed-to-inform-all-employees/](https://leetcode.com/problems/time-needed-to-inform-all-employees/)
+
+
+## solution
+
+```python
+class Solution:
+    def numOfMinutes(self, n: int, head_id: int, managers: List[int], inform_time: List[int]) -> int:
+        def dfs(employee_id: int) -> int:
+            max_time = 0
+            for subordinate in graph[employee_id]:
+                max_time = max(max_time, dfs(subordinate) + inform_time[employee_id])
+            return max_time
+
+        graph = collections.defaultdict(list)
+        for i, mng_id in enumerate(managers):
+            if mng_id != -1:
+                graph[mng_id].append(i)
+
+        return dfs(head_id)
+```
+时间复杂度：O(n) <br>
+空间复杂度：O(n)

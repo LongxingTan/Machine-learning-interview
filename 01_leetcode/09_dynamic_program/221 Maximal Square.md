@@ -1,0 +1,38 @@
+# 221 Maximal Square
+[https://leetcode.com/problems/maximal-square/](https://leetcode.com/problems/maximal-square/)
+
+
+## solution
+
+- 2d动态规划, dp[i][j]以matrix[i-1][j-1]为右下底的全是1的最大square的**边长**
+- 因为涉及到前面的状态，i-1和j-1来简化初始化过程
+- Space can be optimized as we don't need to keep the whole dp grid as we progress down the rows in matrix
+
+```python
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0        
+        
+        m = len(matrix)
+        n = len(matrix[0])
+
+        dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+        max_len = 0
+        for i in range(m):
+            for j in range(n):
+                if matrix[i][j] == '1':
+                    # 还是有些tricky
+                    dp[i+1][j+1] = min(dp[i][j], dp[i+1][j], dp[i][j+1]) + 1
+                    if dp[i+1][j+1] > max_len:
+                        max_len = dp[i+1][j+1]
+        return max_len * max_len
+```
+时间复杂度：O(m*n) <br>
+空间复杂度：Onm*N)
+
+
+## follow up
+
+[85. Maximal Rectangle](../05_stack_queue/85.%20Maximum%20Rectangle.md)

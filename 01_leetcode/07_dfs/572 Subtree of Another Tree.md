@@ -1,0 +1,30 @@
+# 572 Subtree of Another Tree
+[https://leetcode.com/problems/subtree-of-another-tree/](https://leetcode.com/problems/subtree-of-another-tree/)
+
+
+## solution
+
+```python
+class Solution:
+    def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+        if subRoot is None:
+            return True
+        
+        if root is None:
+            return False
+
+        if self.same(root , subRoot):
+            return True
+        return self.isSubtree(root.left , subRoot) or self.isSubtree(root.right , subRoot)            
+
+    def same(self , r , s):
+        if r is None and s is None :
+            return True
+
+        if r and s and r.val == s.val:
+            return self.same(r.right , s.right) and self.same(r.left , s.left)  
+
+        return False
+```
+时间复杂度：O(mn) <br>
+空间复杂度：O(h)

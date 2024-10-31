@@ -1,0 +1,22 @@
+# 1094 Car Pooling
+[https://leetcode.com/problems/car-pooling/](https://leetcode.com/problems/car-pooling/)
+
+
+## solution
+
+```python
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        path = [0] * (max([i[2] for i in trips]) + 1)
+        for a, s, e in trips:
+            path[s] += a
+            path[e] -= a
+        res = 0
+        for n in path:
+            res += n
+            if res > capacity:
+                return False
+        return True
+```
+时间复杂度：O() <br>
+空间复杂度：O()
