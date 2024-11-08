@@ -21,6 +21,9 @@
 - perform both region proposal and object classification in a single step
 
 
+### nms
+
+
 ## 5. metrics
 - Precision
 - calculated based on IOU threshold

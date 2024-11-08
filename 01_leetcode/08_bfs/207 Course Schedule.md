@@ -270,7 +270,7 @@ class Solution:
 
 [*2402. Meeting Rooms III](https://leetcode.com/problems/meeting-rooms-iii/description/)
 ```python
-# three heap: https://zhuanlan.zhihu.com/p/567648312
+# 3 heap: https://zhuanlan.zhihu.com/p/567648312
 
 ```
 

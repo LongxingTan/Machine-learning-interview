@@ -21,10 +21,10 @@ class Solution:
 
             # 如果两个数除k都余同一个a，那么二者之差可以整除k
             remainder = prefix_sum % k
-            if remainder not in mydict:  # 先判断不在, 保持每个元素记录最早的
+            if remainder not in mydict:  # 先判断不在, 记录每个元素记录最早的index
                 mydict[remainder] = i
 
-            if i - mydict[remainder] >= 2:  # 其实是题目要求至少2个元素和
+            if i - mydict[remainder] >= 2:  # 题目要求至少2个元素和
                 return True
         return False
 ```

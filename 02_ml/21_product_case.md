@@ -104,3 +104,5 @@ When would you decide the time to ingest into newsfeed?
 - [字节跳动-AI数据分析](https://www.1point3acres.com/bbs/thread-1028399-1-1.html)
 - [Meta DSA 全套过经+Timeline](https://www.1point3acres.com/bbs/thread-1042322-1-1.html)
 - [推荐系统实用分析技巧 - 纳米酱的文章 - 知乎](https://zhuanlan.zhihu.com/p/188228577)
+- [allocation budget](https://blogboard.io/blog/data-science-in-marketing-optimization/)
+- 

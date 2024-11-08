@@ -14,7 +14,8 @@
   - KL(p|q) = cross entropy(p, q) - H(p)
 
 entropy公式：
-  
+
+$$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
 
 - 信息增益 Information Gain
 

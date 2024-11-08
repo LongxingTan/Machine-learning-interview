@@ -1,6 +1,6 @@
 # 无监督学习
 
-## 统计学习
+## 1. 统计学习
 Clustering
 - Centroid models: [k-means clustering](./09_k_means.md)
 - Connectivity models: Hierarchical clustering
@@ -22,12 +22,12 @@ Dimension reduction techniques
 - T-sne
 
 
-## 深度学习自监督
+## 2. 深度学习自监督
 contrastive learning 对比学习
 > 相似的实例在投影空间中比较接近，不相似的实例在投影空间中距离比较远
 
 
-## 应用场景
+## 3. 应用场景
 实际应用中，无监督更加注重强特征的提取。
 
 ### 异常检测

@@ -270,6 +270,10 @@ Simultaneously, I kept the management informed of our progress. Transparency was
 Eventually, I was able to lead the project to completion on time without compromising on the quality of our work. It was a very challenging period, but it underscored the importance of strategic planning, effective communication, and teamwork when working under tight deadlines.
 
 
+## Negative feedback you once received
+
+
+
 ## 如何推进项目？遇到过哪些阻力，如何解决?
 
 - manage expectation
@@ -279,6 +283,18 @@ Eventually, I was able to lead the project to completion on time without comprom
 - 详细的计划以产品迭代版本为依据，日常定时跟进，必要时会拆解到每日计划。
 - 定时梳理和汇报项目风险
 - 根据时间确定好每个版本的取舍和关键
+
+
+## manage out 的经历
+> 管理手段，逐步减少某个员工的工作量，最终导致该员工被解雇
+
+
+## Tell me about a time when you took initiative
+> 主动采取行动的时刻
+
+
+## Describe a time when you insisted on doing something and it turned out to be wrong. What is the mistake you have made.
+
 
 
 ## 来源与参考

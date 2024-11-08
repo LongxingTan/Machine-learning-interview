@@ -1,9 +1,9 @@
 # 深度学习
 
-深度学习具体应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
+深度学习领域应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
 
 ## 1. 优化
-### 前向后向传播 
+### 1.1 前向后向传播 
 - pytorch和jax的backprop
 - 训练神经网络的一次迭代分三步：（1）前向传递计算损失函数；（2）后向传递计算梯度；（3）优化器更新模型参数
   - 前向传播，根据预测值和标签计算损失函数，以及损失函数对应的梯度。损失函数类的设计有正向值计算方法和梯度计算方法, 损失函数对y_hat的偏微分
@@ -11,7 +11,7 @@
   - 根据参数值和参数梯度进行优化更新参数: optimizer(w, w_grad)
 
 
-### 优化
+### 1.2 优化 Optimizer
 **梯度：**
 - slope of a curve at a given point
 - 从单变量看，抖的时候就走的步子大一点，缓的时候就走的小一点. 多个变量的不同变化决定了整体优化方向
@@ -83,7 +83,7 @@ step_size = 0.1
 best, score = gradient_descent(objective, derivative, bounds, n_iter, step_size)
 ```
 
-### 学习率scheduler
+### 1.3 学习率scheduler
 - LR与batch_size
   - 常用的heuristic 是 LR 应该与 batch size 的增长倍数的开方成正比，从而保证 variance 与梯度成比例的增长
 
@@ -95,7 +95,7 @@ scheduler = lambda x: ((LR_INIT-LR_MIN)/2)*(np.cos(PI*(np.mod(x-1,CYCLE)/(CYCLE)
 warmup_steps = int(batches_per_epoch * 5)
 ```
 
-### 初始化
+### 1.4 初始化
 
 - 权重为什么不能被初始化为0?
   - 会导致激活后具有相同的值，网络相当于只有一个隐含层节点一样, hidden size失去意义
@@ -109,7 +109,7 @@ warmup_steps = int(batches_per_epoch * 5)
 - cross entropy/ 对数损失
   - `nn.CrossEntropyLoss(pred, label) = nn.NLLLoss(torch.log(nn.Softmax(pred)), label)`
 
-$$ ce = - ylog(p) - (1-y)log(1-p)$$
+$$ ce = - ylog(p) - (1-y)log(1-p) $$
 
 - [binary cross entropy](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
 
@@ -136,7 +136,7 @@ class FocalLoss(nn.Module):
 
 ## 3. 网络模型结构
 
-### MLP
+### 3.1 MLP
 
 向量内积
 - 表征两个向量的夹角，表征一个向量在另一个向量上的投影
@@ -163,7 +163,7 @@ class Dense(Layer):
         return input_error
 ```
 
-### CNN
+### 3.2 CNN
 
 - Convolution is a mathematical operation trying to learn the values of filter(s) using backprop, where we have an input I, and an argument, kernel K to produce an output that expresses how the shape of one is modified by another.
 - Convolutional layer is core building block of CNN, it helps with **feature detection.**
@@ -172,7 +172,7 @@ class Dense(Layer):
 - **No. of parameters** = (Kernel size * Kernel size * Dimension )+1 = 28
 - 卷积等价于[一个大的矩阵一次性运算](Orthogonal Convolutional Neural Networks)
 - CNN的 Inductive Bias(归纳偏置) 多过 vision transformer, CNN的归纳偏置，分别是 locality （局部性）和 translation equivariance（平移等变性）
-
+- 在线卷积（Online Convolution）是在数据流式输入的情况下，实时计算卷积操作
 
 ```python
 # https://github.com/openai/gpt-2/blob/master/src/model.py
@@ -217,11 +217,8 @@ def conv2D(image, kernel, padding=0, strides=1):
 
     return output
 
-
 def activation_fn(self, x):
-    """
-    A method of FFL which contains the operation and definition of given activation function.
-    """
+    """A method of FFL which contains the operation and definition of given activation function."""
     if self.activation == 'relu':
         x[x < 0] = 0
         return x
@@ -270,7 +267,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
 ```
 
 
-### RNN/LSTM/GRU
+### 3.3 RNN/LSTM/GRU
 
 - 梯度爆炸与梯度消失
   - 梯度消失：在反向传播过程中累计梯度一直相乘，当很多小于1的梯度出现时导致前面的梯度很小，难以学习long-term dependencies
@@ -284,7 +281,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
 - RNN的inductive bias是sequentiality和time invariance，即序列顺序上的time-steps有联系，和**时间变换的不变性**（rnn权重共享）
 
 
-### Transformer
+### 3.4 Transformer
 - 结构
   - encoder: embed + layer(self-attention, skip-connect, ln, ffn, skip-connect, ln) * 6
   - decoder: embed + layer(self-attention, cross-attention, ffn, skip-connect, ln) * 6
@@ -337,7 +334,6 @@ def conv2d(inputs, kernels, bias, stride, padding):
   - 矩阵乘法性质: 矩阵可以分块，将矩阵A拆分为[:s], [s]两部分，分别和矩阵B相乘，那么最终结果可以直接拼接
 
 ```python
-
 def scaled_dot_product(q, k, v, softmax, attention_mask, attention_dropout):   
     outputs = tf.matmul(q, k, transpose_b=True)
     dk = tf.math.sqrt(tf.cast(q.shape[-1], dtype=tf.float32))
@@ -379,7 +375,7 @@ class FullAttention(tf.keras.layers.Layer):
         return multi_head_attention
 ```
 
-### 正则化
+### 3.5 正则化
 - 对模型施加显式的正则化约束
   - L1/L2 weight decay
   - dropout,
@@ -392,16 +388,16 @@ class FullAttention(tf.keras.layers.Layer):
 targets = (1 - label_smooth) * targets + label_smooth / num_classes
 ```
 
-### Norm
-Batch Norm (注意有可训练的参数scale和bias)
-- BN用来减少 “Internal Covariate Shift” 来加速网络的训练
-- BN 和 ResNet 的作用类似，都使得 loss landscape 变得更加光滑了 (How Does Batch Normalization Help Optimization)
+### 3.6 Norm
+**Batch Norm**
+- BN用来减少 “Internal Covariate Shift” 来加速网络的训练，BN 和 ResNet 的作用类似，都使得 loss landscape 变得更加光滑了 (How Does Batch Normalization Help Optimization)
 - BN在训练和测试过程中，其均值和方差的计算方式是不同的。测试过程中采用的是基于训练时估计的统计值，训练过程中则是采用指数加权平均计算
-- BN,当 batch 较小时不具备统计意义，而加大的 batch 又收到硬件的影响；BN 适用于 DNN、CNN 之类固定深度的神经网络，而对于 RNN 这类 sequence 长度不一致的神经网络来说，会出现 sequence 长度不同的情况
+- 注意有可训练的参数scale和bias
+- BN，当 batch 较小时不具备统计意义，而加大的 batch 又受硬件的影响；BN 适用于 DNN、CNN 之类固定深度的神经网络，而对于 RNN 这类 sequence 长度不一致的神经网络来说，会出现 sequence 长度不同的情况
 - 分布式训练时，BN的跨卡通信
   - [Implementing Synchronized Multi-GPU Batch Normalization](https://hangzhang.org/PyTorch-Encoding/tutorials/syncbn.html)
 
-Layer Norm
+**Layer Norm**
 - layer normalization 有助于得到一个球体空间中符合0均值1方差高斯分布的 embedding， batch normalization不具备这个功能
 - LayerNorm可以对输入进行归一化，使得每个神经元的输入具有相似的分布特征，从而有助于网络的训练和泛化性能。此外，由于归一化的系数是可学习的，网络可以根据输入数据的特点自适应地学习到合适的归一化系数。
 - 加速模型的训练。由于输入已经被归一化，不同特征之间的尺度差异较小，因此优化过程更容易收敛，加快了模型的训练速度。
@@ -437,7 +433,7 @@ def GroupNorm(x, gamma, beta, G, eps=1e-5):
 - RMSNorm舍弃了中心化操作(re-centering)，归一化过程只实现缩放(re-scaling)，缩放系数是均方根(RMS)
 
 
-### pool
+### 3.7 pool
 
 ```python
 def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
@@ -453,7 +449,6 @@ def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
             if mat.shape == (pool_size, pool_size):
                 # Append to the list of pools
                 pools.append(mat)
-
     return np.array(pools)
 
 def max_pooling(pools: np.array) -> np.array:    
@@ -467,7 +462,7 @@ def max_pooling(pools: np.array) -> np.array:
     return np.array(pooled).reshape(tgt_shape)
 ```
 
-### dropout
+### 3.8 dropout
 - dropout根据binomial分布将一些节点置为0, 但保持该层的均值和方差不变, 乘了系数
 - 参考AlphaDropout，普通dropout+selu激活函数会导致在回归问题中出现偏差
 

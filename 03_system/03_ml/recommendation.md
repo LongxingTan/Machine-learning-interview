@@ -1,11 +1,14 @@
 # 推荐系统设计
 
-配合[推荐系统理论](../../02_ml/17_recommendation.md)
+配合[推荐系统理论](../../02_ml/17_recommendation.md)，具体案例:
+- [ROI-nearby place推荐](./roi_recommendation.md)
+- [video 推荐](./video_recommendation.md)
+- [news feed推荐](./news_feed.md)
 
 **名词解释**
 - 曝光(impression): 文档被用户看到
 - 点击率(click-through-rate，CTR): 文档d曝光的前提下，用户点击d的概率
-- 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论。电商的加购物车、下单、付款
+- 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论；电商的加购物车、下单、付款
 
 推荐系统的重要性源自**信息过载**与**人们行为的长尾分布**. 目的是Link user with items in a reasonable way.
 - 长尾/热门
@@ -19,22 +22,21 @@
 
 
 ### Functional requirement
+> 推荐系统的核心功能还是推荐的personalization accuracy，diversity
 
-- what is the product for which we have to build a recommendation system
-- 业务
-  - Homepage recommendation, session based next item recommendation, or related item recommendations
-  - Explicit feedback or Implicit feedback
-- Who is the producer/consumer
+- what is the product for which we have to build a recommendation system, How are we different from XX? Who is the producer/consumer
+- Homepage recommendation, session based next item recommendation, or related item recommendations
+- Explicit feedback or Implicit feedback （即使有explicit, 一般也会选择implicit）
 - it's a new product, or we have some current product built already
 - the biggest goal of recommendation system is user engagement. Can I assume that to be the goal?
 - Is there any demography or country we are targeting
-- How are we different from XX?
-- Text or image/ video
+- Text, image, video
 - Ranking / Localization
-- Permission management
+- 是否有friend, follow. 有的话可以作为一个召回通道
 
 
 ### Non-Functional requirement
+> scalability, low latency
 
 - MVP and Non-MVP
 - users should have a real time/ near real time / small latency experience Idempotency/ exact-once/ at-least-once/ at-most-once
@@ -105,12 +107,10 @@
   - 规则：热度高，同一作者、tag
   - content based
     - The model doesn't need any data about other users
-  - itemCF
-    - 无需训练，长于记忆
+  - itemCF    
     - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中的马太效应或长尾效应
-    - con: 泛化能力弱；容易产生马太效应，推荐的都是头部和中部产品
-    - Cannot handle fresh items
-    - Hard to include side features for query/item
+    - pro: 无需训练，长于记忆；效果好
+    - con: 泛化能力弱；容易产生马太效应，推荐的都是头部和中部产品; Cannot handle fresh items; Hard to include side features for query/item
   - two power
     - arbitrary continuous and categorical features can be easily added to the model
   - embedding: graph, picture, text
@@ -125,14 +125,23 @@
 - 记忆和泛化
 - feature/embedding
 - model
-  - rule based model
+  - rule based model, matrix factorization, factorization machine
   - 转化为classification/regression模型
-  - matrix factorization
-  - factorization machine
-  - wide and deep learning
-  - 深度学习优势：泛化能力，增量训练，推理速度
+  - 深度学习 (wide and deep learning)
+    - pro：泛化能力，增量训练，推理速度
+    - con: performance ramp-up, preprocessing
+  - GBDT
+    - pro: without preprocess, good performance
+    - con: large scale, unsuitable for continual learning
 - rerank
   - take into account additional constraints for the final ranking
+  - DPP多样性算法
+- multi-task
+  - 稀疏task可以借助其他task学习
+  - consistency among tasks
+  - richer feature
+  - 不好的地方是: 优化，尤其是想优化某个task变得更难
+  - shared-bottom，MMoE，PLE
 
 
 ### Diagram & API
@@ -154,14 +163,14 @@
 
 ### Monitoring & Metrics
 
-注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试。
+注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试
 - 电商：根据业务需要，在 GMV (商品交易总额) 主目标之外，通常还要兼顾 IPV、转化率、人均订单数等多个次目标
 - ctr（点击率）和 CVR (Conversion Rate) 转化率
 - impression per second
 - candidate count (from recall)
 - budget burn rate
 - 通用metrics：cpu, qps, latency
-- 淘宝主搜将 “全域成交 Hit rate” 作为粗排最重要的评价标准，提出两类评价指标，分别描述“粗排->精排损失”和“召回->粗排损失”。
+- 淘宝主搜将 “全域成交 Hit rate” 作为粗排最重要的评价标准，提出两类评价指标，分别描述“粗排->精排损失”和“召回->粗排损失”
 
 
 ## 特定情况
@@ -203,21 +212,20 @@
 - 多目标模型
   - 参数共享及不共享参数各自的优缺点
 - 用户长期兴趣和多兴趣怎么建模
-- DPP多样性算法
 - 如何冷启动
   - 思路一: 尽可能应用side information/多模态进行推荐
   - 思路二: 尽可能用小流量探索出新物料的真实质量
-  - [embedding 冷启动](https://zhuanlan.zhihu.com/p/351390011)
+  - [embedding 冷启动](https://zhuanlan.zhihu.com/p/351390011), embedding初始化采用default, 而不是random
 - bias
   - 如何解决 position bias
     - 数据入手：点击前的展示作为负例
     - 模型入手：bias特征须通过线性层接入模型；训练时将位置作为特征喂入模型，预测时置0
   - popularity bias
-
-- 对热门的打压
+- 对热门的打压 (long tail)
   - 召回：多路召回增加多样性
     - itemCF/swing相似度计算中，把共同点击商品A和B的用户pair对的交集放在分母，对热门用户行为的打击
     - 召回时，对负样本进行下采样，采样概率大致为点击数的0.75次方，对热门进行打压。注意in-batch-negative中，打压过度了
+    - log q correction
   - 精排
     - item count取对数
     - 热门特征加入到偏差的网络中，预测时去掉
@@ -231,7 +239,6 @@
 - 线上评价，线上线性不一致
 - model debugging, offline online inconsistency, light ranking, ab test, heavy ranking, two tower
 - 统计特征用等宽分桶导致特征值聚集
-- 召回没做场景适配，比如相关推荐场景还在用猜你喜欢的召回
 - 多语言搜索召回率低
 - 有些国家节日多，模型T+1更新导致节日后消费数据下降
 - 有一些情况下同一用户对不同item的 pctr 是同一个值
@@ -246,7 +253,11 @@
 
 
 ## Reference
+
+**精读**
 - [Recommendations: What and Why?](https://developers.google.com/machine-learning/recommendation/overview)
+
+**扩展**
 - [Best Practices for Building and Deploying Recommender Systems](https://docs.nvidia.com/deeplearning/performance/recsys-best-practices/index.html)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
 - [超详细：完整的推荐系统架构设计](https://xie.infoq.cn/article/e1db36aecf60b4da29f56eeb4)
@@ -280,11 +291,12 @@
   - [推荐系统简介之标签拼接和延迟反馈 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/668885759)
 - [都说数据是上限，推荐系统ctr模型中，构造正负样本有哪些实用的trick？ - 武侠超人的回答 - 知乎](https://www.zhihu.com/question/324986054/answer/1751584807)
 - [一文读懂「Parameter Server」的分布式机器学习训练原理 - 王喆的文章 - 知乎](https://zhuanlan.zhihu.com/p/82116922)
-
+- [Persia: An Open, Hybrid System Scaling Deep Learning-based Recommenders up to 100 Trillion Parameters](https://arxiv.org/pdf/2111.05897)
 
 **代码**
 - [fun-rec](https://github.com/datawhalechina/fun-rec)
 - [facebook-DLRM](https://github.com/pytorch/torchrec/blob/main/torchrec/models/dlrm.py)
+- [torch-rechub](https://github.com/datawhalechina/torch-rechub/tree/main)
 - [EasyRec](https://github.com/alibaba/EasyRec)
 - [https://github.com/wzhe06/SparrowRecSys](https://github.com/wzhe06/SparrowRecSys)
 - [https://github.com/twitter/the-algorithm](https://github.com/twitter/the-algorithm)
@@ -293,4 +305,3 @@
 - [Multitask-Recommendation-Library](https://github.com/easezyc/Multitask-Recommendation-Library)
 - [https://github.com/rixwew/pytorch-fm/tree/master/torchfm/model](https://github.com/rixwew/pytorch-fm/tree/master/torchfm/model)
 - [https://github.com/LongmaoTeamTf/deep_recommenders/tree/master](https://github.com/LongmaoTeamTf/deep_recommenders/tree/master)
--

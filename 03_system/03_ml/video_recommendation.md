@@ -5,17 +5,14 @@
 **场景/功能类**
 - Use case
   - Homepage? similar item recommendation?
-  - Does user sends a text query as well?
   - Similar to previously played, or personalized for the user?
-- explicit feedback? (thumbs up/down, in-product surveys)
-- implicit user history
-- User locations? Worldwide (multiple languages)
-- User’s age group
-- Do users have any favorite lists, play later, etc?
-- can users become friends on the platform and do we want to take that into account?
-- which device
-- Free or Paid?
-- 是否都是冷启动数据，还是都已经有了交互
+  - UGC(user generated content) or not? penetration rate as goal if UGC, 即时曝光new content
+  - Do users have any favorite lists, play later, etc?
+  - 项目阶段，是否都是冷启动数据，还是已经有了交互
+- user info: can users become friends on the platform and do we want to take that into account?
+- item info: any text, tag, image, video
+- engagement type: click, like, share, comment
+  - explicit feedback? (thumbs up/down, in-product surveys), implicit user history
 
 
 **目标类**
@@ -23,20 +20,22 @@
   - Increase user engagement (play, like, click, share), purchase?, create a better ultimate gaming experience
   - maximize users’ engagement and recommend new types of content to users
 - For online recommendations, it’s important to find the balance between exploration vs. exploitation. If the model over-exploits historical data, new videos might not get exposed to users. We want to balance between relevancy and fresh new content.
+- diversity
 
 
 **约束类**
-- Latency requirements - 200msec?
-  - For every user to visit the homepage, the system will have to recommend 100 videos for them. The latency needs to be under 200ms, ideally sub 100ms.
 - Data access
-  - Do we log and have access to any data? Can we build a dataset using user interactions ?
-  - Do we have textual description of items?
+  - Do we log and have access to any data? Can we build a dataset using user interactions?
+- Latency requirements
+  - For every user to visit the homepage, the system will have to recommend 100 videos for them. The latency needs to be under 200ms, ideally sub 100ms.
 - scale: how many user and item
   - How many videos? 100 million
   - How many users? 100 million DAU
 
 
 ## 2. 架构 architectural components
+
+根据需求转化为一个机器学习问题(类型，输入、输出-机器学习Label)，并给出high level的设计。
 
 ![03ml-youtube-reco-structure](../../.github/assets/03ml-youtube-reco-structure.png)
 - The reason for two stages is to make the system scale.
@@ -78,6 +77,8 @@
 
 
 ## 5. 模型 model
+从简单可行的模型开始设计，不要追求fancy
+
 
 ### 5.1 召回
 
@@ -185,19 +186,23 @@ Candidate generation is the first stage of recommendation. Given a query (also k
   - new videos
     - use basic metadata and content
     - display videos to random users to collect interaction data
-- 向量召回过程中如何打压热门视频, popularity trap
-  - youtube论文，训练时cosine(a, bi)-log(pi), 预测时cosine(a, bi)
+- bias
+  - 向量召回过程中如何打压热门视频, popularity trap
+    - youtube论文，训练时cosine(a, bi)-log(pi), 预测时cosine(a, bi)
+- further optimization
 
 
 ## 参考
+**精读**
 - [论文: Deep Neural Networks for YouTube Recommendations](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45530.pdf)
 - [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://research.google/pubs/sampling-bias-corrected-neural-modeling-for-large-corpus-item-recommendations/)
 - [论文: Recommending What Video to Watch Next: A Multitask Ranking System](https://daiwk.github.io/assets/youtube-multitask.pdf)
 - [Netflix: System Architectures for Personalization and Recommendation](https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8)
+
+**扩展**
 - [alirezadir/Machine-Learning-Interviews](https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/mlsd-video-recom.md)
 - [https://github.com/wangshusen/RecommenderSystem](https://github.com/wangshusen/RecommenderSystem)
 - [Scaling deep retrieval with TensorFlow Recommenders and Vertex AI Matching Engine](https://cloud.google.com/blog/products/ai-machine-learning/scaling-deep-retrieval-tensorflow-two-towers-architecture)
-- [Recommendations: What and Why?](https://developers.google.com/machine-learning/recommendation/overview)
 - [虎牙直播推荐系统架构详解](https://mp.weixin.qq.com/s/5XDR_KyZZdh2kndFOBSHeA)
 - [QQ音乐推荐系统算法架构实践](https://mp.weixin.qq.com/s/Si-zxdfcxaw2lmU9_qgOrw)
 - [网易云音乐推荐系统的冷启动技术](https://mp.weixin.qq.com/s/EDkoe3nxvQ_24nxC8ktd7g)
@@ -205,3 +210,4 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - [Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations](https://research.google/pubs/pub50257/)
 - [System Design for Recommendations and Search // Eugene Yan // MLOps Meetup #78](https://www.youtube.com/watch?v=lh9CNRDqKBk)
 - [推荐系统-短视频推荐中的一些记录 - tangwang的文章 - 知乎](https://zhuanlan.zhihu.com/p/720272682)
+- [都说数据是上限，推荐系统ctr模型中，构造正负样本有哪些实用的trick？ - 傅聪Cong的回答 - 知乎](https://www.zhihu.com/question/324986054/answer/1771305509)

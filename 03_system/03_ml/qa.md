@@ -75,3 +75,4 @@
 - [Building a Question Answering System Part 1: Query Understanding in 18 lines of Code](https://medium.com/casl-project/building-a-question-answering-system-part-1-query-understanding-in-18-lines-916110f9f2b2)
 - [基于知识增强和预训练大模型的 Query 意图识别](https://mp.weixin.qq.com/s/lVGKwNDgaHLROPdN3XUmiw)
 - [NLP多轮对话如果做得足够好，会有哪些明朗的落地应用？ - 袋鼠猪的回答 - 知乎](https://www.zhihu.com/question/474271324/answer/2629631795)
+- [CMU11492-语音](https://espnet.github.io/espnet/notebook/)

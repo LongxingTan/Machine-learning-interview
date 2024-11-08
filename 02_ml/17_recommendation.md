@@ -146,7 +146,7 @@ counterfactual evaluation（反事实评估）
 ### How to scale
 - the component of retrieval and ranking is already designed for scale
 - read the code from [dlrm](https://github.com/facebookresearch/dlrm/blob/f06d3deed5a15710fb28e0ede0af31ebd53789cb/data_loader_terabyte.py#L350)
-
+- parameter server
 
 ### Serve personalized recommendations at a low latency
 

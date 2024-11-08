@@ -14,7 +14,6 @@ partitioning a dataset into k distinct clusters based on similarity measures. It
   - c.它会受到超参数K的影响，随着K越大，Inertia必定会越来越小，但并不代表模型效果越来越好。
   - d.Inertia 对数据的分布有假设，它假设数据满足凸分布，并且它假设数据是各向同性的，所以使用Inertia作为评估指标，会让聚类算法在一些细长簇、环形簇或者不规则形状的流形时表现不佳。
 - 轮廓系数
-- 
 
 
 ## PCA
@@ -29,7 +28,6 @@ partitioning a dataset into k distinct clusters based on similarity measures. It
 
 - k means 如何选择k
   - scree plot: 横坐标n_cluster, 纵坐标intra-cluster variance (区分 inter-cluster variance)
-
 
 - 怎么判断clustering效果好不好
   - 聚类评价指标: Purity, NMI, RI, Precision(查准率), Recall(查全率), F, ARI, Accuracy(正确率)

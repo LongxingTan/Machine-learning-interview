@@ -40,6 +40,9 @@ graph based prediction
 ## 7. deployment and serving
 
 
+## 8. monitoring and maintenance
+
+
 ## reference
 - [大规模异构图召回在美团到店推荐广告的应用](https://tech.meituan.com/2022/11/24/application-of-large-scale-heterogeneous-graph-in-meituan-recommended-ads.html)
 - [推荐系统u2u算法简介 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/665867589)

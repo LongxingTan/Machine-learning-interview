@@ -1,27 +1,30 @@
 # 搜索引擎
 
-搜索的基本是"拉动"，由用户检索拉动。推荐的基本是"推动"，由系统进行推动。二者都是向用户提供用户需要的信息。
+搜索和推荐都是向用户提供用户需要的信息，搜索，由用户检索"拉动"，包含"Query"；推荐的基本是"推动"，由系统进行推送。
 
 有的业务场景中，通过q2i的用户反馈信息进行排序，进一步提升业务指标。
 
 
 ## 1. requirements
 
+**产品/功能**
 - Is it a generalized search engine (like google) or specialized (like amazon product)?
-- What is the primary (business) objective of the search system?
 - What are the specific use cases and scenarios where it will be applied?
 - What are the system requirements (such as response time, accuracy, scalability, and integration with existing systems or platforms)?
-- What is the expected scale of the system in terms of data and user interactions?
-- Is their any data available? What format?
-- Personalized? not required
 - How many languages needs to be supported?
 - What types of items (products) are available on the platform, and what attributes are associated with them?
 - What are the common user search behaviors and patterns? Do users frequently use filters, sort options, or advanced search features?
 - Are there specific search-related challenges unique to the use case (e-commerce)? such as handling product availability, pricing, and customer reviews?
 
+**目标类**
+- What is the primary (business) objective of the search system?
+- Personalized? not required
+
 **约束类**
+- Is their any data available? What format?
 - response time, accuracy, scalability (50M DAU)
 - budget limitations, hardware limitations, or legal and privacy constraints
+- What is the expected scale of the system in terms of data and user interactions?
 
 
 ## 2. pipeline
@@ -67,16 +70,28 @@ query understanding
 - The ranking was not so good if the user clicked on a link to a result and then hit “back” quickly. 
 - The ranking was bad if the user clicked on the “next page” link.
 
+## 4. feature
+
+
+## 5. model
+
 
 ## query reformulation
 
 
-
-## evaluation
+## 6. evaluation
+offline
+online
 - 相关性
 - 内容质量
 - 时效性
 - 个性化
+
+
+## 7. deploy and serving
+
+
+## 8. monitoring and maintenance
 
 
 ## reference

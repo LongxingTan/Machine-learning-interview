@@ -359,6 +359,7 @@
   * [面向对象设计OOD](03_system/01_ood)
     * [电梯设计](03_system/01_ood/lift.md)
     * [停车场设计](03_system/01_ood/parking_lot.md)
+    * [Unix文件系统设计](03_system/01_ood/unix_file.md)
 
   * [系统设计](03_system/02_system)
     * [设计社交网站Twitter](03_system/02_system/twitter.md)
@@ -382,7 +383,7 @@
     * [情感分析](03_system/03_ml/sentiment_analysis.md)
     * [朋友推荐](03_system/03_ml/friend_recommedation.md)
     * [目标检测](03_system/03_ml/object_detection.md)
-    * [去重复性检测](03_system/03_ml/deduplicate_detection.md)
+    * [去重复性/版权检测](03_system/03_ml/deduplicate_detection.md)
     * [大模型RAG](03_system/03_ml/rag.md)
 
 

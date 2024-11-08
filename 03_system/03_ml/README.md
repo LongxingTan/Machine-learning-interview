@@ -50,6 +50,7 @@
   - batch prediction or online prediction
 - **监控 monitoring**
   - 监控latency，QPS，precision，recall等参数
+  - Grafana, prometheus
 - **维护 maintain**
   - retrain strategy
 
@@ -118,14 +119,16 @@
 
 
 ## 参考
+**精读**
+- [Machine Learning Engineering by Andriy Burkov](https://www.amazon.com/Machine-Learning-Engineering-Andriy-Burkov/dp/1999579577)
+- [https://github.com/chiphuyen/machine-learning-systems-design](https://github.com/chiphuyen/machine-learning-systems-design)
+
+**扩展**
 - [https://github.com/ByteByteGoHq/ml-bytebytego](https://github.com/ByteByteGoHq/ml-bytebytego)
-- [https://developers.google.com/machine-learning/recommendation](https://developers.google.com/machine-learning/recommendation)
 - [https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/](https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/)
 - [https://github.com/khangich/machine-learning-interview](https://github.com/khangich/machine-learning-interview)
-- [Machine Learning Engineering by Andriy Burkov](https://www.amazon.com/Machine-Learning-Engineering-Andriy-Burkov/dp/1999579577)
 - [https://github.com/shibuiwilliam/ml-system-in-actions](https://github.com/shibuiwilliam/ml-system-in-actions)
 - [https://github.com/mercari/ml-system-design-pattern](https://github.com/mercari/ml-system-design-pattern)
-- [https://github.com/chiphuyen/machine-learning-systems-design](https://github.com/chiphuyen/machine-learning-systems-design)
 - [https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/ml-system-design.md](https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/ml-system-design.md)
 - [https://github.com/ibragim-bad/machine-learning-design-primer](https://github.com/ibragim-bad/machine-learning-design-primer)
 - [Grokking the Machine Learning Interview](https://www.educative.io/courses/grokking-the-machine-learning-interview)

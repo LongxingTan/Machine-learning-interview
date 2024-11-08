@@ -8,15 +8,15 @@ $$ y = \frac{1}{1+e^{-(w^{T} x + b)}} $$
 
 在二分类中，y_hat的含义是预测类别为1的概率为y_hat，相应的为0的概率为(1-y_hat)
 
-对数损失函数logloss
+**对数损失函数logloss**
 - `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`
 - cross entropy: `cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))`
 
-softmax loss
+**softmax loss**
 - 多分类损失函数
-- PyTorch: log_softmax + NLLLoss == CrossEntropyLoss
+- PyTorch: `log_softmax + NLLLoss = CrossEntropyLoss`
 
-KL散度
+**KL散度**
 - 衡量两个分布的差异
 - 交叉熵就是 KL 散度加信息熵，而信息熵是一个常数
 

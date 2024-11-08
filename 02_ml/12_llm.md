@@ -22,7 +22,8 @@
 
 **LLaMa**
 - llama的self-attention和mlp中没有bias
-- 使用 rmsnorm而不是layernorm，少计算了均值
+- norm 使用 rmsnorm 而不是 layernorm，少计算了均值
+- 激活 使用swiglu
 
 
 **多模态**
@@ -59,6 +60,9 @@ class MoeLayer(nn.Module):
         # (m * seq_len, dim) --> (m, seq_len, dim)
         return results.view_as(inputs)
 ```
+
+**flash-attention**
+输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作
 
 
 ## 4. 训练
@@ -197,7 +201,8 @@ print("Sampled token index:", sampled_token)
 
 
 ### RAG
-- 主要针对大语言模型的幻觉、数据时效性、数据安全问题。
+- 主要针对大语言模型的幻觉、数据时效性、数据安全问题
+- LangChain
 
 ![](../.github/assets/02ml-llm-rag.png)
 
@@ -246,10 +251,12 @@ print("Sampled token index:", sampled_token)
   - https://mp.weixin.qq.com/s/N0sjdNo-qWdZJ4UkXm-bdw
 - 随着模型的增大，学习率越来越小。学习率与数据量、批量大小都没有明显的关系，且一般使用1e-3左右的学习率
 - reducing LLM latency at inference time
+- SwiGLU
 
 
 ## reference
 - [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
+- [MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies](https://arxiv.org/pdf/2404.06395)
 - A Survey of Large Language Models
 - A Comprehensive Survey on Pretrained Foundation Models A History from BERT to ChatGPT
 - [LLM推理优化技术综述：KVCache、PageAttention、FlashAttention、MQA、GQA](https://zhuanlan.zhihu.com/p/655325832)

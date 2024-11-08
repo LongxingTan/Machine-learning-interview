@@ -41,7 +41,7 @@ class WordDictionary:
 
 ## follow up
 
-[676. Implement Magic Dictionary]()
+[676. Implement Magic Dictionary](https://leetcode.com/problems/implement-magic-dictionary/)
 
 [720. Longest Word in Dictionary]()
 ```python

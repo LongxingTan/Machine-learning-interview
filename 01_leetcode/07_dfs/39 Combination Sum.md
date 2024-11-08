@@ -75,6 +75,7 @@ class Solution:
 - 规定了选取的个数
 
 ```python
+# 第1个位置从9个选，第2个位置从8个选，但只能选到第k个位置. 因此决定时间复杂度
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
         path = []
@@ -94,8 +95,8 @@ class Solution:
             path.pop(-1)
             residual += i
 ```
-时间复杂度：O(n * 2^n) <br>
-空间复杂度：O(n)
+时间复杂度：O(9! / (9 - k)!) <br>
+空间复杂度：O(C(9, k))
 
 
 ```python
@@ -143,4 +144,34 @@ class Solution:
             for j in range(target_sum, i-1, -1):
                 dp[j] += dp[j-i]
         return dp[target_sum]
+```
+
+[473. Matchsticks to Square](https://leetcode.com/problems/matchsticks-to-square/description/)
+```python
+class Solution:
+    def makesquare(self, matchsticks: List[int]) -> bool:
+        sticks_sum = sum(matchsticks)
+        if sticks_sum % 4 != 0:
+            return False
+        
+        line = sticks_sum // 4
+
+        matchsticks.sort(reverse = True)
+        edges = [0] * 4
+        return self.dfs(0, matchsticks, edges, line)
+    
+    def dfs(self, idx, matchsticks, edges, line):
+        if idx == len(matchsticks):
+            return True
+        
+        for edge in range(4):
+            if edge > 0 and edges[edge] == edges[edge-1]:
+                continue
+            
+            edges[edge] += matchsticks[idx]
+            if edges[edge] <= line and self.dfs(idx + 1, matchsticks, edges, line):
+                return True
+            
+            edges[edge] -= matchsticks[idx]
+        return False
 ```

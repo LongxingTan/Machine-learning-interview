@@ -19,6 +19,11 @@
 - Do we need continual training?
 - How do we collect negative samples? (not clicked, negative feedback).
 
+**功能类**
+- personalization
+- diversity, 不能把相似广告放一起
+- explicit negative feedback, multi-task ranking增加一个head, label是hide block
+
 
 ## 2. pipeline
 

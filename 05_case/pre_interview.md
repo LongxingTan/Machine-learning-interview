@@ -9,19 +9,14 @@
 
 ## 1. 简历
 - 关键词要匹配job description
-- 指标量化自己工作
+- 指标量化自己工作，start with action verbs and end with specific metrics
 - 当地虚拟电话号: WeTalk
-
-- 简历优化
-  - [RESUMES and COVER LETTERS - Harvard University](https://hwpi.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf)
-  - [Interviewing and Resume Writing in English Specialization](https://www.coursera.org/specializations/english-interview-resume)
 
 
 ## 2. 内推
-像我一样无人脉的话，建议去[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)求助
+像我一样无人脉的话，可以去[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)求助，Linkedin求助内推可可参考[聊聊如何在 Linkedin 上勾搭才能得到回复](https://www.1point3acres.com/bbs/thread-664124-1-1.html)
 
-
-Linkedin投递时可私信，模版(参考小红书博主海投哥)
+另外，Linkedin自己投递时可私信hm求好感，模版(参考小红书博主海投哥)
 ```text
 Title: [Full Name] - Seeking [Position Tile] opportunities in []
 
@@ -61,4 +56,7 @@ You are an excellent and experiences senior MLE candidate who has 20+ offers in 
 
 
 ## 参考
+- [RESUMES and COVER LETTERS - Harvard University](https://hwpi.harvard.edu/files/ocs/files/hes-resume-cover-letter-guide.pdf)
+- [Interviewing and Resume Writing in English Specialization](https://www.coursera.org/specializations/english-interview-resume)
 - [招人看了不下几千封简历，抛砖引玉谈谈一些通病和怎么改](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=1028155)
+- [如何写求职简历的注意事项](https://www.1point3acres.com/bbs/thread-187005-1-1.html)

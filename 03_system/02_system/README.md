@@ -164,4 +164,4 @@ NOSQL
 - [Latency Numbers Every Programmer Should Know](https://gist.github.com/jboner/2841832)
 - [Design fb-live-comments](https://www.hellointerview.com/learn/system-design/answer-keys/fb-live-comments)
 - [Dynamo: Amazon’s Highly Available Key-value Store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
-- 
+- [https://github.com/preslavmihaylov/booknotes/tree/master/system-design/system-design-interview](https://github.com/preslavmihaylov/booknotes/tree/master/system-design/system-design-interview)

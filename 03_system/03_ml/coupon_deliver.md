@@ -2,8 +2,10 @@
 
 优惠券可以在特定场景下刺激消费者冲动消费，从而实现利润最大化
 
+## 1. requirement
 
-## pipeline
+
+## 2. task & pipeline
 
 机器学习+运筹
 

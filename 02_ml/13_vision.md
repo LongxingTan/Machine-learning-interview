@@ -9,8 +9,11 @@
 
 
 ### 检测
-- YOLO
+参考[物体检测系统设计](../03_system/03_ml/object_detection.md)
 
+- 二阶段检测
+- 一阶段检测
+  - YOLO
 - 旋转目标检测
 
 

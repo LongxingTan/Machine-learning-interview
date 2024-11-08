@@ -31,6 +31,28 @@ class Solution:
 
 - dfs with memorization
 ```python
+"""
+更初始的思路：
+def wordBreak(s, wordDict):
+    def dfs(start):
+        # 如果已经到达字符串的末尾，说明所有字符都被成功拆分
+        if start == len(s):
+            return True
+        
+        # 尝试从当前位置开始，找到一个字典中的单词
+        for end in range(start + 1, len(s) + 1):
+            if s[start:end] in wordDict:
+                # 如果找到一个单词，继续递归处理剩余的字符串
+                if dfs(end):
+                    return True
+        
+        # 如果没有找到任何有效的拆分，返回 False
+        return False
+    
+    # 从字符串的第一个字符开始递归
+    return dfs(0)
+"""
+
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         memo = {}

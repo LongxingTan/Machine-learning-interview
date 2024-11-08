@@ -31,8 +31,5 @@ BLIP
 LLAVA
 
 
-RoPE是如何编码的
-
-
 ## 参考
 - [大模型 | CLIP | BLIP | 损失函数代码实现 - 有点晕的文章 - 知乎](https://zhuanlan.zhihu.com/p/699507603)

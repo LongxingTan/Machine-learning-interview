@@ -37,5 +37,5 @@
 - [智能机器人在滴滴出行场景的技术探索](https://mp.weixin.qq.com/s/MSy8OHzR3avObmOq9uSSFQ)
 - [QQ浏览器智能问答技术探索实践](https://mp.weixin.qq.com/s/nN0aSXQN_IyjIJ1mRT5s3w)
 - [达摩院基于元学习的对话系统](https://mp.weixin.qq.com/s/Ji_-hTe5vwpnyu-whj3PXg)
-- [大话知识图谱--意图识别和槽位填充](https://zhuanlan.zhihu.com/p/165963264)
+- [大话知识图谱-意图识别和槽位填充](https://zhuanlan.zhihu.com/p/165963264)
 - 

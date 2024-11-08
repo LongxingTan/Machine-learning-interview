@@ -8,7 +8,7 @@
 
 ## 1. BQ常见问题
 
-**一定提前准备若干的工作小故事(约3分钟，450words)，并且背后对应着leadership principles，见[BQ回答实例](./02_examples.md)**
+**一定提前准备若干的工作小故事(约3分钟，450words)，并且背后对应着leadership principles，见[BQ回答实例](./02_examples.md)
 
 - give some examples that you help others
 - conflicts with manager，跟老板/同事/组内/组外如何处理冲突
@@ -69,17 +69,21 @@
 
 
 ## 3. 复习资料
+**精读**
+- [A Senior Engineer's Guide to the Amazon Leadership Principles Interview](https://interviewing.io/guides/amazon-leadership-principles)
+- [彻底击碎行为问题-可能是对你最有帮助的BQ教程](https://www.1point3acres.com/bbs/thread-895663-1-1.html)
 
+**扩展**
 - [U-shape: Man in a hole](https://youtu.be/hU6BVxtGd5g)
 - [Career School @youtube](https://www.youtube.com/@CareerSchool)
 - [Dan Croitor @youtube](https://www.youtube.com/c/DanCroitor/videos)
 - [Don't Get Down-Leveled or How to Tell a Good Story (From a Principal at Amazon)](https://www.youtube.com/watch?v=hU6BVxtGd5g)
 - [grokking-the-behavioral-interview](https://www.educative.io/courses/grokking-the-behavioral-interview)
+- [Amazon Leadership Principles: Questions and Interview Tips](https://www.levels.fyi/blog/amazon-leadership-principles.html)
 - Engineers survival guide
 - OReilly.The.Staff.Engineer's.Path
 - [https://www.youtube.com/@Fred_Talk](https://www.youtube.com/@Fred_Talk)
 - [https://www.youtube.com/@CareerSchool](https://www.youtube.com/@CareerSchool)
-- [彻底击碎行为问题-可能是对你最有帮助的BQ教程](https://www.1point3acres.com/bbs/thread-895663-1-1.html)
 - [situational-scenario-based-interview-questions-answers](https://www.interviewkickstart.com/career-advice/situational-scenario-based-interview-questions-answers)
 - [https://www.youtube.com/@SelfMadeMillennial](https://www.youtube.com/@SelfMadeMillennial)
 - [https://www.knowledgehut.com/interview-questions/team-leader-interview-questions](https://www.knowledgehut.com/interview-questions/team-leader-interview-questions)

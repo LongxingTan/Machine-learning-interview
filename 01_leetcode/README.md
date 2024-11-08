@@ -30,18 +30,20 @@
     - 有没有内存限制
   - 区分subarrays和subsequence等
   - 输入是否有重复样本，输出是否允许重复
-- (3) 面试官回答问题来保证面试者正确理解题目
-- (4) 面试者思考怎么做，有想法之后先和面试官讲明白思路并得到认同
-  - 从逻辑/模拟角度思考如何做这个任务(第一性原则出发)。没有思路时，想想更简单、数量更少时如何处理
+- (3) 面试官回答问题保证面试者正确理解题目
+- (4) 面试者思考怎么做，有想法之后先和面试官讲明白思路，并得到认同
+  - 从逻辑/模拟角度思考如何做这个任务(第一性原则出发)。没有思路时，想想更简单、数量更少时如何处理. 
+  - Whenever coming across a solution, talk it out and discuss it with the interviewer
   - 2分钟内还没有思路，主动和面试官要提示(hint)
   - 可以询问：Am I on the right direction?
-  - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最有可询问："Could we have a better solution?"
-  - 没有得到面试官认同你的算法之前不要着急动手写代码
+  - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最有可询问："Could we have a better solution?"  
   - 熟悉的题目也可以先说一下穷举/暴力做法，然后简单分析下重复操作或者引入高效的数据结构，从而引入到最优解
-- (5) 面试者写代码实现算法
+  - 没有得到面试官认同你的算法之前不要着急动手写代码
+- (5) 面试者写代码实现算法，一定要确认好思路后才开始写
   - 用什么数据结构，什么算法。讲思路的时候，一定说清楚为什么选择这个数据结构，结合有代表性的test case说明
-- (6) 面试者把代码的大体结构讲一遍给面试官听
-- (7) 跑test case来验证代码是否正确
+  - During writing the code, whenever coming across edge cases, discuss with the interviewer about how to handle the edge case
+- (6) 跑测试实例验证代码正确
+  - I just finished my coding, now I need to run several test cases to see if I covered all the edge cases and if there is any bugs I missed
   - 注意可能需要自己写tests，给出corner case test
   - **dry run**
     - 选择能够覆盖各种边界情况和不同输入的例子
@@ -49,8 +51,8 @@
     - 逐步执行算法，逐步更新这些变量的值
     - 每个关键点，检查你的变量是否符合预期
   - 空，一个数，两个一样的数(重复)
-- (8) 面试者讲述自己写的算法的时间、空间复杂度
-- (9) 面试官确认没问题后准备follow up题目或者下一道题目
+- (7) 面试者讲述自己算法的时间、空间复杂度
+- (8) 面试官确认没问题后准备follow up题目或者下一道题目
   - 算法相关技术也可能被问到
     - rate limiter
     - 不同的cache机制
@@ -60,25 +62,29 @@
 
 ## 3. 公司特点
 
-**Google**
-- Leetcode: 不按tag非原题, hard多(DP, DFS, Backtracking, Trie)，极其看重解决问题的思考过程
+[OA真题](https://github.com/perixtar/2024-Tech-OA)
 
+**Google**
+- LeetCode: 不按tag非原题, hard多(DP, DFS, Backtracking, Trie)，极其看重解决问题的思考过程，自己写test case。面经题仍然有助于准备
 
 **Meta**
-- Leetcode: tag高频，35分钟两道题, 看重结果bug free和最优解
+- LeetCode: tag高频，35分钟两道题, 看重结果bug free和最优解
 - ML system design: recommendation, video search, harmful content detection
 
-
 **Amazon**
-- Leetcode: Grind75, 20分钟一道
+- LeetCode: Grind75, 20分钟一道
 - BQ: 每一轮BQ占30分钟+, 2个LP
 
-
 **Tiktok**
-- Leetcode: 不按tag
+- LeetCode: 不按tag
+- ML: 可能有国内面试习惯，深挖简历项目，讲清整个领域来龙去脉
 
 
-## 4. 基础知识
+## 4. 基础
+
+**精读**
+- [https://blog.faangshui.com/p/how-to-talk-to-the-interviewer](https://blog.faangshui.com/p/how-to-talk-to-the-interviewer)
+
 
 ### Python
 - 垃圾回收机制gc
@@ -115,7 +121,7 @@
 - [花花酱 LeetCode Problem List 题目列表](https://zxi.mytechroad.com/blog/leetcode-problem-categories/)
 - [时间复杂度-Abdul Bari's Algorithm Playlist](https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O)
 - [Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer and ACM ICPC World Finalist](https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
-
+- [灵茶山艾府](https://github.com/EndlessCheng)
 
 **online assessment**
 - [https://www.glassdoor.com/index.htm](https://www.glassdoor.com/index.htm)

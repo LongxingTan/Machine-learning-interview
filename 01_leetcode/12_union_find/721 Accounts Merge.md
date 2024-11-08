@@ -56,9 +56,10 @@ class Solution:
 }
 """
 
+from collections import defaultdict
+
 class Solution(object):
-    def accountsMerge(self, accounts):
-        from collections import defaultdict
+    def accountsMerge(self, accounts):        
         visited_accounts = [False] * len(accounts)
         emails_accounts_map = defaultdict(list)
         res = []

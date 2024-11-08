@@ -27,5 +27,5 @@ class Solution:
             self.dfs(res, path.copy(), n, k, i+1)
             path.pop()
 ```
-时间复杂度：O(n * 2^n) <br>
-空间复杂度：O(n)
+时间复杂度：O(C(n, k)) = O(n! / (k! * (n - k)!)) <br>
+空间复杂度：O(C(n, k) * n)

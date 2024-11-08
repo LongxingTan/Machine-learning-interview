@@ -1,47 +1,48 @@
 # 评价指标
 
-熟悉统计指标、metrics的意义和计算，对评价指标的熟悉有助于我们进行优化。
+> 熟悉统计指标、metrics的意义和计算，对评价指标的熟悉有助于我们进行优化。
 
-- **offline**
-  - regression
-    - MSE
-    - MAE
-    - MAPE
-  - classification
-    - accuracy
-    - recall
-    - F1 score
-    - AUC
-  - clustering
-    - mutual info
-    - rand index
-    - silhouette
-    - V-measure
-  - ranking
-    - NDCG
-    - [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision)
-    - HR
-    - recall
-- **online**
-  - ads
-    - ctr
-    - cost per acquisition
-    - ROAS
-  - marketing
-    - CAC
-    - NPS
-    - CLTV
-    - shares
-  - steaming
-    - DAU
-    - clicks
-    - time spent
-    - retention
-  - finance
-    - ROI
-    - alpha
-    - beta
-    - GAGR
+**offline metrics**
+- regression
+  - MSE
+  - MAE
+  - MAPE
+- classification
+  - accuracy
+  - recall
+  - F1 score
+  - AUC
+- clustering
+  - mutual info
+  - rand index
+  - silhouette
+  - V-measure
+- ranking
+  - NDCG
+  - [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision)
+  - HR
+  - recall
+
+**online metrics**
+- ads
+  - ctr
+  - cost per acquisition
+  - ROAS
+- marketing
+  - CAC
+  - NPS
+  - CLTV
+  - shares
+- steaming
+  - DAU
+  - clicks
+  - time spent
+  - retention
+- finance
+  - ROI
+  - alpha
+  - beta
+  - GAGR
 
 
 ## AB test
@@ -118,7 +119,7 @@ def fast_auc(y_true, y_prob):
         y_i = y_true[i]
         nfalse += (1 - y_i)  # 截至目前负样本0的累加数量
         auc += y_i * nfalse  # 每到一个正样本1，auc更新前面一共多少负样本。此时的数量就是每个正样本，其概率>负样本的概率的和
-    auc /= (nfalse * (n - nfalse))  # auc / (负样本数量 * 正样本数量), 分子是每一个正样本，他概率大于负样本的总和
+    auc /= (nfalse * (n - nfalse))  # auc / (负样本数量 * 正样本数量), 分子是每一个正样本概率大于负样本的总和
     return auc
 
 
@@ -177,13 +178,14 @@ def average_precision_score(y_true, y_scores):
 ```
 
 
-## 问题
+## 问答
 
 - 准确率的局限性
   - 标签不平衡
 
 - MAP与NDCG的比较，以及pros和cons
   - NDCG考虑位置权重，多级相关性（相关、部分相关、不相关），关注**相关性**程度的排序质量
+  - MAP其实没有考虑order
 
 
 ## 参考

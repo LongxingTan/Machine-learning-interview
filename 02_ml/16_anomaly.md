@@ -7,6 +7,7 @@
 模型类型：距离，分类
 
 
+## 模型
 正样本 autoencoder
 GAN：
 规则、经验
@@ -34,3 +35,4 @@ Random sample consensus (RANSAC) is an iterative method to estimate parameters o
 - [Tubi 时间序列 KPI 的异常值检测 - Tubi 中国团队的文章 - 知乎](https://zhuanlan.zhihu.com/p/642174241)
 - [基于AI算法的数据库异常监测系统的设计与实现](https://tech.meituan.com/2022/09/01/database-monitoring-based-on-ai.html)
 - [网易如何做到数据指标异常发现和诊断分析？](https://mp.weixin.qq.com/s/wr9XvBNRBeKfp6acxkXc2A)
+- [How our content abuse defense systems work to keep members safe](https://www.linkedin.com/blog/engineering/trust-and-safety/how-our-content-abuse-defense-systems-work-to-keep-members-safe)

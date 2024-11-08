@@ -1,5 +1,10 @@
 # 搜索框
 
+## 1. 需求
+> 可以认为是text generation 任务
+
+
+## 2. pipeline
 
 
 ## Reference

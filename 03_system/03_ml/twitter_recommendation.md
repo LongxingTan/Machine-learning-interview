@@ -25,18 +25,18 @@ twitter比较关注social graph的挖掘
 
 ## 5. model
 
-### retrieval
+### 5.1 retrieval
 
 - In-Network召回
 - Out-of-Network 召回
 
 
-### ranking
+### 5.2 ranking
 
 - MaskNet
 
 
-### reranking
+### 5.3 reranking
 
 - 过滤已屏蔽用户的推文、NSFW内容和已看过的推文
 
@@ -51,4 +51,3 @@ twitter比较关注social graph的挖掘
 - [MaskNet: Introducing Feature-Wise Multiplication to CTR Ranking Models by Instance-Guided Mask](https://arxiv.org/pdf/2102.07619.pdf)
 - [Twitter是怎么做推荐的？马斯克开源代码梳理](https://zhuanlan.zhihu.com/p/618667508) 
 - [微博推荐实时大模型的技术演进](https://mp.weixin.qq.com/s/wRi0YJLpru5M1My0H2Ww0w)
-- 

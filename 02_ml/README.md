@@ -1,5 +1,5 @@
 # 机器学习
-> 平时注意构建知识体系，通过读论文和做实验不断为知识体系添砖加瓦。本章侧重理论与实践，系统设计参考[机器学习系统设计](../03_system/03_ml/README.md)
+> 平时注意构建知识体系，读论文和做实验不断为知识体系添砖加瓦。本章侧重理论与实践，系统设计参考[3.3机器学习系统设计](../03_system/03_ml/README.md)
 
 
 ## 1. 面试要求
@@ -22,7 +22,7 @@
   - A generative model will learn categories of data while a discriminative model will simply learn the distinction between different categories of data. 
   - Discriminative models will generally outperform generative models on classification tasks. Discriminative model learns the predictive distribution p(y|x) directly while generative model learns the joint distribution p(x, y) then obtains the predictive distribution based on Bayes' rule.
 
-- The bias-variance tradeoff is a central problem in supervised learning
+- The bias-variance tradeoff
   - Ideally, one wants to choose a model that both accurately captures the regularities in its training data, but also generalizes well to unseen data. Unfortunately, it is typically impossible to do both simultaneously. 
   - High-variance learning methods may be able to represent their training set well but are at risk of overfitting to noisy or unrepresentative training data. 
   - In contrast, algorithms with high bias typically produce simpler models that don't tend to overfit but may underfit their training data, failing to capture important regularities.
@@ -41,16 +41,19 @@
 - 怎么解决样本不平衡问题
   - [https://imbalanced-learn.org/en/stable/user_guide.html](https://imbalanced-learn.org/en/stable/user_guide.html)
   - 评价指标：AP(average_precision_score)
-  - downsampling: faster convergence, save disk space, calibration(=upweight?)
+  - downsampling: faster convergence, save disk space, calibration. 样本多少可继续引申到样本的难易
   - upweight: every sample contribute the loss equality
   - long tail classification，只取头部80%的label，其他label mark as others
   - 极端imbalance，99.99% 和0.01%，outlier detection的方法
-  - 样本多少可继续引申到样本的难易
 
 - 怎么解决数据缺失的问题
   - [How to Handle Missing Data](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4)
 
 - 怎么解决类别变量中的高基数特征 high-cardinality
+  - Feature Hashing
+  - Target Encoding
+  - Clustering Encoding
+  - Embedding Encoding
 
 - 如何选择优化器
   - MSE, loglikelihood+GD

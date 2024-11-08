@@ -1,7 +1,7 @@
 # News feed
 
 News is an inherently diverse category, spanning various topics and catering to a wide array of user types and personas, such as adults, business professionals, general readers, or specific cohorts with unique interests
-- 时效性
+> personalization accuracy, 时效性
 
 
 ## 1. requirements
@@ -15,9 +15,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 - Are there specific user segments or contexts we should consider (e.g., user demographics)?
 - Do we have negative feedback features (such as hide ad, block, etc)?
 - What type of user-ad interaction data do we have access to can we use it for training our models?
-- Do we need continual training?
 - How do we collect negative samples? (not clicked, negative feedback).
-- Is personalization needed? Yes
 
 
 **目标类**
@@ -60,7 +58,7 @@ By observing user behavior, such as the articles they read and the time they spe
 
 ## 6. evaluation
 - offline
-- online
+- online: A/B testing
   - DAU和留存
 
 
@@ -68,6 +66,7 @@ By observing user behavior, such as the articles they read and the time they spe
 
 
 ## 8. monitor and maintenance
+- Do we need continual training?
 
 
 ## cold start
@@ -91,4 +90,5 @@ Additionally, asking users to list the specific topics they are interested in ca
 - [交互式推荐在外卖场景的探索与应用](https://mp.weixin.qq.com/s/s7yoJXgc_7txSooeuE-3sg)
 - [深度召回在飞猪旅行推荐系统中的探索和实践](https://mp.weixin.qq.com/s/AyMmfixX8rXUgGIf94uBkw)
 - [Personalized News Recommendation: Methods and Challenges](https://arxiv.org/pdf/2106.08934)
--
+- [https://github.com/datawhalechina/fun-rec](https://github.com/datawhalechina/fun-rec)
+- 

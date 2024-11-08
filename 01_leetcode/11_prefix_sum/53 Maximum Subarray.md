@@ -65,7 +65,7 @@ class Solution:
 
 [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)
 
-- 前缀和
+- 数据有正有负: 前缀和
 ```python
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
@@ -74,12 +74,12 @@ class Solution:
 
         prefix_sum = 0
         prefix_count_dict = collections.defaultdict(int)
-        prefix_count_dict[0] = 1  # 注意初始化, 自身=k
+        prefix_count_dict[0] = 1  # 注意初始化, 当自身元素就等于k时
 
         res = 0
         for num in nums:
             prefix_sum += num
-            res += prefix_count_dict[prefix_sum - k]   # 注意和dict更新的顺序会影响结果
+            res += prefix_count_dict[prefix_sum - k]   # 注意和下面一句dict更新的先后顺序会影响结果
 
             prefix_count_dict[prefix_sum] += 1
         return res

@@ -4,7 +4,7 @@
 
 ## solution
 
-- 思路的关键利用好已知条件: 有且只有两个
+- 利用好已知条件: 有且只有两个
 
 ```python
 class Solution:

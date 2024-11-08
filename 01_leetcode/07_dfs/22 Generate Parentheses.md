@@ -18,7 +18,7 @@ class Solution:
             res.append(''.join(path))
             return
 
-        if left < n:  # 左右条件是关键
+        if left < n:  # 左右条件是关键, 普通回溯模版里可能是通过for循环逐个加，但括号只分别考虑左和右
             path.append('(')
             self.dfs(left + 1, right, n , path, res)
             path.pop()  # 这里，为什么在加入右上面就pop

@@ -14,6 +14,10 @@
 
 ## 2. task/pipeline
 
+预测目标
+- 是否点击
+- 停留时间(dwell time), 可转化为t/(t+1)来逼近sigmoid函数，t很大时接近1；很小时接近0
+
 
 ## 3. data collection
 
@@ -26,7 +30,7 @@
 
 ## 6. Evaluation
 - offline
-- online: A/B testing
+- online: A/B testing holdout canary
 
 
 ## 7. Deploy & Serving
@@ -35,6 +39,11 @@
 
 
 ## 8. Monitor & Maintenance
+
+
+## 问答
+冷启动的item
+- 双塔可以采用default embedding, 而不是random initial
 
 
 ## reference

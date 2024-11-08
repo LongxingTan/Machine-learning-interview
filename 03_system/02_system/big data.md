@@ -30,3 +30,5 @@ Azkaban: 定时执行计算任务
 - [https://www.1point3acres.com/bbs/thread-1061061-1-1.html](https://www.1point3acres.com/bbs/thread-1061061-1-1.html)
 - [MapReduce: Simplified Data Processing on Large Clusters](https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
 - [Bigtable: A Distributed Storage System for Structured Data](https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf)
+- [Big Data Analytics Options on AWS](https://docs.aws.amazon.com/whitepapers/latest/big-data-analytics-options/welcome.html)
+- [Introduction to SQL in BigQuery](https://cloud.google.com/bigquery/docs/introduction-sql)

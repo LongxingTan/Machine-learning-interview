@@ -1,9 +1,10 @@
 # Youtube视频搜索
 
 ## 1. requirements
+> 搜索的核心是relevance
 
 - What is the primary (business) objective of the search system?
-- What are the specific use cases and scenarios where it will be applied?
+- What are the specific use cases and scenarios where it will be applied? general search or vertical domain search
 - What are the system requirements (such as response time, accuracy, scalability, and integration with existing systems or platforms)?
 - What is the expected scale of the system in terms of data and user interactions?
 - Is their any data available? What format?
@@ -45,7 +46,7 @@ loss
 - Offline
   - Precision@k, mAP, Recall@k, MRR
   - we choose MRR (avg rank of first relevant element in results) due to the format of our eval data <video, text> pair
-- Online
+- Online(A/B test)
   - CTR: problem: doesn't track relevancy, click baits
   - video completion rate: partially watched videos might still found relevant by user
   - total watch time
@@ -53,7 +54,6 @@ loss
 
 
 ## 7. deployment and prediction service
-- A/B test
 - Scaling
 
 

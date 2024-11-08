@@ -1,6 +1,7 @@
 # System design
 
-> 机器学习工程师MLE主要参考[机器学习系统设计](./03_ml)
+> 机器学习工程师MLE 主要参考[机器学习系统设计](./03_ml)
+> junior engineer 主要参考[OOD设计](./01_ood)
 
 
 ## 1. 面试过程
@@ -9,6 +10,8 @@
 - 先花时间沟通清楚需求，分析需求中的重点与难点，从big picture开始
 - 讲述时采用框架思维，并在每一块都尽量展现自己思维的广度和深度.主动给面试官多个选项和自己的倾向来说明trade-off
 - 注意比较不同的 option 的优劣trade-off，然后再提出自己的 proposal，过程中传达出strong signal
+- tell the interviewer what you plan to do next
+
 
 ## 2. 基础知识
 

@@ -21,3 +21,8 @@ class Solution:
 ```
 时间复杂度：O(n) <br>
 空间复杂度：O(1)
+
+
+## follow up
+
+[1653. Minimum Deletions to Make String Balanced](../05_stack_queue/1249.%20Minimum%20Remove%20to%20Make%20Valid%20Parentheses.md)
