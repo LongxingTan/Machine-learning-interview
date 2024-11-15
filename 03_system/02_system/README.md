@@ -1,16 +1,16 @@
 # 系统设计
 
-1. 理解系统设计需求，需要明确系统所用于何种商业目的，要求的功能&技术，来成功定义面试官内心的“标答” 【功能性需求】
-2. 明确所设计系统需求的资源, 例如分析QPS 【非功能性需求】
+- 理解系统设计需求，需要明确系统所用于何种商业目的，要求的功能&技术，来成功定义面试官内心的“标答” 【功能性需求】
+- 明确所设计系统需求的资源, 例如分析QPS 【非功能性需求】
   - latency sensitive的场景，要避免使用msg queue
-3. 画出关系清晰的架构图，搞清楚service怎么划分
+- 画出关系清晰的架构图，搞清楚service怎么划分
   - high level design
-4. 设计数据结构与存储、核心子服务、接口等，接上database
+- 设计数据结构与存储、核心子服务、接口等，接上database
   - 技术选型：SQL vs No-SQL，Sync VS Async，RPC VS MQ等技术选择
-5. 明确所设计系统的可扩展性、容错性、延迟要求等
+- 明确所设计系统的可扩展性、容错性、延迟要求等
   - 扩展: 加缓存，数据库读写分离，数据库 sharding 等等
   - 瓶颈: 一般都在数据库
-6. 解决缺陷并处理可能遇到的问题
+- 解决缺陷并处理可能遇到的问题
 
 
 ## Template
@@ -23,6 +23,12 @@
 
 
 ## 常见面试
+- Write Heavy System, Read Heavy System, Scheduler System, Strong Consistency System
+- AD Click Aggregator
+- Web Crawler (e.g. Google)
+- Ticketmaster
+- LeetCode
+- Leaderboard
 - Design a URL shortener (e.g. Bitly)
 - Design a video watching website (e.g. YouTube)
 - Design a chatting service (e.g. Telegram, Slack, Discord)
@@ -31,7 +37,6 @@
 - Design a photo sharing service (e.g. Flickr, Pinterest)
 - Design an e-commerce website (e.g. Amazon, eBay)
 - Design a jobs portal (e.g. LinkedIn, Indeed)
-- Design a web crawler (e.g. Google)
 - Design AI自动写作系统设计
 - Design Auction system
 - Design search autocomplete system
@@ -43,19 +48,19 @@
 - Design AirBNB platform
 - Design Ticket master
 - Design high velocity bank account platform
-- Design top10 scorersina large scale mobilegame
+- Design top10 scorer sina large scale mobile game
 - Design large scale real time chat platform
 - Design electric bike rental platform
 - Design grocery store order processing system
 - Design website building platform
-- Design giftcard system
+- Design gift card system
 - Design large scale devices location tracker
-- auto complete: trie database
+- Top K
 
-
-瓶颈，scale, tradeoff
 
 ## High level design
+> 瓶颈，scale, tradeoff
+
 client -> load balancer -> web service/API -> memory cache -> DB
 
 web/mobile -> HAproxy/ELB -> API Gateway -> Nginx server/Kube deployment/REST -> Redis -> MySQL
@@ -135,6 +140,14 @@ NOSQL
 
 
 ## Reference
+**精读**
+- [Jordan has no life](https://www.youtube.com/@jordanhasnolife5163/videos)
+- [https://blog.bytebytego.com/?sort=top](https://blog.bytebytego.com/?sort=top)
+- [grokking-the-system-design-interview](https://www.educative.io/courses/grokking-the-system-design-interview)
+- [system design primer](https://github.com/donnemartin/system-design-primer)
+- [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
+
+**扩展**
 - Web Application and Software Architecture 101
 - [Uber tech blog](https://www.uber.com/en-SE/blog/)
 - [pinterests tech blog](https://medium.com/pinterest-engineering)
@@ -147,7 +160,6 @@ NOSQL
 - [https://github.com/InterviewReady/system-design-resources](https://github.com/InterviewReady/system-design-resources)
 - [https://rajat19.github.io/system-design/pages/guide.html](https://rajat19.github.io/system-design/pages/guide.html)
 - [https://time.geekbang.org/column/article/6458](https://time.geekbang.org/column/article/6458)
-- [https://blog.bytebytego.com/?sort=top](https://blog.bytebytego.com/?sort=top)
 - [https://soulmachine.gitbooks.io/system-design/content/cn/](https://soulmachine.gitbooks.io/system-design/content/cn/)
 - [System Design Introduction For Interview.](https://www.youtube.com/watch?v=UzLMhqg3_Wc)
 - [crack-the-system-design-interview](https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview)
@@ -165,3 +177,4 @@ NOSQL
 - [Design fb-live-comments](https://www.hellointerview.com/learn/system-design/answer-keys/fb-live-comments)
 - [Dynamo: Amazon’s Highly Available Key-value Store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 - [https://github.com/preslavmihaylov/booknotes/tree/master/system-design/system-design-interview](https://github.com/preslavmihaylov/booknotes/tree/master/system-design/system-design-interview)
+- [https://engineeringblog.yelp.com/](https://engineeringblog.yelp.com/)

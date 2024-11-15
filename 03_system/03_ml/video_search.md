@@ -1,19 +1,27 @@
 # Youtube视频搜索
-
-## 1. requirements
 > 搜索的核心是relevance
 
-- What is the primary (business) objective of the search system?
+
+## 1. requirements
+
+**产品&场景**
 - What are the specific use cases and scenarios where it will be applied? general search or vertical domain search
+- Do we need consider **Personalization**? not required
+- the video + the video title/description
+
+**目标**
+- What is the primary (business) objective of the search system?
+
+**约束**
+- Is their any data available? What format?
 - What are the system requirements (such as response time, accuracy, scalability, and integration with existing systems or platforms)?
 - What is the expected scale of the system in terms of data and user interactions?
-- Is their any data available? What format?
-- Can we use video metadata? Yes
-- Do we need consider **Personalization**? not required
 - How many languages needs to be supported?
 
 
-## 2. pipeline
+## 2. ML task & pipeline
+任务：利用历史交互来推荐用户可能交互的item
+顶层设计：query转化为embedding, video可以转化为整体embedding 或分模态的多个embedding，根据对比学习进行为微调，推理时取最近临
 
 ![](../../.github/assets/03ml-vsearch-pipe.png)
 
@@ -21,6 +29,11 @@
 
 
 ## 3. data collection
+
+| Query   | Video   |
+|---------|---------|
+| Query 1 | Video 1 |
+| Query 2 | Video 2 |
 
 
 ## 4. feature
@@ -58,6 +71,9 @@ loss
 
 
 ## 8. monitoring and maintenance
+
+
+## 9. 优化与问答
 
 
 ## reference

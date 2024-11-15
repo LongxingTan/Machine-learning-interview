@@ -60,3 +60,4 @@
 - [Hive 优化](https://zhuanlan.zhihu.com/p/102475087)
 - [https://github.com/siqichen-usc/LeetCode-SQL-Summary](https://github.com/siqichen-usc/LeetCode-SQL-Summary)
 - Mosh SQL course
+- [platform.stratascratch.com](platform.stratascratch.com)

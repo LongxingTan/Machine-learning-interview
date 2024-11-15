@@ -1,6 +1,6 @@
 # System design
 
-> 机器学习工程师MLE 主要参考[机器学习系统设计](./03_ml)
+> 机器学习工程师MLE 主要参考[机器学习系统设计](./03_ml), 
 > junior engineer 主要参考[OOD设计](./01_ood)
 
 
@@ -8,7 +8,7 @@
 
 - 面试者要自己主导整个流程和对话，多说(framework、bullet point、one sentence summary first)，多自己主动找反馈
 - 先花时间沟通清楚需求，分析需求中的重点与难点，从big picture开始
-- 讲述时采用框架思维，并在每一块都尽量展现自己思维的广度和深度.主动给面试官多个选项和自己的倾向来说明trade-off
+- 讲述时采用框架思维，并在每一块都尽量展现自己思维的广度和深度. 主动给面试官多个选项和自己的倾向来说明trade-off
 - 注意比较不同的 option 的优劣trade-off，然后再提出自己的 proposal，过程中传达出strong signal
 - tell the interviewer what you plan to do next
 
@@ -38,9 +38,6 @@
 
 
 ## 3. 复习资料
-- [grokking-the-system-design-interview](https://www.educative.io/courses/grokking-the-system-design-interview)
-- [system design primer](https://github.com/donnemartin/system-design-primer)
-- [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
 - [CMU 15213 Introduction to Computer Systems](https://www.cs.cmu.edu/~213/)
 - [MIT 6.824 Distributed Systems](https://pdos.csail.mit.edu/6.824/)
 - [CMU 15721: advance database](https://15721.courses.cs.cmu.edu/)
@@ -50,8 +47,3 @@
 - [https://learn.microsoft.com/en-us/azure/architecture/patterns/](https://learn.microsoft.com/en-us/azure/architecture/patterns/)
 - [https://www.youtube.com/@SDFC/videos](https://www.youtube.com/@SDFC/videos)
 - [https://systemdesign.one/categories/](https://systemdesign.one/categories/)
-
-
-### Blog
-
-- [https://engineeringblog.yelp.com/](https://engineeringblog.yelp.com/)

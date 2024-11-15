@@ -342,6 +342,12 @@ class Solution:
 
 ```
 
+Task scheduler
+- multiple ec2 machine 处理 task，每个machine 能同时处理10个jobs，then we want to have an algorithm that when can we start for the next job
+```python
+# multiple heap
+```
+
 
 ### 拓扑排序类
 

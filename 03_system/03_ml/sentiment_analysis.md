@@ -3,7 +3,7 @@
 ## 1. requirements
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 ![](../../.github/assets/03ml-sentiment-pipe.png)
 
@@ -34,7 +34,11 @@
 - feature的ABtest怎么做
 
 
-## 7. deploy and serving
+## 7. deploy & serving
+- dynamic batching
+
+
+## 8. Monitor & maintenance
 
 
 ## 问答
@@ -50,3 +54,5 @@
 - [System Design of Extreme Multi-label Query Classification using a Hybrid Model](https://sigir-ecom.github.io/ecom2019/ecom19Papers/paper19.pdf)
 - [Query理解在美团搜索中的应用 - DataFunTalk的文章 - 知乎](https://zhuanlan.zhihu.com/p/370576330)
 - [How to Fine-Tune BERT for Text Classification?](https://arxiv.org/pdf/1905.05583)
+- [How We Scaled Bert To Serve 1+ Billion Daily Requests on CPUs](https://medium.com/@quocnle/how-we-scaled-bert-to-serve-1-billion-daily-requests-on-cpus-d99be090db26)
+- [FastFormers: Highly Efficient Transformer Models for Natural Language Understanding](https://arxiv.org/abs/2010.13382)

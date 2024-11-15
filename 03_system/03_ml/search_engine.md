@@ -27,7 +27,7 @@
 - What is the expected scale of the system in terms of data and user interactions?
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 搜索，先对文档进行预处理并建立索引，根据用户查询，从索引中查询匹配，然后排序返回。
 
@@ -76,22 +76,23 @@ query understanding
 ## 5. model
 
 
-## query reformulation
+### query reformulation
 
 
 ## 6. evaluation
-offline
-online
+**offline**
+
+**online**
 - 相关性
 - 内容质量
 - 时效性
 - 个性化
 
 
-## 7. deploy and serving
+## 7. deploy & serving
 
 
-## 8. monitoring and maintenance
+## 8. monitoring & maintenance
 
 
 ## reference
@@ -102,3 +103,5 @@ online
 - [Embedding-based Retrieval in Facebook Search, KDD 2020](https://arxiv.org/pdf/2006.11632)
 - Poly-encoders: Transformer Architectures and Pre-training Strategies for Fast and Accurate Multi-sentence Scoring，ICLR 2020
 - Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval, ICLR 2021
+- [Listing Embeddings in Search Ranking](https://medium.com/airbnb-engineering/listing-embeddings-for-similar-listing-recommendations-and-real-time-personalization-in-search-601172f7603e)
+- 

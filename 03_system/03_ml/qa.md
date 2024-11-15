@@ -5,6 +5,7 @@
 - Task-Bot: 定义场景下一共需要哪些槽值（Slot），用户对话中提到了槽值，抽取记录下来，如果没提到的，就反问，直到槽值都填满了进行查询给出操作
 - generative/Seq2seq Bot: 完全生成式模型
 
+
 ## 1. requirements
 - 闲聊还是任务(业务型，知识型)
 - Close-domain QA 还是 Open-domain QA (海量文档，来回答一个事实性问题factoid questions)
@@ -12,11 +13,10 @@
 - 闭卷问答(closed-book QA)还是基于上下文的问答(in-context learning QA)
 - 多领域
 - 多语言
+- non-functional requirement: **latency** 和 **throughput**
 
-- non-functional 注重latency 和 throughput
 
-
-## 2. pipeline
+## 2. ML task & pipeline
 - 检索式（Retrieval），生成式（Generative），任务式
   - 检索式：主要思路是从对话语料库中找出与输入语句最匹配的回复，这些回复通常是预先存储的数据。
   - 生成式：主要思路是基于深度学习的Encoder-Decoder架构，从大量语料中习得语言能力，根据问题内容及相关实时状态信息直接生成回答话术。
@@ -58,6 +58,9 @@
 - 使用GPT4等模型进行打分
 
 
+## 6. deploy & serving
+
+
 ## 问答
 - 如何处理业务对话系统中的unexpected intent
   - 可继续阅读参考中rasa中的：Unexpected Intent Policy
@@ -76,3 +79,4 @@
 - [基于知识增强和预训练大模型的 Query 意图识别](https://mp.weixin.qq.com/s/lVGKwNDgaHLROPdN3XUmiw)
 - [NLP多轮对话如果做得足够好，会有哪些明朗的落地应用？ - 袋鼠猪的回答 - 知乎](https://www.zhihu.com/question/474271324/answer/2629631795)
 - [CMU11492-语音](https://espnet.github.io/espnet/notebook/)
+- [2018-从零开始搭建智能客服](https://www.sohu.com/a/228122295_355140)

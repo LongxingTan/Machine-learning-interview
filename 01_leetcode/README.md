@@ -1,22 +1,24 @@
-# Leetcode
-> leetcode在面试时常被认为是衡量CS水平的重要指标，因此很多公司需要好好刷题，精刷大于泛刷，熟练度大于题量
+# LeetCode
+> LeetCode在面试时常被认为是衡量CS水平的重要指标，精刷大于泛刷，熟练度大于题量
 
 
 ## 1. offline 刷题策略
-一般大厂的面试非常规范和模版化，严格按照标准评分，学会踩得分点和传达signal。想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此需要尽量提高熟练度。
+大厂的面试一般非常规范和模版化，严格按照标准评分，想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此需要尽量提高熟练度，并且踩对得分点和signal。
 
-- 1、初步掌握常见数据结构和算法，包括一些类型的解题模版
+- 1、初步掌握常见数据结构和算法，包括常见类型的解题模版
 - 2、按tag刷题，模版的基础上，不断强化练习。尝试多种解法实现
 - 3、按热度刷题，参加周赛，刷题量达到满意要求。结合问题交流、复杂度分析、头脑测试
-- 4、面试前，针对面试公司tag和最新面经进行重点练习。练习时边说边写
+- 4、练习边说边写，面试前，针对面试公司tag和最新面经进行重点练习。
 
 
 ## 2. online 面试解题过程
-除了快速给出bug free的代码，面试过程中的沟通交流也非常重要。做题前的寒暄适当精炼，个人和项目介绍不必随意展开，给做题留足时间。
+快速给出bug free代码外，面试过程中的沟通交流也非常重要。做题前的寒暄、个人和项目介绍不必随意展开，给做题留足时间。
+> 可结合 [https://blog.faangshui.com/p/how-to-talk-to-the-interviewer](https://blog.faangshui.com/p/how-to-talk-to-the-interviewer)
+
 
 - (1) 面试官出题
 - (2) 面试者读题并提问 **clarification questions**
-  - 有面试官会故意遗漏内容，不明白的地方一定问清楚。可以通过列举test case，确保真正理解问题并涵盖所有情况。
+  - 有面试官会故意遗漏内容，不明白的地方一定问清楚，而不是随意假设。可以通过列举test case，确保真正理解问题并涵盖所有情况。
   - 需求确定好之后，确认输入输出的类型和边界，input/output type, 特殊情况找没找到的时候返回什么
   - input element的范围
     - 数字： 全是正数或者全是负数 或者返回必须正数或负数
@@ -38,8 +40,8 @@
   - 可以询问：Am I on the right direction?
   - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最有可询问："Could we have a better solution?"  
   - 熟悉的题目也可以先说一下穷举/暴力做法，然后简单分析下重复操作或者引入高效的数据结构，从而引入到最优解
-  - 没有得到面试官认同你的算法之前不要着急动手写代码
-- (5) 面试者写代码实现算法，一定要确认好思路后才开始写
+  - 算法没有得到面试官认同前不要着急动手写代码
+- (5) 确认好思路后面试者写代码实现算法
   - 用什么数据结构，什么算法。讲思路的时候，一定说清楚为什么选择这个数据结构，结合有代表性的test case说明
   - During writing the code, whenever coming across edge cases, discuss with the interviewer about how to handle the edge case
 - (6) 跑测试实例验证代码正确
@@ -65,28 +67,24 @@
 [OA真题](https://github.com/perixtar/2024-Tech-OA)
 
 **Google**
-- LeetCode: 不按tag非原题, hard多(DP, DFS, Backtracking, Trie)，极其看重解决问题的思考过程，自己写test case。面经题仍然有助于准备
+- LeetCode: 非tag原题多，hard多(DP, DFS, Backtracking, Trie)，极其看重解决问题的思考过程，自己写test case。面经题仍有帮助
 
 **Meta**
 - LeetCode: tag高频，35分钟两道题, 看重结果bug free和最优解
 - ML system design: recommendation, video search, harmful content detection
 
 **Amazon**
-- LeetCode: Grind75, 20分钟一道
-- BQ: 每一轮BQ占30分钟+, 2个LP
+- LeetCode: Grind75， 20分钟一道
+- BQ: 每一轮BQ占30分钟+， 2个LP
 
 **Tiktok**
 - LeetCode: 不按tag
-- ML: 可能有国内面试习惯，深挖简历项目，讲清整个领域来龙去脉
+- ML: 可能有国内面试习惯，深挖简历项目，讲清领域来龙去脉
 
 
-## 4. 基础
+## 4. 准备
 
-**精读**
-- [https://blog.faangshui.com/p/how-to-talk-to-the-interviewer](https://blog.faangshui.com/p/how-to-talk-to-the-interviewer)
-
-
-### Python
+### 4.1 Python
 - 垃圾回收机制gc
 - 全局锁GIL
 - python里的list和dict是怎么实现的
@@ -94,25 +92,9 @@
 - [异步与协程](https://zhuanlan.zhihu.com/p/25228075)
 
 
-### CS基础
-- [Introduction to Computer Science - Harvard CS50x](https://cs50.harvard.edu/x/)
-- [Structure and Interpretation of Computer Programs - UC Berkeley CS 61A](https://cs61a.org/)
-- [How to Design Programs](https://book.douban.com/subject/30175977/)
-- [深入理解计算机系统 - CSAPP](https://book.douban.com/subject/5333562/)
-- [The Art of Computer Programming - TAOCP](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
-- [代码大全](https://book.douban.com/subject/1477390/)
-- [UNIX 编程艺术](https://book.douban.com/subject/11609943/)
-- [重构：改善既有代码的设计](https://book.douban.com/subject/4262627/)
+### 4.2 参考刷题列表
+> 重点: 刷透高频题
 
-
-### 数据结构和算法
-- [数据结构- 学堂在线 - 邓俊辉](https://next.xuetangx.com/course/THU08091000384/)
-- [算法 - Stanford](https://www.coursera.org/specializations/algorithms)
-- [Algorithms](https://book.douban.com/subject/1996256/)
-- [算法导论 - CLRS](https://book.douban.com/subject/20432061/)
-
-
-## 可参考刷题列表
 - [代码随想录](https://programmercarl.com/)
 - [LeetCode 101：和你一起你轻松刷题](https://github.com/changgyhub/leetcode_101/)
 - [blind75](https://leetcode.com/list/xi4ci4ig/)
@@ -126,3 +108,16 @@
 **online assessment**
 - [https://www.glassdoor.com/index.htm](https://www.glassdoor.com/index.htm)
 - [https://www.careercup.com/](https://www.careercup.com/)
+
+### 4.3 CS基础与DSA
+- [Introduction to Computer Science - Harvard CS50x](https://cs50.harvard.edu/x/)
+- [Structure and Interpretation of Computer Programs - UC Berkeley CS 61A](https://cs61a.org/)
+- [How to Design Programs](https://book.douban.com/subject/30175977/)
+- [深入理解计算机系统 - CSAPP](https://book.douban.com/subject/5333562/)
+- [The Art of Computer Programming - TAOCP](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
+- [代码大全](https://book.douban.com/subject/1477390/)
+- [UNIX 编程艺术](https://book.douban.com/subject/11609943/)
+- [重构：改善既有代码的设计](https://book.douban.com/subject/4262627/)
+- [算法 - Stanford](https://www.coursera.org/specializations/algorithms)
+- [Algorithms](https://book.douban.com/subject/1996256/)
+- [算法导论 - CLRS](https://book.douban.com/subject/20432061/)

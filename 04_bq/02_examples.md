@@ -293,8 +293,7 @@ Eventually, I was able to lead the project to completion on time without comprom
 > 主动采取行动的时刻
 
 
-## Describe a time when you insisted on doing something and it turned out to be wrong. What is the mistake you have made.
-
+## Describe a time when you insisted on doing something, and it turned out to be wrong. What is the mistake you have made.
 
 
 ## 来源与参考

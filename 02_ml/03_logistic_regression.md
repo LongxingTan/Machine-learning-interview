@@ -8,7 +8,7 @@ $$ y = \frac{1}{1+e^{-(w^{T} x + b)}} $$
 
 在二分类中，y_hat的含义是预测类别为1的概率为y_hat，相应的为0的概率为(1-y_hat)
 
-**对数损失函数logloss**
+**对数损失函数log loss**
 - `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`
 - cross entropy: `cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))`
 
@@ -16,9 +16,10 @@ $$ y = \frac{1}{1+e^{-(w^{T} x + b)}} $$
 - 多分类损失函数
 - PyTorch: `log_softmax + NLLLoss = CrossEntropyLoss`
 
-**KL散度**
-- 衡量两个分布的差异
+**KL散度** (Kullback-Leibler Divergence)
+- 衡量两个分布的差异 
 - 交叉熵就是 KL 散度加信息熵，而信息熵是一个常数
+$$ D_{KL}(p||q)=\sum_{x\in X} p(x)\log\frac{p(x)}{q(x)}=-\sum_{x\in X} p(x)[\log q(x) - \log p(x)] $$
 
 
 逻辑回归中，[损失函数对模型参数的梯度计算结果](https://www.python-unleashed.com/post/derivation-of-the-binary-cross-entropy-loss-gradient)形式上看起来与线性回归类似：
@@ -39,7 +40,9 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 
 ## 3. 最大熵法
 
-最大熵原理：对于概率模型，在所有可能分布的概率模型中，熵最大的模型是最好的模型
+最大熵原理：对于概率模型，在所有可能分布的概率模型中，熵最大的模型是最好的模型。熵用来形容一个系统的无序程度
+
+$$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
 
 
 ## 4. 最大后验法
@@ -54,17 +57,28 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 
 ## 6. naive bayes 朴素贝叶斯
 - 朴素贝叶斯的条件概率 P(X|Y=c) 服从高斯分布时，它计算出来的 P(Y=1|X) 形式跟逻辑回归一样
+- Pros
+  - Real time predictions: It is very fast and can be used in real time
+  - Scalable with Large datasets
+  - Insensitive to irrelevant features
+  - Multi class prediction is effectively done in Naive Bayes
+  - Good performance with high dimensional data(no. of features is large)
+- Cons
+  - Independence of features does not hold
+  - Bad estimator: Probability outputs from predict_proba are not to be taken too seriously
+  - Training data should represent population well
 
 
 ## 7. 问答
 - pros:
-    - interpretable and explainable method
-    - less prone to overfitting when using regulation
-    - applicable for multi-class predictions
+  - interpretable and explainable method
+  - less prone to overfitting when using regulation
+  - applicable for multi-class predictions
 
 - cons:
-    - assuming linearity between input and output
-    - can overfit with small, high dimensional data
+  - assuming linearity between input and output
+  - can overfit with small, high dimensional data
+  - High reliance on proper presentation of data
 
 - 正负样本不平衡
   - [欠采样（undersampling）和过采样（oversampling）会对模型带来怎样的影响？](https://www.zhihu.com/question/269698662/answer/350806067)
@@ -83,7 +97,9 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
   - LR数据较多时优于NB。NB假设前提是个体独立，无法处理词组
 
 - Logistic regression和SVM的区别
-  - loss的不同，以及输出的不同（一个是概率输出一个是score）
+  - 任务不同: 分类，SVM可以解决回归问题
+  - loss不同: BCE与hinge loss
+  - 输出不同: LR概率输出，SVM score
 
 - LR中连续特征为什么要做离散化
   - 数据角度：离散化的特征对异常数据有很强的鲁棒性；离散化特征利于进行特征交叉。
@@ -95,21 +111,19 @@ $$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
 
 ## 8. 代码
 
-- numpy手写一个logistic regression
-
 ```python
 import numpy as np
 from scipy.stats import norm
-
 np.random.seed(1)
-class Logistic_regression(object):
+
+class LogisticRegression(object):
     def __init__(self):
         self.w = None
         self.b = None
         self.epsilon = 1e-8
         self.activate=self.sigmoid
 
-    def fit(self,x,y):
+    def fit(self, x, y):
         batch_size, feature_size = x.shape
         self.w = np.random.random((feature_size, 1))
         self.b = np.random.random(1)
@@ -122,10 +136,7 @@ class Logistic_regression(object):
         prob=self.activate(np.dot(x,self.w)+self.b)
         return prob
 
-    def plot(self):
-        pass
-
-    def _gradient_descent(self,x, y,learning_rate=10e-4,epoch=100):
+    def _gradient_descent(self, x, y, learning_rate=10e-4, epoch=100):
         for i in range(epoch):
             y_pred = self.activate(np.dot(x, self.w) + self.b)
             loss = np.mean(-y * np.log(y_pred+self.epsilon) - (1 - y) * np.log(1 - y_pred+self.epsilon))
@@ -135,28 +146,24 @@ class Logistic_regression(object):
             self.b = self.b - learning_rate * b_gradient
             print('step:', i, 'Loss:', loss)
 
-    def sigmoid(self,input):
+    def sigmoid(self, input):
         return 1 / (1 + np.exp(-input))
 
     def __str__(self):
         return 'weights\t:%s\n bias\t:%f\n' % (self.w, self.b)
 
 def generate_data():
-    x0=np.hstack((norm.rvs(2,size=40,scale=2),
-                 norm.rvs(8,size=40,scale=3)))
-    x1 = np.hstack((norm.rvs(4, size=40, scale=2),
-                    norm.rvs(5, size=40, scale=2)))
-    x=np.transpose(np.vstack((x0,x1)))
-    y=np.vstack((np.zeros((40,1)),
-                 np.ones((40,1))))
-    #indices=np.random.shuffle(range(len(x)))
+    x0 = np.hstack((norm.rvs(2,size=40,scale=2), norm.rvs(8,size=40,scale=3)))
+    x1 = np.hstack((norm.rvs(4, size=40, scale=2), norm.rvs(5, size=40, scale=2)))
+    x = np.transpose(np.vstack((x0, x1)))
+    y = np.vstack((np.zeros((40,1)), np.ones((40,1))))    
     return x,y
 
 if __name__ == "__main__":
-    x,y=generate_data()
-    lr=Logistic_regression()
+    x,y = generate_data()
+    lr = LogisticRegression()
     lr.fit(x,y)
-    y_hat=lr.predict(x)
+    y_hat = lr.predict(x)
     print(y_hat)
     print(y)
 ```

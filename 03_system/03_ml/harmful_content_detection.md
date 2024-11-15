@@ -37,7 +37,7 @@ harmful content/weapon ads, copyright检测
 本题中，如何收集数据和label是比较关键的。可以先确认有没有annotated data，没有的话则先根据用户反馈(silver labels)，再根据人工审核(golden labels). 或者利用大模型进行合成或判断
 
 - platform: 人工审核
-- user feedback: report，dislike，comment
+- user feedback: report，dislike，comment, surfaced by user complaints
 - interaction: anomaly
 
 
@@ -101,4 +101,5 @@ harmful content/weapon ads, copyright检测
 - [https://www.youtube.com/watch?v=fVOEYvquKBI](https://www.youtube.com/watch?v=fVOEYvquKBI)
 - [How our content abuse defense systems work to keep members safe](https://www.linkedin.com/blog/engineering/trust-and-safety/how-our-content-abuse-defense-systems-work-to-keep-members-safe)
 - [DETECTING HARMFUL CONTENT ON ONLINE PLATFORMS: WHAT PLATFORMS NEED VS. WHERE RESEARCH EFFORTS GO](https://arxiv.org/pdf/2103.00153)
-- 
+- [https://github.com/alipay/YiJian-Community](https://github.com/alipay/YiJian-Community)
+- [Generative AI: Shaping a New Future for Fraud Prevention](https://www.infoq.com/articles/generative-ai-fraud-prevention/?topicPageSponsorship=ed11260b-6513-40ba-922f-aae7ac9f942c)

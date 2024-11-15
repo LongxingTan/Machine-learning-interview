@@ -14,7 +14,7 @@
 
 最小二乘法的理念是承认观测误差的存在，误差是围绕真值上下波动的，从几何角度看，当平方误差最小时即为真值。具体应用时，算法的目标是要求线性方程中未知权重w和b，当经验风险最小化时的权重认为是最优的。为了简化，我们经常在推导中忽略b，因为b可以认为存在一个常数列x=1对应的权重w的一个分量，不必单独另求。
 
-以下向量定义为列向量，注意不同步骤需要清楚定义"谁被看作是谁的函数"。
+以下向量定义为列向量，注意不同步骤需要清楚定义**谁被看作是谁的函数**
 
 $$ y=w^Tx +b $$
 
@@ -119,6 +119,9 @@ $$ w=argmax(P(w|X))=argmax(P(X|w).P(w)) $$
 $$ w=(X^TX+\lambda I)^{-1}X^TY $$
 
 ## 4. 贝叶斯线性回归与高斯过程回归
+贝叶斯线性回归要预测出一个关于y的分布来。稍微拓展一下贝叶斯线性回归到高斯过程回归(Gaussian Process Regression)
+
+贝叶斯线性回归最大的不同在于预测的不是关于w的点估计，而是w的分布，即w的期望和协方差。
 
 
 ## 5. 问答
@@ -203,7 +206,7 @@ class LinearRegression(object):
     def eval(self):
         pass
 
-    def predict(self,x):
+    def predict(self, x):
         y_hat = np.dot(x, self.w) + self.b
         return y_hat
 
@@ -212,7 +215,7 @@ class LinearRegression(object):
         plt.plot(x, y_pred, 'b.')
         plt.show()
 
-    def _gradient_descent(self,x,y,learning_rate=0.0001,epoch=100):
+    def _gradient_descent(self, x, y, learning_rate=0.0001, epoch=100):
         for i in range(epoch):
             y_hat = self.predict(x)  # => batch_size*1
             loss = np.dot((y_hat-y).T,(y_hat-y))
@@ -228,7 +231,6 @@ class LinearRegression(object):
 
 def generate_data():
     '''generate the examples to implement linear regression by numpy'''
-
     x = np.linspace(1, 30, num=30).reshape(-1, 3)
     x1 = np.ones(10).reshape(-1, 1)
     y = np.linspace(1, 10, num=10) + np.random.random(10)

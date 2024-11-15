@@ -14,7 +14,7 @@
 
 ## 5. model
 
-生成策略
+**生成策略**
 - Greedy
 - Beam Search
 - Random Sampling
@@ -24,6 +24,9 @@
 
 
 ## 6. evaluation
+
+
+## 7. deploy and serving
 
 
 ## reference

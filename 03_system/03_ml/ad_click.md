@@ -24,8 +24,12 @@
 - diversity, 不能把相似广告放一起
 - explicit negative feedback, multi-task ranking增加一个head, label是hide block
 
+**非功能**
+- scale
+- latency
 
-## 2. pipeline
+
+## 2. ML task & pipeline
 
 ![](../../.github/assets/03ml-ad-pipe2.png)
 
@@ -56,6 +60,7 @@ Labelling
 
 
 ## 4. feature
+
 ![](../../.github/assets/03ml-adclick-user.png)
 
 ![](../../.github/assets/03ml-adclick-ad.png)
@@ -91,11 +96,11 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 - Spend
 
 
-## 7. deployment and serving
+## 7. deployment & serving
 - A/B testing
 
 
-## 8. monitoring and maintenance
+## 8. monitoring & maintenance
 
 
 ## 问答
@@ -115,7 +120,9 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 
 
 ## reference
+- [Unpacking How Ad Ranking Works at Pinterest](https://www.infoq.com/articles/pinterest-ad-ranking-ai/?topicPageSponsorship=ed11260b-6513-40ba-922f-aae7ac9f942c)
 
+扩展
 - [On the Factory Floor: ML Engineering for Industrial-Scale Ads Recommendation Models](https://arxiv.org/abs/2209.05310)
 - [snap: Machine Learning for Snapchat Ad Ranking](https://eng.snap.com/machine-learning-snap-ad-ranking)
 - [架构设计之广告系统架构解密](https://zhuanlan.zhihu.com/p/300167370)

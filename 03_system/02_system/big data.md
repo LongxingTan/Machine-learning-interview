@@ -18,6 +18,44 @@ Spark SQL: 计算统计类标签
 Azkaban: 定时执行计算任务
 
 
+## Simple RDD 
+
+```python
+class InMemoryRDD:
+    def __init__(self, data):
+        self.data = data
+
+    def map(self, func):
+        """Applies a function to each element in the RDD."""
+        return InMemoryRDD([func(x) for x in self.data])
+
+    def filter(self, func):
+        """Filters elements in the RDD based on a predicate."""
+        return InMemoryRDD([x for x in self.data if func(x)])
+
+    def flatMap(self, func):
+        """Applies a function that returns an iterable and flattens the result."""
+        return InMemoryRDD([item for x in self.data for item in func(x)])
+
+    def collect(self):
+        """Returns the data as a list."""
+        return self.data
+
+    def reduce(self, func):
+        """Aggregates the elements of the RDD using a function."""
+        from functools import reduce
+        return reduce(func, self.data)
+
+    def count(self):
+        """Counts the number of elements in the RDD."""
+        return len(self.data)
+
+    def distinct(self):
+        """Removes duplicate elements."""
+        return InMemoryRDD(list(set(self.data)))
+```
+
+
 ## 参考
 
 - [udemy-mastering databricks & apache spark-build ETL data pipeline](https://www.bilibili.com/video/BV1LU4y1s7ac/)

@@ -1,6 +1,6 @@
 # Youtube 视频推荐
 
-## 1. 需求 requirements
+## 1. requirements
 
 **场景/功能类**
 - Use case
@@ -33,7 +33,7 @@
   - How many users? 100 million DAU
 
 
-## 2. 架构 architectural components
+## 2. ML task & pipeline
 
 根据需求转化为一个机器学习问题(类型，输入、输出-机器学习Label)，并给出high level的设计。
 
@@ -44,7 +44,7 @@
 - [3] Finally, the system must take into account additional constraints for the final ranking. For example, the system removes items that the user explicitly disliked or boosts the score of fresher content. Re-ranking can also help ensure diversity, freshness, and fairness.
 
 
-## 3. 数据收集 data collection
+## 3. data collection
 
 - Collect data on ad impressions, clicks, conversions, and user interactions.
 - Capture user behavior data on your website or platform to understand post-click engagement.
@@ -63,7 +63,7 @@
 - 排序负样本: 曝光未点击
 
 
-## 4. 特征 feature
+## 4. feature
 - 用户特征，item特征，场景特征
   - 用户：用户画像特征、用户统计特征、用户行为特征
   - item：
@@ -76,7 +76,7 @@
   - 内存数据库：用户画像(少，偏静态)、item画像(多，静态)、统计特征（用户少，item多，时效要求高）
 
 
-## 5. 模型 model
+## 5. model
 从简单可行的模型开始设计，不要追求fancy
 
 
@@ -140,7 +140,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - fairness and bias
 
 
-## 6. 评价 evaluation metrics
+## 6. evaluation
 
 - North star metric
   - Watch time, Other metrics : No. of photos watched, engaged with ( by clicking, commenting, liking etc.) DAU, WAU, MAU, Stickiness, Weekly retention, 30 day retention etc
@@ -177,7 +177,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - User behavior is generally unpredictable, and videos can become viral during the day. Ideally, we want to train many times during the day to capture temporal changes
 
 
-## 9. 问答
+## 9. 优化与问答
 
 - cold start
   - new users

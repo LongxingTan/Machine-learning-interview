@@ -25,7 +25,7 @@
 > 推荐系统的核心功能还是推荐的personalization accuracy，diversity
 
 - what is the product for which we have to build a recommendation system, How are we different from XX? Who is the producer/consumer
-- Homepage recommendation, session based next item recommendation, or related item recommendations
+- Homepage recommendation, session based next item recommendation (short term interest), or related item recommendations
 - Explicit feedback or Implicit feedback （即使有explicit, 一般也会选择implicit）
 - it's a new product, or we have some current product built already
 - the biggest goal of recommendation system is user engagement. Can I assume that to be the goal?
@@ -36,7 +36,7 @@
 
 
 ### Non-Functional requirement
-> scalability, low latency
+> 一定要clarify: scalability, low latency. 因为这两个non-functional requirement决定了后面怎么设计
 
 - MVP and Non-MVP
 - users should have a real time/ near real time / small latency experience Idempotency/ exact-once/ at-least-once/ at-most-once
@@ -72,6 +72,7 @@
 **特征**
 
 ![feature](../../.github/assets/03ml-reco-otto-sirus.png)
+
 [那些年，我们追过的 Feature](https://pyemma.github.io/Features-in-Recommendation-System/)
 
 - dense feature
@@ -198,6 +199,11 @@
   - **real time or batch**, Batch Prediction Versus Online Prediction
 - 怎么上线？
   - A/B testing, metric
+    - setup A/B testing
+    - control group (current system), treatment (system w/ our new model)
+    - use a canary release, start with 99% control and 1% treatment
+    - compare the key business metrics between the two groups (conversion rate etc.)
+    - slowly ramp up the traffic in the treatment group
   - 热启动与冷启动
   - 老汤模型的本质，是样本空间不一致导致的公平性问题
     - 方案一：回滚历史数据，对齐样本空间

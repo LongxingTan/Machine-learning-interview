@@ -22,16 +22,27 @@ NLP包括自然语言理解和自然语言生成，多个方向如文本分类�
 
 
 ## 2. 模型
-传统: BOW, tfidf, word2vec, crf
-encoder-decoder：BART，T5
-encoder: BERT，
-decoder-only：GPT3，Codex，PALM，Galactica，Chinchilla，LLaMA，OPT，BLOOM，Gopher
+**传统** 
+- BOW
+- tfidf
+- word2vec
+- crf
+
+**encoder-decoder**
+- BART
+- T5
+
+**encoder**
+- BERT
+- XLNet
+
+**decoder**
+- GPT3
+- PALM，
+- LLaMA
 
 
-### Bag of words
-
-
-### tfidf / BM25
+### 2.1 tfidf / BM25
 - [geeksforgeeks](https://www.geeksforgeeks.org/tf-idf-model-for-page-ranking/)
 
 term-frequency: w represents a word, d means the document
@@ -103,23 +114,25 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
     return tfidf_vector
 ```
 
-### word2vec/glove/fasttext
+### 2.2 word2vec/glove/fasttext
 - word2vec: 本质上是词的共现
 - 缺点: 
   - 静态表征(contextless word embeddings). 训练完成做推理时, 每个token的表示与上下文无关
   - 一词多义：disambiguate words with multiple meanings
-- 霍夫曼树
-- 负采样
+- Hierarchical Softmax: 霍夫曼树， n分类变成 log(n) 次二分类
+- Negative Sampling 负采样
+  - 基于词频的采样，w^(0.75)
+  - 负样本中选取一部分来更新，而不是更新全部的权重
 
 
-### LDA
+### 2.3 LDA
 
 
-### CRF
-- 
+### 2.4 CRF
+- CRF 是一个序列化标注算法，接收一个输入序列，输出目标序列，可以被看作是一个 Seq2Seq 模型
 
 
-### Transformer
+### 2.5 Transformer
 - Transformer时代几大模型范式, BERT: encoder-only, GPT: decoder-only, T5: encoder-decoder, GLM: prefix-lm
 - 预训练任务：Masked Language Model 和 Next Sentence Predict(Autoregressive)
 - bert下游任务
@@ -136,7 +149,7 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
 **RoBERTa**
 - 调了更好的版本的BERT
 - 预训练，无NSP任务
-- 动态Mask
+- 动态Mask: 训练数据复制多份，每份采用不同的随机挑选 token 进行掩码
 - 更大的词汇表
 
 **XLNet**
@@ -149,17 +162,14 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
 - Loss: Embedding Layer Distillation, Transformer Layer Distillation, Prediction Layer Distillation
 
 
-### GPT
+### 2.6 GPT
 - 自回归模型
 - GPT3: Zero-Shot Learning
 - gpt的四个下游任务
+- Emergent Ability
 
 
-### T5
-
-
-### GLM
-
+### 2.7 T5
 
 
 ## 3. 评价指标
@@ -182,7 +192,7 @@ BertScore
 对具体的应用方向应该建立和熟悉其发展脉络。
 
 
-### 文本分类
+### 4.1 文本分类
 
 知识点
 - word2vec
@@ -198,7 +208,7 @@ BertScore
   - 动态mask，ratio
 
 
-### 实体识别
+### 4.2 实体识别
 
 **信息抽取（Information Extraction）**
 - 序列标注（Sequence Labeling）
@@ -207,26 +217,26 @@ BertScore
   - UIE: 基于 prompt 的指针网络
 
 
-实体识别 NER
+**实体识别 NER**
 - Nested NER/ Flat NER
 - lower layers of a pre-trained LLM tend to reflect “syntax” while higher levels tend to reflect “semantics”
 
 
-关系抽取 RE
+**关系抽取 RE**
 - spert/ CasRel/[TPLinker](https://arxiv.org/abs/2010.13415)/GPLinker
 - 关系抽取后的结果：保存Neo4j
 - 嵌套->GP, 非连续->W2ner, 带prompt->UIE
 
 
-事件抽取 EE
+**事件抽取 EE**
 - djhee 和 plmee
 
 
-Entity Linking
-- 
+**Entity Linking**
 
 
-### 文本摘要 Text summarization
+
+### 4.3 文本摘要 Text summarization
 - 分为抽象式摘要（abstractive summarization）和抽取式摘要(extractive summarization)
 - 在抽象式摘要中，目标摘要所包含的词或短语会不在原文中，通常需要进行文本重写等操作进行生成；
 - 抽取式摘要，通过复制和重组文档中最重要的内容(一般为句子)来形成摘要。那么如何获取并选择文档中重要句子，就是抽取式摘要的关键。传统抽取式摘要方法包括Lead-3和TextRank，传统深度学习方法一般采用LSTM或GRU模型进行重要句子的判断与选择，可以采用预训练语言模型自编码BERT/自回归GPT进行抽取式摘要。
@@ -237,27 +247,27 @@ Entity Linking
 - BLEU
 
 
-### 关键词提取
+### 4.4 关键词提取
 
 key phrase generation
 - https://www.zhihu.com/question/21104071
 
 - NPChunker
 
-### 文本生成
+### 4.5 文本生成
 - beam search
 
 
 
 ## 5. 解决问题
 
-### 多语言模型 Multilingual
+### 5.1 多语言模型 Multilingual
 
 语言模型
 - 语言模型的常用评价指标是困惑度perplexity
 - 为多语言训练SentencePiece (SPM)
 
-### 长序列
+### 5.2 长序列
 
 
 ## 6. 问答
@@ -320,6 +330,18 @@ for i in range(num_merges):
     best = max(pairs, key=pairs.get) # 找到频率最高的字符对
     vocab = merge_vocab(best, vocab)
     print(best)
+```
+
+- positional encoding
+```python
+def get_positional_embedding(d_model, max_seq_len):
+    positional_embedding = torch.tensor([
+            [pos / np.power(10000, 2.0 * (i // 2) / d_model) for i in range(d_model)]  # i 的取值为 [0, d_model)
+            for pos in range(max_seq_len)]  # pos 的取值为 [0, max_seq_len)
+        )
+    positional_embedding[:, 0::2] = torch.sin(positional_embedding[:, 0::2])
+    positional_embedding[:, 1::2] = torch.cos(positional_embedding[:, 1::2])
+    return positional_embedding
 ```
 
 - beam search

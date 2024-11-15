@@ -102,7 +102,7 @@ class Solution:
             q = ['(']
             k = i + 1
 
-            while(q):  # 找到完整的括号和左子树
+            while(q):  # 找到整套的括号作为左子树、右子树的分割点
                 if s[k]=='(':
                     q.append('(')
                 elif s[k]==')':

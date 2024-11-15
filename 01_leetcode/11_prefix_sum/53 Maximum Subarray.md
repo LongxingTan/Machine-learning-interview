@@ -66,6 +66,8 @@ class Solution:
 [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/description/)
 
 - 数据有正有负: 前缀和
+  - follow up: 返回所有这样的subarray
+  - follow up: array变为一个矩阵
 ```python
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:

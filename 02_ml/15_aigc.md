@@ -7,26 +7,18 @@
 图像生成相关：文本生成图像，图像生成图像，文本生成视频，文本生成语音。GAN、扩散模型、图像生成、多模态生成等。
 
 
-分布式训练、蒸馏加速
-
-Python、Kubernetes、Docker、Kafka、Redis、MongoDB
-
-LORA，P-Tuning
-
-LLM基本原理和相关公开算法，如
-
-
-人机对话、知识图谱、机器翻译
-
-
 ## Stable Diffusion
-扩散模型
+[What are Diffusion Models?](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#forward-diffusion-process)
+
+**扩散模型**
+存在一系列高斯噪声（T轮），将输入图片x0变为纯高斯噪声xt。模型则负责将xt复原回图片x0
+  
 
 ![](../.github/assets/02ml-sd.png)
 
 - autoencoder (VAE)
 - U-Net
-- text-encoder, CLIP’s Text Encoder
+- text-encoder, CLIP Text Encoder
 
 
 ## 问答

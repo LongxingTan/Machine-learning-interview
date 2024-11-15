@@ -20,6 +20,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 
 **目标类**
 - What is the primary business objective of the system? (increase user engagement)
+- 多样性
 
 **约束类/non-functional**
 - What types of data do the posts include? (text, image, video)?
@@ -27,7 +28,7 @@ News is an inherently diverse category, spanning various topics and catering to 
 - How fast the system needs to be?
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 a default recommendation system based on their location and country can serve as a starting point. However, the primary focus should be on gathering signals from returning users to refine the algorithm's understanding of their preferences and homepage experience. This could include monitoring how much time they spend on specific news categories and soliciting feedback. The feedback mechanism should give users the option to indicate their preferences, such as whether they appreciate a particular recommendation or would rather avoid certain types of news. Given the sensitivity of news topics, especially in areas like war or other contentious subjects, providing users with the option to opt out of future recommendations in such categories is crucial.
 
@@ -62,21 +63,26 @@ By observing user behavior, such as the articles they read and the time they spe
   - DAU和留存
 
 
-## 7. deployment and serving
+## 7. deployment & serving
 
 
-## 8. monitor and maintenance
+## 8. monitor & maintenance
 - Do we need continual training?
 
 
-## cold start
+## 9. 问答&优化
+
+### bias
+
+
+### cold start
 
 it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience.
 When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily.
 Additionally, asking users to list the specific topics they are interested in can be a game-changer in addressing the 'cold start' problem, which occurs when users provide minimal initial interaction data.
 
 
-## 混排
+### 混排
 - 多题材混排
   - 先各自排序，再混排
 

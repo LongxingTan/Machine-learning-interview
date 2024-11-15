@@ -50,6 +50,8 @@ class Solution:
 [691. Stickers to Spell Word](https://leetcode.com/problems/stickers-to-spell-word/description/)
 
 ```python
+# https://zhuanlan.zhihu.com/p/462528746
+
 class Solution(object):
     def minStickers(self, stickers, target):
         m = len(stickers)

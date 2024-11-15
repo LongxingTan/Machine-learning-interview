@@ -9,7 +9,10 @@
 
 ## 1. ML部署
 
-场景: low latency high qps
+- low latency 
+- high qps
+- throughout
+
 
 ### strategies
 
@@ -86,7 +89,7 @@
 
 
 ## 5. 问答
-- 模型部署后，怎么检测模型流量
+- 模型部署后，怎么检测模型流量: 日志记录
 
 
 ## 参考
@@ -105,3 +108,5 @@
 - [模型部署优化学习路线是什么？ - Leslie的回答 - 知乎](https://www.zhihu.com/question/411393222/answer/2359479242)
 - [推荐系统线上Serving简介与C++代码实现 - Shard Zhang的文章 - 知乎](https://zhuanlan.zhihu.com/p/659652013)
 - [使用TensorFlow C++ API构建线上预测服务 - 篇1](https://mathmach.com/6d246b32/)
+- [https://github.com/cortexlabs/cortex](https://github.com/cortexlabs/cortex)
+- [https://github.com/ivanpanshin/flask_gunicorn_nginx_docker](https://github.com/ivanpanshin/flask_gunicorn_nginx_docker)

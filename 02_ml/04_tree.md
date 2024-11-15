@@ -17,7 +17,7 @@ entropy公式：
 
 $$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
 
-- 信息增益 Information Gain
+- 信息增益 Information Gain `Gain(D|A) = H(D) - H(D|A)`
 
 - 基尼系数 Gini impurity
 
@@ -25,38 +25,34 @@ $$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
 
 
 ## 2. adaboost
-
 - 损失函数exp
 - 对分类正确的样本降低权重，对错误分类的样本升高或者保持全中不变。在模型融合过程中，根据错误率对基分类器器进行加权融合，错误率低的分类器拥有更大的“话语权”
 
 
 ## 3. 随机森林
-
+- 有放回采样地选取n个样本，建立m个决策树分类器。多个分类器采用投票机制产生最终分类结果
+- 样本随机选择，特征随机选择
 - 损失函数：
-
 - 可以并行训练，不容易过拟合
 
 
 ## 4. 梯度提升树GBDT
-
 - GBDT拟合的是负梯度，下一棵树拟合的是前面的负梯度。当损失函数为平方损失的时候，负梯度正好为残差
 - 做分类任务时，GBDT内部每棵树是回归树，不论是回归还是分类任务
 - Importance is calculated for a single decision tree by the amount that each attribute split point improves the performance measure, weighted by the number of observations the node is responsible for
 - summing up how much splitting on each feature allowed you to reduce the impurity across all the splits in the tree
 
 
-
 ## 5. xgboost
 - XGBoost使用二阶泰勒展开(taylor expansion)表示梯度，即每棵树拟合的是二阶泰勒的梯度，相比GBDT的一阶泰勒展开、对梯度的表示更准确
 - 损失函数中显式加入了正则项，对叶子数目和叶子权重做惩罚
 - 特征重要性
-  - 'Split' contains numbers of times the feature is used in a model. 作为划分属性的次数, 默认值(导致一些ID类基数大容易成为重要特征)
-  - 'Gain' result contains total gains of splits which use the feature. 特征在作为划分属性时loss的降低量
-  - 'cover'，特征在作为划分属性时对样本的覆盖度
+  - `Split` contains numbers of times the feature is used in a model. 作为划分属性的次数, 默认值(导致一些ID类基数大容易成为重要特征)
+  - `Gain` result contains total gains of splits which use the feature. 特征在作为划分属性时loss的降低量
+  - `cover`，特征在作为划分属性时对样本的覆盖度
 - 基于预排序方法加速
 
 $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
-
 
 
 ## 6. lightgbm
@@ -69,6 +65,7 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 
 
 ## 7. catboost
+- 类别特征
 
 
 ## 8. 特征重要性
@@ -92,9 +89,7 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 
 - xgboost如何快速分裂
 
-
 - xgboost分类节点的依据
-
 
 - xgboost如何处理缺失值
   - 寻找split point的时候，忽略缺失值，该特征为missing的样本不进行遍历统计，只统计non-missing的样本，这个工程技巧减少了为稀疏离散特征寻找split point的时间开销

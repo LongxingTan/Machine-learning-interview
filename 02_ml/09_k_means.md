@@ -5,6 +5,10 @@ partitioning a dataset into k distinct clusters based on similarity measures. It
 
 
 ## 过程
+- 选择初始化的 k 个样本作为初始聚类中心
+- 针对数据集中每个样本, 计算它到 k 个聚类中心的距离并将其分到距离最小的聚类中心所对应的类中
+- 针对每个类别 ，重新计算它的聚类中心 （即属于该类的所有样本的质心）；
+- 重复上面 2 3 两步操作，直到达到某个中止条件（迭代次数、最小误差变化等
 
 
 ## 评价
@@ -19,6 +23,10 @@ partitioning a dataset into k distinct clusters based on similarity measures. It
 ## PCA
 
 - explained variance ratio
+- create new uncorrelated variables that successively maximize variance by solving an eigenvalue/eigenvector problem.
+- reduce the dimensionality of dataset, increase interpretability while minimize information loss
+- pros: no need of prior; reduce overfitting (by reduce #variables in the dataset); visualizable
+- cons: data standardization is a prerequisite; information loss
 
 
 ## 问答

@@ -3,7 +3,7 @@
 多模态任务主要有Align和Fuse两种方式，或称为Light fusion和Heavy fusion。把不同模态的特征映射到相同的向量空间的操作叫align。代表作是OpenAI的CLIP，Google的Align。用一个模型把不同模态的特征混在一起用来完成某项任务，叫做Fuse。代表作有微软的UNITER，OSCAR等。
 
 - Align 双塔
-  - 向量内积，CLIP和ALIGN。
+  - 向量内积，CLIP和ALIGN
 - Fusion 单塔
   - transformer, VLP, OSCAR, UNITER, VINFL
 
@@ -20,16 +20,24 @@
 
 ## 模型
 
-VILBERT
+**VILBERT**
 
-CLIP
+**[CLIP](https://github.com/openai/CLIP)**
+
+**DALL-E**
 
 ALBEF
+
 BLIP
 - Q-Former的作用是什么
 
+Diffusion
+
+### vLLM (vision LLM)
 LLAVA
 
 
 ## 参考
 - [大模型 | CLIP | BLIP | 损失函数代码实现 - 有点晕的文章 - 知乎](https://zhuanlan.zhihu.com/p/699507603)
+- [Meta Chameleon](https://github.com/facebookresearch/chameleon)
+- [Mono-InternVL](https://arxiv.org/abs/2410.08202)

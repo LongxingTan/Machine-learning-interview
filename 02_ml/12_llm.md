@@ -1,8 +1,10 @@
-# 大语言模型
-先了解和熟悉[深度学习](./05_deep_learning.md)与[自然语言理解](11_nlp.md)
+# 大语言模型LLM
+先了解和熟悉[深度学习](./05_deep_learning.md)与[自然语言理解](11_nlp.md)，本章之后可以继续查看[多模态](./14_multimodal.md)
 
 
 ## 1. scaling law
+[Transformer Math 101](https://blog.eleuther.ai/transformer-math/)
+
 - C(计算量) = 6 N(模型参数量) * D(数据集大小)
 - 基础：1个字节8比特，全精度(fp32)下，**1个参数** 32 byte = **4个字节**，半精度下1个参数等于2个字节
 - 1B 模型代表 1 billion参数，如果全精度，共需要 4 billion显存，也就是4G. 半精度需要2G显存。
@@ -22,16 +24,19 @@
 
 **LLaMa**
 - llama的self-attention和mlp中没有bias
-- norm 使用 rmsnorm 而不是 layernorm，少计算了均值
-- 激活 使用swiglu
+- norm 使用 rmsnorm 而不是 layernorm，少计算了均值. 使用 pre-norm
+- 激活函数 使用[swiglu](https://arxiv.org/abs/2002.05202)
+- 位置编码 使用[RoPE](https://arxiv.org/abs/2104.09864)
+- Multi-query Attention 和 [Grouped-Query Attention](https://arxiv.org/abs/2305.13245)
 
-
-**多模态**
-Diffusion/CLIP/BLIP/Llava
+**Mistral**
 
 
 **MOE**
 ```python
+import torch
+from torch import  nn
+
 class MoeLayer(nn.Module):
     def __init__(self, experts, gate, moe_args):
         super().__init__()
@@ -40,11 +45,9 @@ class MoeLayer(nn.Module):
         self.gate = gate
         self.args = moe_args
 
-    def forward(self, inputs: torch.Tensor):
-        # (m, seq_len, dim) --> (m * seq_len, dim)
-        inputs_squashed = inputs.view(-1, inputs.shape[-1])
-        # (m * seq_len, num_experts)
-        gate_logits = self.gate(inputs_squashed)
+    def forward(self, inputs: torch.Tensor):        
+        inputs_squashed = inputs.view(-1, inputs.shape[-1]) # (m, seq_len, dim) --> (m * seq_len, dim)        
+        gate_logits = self.gate(inputs_squashed) # (m * seq_len, num_experts)
         # (m * seq_len, num_experts_per_tok),
         weights, selected_experts = torch.topk(
             gate_logits, self.args.num_experts_per_tok)
@@ -62,14 +65,76 @@ class MoeLayer(nn.Module):
 ```
 
 **flash-attention**
-输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作
+通过矩阵分块计算以及减少内存读写次数的方式，提高注意力分数的计算效率
+- 输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作.
+
+
+**paged-attention**
+针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
+
+
+**RoPE**
+
+$$
+\langle f_g(c_m, m), f_k(c_n, n) \rangle = g(c_m, c_n, m - n)
+$$
+
+```python
+import torch
+
+class Rotary(torch.nn.Module):
+    def __init__(self, dim, base=10000):
+        super().__init__()
+        inv_freq = 1.0 / (base ** (torch.arange(0, dim, 2).float() / dim))
+        self.register_buffer("inv_freq", inv_freq)
+        self.seq_len_cached = None
+        self.cos_cached = None
+        self.sin_cached = None
+
+    def forward(self, x, seq_dim=1):
+        seq_len = x.shape[seq_dim]
+        if seq_len != self.seq_len_cached:
+            self.seq_len_cached = seq_len
+            t = torch.arange(x.shape[seq_dim], device=x.device).type_as(self.inv_freq)  # [max_len, 1]
+            freqs = torch.einsum("i,j->ij", t, self.inv_freq)  # [max_len, dim // 2]
+            emb = torch.cat((freqs, freqs), dim=-1).to(x.device)
+            self.cos_cached = emb.cos()[:, None, None, :]
+            self.sin_cached = emb.sin()[:, None, None, :]
+        return self.cos_cached, self.sin_cached
+
+
+def rotate_half(x):
+    x1, x2 = x[..., : x.shape[-1] // 2], x[..., x.shape[-1] // 2 :]
+    return torch.cat((-x2, x1), dim=x1.ndim - 1) 
+
+
+@torch.jit.script
+def apply_rotary_pos_emb(q, k, cos, sin):
+    # q, k: [seq, batch, heads, hdim]
+    return (q * cos) + (rotate_half(q) * sin), (k * cos) + (rotate_half(k) * sin)
+```
 
 
 ## 4. 训练
-### SFT
-in context learning
 
-高效参数微调 PEFT
+- limited GPU
+  - use fp16 (this speeds up training)
+  - use gradient_accumulation_steps (this simulates larger batch sizes)
+  - use gradient_checkpointing (this uses disk to save RAM)
+  - freeze model embeddings (this reduces weights to train)
+  - freeze some model layers (this reduces weights to train)
+  - use PEFT (this reduces weights to train)
+  - increase LR and decrease epochs (this reduces work)
+  - use smaller models (this reduces weights to train)
+
+### 4.1 pretrain
+> 数据清洗方法、pretrain数据配比、pretrain超参数、退火阶段
+
+
+### 4.2 SFT
+> task种类、sft数据量级、合成数据
+
+**高效参数微调 PEFT**
 
 - Prompt tuning
   - 固定模型前馈层参数，仅仅更新部分embedding参数即可
@@ -111,37 +176,18 @@ def lora_forward_matmul(x, W, W_A, W_B):
   return h
 ```
 
-### RLHF
-RLHF 与 RLAIF
+### 4.3 RLHF
+> - RLHF 与 RLAIF: better align with human preferences and reduce undesired outcomes in scenarios
+> - SFT负责Instruction following，RL强化helpfulness、honesty、safety偏好
+> - dpo / ppo 训练技巧, 相关模型参考[强化学习](./10_reinforcement.md)
 
-better align with human preferences and reduce undesired outcomes in scenarios
-
-SFT负责Instruction following，RL强化helpfulness、honesty、safety偏好
-
-
-Proximal Policy Optimization，近端策略优化
-- 两个网络，分别是Actor和Critic
+[https://github.com/OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)
 
 
-### 分布式训练
-DeepSpeed
-- 选择 ZeRO Optimizer 的不同阶段。阶段0、1、2和3分别指禁用、优化器状态分区、优化器+梯度状态分区和优化器+梯度+参数分区。
-Megatron
-
-- limited GPU
-  - use fp16 (this speeds up training)
-  - use gradient_accumulation_steps (this simulates larger batch sizes)
-  - use gradient_checkpointing (this uses disk to save RAM)
-  - freeze model embeddings (this reduces weights to train)
-  - freeze some model layers (this reduces weights to train)
-  - use PEFT (this reduces weights to train)
-  - increase LR and decrease epochs (this reduces work)
-  - use smaller models (this reduces weights to train)
-
-- 模型并行分为张量并行和流水线并行
-
-
-### Long context
+### 4.4 Long context
+- YaRN
+- HWFA
+- NTK
 
 
 ## 5. 评测
@@ -154,7 +200,9 @@ Megatron
 - [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling) 
 - dynamic batching, continuous batching, flash attention, quantization
 
-Flash Decoding
+**KV cache**
+
+**Flash Decoding**
 
 top_k llm token decoding
 ```python
@@ -190,24 +238,38 @@ sampled_token = top_k_sampling(logits, k=3)
 print("Sampled token index:", sampled_token)
 ```
 
-量化
+quantization 量化
 - Post training quantization(PTQ)
 - Quantization aware training(QAT)
+
+throughput 吞吐
+- 估算：单次推理时间 x 同时处理的请求数量
+
+**triton**
+- dynamic batching、concurrent execution、optimal model configuration、model ensemble、dali model 等策略来提升在线推理的性能
 
 
 ## 7. 应用与优化
 
-### prompt
+### 7.1 prompt
+- https://platform.openai.com/docs/guides/prompt-engineering
+- https://yiyan.baidu.com/learn
+- https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/
 
 
-### RAG
+### 7.2 in context learning
+- 通过展示数据形式，来激活预训练模型的能力
+- examples采样：从训练数据中选择与query语义相近的示例，效果会比较好
+
+
+### 7.3 RAG
 - 主要针对大语言模型的幻觉、数据时效性、数据安全问题
 - LangChain
 
 ![](../.github/assets/02ml-llm-rag.png)
 
 
-### Agents
+### 7.4 Agents
 
 
 
@@ -226,7 +288,7 @@ print("Sampled token index:", sampled_token)
 - 如何处理训练中的loss spike
   - [adam在大模型预训练中的不稳定性分析及解决办法 - 丁晖的文章 - 知乎](https://zhuanlan.zhihu.com/p/675421518)
 - 分布式训练
-- 知识幻觉
+- 知识幻觉(track and solve hallucination)
   - 数据(数据重复、Bias、时效性， 一对多的映射关系)，训练（Imperfect representation learning、Parametric knowledge bias）
 - 复读机问题/ 文本生成的重复问题
   - 多样性训练数据
@@ -283,6 +345,7 @@ print("Sampled token index:", sampled_token)
 - [LLM inference in C/C++](https://github.com/ggerganov/llama.cpp)
 - [LLM训练-pretrain - ybq的文章 - 知乎](https://zhuanlan.zhihu.com/p/718354385)
 - [LLM训练-sft - ybq的文章 - 知乎](https://zhuanlan.zhihu.com/p/809229182)
+- [https://github.com/princeton-nlp/LESS](https://github.com/princeton-nlp/LESS)
 
 
 **course**

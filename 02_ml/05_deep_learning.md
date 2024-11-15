@@ -60,7 +60,6 @@ def objective(x):
 def derivative(x):
 	return x * 2.0
 
-# gradient descent algorithm
 def gradient_descent(objective, derivative, bounds, n_iter, step_size):
 	# generate an initial point
 	solution = bounds[:, 0] + rand(len(bounds)) * (bounds[:, 1] - bounds[:, 0])
@@ -277,7 +276,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
   - 通过多个gate
 - 长距离依赖问题
 - 计算复杂度：
-  - LSTM: 序列长度*（hidden**2）
+  - LSTM: 序列长度 x（hidden**2）
 - RNN的inductive bias是sequentiality和time invariance，即序列顺序上的time-steps有联系，和**时间变换的不变性**（rnn权重共享）
 
 
@@ -286,8 +285,9 @@ def conv2d(inputs, kernels, bias, stride, padding):
   - encoder: embed + layer(self-attention, skip-connect, ln, ffn, skip-connect, ln) * 6
   - decoder: embed + layer(self-attention, cross-attention, ffn, skip-connect, ln) * 6
 
+
 - attention
-  - softmax(QK/sqrt(d))V
+  - $ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $
   - 通过使用key向量，模型可以学习到不同模块之间的相似性和差异性，即对于不同的query向量，它可以通过计算query向量与key向量之间的相似度，来确定哪些key向量与该query向量最相似。
   - kq的计算结果，形成一个（n，n）邻接矩阵，再与v相乘形成加权平均的消息传递
   - MLP-mixer提出的抽象，attention是token-mixing，ffn是channel-mixing
@@ -310,9 +310,10 @@ def conv2d(inputs, kernels, bias, stride, padding):
   - 绝对位置编码的案例（sinusoidal、learned）、相对位置编码的案例（T5、XLNet、DeBERTa、ALiBi等）、旋转位置编码（RoPE、xPos）
 
 - Positional Encoding/Embedding 区别
-  - 学习式(learned)和固定式(fixed)，
-  - 学习式：直接将位置编码当作可训练参数，比如最大长度为 512，编码维度为 768，那么就初始化一个 512×768 的矩阵作为位置向量，让它随着训练过程更新。BERT、GPT 等模型所用的就是这种位置编码
-  - 固定式：位置编码通过三角函数公式计算得出
+  - 学习式(learned)：直接将位置编码当作可训练参数，比如最大长度为 512，编码维度为 768，那么就初始化一个 512×768 的矩阵作为位置向量，让它随着训练过程更新。BERT、GPT 等模型所用的就是这种位置编码
+  - 固定式(fixed)：位置编码通过三角函数公式计算得出
+    - $ \begin{aligned} PE_{(pos,2i)} & = sin(pos/10000^{2i/d_{model}})\ \end{aligned} $
+    - $ \begin{aligned} PE_{(pos,2i+1)} & = cos(pos/10000^{2i/d_{model}}) \ \end{aligned} $
 
 - masking
   - Q*K结果上，加一个很大的负数，或乘？

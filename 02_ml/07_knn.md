@@ -83,7 +83,7 @@ def KNN(x_train, y_train, x_test, k):
     predict = dict[0][0]
     return predict
 
-x_train = [[73.84, 241.89], [68.78, 162.31]]
+x_train = [[73.8, 241.8], [68.7, 162.3]]
 y_train = [[1], [1]]
 print(KNN(x_train, y_train, x_test, k))
 ```

@@ -24,11 +24,13 @@
 ### nms
 
 
-## 5. metrics
+## 5. evaluation
 - Precision
 - calculated based on IOU threshold
 - AP: avg. across various IOU thresholds
 - mAP: mean of AP over C classes
+
+## 6. deploy & serving
 
 
 ## 问答

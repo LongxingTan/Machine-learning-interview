@@ -1,22 +1,22 @@
 # 无监督学习
 
 ## 1. 统计学习
-Clustering
+**Clustering**
 - Centroid models: [k-means clustering](./09_k_means.md)
 - Connectivity models: Hierarchical clustering
 - Density models: DBSCAN
 
-Gaussian Mixture Models
+**Gaussian Mixture Models**
 - EM是解KMS算法的方法，EM还可以解其他问题例如GMM
 
-Latent semantic analysis
+**Latent semantic analysis**
 
-Hidden Markov Models (HMMs)
+**Hidden Markov Models (HMMs)**
 - Markov processes
 - Transition probability and emission probability
 - Viterbi algorithm
 
-Dimension reduction techniques
+**Dimension reduction techniques**
 - Principal Component Analysis (PCA)
 - Independent Component Analysis (ICA)
 - T-sne

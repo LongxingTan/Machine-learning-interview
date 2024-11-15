@@ -3,7 +3,7 @@
 ## 1. requirements
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 ![](../../.github/assets/03ml-qa-kbqa.png)
 

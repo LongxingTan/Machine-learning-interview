@@ -13,6 +13,12 @@
 
 ## 1. 范围
 
+结合纵向和横向去做题目分类总结。例如，我们模拟一下FB groups 可以大致问：
+- 我们想要新增某个feature 让用户可以在回文的时候使用表情包，该不该做？
+- 我们想要improve comments per post, 该怎麽做？
+- 我们看到comments per post下降了，该怎麽办
+- 我们想要build a model 让FB groups的贴文出现在个人的newsfeed, 该怎麽做？
+
 ### 纵向-题目类型
 - Launch or not: 公司想要针对产品某部分优化，开发某种新功能，该不该做？
 - Investigation: 某个产品的表现不如预期，某指标下降，该怎麽调查釐清？
@@ -26,12 +32,6 @@
 - FB Newsfeed
 - FB ads
 - Messenger
-
-结合纵向和横向去做题目分类总结，就非常容易了。例如，我们模拟一下FB groups 可以大致问：
-- 我们想要新增某个feature 让用户可以在回文的时候使用表情包，该不该做？
-- 我们想要improve comments per post, 该怎麽做？
-- 我们看到comments per post下降了，该怎麽办
-- 我们想要build a model 让FB groups的贴文出现在个人的newsfeed, 该怎麽做？
 
 
 ## 2. 回答框架Framework
@@ -105,4 +105,5 @@ When would you decide the time to ingest into newsfeed?
 - [Meta DSA 全套过经+Timeline](https://www.1point3acres.com/bbs/thread-1042322-1-1.html)
 - [推荐系统实用分析技巧 - 纳米酱的文章 - 知乎](https://zhuanlan.zhihu.com/p/188228577)
 - [allocation budget](https://blogboard.io/blog/data-science-in-marketing-optimization/)
-- 
+- [https://medium.com/stellarpeers](https://medium.com/stellarpeers)
+- [https://www.tryexponent.com/questions?page=1&type=product-design](https://www.tryexponent.com/questions?page=1&type=product-design)

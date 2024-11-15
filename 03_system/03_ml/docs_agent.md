@@ -3,13 +3,16 @@
 ## 1. requirements
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 
 ## 3. data collection
 
 
 ## 4. model
+
+
+## 5. evaluation
 
 
 ## reference

@@ -1,6 +1,6 @@
 # [Leadership Principles](https://www.amazon.jobs/content/en/our-workplace/leadership-principles)
 
-围绕亚麻14条principle准备，最好明显说出来符合哪条principle。每一条原则准备约两个故事，通过约10-20个故事覆盖，把故事的技术细节准备得**极详细**
+围绕亚麻14条principle准备，最好明显说出来符合哪条principle。每一条原则用心揣摩理解，准备约两个故事，通过约15-20个故事覆盖，把故事的技术细节准备得**极详细**
 
 ## Customer Obsession 顾客至上
 Leaders start with the customer and work backwards. They work vigorously to earn and keep customer trust. Although leaders pay attention to competitors, they obsess over customers.

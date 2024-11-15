@@ -119,6 +119,7 @@
     * [767. Reorganize String](01_leetcode/06_heap/767.%20Reorganize%20String.md)
     * [1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit](01_leetcode/06_heap/1438.%20Longest%20Continuous%20Subarray%20With%20Absolute%20Diff%20Less%20Than%20or%20Equal%20to%20Limit.md)
     * [895. Maximum Frequency Stack](01_leetcode/06_heap/895.%20Maximum%20Frequency%20Stack.md)
+    * [1705. Maximum Number of Eaten Apples](01_leetcode/06_heap/1705.%20Maximum%20Number%20of%20Eaten%20Apples.md)
     * [*1086. High Five](01_leetcode/06_heap/1086.%20High%20Five.md)
 
   * [深度优先DFS](01_leetcode/07_dfs)
@@ -349,10 +350,11 @@
   * [推荐系统](02_ml/17_recommendation.md)
   * [异常检测](02_ml/16_anomaly.md)
   * [模型解释性](02_ml/18_interpretability.md)
-  * [MLops](02_ml/19_mlops.md)
+  * [多任务学习](02_ml/19_multi_task.md)
   * [分布式机器学习](02_ml/20_distributed_ml.md)
   * [产品case分析](02_ml/21_product_case.md)
   * [项目deep dive](02_ml/22_project.md)
+  * [MLops](02_ml/23_mlops)
 
 
 * [系统设计](03_system)
@@ -393,4 +395,5 @@
 
 
 * [案例分享](05_case)
-  * [准备工作](05_case/pre_interview.md)
+  * [准备工作](05_case/01_pre_interview.md)
+  * [面试后](./05_case/02_post_interview.md)

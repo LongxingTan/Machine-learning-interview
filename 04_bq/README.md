@@ -4,11 +4,13 @@
 >- 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略)，从而给出足够的信号. selling your stories and zooming at the right things
 >- 体现impact/scope, data driven, 足够细节，使用`I`而不是`We`
 >- 目标级别高的话，重点强调自己cross-team/ cross functional的leadership
+>- negative question: star + learns
+>- context之前先用一句话对故事进行总结，action分3-5点讲，同样每点先用一句话总结 总分的结构
 
 
 ## 1. BQ常见问题
 
-**一定提前准备若干的工作小故事(约3分钟，450words)，并且背后对应着leadership principles，见[BQ回答实例](./02_examples.md)
+提前准备并写下来若干工作小故事(3分钟/ 450words)，并且对应着背后[leadership principles](./01_leadership_principles.md)，可参考[BQ回答实例](./02_examples.md)
 
 - give some examples that you help others
 - conflicts with manager，跟老板/同事/组内/组外如何处理冲突
@@ -55,37 +57,28 @@
   - 无条件服从经理的命令
 
 
-## 2. 简历项目介绍
-参考[机器学习项目介绍](../02_ml/22_project.md)
-
-- star原则：situation, task, action, results
-  - negative question: + learns
-  - context之前先用一句话对故事进行总结
-  - action分3-5点讲，同样每点先用一句话总结 总分的结构
-- 难点和深度
-- 项目中的细节
-  - 机器学习项目：the data, labelling, modeling, evaluation metrics
-- 是否有不足之处，怎么改善/或现在让你重新来做，会如何改善
+## 2. 反问面试官的问题
+- What are the engineering challenges that the company/team is facing?
+- What is your biggest concern towards me. I want to address it right away
 
 
 ## 3. 复习资料
 **精读**
 - [A Senior Engineer's Guide to the Amazon Leadership Principles Interview](https://interviewing.io/guides/amazon-leadership-principles)
+- [Dan Croitor @youtube](https://www.youtube.com/c/DanCroitor/videos)
 - [彻底击碎行为问题-可能是对你最有帮助的BQ教程](https://www.1point3acres.com/bbs/thread-895663-1-1.html)
 
 **扩展**
 - [U-shape: Man in a hole](https://youtu.be/hU6BVxtGd5g)
+- [https://www.youtube.com/@SelfMadeMillennial](https://www.youtube.com/@SelfMadeMillennial)
 - [Career School @youtube](https://www.youtube.com/@CareerSchool)
-- [Dan Croitor @youtube](https://www.youtube.com/c/DanCroitor/videos)
 - [Don't Get Down-Leveled or How to Tell a Good Story (From a Principal at Amazon)](https://www.youtube.com/watch?v=hU6BVxtGd5g)
 - [grokking-the-behavioral-interview](https://www.educative.io/courses/grokking-the-behavioral-interview)
 - [Amazon Leadership Principles: Questions and Interview Tips](https://www.levels.fyi/blog/amazon-leadership-principles.html)
 - Engineers survival guide
 - OReilly.The.Staff.Engineer's.Path
 - [https://www.youtube.com/@Fred_Talk](https://www.youtube.com/@Fred_Talk)
-- [https://www.youtube.com/@CareerSchool](https://www.youtube.com/@CareerSchool)
 - [situational-scenario-based-interview-questions-answers](https://www.interviewkickstart.com/career-advice/situational-scenario-based-interview-questions-answers)
-- [https://www.youtube.com/@SelfMadeMillennial](https://www.youtube.com/@SelfMadeMillennial)
 - [https://www.knowledgehut.com/interview-questions/team-leader-interview-questions](https://www.knowledgehut.com/interview-questions/team-leader-interview-questions)
 - [https://www.indeed.com/career-advice/interviewing/interview-questions-about-conflict](https://www.indeed.com/career-advice/interviewing/interview-questions-about-conflict)
 - [Amazon Behavioral Interview Questions个人总结和回答](https://www.1point3acres.com/bbs/thread-837688-1-1.html)
@@ -93,3 +86,4 @@
 - [请问behavior question应该怎么抓着重点](https://www.1point3acres.com/bbs/thread-1024731-1-1.html)
 - [亚麻Leadership Principle准备经验心得](https://www.1point3acres.com/bbs/thread-839216-1-1.html)
 - [刷项目-个人经验分享-新手村指南](https://www.1point3acres.com/bbs/thread-1019713-1-1.html)
+- [反向bq，你还有什么问题要问的么](https://www.1point3acres.com/bbs/thread-909412-1-1.html)

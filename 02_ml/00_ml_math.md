@@ -1,6 +1,6 @@
 # ML数学基础
 
-> 部分机器学习面试会直接考察统计与数学知识。即使不直接考察，在ML环节用数学佐证自己的观点也是非常有裨益的。
+> 部分机器学习面试会直接考察统计与数学知识。即使不直接考察，在ML环节用数学佐证自己的观点也是很有裨益的。
 
 
 ## 1. 概率统计
@@ -62,6 +62,7 @@
 - 3 door questions.
 - Bayes Questions:Tom takes a cancer test and the test is advertised as being 99% accurate: if you have cancer you will test positive 99% of the time, and if you don't have cancer, you will test negative 99% of the time. If 1% of all people have cancer and Tom tests positive, what is the prob that Tom has the disease? (非常经典的cancer screen的题，做会这一道，其他都没问题了)
 - How do you calculate the sample size for an A/B testing?
+  - 确定显著性水平 α 和统计功效 1−β，常见选择是0.05和0.8
 - If after running an A/B testing you find the fact that the desired metric(i.e, Click Through Rate) is going up while another metric is decreasing(i.e., Clicks). How would you make a decision?
 - Now assuming you have an A/B testing result reflecting your test result is kind of negative (i.e, p-value ~= 20%). How will you communicate with the product manager? If given the above 20% p-value, the product manager still decides to launch this new feature, how would you claim your suggestions and alerts?
 - 给定visitors and conversations，怎么计算significance

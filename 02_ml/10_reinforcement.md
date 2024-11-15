@@ -5,6 +5,9 @@
 - exploration和exploitation的平衡
 - Q-learning，DQN，TRPO, PPO, soft actor critic
 
+## 理论
+贝尔曼最优方程
+
 
 ## DQN
 
@@ -12,12 +15,19 @@
 ## 策略梯度 policy gradient
 
 
-## PPO
-rlhf(Reward + PPO)是 online 学习方式，dpo 是 offline 学习方式
+## PPO (Proximal Policy Optimization)
+> rlhf(Reward + PPO)是 online 学习方式，dpo 是 offline 学习方式
+
+近端策略优化
+- 两个网络，分别是Actor和Critic
 
 
+## DPO
+
+
+ 
 ## 问答
-- 是on-policy还是off-policy的区别是什么
+- on-policy和off-policy的区别是什么
 - On-policy都有什么，SASA的公式和Q learning的公式什么差别，为什么没有max
 - 解释一下DQN离散，DQNN（连续），有没有手写过
 - DPO (off-policy) 为什么会在学习过程中training positive的概率和training negative的概率都同时下降？
@@ -30,4 +40,5 @@ rlhf(Reward + PPO)是 online 学习方式，dpo 是 offline 学习方式
 - [常见强化学习方法总结 - marsggbo的文章 - 知乎](https://zhuanlan.zhihu.com/p/98962807)
 - [通俗理解强化学习 - 绯红之刃的文章 - 知乎](https://zhuanlan.zhihu.com/p/664348944)
 - [DPO 是如何简化 RLHF 的 - 朱小霖的文章 - 知乎](https://zhuanlan.zhihu.com/p/671780768)
-- 
+- [强化学习应该怎么入门？ - Alex的回答 - 知乎](https://www.zhihu.com/question/622724204/answer/3220047569)
+- [为什么ppo优于policy gradient? - 程序员眼罩的回答 - 知乎](https://www.zhihu.com/question/357056329/answer/3392670236)

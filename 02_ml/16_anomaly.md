@@ -1,8 +1,7 @@
 # 异常检测
 
-
-异常类型： Point anomaly, Contextual anomaly, Collective anomaly
-具体类型： 根据取值范围、常数波动、固定斜率波动、滑动聚合加方差、一阶差分
+异常类型：Point anomaly, Contextual anomaly, Collective anomaly
+具体类型：根据取值范围、常数波动、固定斜率波动、滑动聚合加方差、一阶差分
 任务类型：有监督，无监督
 模型类型：距离，分类
 
@@ -36,3 +35,4 @@ Random sample consensus (RANSAC) is an iterative method to estimate parameters o
 - [基于AI算法的数据库异常监测系统的设计与实现](https://tech.meituan.com/2022/09/01/database-monitoring-based-on-ai.html)
 - [网易如何做到数据指标异常发现和诊断分析？](https://mp.weixin.qq.com/s/wr9XvBNRBeKfp6acxkXc2A)
 - [How our content abuse defense systems work to keep members safe](https://www.linkedin.com/blog/engineering/trust-and-safety/how-our-content-abuse-defense-systems-work-to-keep-members-safe)
+- [Fraud Detection Using Random Forest, Neural Autoencoder, and Isolation Forest Techniques](https://www.infoq.com/articles/fraud-detection-random-forest/?topicPageSponsorship=ed11260b-6513-40ba-922f-aae7ac9f942c)

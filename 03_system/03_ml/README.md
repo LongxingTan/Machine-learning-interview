@@ -3,6 +3,7 @@
 > 机器学习系统的核心，是训练一个**模型**来实现某个任务。如预测、分类、排序.
 >- 建模design, 包括优化目标，feature，data，模型结构，评价标准等
 >- 系统design, 偏重于在线serve模型，包括feature store, ANN, ETL pipeline, MLOps等
+>- 如果是不熟悉的场景，一定先从头到尾把细节问清楚
 
 
 ## 1. 面试过程
@@ -11,7 +12,7 @@
 - **沟通：** 一边白板画框图，一边告知面试官要讲某几个部分. 每个部分move前可再次确认 `Is there anywhere that you feel I missed?`
 - **分层思维：** 整个过程，一层讲清楚主题前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
 - **深度和广度：** 每个部分，尤其是自己熟悉的方面，要主动讲，积极展现自己的知识宽度和深度
-- **trade-off：** 不要对需求和场景做自己主观的假设，注意讲清楚trade-off. trade-off从业务(比如预测准确性、长尾预测准确、冷启动效果)和技术角度(scale、latency)出发
+- **trade-off：** 不要对需求和场景做主观假设，注意讲清楚trade-off. trade-off从业务(比如预测准确性、长尾预测准确、冷启动效果)和技术角度(scale、latency)出发
 
 
 ## 2. 回答框架
@@ -35,6 +36,7 @@
   - 实际工作中，每个ML组都有自己不同的embedding set. 互相使用别人的embedding set, 怎么pre-train, fine-train, 怎么combine feature非常重要
   - feature的AB test怎么做？不同traffic做
 - **模型 Model**
+  - 总是从**简单的baseline**开始说起
   - 模型选择，考虑系统方面的constraint. 比如prediction latency, memory. 怎么合理的牺牲模型的性能以换取constraint方面的benefit
   - 每个design的选择，像平时写design doc一样比较不同选项的优劣
   - 大多数场景，模型之外都需要额外的策略兜底
@@ -153,3 +155,4 @@
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
 - [买它 MLE E6 昂赛过经](https://www.1point3acres.com/bbs/thread-1018808-1-1.html)
 - [https://www.evidentlyai.com/ml-system-design](https://www.evidentlyai.com/ml-system-design)
+- [https://www.infoq.com/machinelearning/](https://www.infoq.com/machinelearning/)

@@ -18,6 +18,11 @@
 
 ## 问答
 
+- star原则：situation, task, action, results  
+- 难点和深度
+- 项目中的细节
+  - 机器学习项目：the data, labelling, modeling, evaluation metrics
+- 是否有不足之处，怎么改善/或现在让你重新来做，会如何改善
 - 技术细节、流程、遇到的困难怎么解决、impact、再来一次如何改善
 - 如果对项目抽象成解决的问题，然后改变条件，我们应该如何应对
 - 如何体现技术深度？

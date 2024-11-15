@@ -24,7 +24,7 @@
 
 ![retrieval](../.github/assets/03ml-retrieval.png)
 
-召回：从**海量**物品库里**快速**找出用户可能感兴趣的物品 （亿 -> 千）
+从**海量**物品库里**快速**找出用户可能感兴趣的物品 （亿 -> 千）
 - 多通道召回(multiple source), Negative Sampling
 - 统计类，热度，LBS，如：全城热搜、区域热搜；行为，如：看过、买过、看了又看、搜了又搜；
 - 协同过滤类，UserCF、ItemCF
@@ -46,6 +46,7 @@
 
 
 **评价指标**
+
 离线:
 - 召回精度：衡量召回链路Top-N召回的准确性。
   - 一般采用Recall@K、Precision@K、F1@K、Hit-rate@K, AUC, MRR(Mean Reciprocal Rank), GAUC(计算同一个广告不同用户的auc加权平均)
@@ -116,7 +117,7 @@ counterfactual evaluation（反事实评估）
 - 在线学习 (continual online training)
 
 
-### 2.3 策略重排
+### 2.3 重排
 
 - 目标：提升结果的效率（点击、购买、GMV等）；提升结果的多样性、发现性和用户体验；降低负反馈（结果同质化严重、看/点/买了还推）
 - 新手扶持流量，试试效果再决定
@@ -141,7 +142,7 @@ counterfactual evaluation（反事实评估）
 - Model tracking and Management systems (Kubeflow, MLFlow)
 
 
-## 3. 问题
+## 3. 问答
 
 ### How to scale
 - the component of retrieval and ranking is already designed for scale

@@ -66,8 +66,9 @@
 import numpy as np
 
 def f1(actual, predicted, label):
-    """ A helper function to calculate f1-score for the given `label` """
-    # F1 = 2 * (precision * recall) / (precision + recall)
+    """ A helper function to calculate f1-score for the given `label`
+    F1 = 2 * (precision * recall) / (precision + recall)
+    """
     tp = np.sum((actual==label) & (predicted==label))
     fp = np.sum((actual!=label) & (predicted==label))
     fn = np.sum((predicted!=label) & (actual==label))

@@ -12,21 +12,28 @@
 参考[物体检测系统设计](../03_system/03_ml/object_detection.md)
 
 - 二阶段检测
+  - rcnn, fast-rcnn, faster-rcnn
 - 一阶段检测
   - YOLO
 - 旋转目标检测
 
 
 ### 分割
+- Unet
 
 
 ### 视频
+
+
+### Transformer
+**ViT**
 
 
 ## 2. 代码
 
 **IOU**
 ```python
+import torch
 
 def iou(box1, box2):
     N = box1.size(0)
@@ -79,12 +86,14 @@ def compute_iou(boxA, boxB):
 
 boxA = [1,1,3,3]
 boxB = [2,2,4,4]
-IOU = ComputeIOU(boxA, boxB)
+IOU = compute_iou(boxA, boxB)
 ```
 
 
 - nms
 ```python
+import numpy as np
+
 def nms(boxes, scores, threshold):
     # boxes: 边界框列表，每个框是一个格式为 [x1, y1, x2, y2] 的列表
     # scores: 每个边界框的得分列表

@@ -1,10 +1,10 @@
 # 搜索框
 
-## 1. 需求
+## 1. requirement
 > 可以认为是text generation 任务
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 
 ## Reference

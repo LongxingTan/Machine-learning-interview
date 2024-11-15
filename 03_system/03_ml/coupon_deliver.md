@@ -9,6 +9,8 @@
 
 机器学习+运筹
 
+运筹优化类任务要先构建数学模型
+
 
 ## reference
 - [大厂的优惠券系统是如何设计的？ - JavaEdge的文章 - 知乎](https://zhuanlan.zhihu.com/p/511822092)

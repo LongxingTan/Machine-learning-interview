@@ -6,6 +6,7 @@
 
 ```python
 # https://www.geeksforgeeks.org/find-if-string-is-k-palindrome-or-not/
+# 680 的更普遍情况, 编辑距离的变种
 # dp[i][j]: 字符串中i到j修正成回文串所需的最少操作次数, 子串 -> 子序列
 
 ```

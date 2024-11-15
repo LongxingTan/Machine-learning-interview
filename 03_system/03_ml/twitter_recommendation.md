@@ -1,9 +1,14 @@
 # twitter推荐
 
-twitter比较关注social graph的挖掘
+> twitter比较关注social graph的挖掘
 
 
 ## 1. requirements
+**BG & product**
+- homepage feed?
+- user: follow
+- item: text, image, video
+- engagement: click, like, comment, share
 
 
 ## 2. pipeline
@@ -42,6 +47,12 @@ twitter比较关注social graph的挖掘
 
 
 ## 6. evaluation
+
+
+## 7. deploy & serving
+
+
+## 8. monitoring & maintenance
 
 
 ## reference

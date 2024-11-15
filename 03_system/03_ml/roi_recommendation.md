@@ -12,7 +12,7 @@
 ## 1. requirement
 
 
-## 2. task/pipeline
+## 2. ML task & pipeline
 
 预测目标
 - 是否点击
@@ -28,17 +28,17 @@
 ## 5. model
 
 
-## 6. Evaluation
+## 6. evaluation
 - offline
 - online: A/B testing holdout canary
 
 
-## 7. Deploy & Serving
+## 7. deploy & serving
 - batch serving
 - online serving
 
 
-## 8. Monitor & Maintenance
+## 8. monitor & maintenance
 
 
 ## 问答
