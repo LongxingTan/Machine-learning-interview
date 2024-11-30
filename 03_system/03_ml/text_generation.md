@@ -1,12 +1,13 @@
 # 个性化标题生成
 
-## 1. requirement
+## 1. requirements
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 
 
 ## 3. data collection
+- start from zero-shot/few-shot and prompt engineering
 
 
 ## 4. feature
@@ -26,7 +27,10 @@
 ## 6. evaluation
 
 
-## 7. deploy and serving
+## 7. deploy & serving
+
+
+## 8. monitor & maintenance
 
 
 ## reference

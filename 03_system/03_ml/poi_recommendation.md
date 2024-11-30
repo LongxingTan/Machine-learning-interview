@@ -1,4 +1,4 @@
-# ROI推荐
+# POI推荐
 
 > 场景: yelp, 美团, airbnb
 > - Design a system to find nearby restaurants
@@ -9,7 +9,16 @@
 > 对于位置的挖掘可采用图特征或模型
 
 
-## 1. requirement
+## 1. requirements
+**products/use cases**
+
+**objective**
+- connect people with great local businesses
+
+**constraint**
+- data
+- volume
+- latency
 
 
 ## 2. ML task & pipeline
@@ -20,16 +29,28 @@
 
 
 ## 3. data collection
+- user
+  - User location: For localized recommendations we need to consider only businesses near the city or neighborhood where the user is located
 
 
 ## 4. feature
+- sparse
+- dense
 
 
 ## 5. model
+**retrieval**
+- 取决于filter
+
+**ranking**
+
+**rerank**
 
 
 ## 6. evaluation
 - offline
+  - NDCG
+  - MAP
 - online: A/B testing holdout canary
 
 
@@ -41,7 +62,7 @@
 ## 8. monitor & maintenance
 
 
-## 问答
+## 9. 优化与问答
 冷启动的item
 - 双塔可以采用default embedding, 而不是random initial
 

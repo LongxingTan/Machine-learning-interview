@@ -13,13 +13,13 @@ class Solution:
             return True
 
         i = 0
-        res = 0  # 含义是目前能覆盖的最大范围   
+        res = 0  # 目前能覆盖的最大范围   
        
         while i <= res:  # 注意是 <=
             res = max(res, i + nums[i])
             if res >= len(nums) - 1:
                 return True    
-            i += 1     
+            i += 1
 
         return False
 ```

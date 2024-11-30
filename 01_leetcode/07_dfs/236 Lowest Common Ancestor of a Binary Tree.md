@@ -1,3 +1,5 @@
+from sqlalchemy.orm.collections import collection
+
 # 236 Lowest Common Ancestor of a Binary Tree
 [https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
 
@@ -50,9 +52,32 @@ class Solution:
             return l
 ```
 
-- 迭代
+- 迭代 iteration
 ```python
+import collections
 
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        queue = collections.deque([root])
+        parent = {root: None}
+        ancestors = set()  # p's ancestors
+        
+        while p not in parent or q not in parent:
+            root = queue.popleft()
+            if root.left:
+                parent[root.left] = root
+                queue.append(root.left)
+            if root.right:
+                parent[root.right] = root
+                queue.append(root.right)
+            
+        while p:
+            ancestors.add(p)
+            p = parent[p] 
+        
+        while q not in ancestors:
+            q = parent[q]
+        return q
 ```
 
 - 返回两个目标node之间的路‍‌径

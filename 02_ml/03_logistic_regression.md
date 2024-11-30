@@ -19,6 +19,7 @@ $$ y = \frac{1}{1+e^{-(w^{T} x + b)}} $$
 **KL散度** (Kullback-Leibler Divergence)
 - 衡量两个分布的差异 
 - 交叉熵就是 KL 散度加信息熵，而信息熵是一个常数
+
 $$ D_{KL}(p||q)=\sum_{x\in X} p(x)\log\frac{p(x)}{q(x)}=-\sum_{x\in X} p(x)[\log q(x) - \log p(x)] $$
 
 
@@ -50,7 +51,9 @@ $$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
 
 ## 5. 优化
 
-### 在线学习 FTRL
+### 5.1 在线学习 FTRL
+[在线最优化求解(Online Optimization)-冯扬](https://github.com/wzhe06/Ad-papers/blob/master/Optimization%20Method/%E5%9C%A8%E7%BA%BF%E6%9C%80%E4%BC%98%E5%8C%96%E6%B1%82%E8%A7%A3%28Online%20Optimization%29-%E5%86%AF%E6%89%AC.pdf)
+
 - 问题: Lasso引入L1正则项使模型的训练结果具有稀疏性,稀疏不仅有变量选择的功能，同时大大减少线上预测运算量。在线学习场景,利用SGD进行权重参数(W)的更新,每次只使用一个样本，权重参数的更新具有很大的随机性,无法将权重参数准确地更新为0
 - 用ftrl优化可以得到稀疏权重，从而降低serving的复杂度
 
@@ -91,7 +94,7 @@ $$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
 - 为什么逻辑回归不用mse做损失函数
   - [本质是分布不同，最大似然可以看出，参数正态推导出MSE, 参数二项推导出cross entropy；公式推导发现容易导致梯度消失，很大的话梯度有一项会趋于0；陷入局部最优](https://zhuanlan.zhihu.com/p/453411383)
   - [用平方差后 损失函数是非凸的(non-convex)，很难找到全局最优解](https://towardsdatascience.com/why-not-mse-as-a-loss-function-for-logistic-regression-589816b5e03c)
-  - follow up: 为什么GBDT做分类也用回归树呢？
+  - follow up: 为什么GBDT做分类也用回归树呢？损失函数的选择
 
 - Logistic regression和naive bayes的区别
   - LR数据较多时优于NB。NB假设前提是个体独立，无法处理词组
@@ -107,6 +110,9 @@ $$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
   - 计算角度：稀疏向量内积计算速度快。（在计算稀疏矩阵内积时，可以根据当前值是否为0来直接输出0值，这相对于乘法计算是快很多的。）
 
 - 什么是最大似然估计，其假设是什么？
+
+- 一个分类器，有的 token 在 vocabulary 里面没出现导致概率是0怎么办
+  - softmax，概率取对数再求指数
 
 
 ## 8. 代码
@@ -129,11 +135,8 @@ class LogisticRegression(object):
         self.b = np.random.random(1)
         self._gradient_descent(x, y)
 
-    def eval(self,x,y):
-        pass
-
-    def predict(self,x):
-        prob=self.activate(np.dot(x,self.w)+self.b)
+    def predict(self, x):
+        prob = self.activate(np.dot(x, self.w) + self.b)
         return prob
 
     def _gradient_descent(self, x, y, learning_rate=10e-4, epoch=100):
@@ -164,8 +167,6 @@ if __name__ == "__main__":
     lr = LogisticRegression()
     lr.fit(x,y)
     y_hat = lr.predict(x)
-    print(y_hat)
-    print(y)
 ```
 
 

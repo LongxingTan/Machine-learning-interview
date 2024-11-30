@@ -72,29 +72,34 @@ By observing user behavior, such as the articles they read and the time they spe
 
 ## 9. 问答&优化
 
-### bias
+### 9.1 bias
+- position bias
 
 
-### cold start
+### 9.2 cold start
 
 it's crucial to establish a robust onboarding process (capturing onboarding signals). This process aids in understanding and improving the user's homepage experience.
 When a user logs into your service for the first time, gathering fundamental information is invaluable. This includes their areas of interest, the average time they spend on news consumption, and whether they aim to enhance their reading habits daily.
 Additionally, asking users to list the specific topics they are interested in can be a game-changer in addressing the 'cold start' problem, which occurs when users provide minimal initial interaction data.
 
 
-### 混排
+### 9.3 混排
 - 多题材混排
   - 先各自排序，再混排
 
 
 ## reference
+**精读**
+- [How machine learning powers Facebook’s News Feed ranking algorithm](https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/)
+
+
+**扩展**
 - [Powered by AI: Instagram’s Explore recommender system](https://ai.meta.com/blog/powered-by-ai-instagrams-explore-recommender-system/)
 - [Lessons Learned at Instagram Stories and Feed Machine Learning](https://instagram-engineering.com/lessons-learned-at-instagram-stories-and-feed-machine-learning-54f3aaa09e56)
 - [Community-focused Feed optimization](https://engineering.linkedin.com/blog/2019/06/community-focused-feed-optimization)
 - [Building a dynamic and responsive Pinterest](https://medium.com/pinterest-engineering/building-a-dynamic-and-responsive-pinterest-7d410e99f0a9)
-- [How machine learning powers Facebook’s News Feed ranking algorithm](https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/)
 - [交互式推荐在外卖场景的探索与应用](https://mp.weixin.qq.com/s/s7yoJXgc_7txSooeuE-3sg)
 - [深度召回在飞猪旅行推荐系统中的探索和实践](https://mp.weixin.qq.com/s/AyMmfixX8rXUgGIf94uBkw)
 - [Personalized News Recommendation: Methods and Challenges](https://arxiv.org/pdf/2106.08934)
 - [https://github.com/datawhalechina/fun-rec](https://github.com/datawhalechina/fun-rec)
-- 
+- [A Dive into the Facebook Newsfeed Architecture](https://algodaily.com/lessons/dive-into-facebook-newsfeed-architecture)

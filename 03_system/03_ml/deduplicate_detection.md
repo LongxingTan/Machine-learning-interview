@@ -25,7 +25,13 @@
 ## 6. evaluation
 
 
-## 7. deploy and serving
+## 7. deploy & serving
 
 
-## 8. monitoring and maintenance
+## 8. monitoring & maintenance
+
+
+## Reference
+- [Introduction to Facebook AI Similarity Search (Faiss)](https://www.pinecone.io/learn/series/faiss/faiss-tutorial/)
+- [AutoConsis：UI内容一致性智能检测](https://mp.weixin.qq.com/s/VwnnYnyo9sCDdUuG4Mu1kQ)
+- [How image search works at Dropbox](https://dropbox.tech/machine-learning/how-image-search-works-at-dropbox)

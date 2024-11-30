@@ -9,12 +9,12 @@
 
 ## 1. ML部署
 
-- low latency 
-- high qps
-- throughout
+>- low latency 
+>- high qps
+>- throughout
 
 
-### strategies
+### 1.1 strategies
 
 ![deployment](../.github/assets/02ml-deployment.png)
 
@@ -25,7 +25,7 @@
 - Canary deployment strategy
 
 
-### 应用工具
+### 1.2 工具
 - tf-serving
   - 支持热部署，不会使服务失效
 
@@ -43,6 +43,7 @@
 
 
 - Serving in Batch Mode
+  - [Batch Inference at Scale with Amazon SageMaker](https://aws.amazon.com/blogs/architecture/batch-inference-at-scale-with-amazon-sagemaker/)
 
 - 量化
 
@@ -71,8 +72,8 @@
 
 
 ## 3. retrain
-> develop a strategy to trigger model invalidations and retrain models when performance degrades.
-> because of data drift, model bias, and explainability divergence
+> - develop a strategy to trigger model invalidations and retrain models when performance degrades.
+> - because of data drift, model bias, and explainability divergence
 
 ![](../.github/assets/02ml-retraining.png)
 
@@ -95,6 +96,7 @@
 ## 参考
 - [mlops-zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
 - [Made With ML](https://madewithml.com/)
+- [ml-engineering](https://github.com/stas00/ml-engineering/)
 - [youtube-MLOps - Machine Learning Operations](https://www.youtube.com/playlist?list=PL3N9eeOlCrP5a6OA473MA4KnOXWnUyV_J)
 - Machine Learning Engineering for Production (MLOps) Specialization
 - [Version and track Azure Machine Learning datasets](https://learn.microsoft.com/en-us/azure/machine-learning/how-to-version-track-datasets?view=azureml-api-1)
@@ -110,3 +112,4 @@
 - [使用TensorFlow C++ API构建线上预测服务 - 篇1](https://mathmach.com/6d246b32/)
 - [https://github.com/cortexlabs/cortex](https://github.com/cortexlabs/cortex)
 - [https://github.com/ivanpanshin/flask_gunicorn_nginx_docker](https://github.com/ivanpanshin/flask_gunicorn_nginx_docker)
+- [ml-pipeline-with-airflow-docker-operator](https://github.com/coder2j/ml-pipeline-with-airflow-docker-operator)

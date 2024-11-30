@@ -1,6 +1,9 @@
 # 案例
 > 每个人的背景、技术、运气都不同，但成功的案例总是能给予我们启发，激励我们前进
 
+**提升方法**
+- 每天面试后进行复盘，把不会的问题搞懂
+
 
 **国内面试国外的大佬案例**
 
@@ -18,3 +21,4 @@
 - [一年被layoff两次辛路历程和一些面试经验](https://www.1point3acres.com/bbs/thread-1034698-1-1.html)
 - [layoff期间拿到超多面试及offer经验分享](https://www.1point3acres.com/bbs/thread-991886-1-1.html)
 - [Guide to ML Engineer Job Hunting](https://www.yuan-meng.com/posts/mle_interviews/)
+- [2024找工总结与发现](https://www.1point3acres.com/bbs/thread-1098907-1-1.html)

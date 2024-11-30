@@ -2,6 +2,7 @@
 
 u2u推荐
 
+
 ## 1. requirements
 **场景/产品**
 - friendship is symmetrical
@@ -26,10 +27,10 @@ u2u推荐
 
 
 ## 4. feature
-user
-
-
-- 共同好友个数
+- user
+  
+- user x user
+  - 共同好友个数
 
 
 ## 5. model

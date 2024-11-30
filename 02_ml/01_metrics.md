@@ -1,6 +1,6 @@
 # 评价指标
 
-> 熟悉统计指标、metrics的意义和计算，对评价指标的熟悉有助于我们进行优化。
+> 熟悉统计指标、metrics的意义和计算；同时对评价指标熟悉有助于找到优化方向。
 
 **offline metrics**
 - regression
@@ -45,13 +45,13 @@
   - GAGR
 
 
-## AB test
+## 1. AB test
 
 - a/b testing如何确定sample size
 - 不同element increase/decrease对power的影响
 
 
-## 精确率Precision/ 召回率Recall/ F1 / AUC
+## 2. 精确率Precision/ 召回率Recall/ F1 / AUC
 
 ![](../.github/assets/02ml-confusion.png)
 
@@ -85,7 +85,7 @@ def f1_macro(actual, predicted):
 ```
 
 
-## AUC(Area Under Curve) / ROC(Receiver Operating Characteristics)曲线
+## 3. AUC(Area Under Curve) / ROC(Receiver Operating Characteristics)曲线
 - 什么是ROC curve，什么是sensitivity，什么是specificity，ROC的intuition
   - 横轴为 FPR（假阳率）：FP/(FP+TN)，等同于 1-TNR，FPR 越大，预测为正的样本中负类越多
   - 纵轴为 TPR（真阳率）：TP/(TP+FN)，TPR 越大，预测为正的样本中正类越多
@@ -130,12 +130,12 @@ def eval_auc(preds, dtrain):
 ```
 
 
-## KS
+## 4. KS
 - Kolmogorov-Smirnov，风控常用指标
 - KS曲线就是将阈值与TPR，FPR的变化趋势反应出来
 
 
-## average precision
+## 5. average precision
 - [sklearn metrics-AP](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html)
 - AP是Precision-Recall Curve(PRC)下的面积
 
@@ -143,15 +143,11 @@ def eval_auc(preds, dtrain):
 import numpy as np
 
 def average_precision_score(y_true, y_scores):
-    """
-    Calculate the average precision score.
+    """Calculate the average precision score.
 
     Parameters:
     - y_true: 1D array-like, true binary labels (0 or 1).
     - y_scores: 1D array-like, predicted scores or probabilities for positive class.
-
-    Returns:
-    - average_precision: The average precision score.
     """
 
     # Combine true labels and predicted scores into a sorted list of (true label, score) pairs.
@@ -179,7 +175,7 @@ def average_precision_score(y_true, y_scores):
 ```
 
 
-## 问答
+## 6. 问答
 
 - 准确率的局限性
   - 标签不平衡

@@ -198,7 +198,7 @@ counterfactual evaluation（反事实评估）
 - 是否受到链路其他层的影响（召回、粗排、融合公式、规则）
 - 老汤模型: 样本空间不一致导致的公平性问题; 特征是老汤模型筛选出来的，不一定完全匹配新模型的重要特征
   - 对齐样本空间。拿较长周期的历史样本回溯训练新模型
-  - 模型热启动。从老模型参数基础上热启训练新模型
+  - 模型热启动。从老模型参数基础上热启训练新模型，尤其是embedding
 
 
 ### ab test
@@ -251,7 +251,6 @@ counterfactual evaluation（反事实评估）
 
 
 ## 参考
-
 - [Recommender Systems: The Most Valuable Application of Machine Learning (Part 1)](https://towardsdatascience.com/recommender-systems-the-most-valuable-application-of-machine-learning-part-1-f96ecbc4b7f5)
 - [https://github.com/guyulongcs/Awesome-Deep-Learning-Papers-for-Search-Recommendation-Advertising](https://github.com/guyulongcs/Awesome-Deep-Learning-Papers-for-Search-Recommendation-Advertising)
 - [https://github.com/tangxyw/RecSysPapers](https://github.com/tangxyw/RecSysPapers)

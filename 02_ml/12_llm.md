@@ -1,5 +1,5 @@
 # 大语言模型LLM
-先了解和熟悉[深度学习](./05_deep_learning.md)与[自然语言理解](11_nlp.md)，本章之后可以继续查看[多模态](./14_multimodal.md)
+先了解和熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](11_nlp.md)
 
 
 ## 1. scaling law
@@ -63,15 +63,6 @@ class MoeLayer(nn.Module):
         # (m * seq_len, dim) --> (m, seq_len, dim)
         return results.view_as(inputs)
 ```
-
-**flash-attention**
-通过矩阵分块计算以及减少内存读写次数的方式，提高注意力分数的计算效率
-- 输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作.
-
-
-**paged-attention**
-针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
-
 
 **RoPE**
 
@@ -179,6 +170,8 @@ def lora_forward_matmul(x, W, W_A, W_B):
 ### 4.3 RLHF
 > - RLHF 与 RLAIF: better align with human preferences and reduce undesired outcomes in scenarios
 > - SFT负责Instruction following，RL强化helpfulness、honesty、safety偏好
+> - SFT不具备向后看的能力，只能看到当Token前面的句子；RLHF的critic model和reward model都能看到当前位置后面的句子，所以RLHF能看到整个句子
+> - SFT给的都是正例，没有负反馈；RLHF通过给序列一个低分给模型负反馈，减少生成某个token的概率
 > - dpo / ppo 训练技巧, 相关模型参考[强化学习](./10_reinforcement.md)
 
 [https://github.com/OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)
@@ -188,6 +181,7 @@ def lora_forward_matmul(x, W, W_A, W_B):
 - YaRN
 - HWFA
 - NTK
+- 序列并行（SP）: 将输入序列进行切分
 
 
 ## 5. 评测
@@ -197,26 +191,59 @@ def lora_forward_matmul(x, W, W_A, W_B):
 
 
 ## 6. 推理
-- [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling) 
+- [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling)，投机采样 (speculative sampling), lookahead decoding
+  - 贪心选择每一步都选最大的，top_k和top_p从top中随机选择一个，beam search保留多个
+  - [投机采样](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf)
 - dynamic batching, continuous batching, flash attention, quantization
+- throughput 吞吐
+  - 估算：单次推理时间 x 同时处理的请求数量
 
 **KV cache**
+> 空间换时间，最新的token计算attention时，与前面的KV计算无关. 下面公式计算attention3时，用到的仍然是K1V1 和 K2V2
+> - [LLM Inference Series: 3. KV caching explained](https://medium.com/@plienhar/llm-inference-series-3-kv-caching-unveiled-048152e461c8)
+> - [大模型推理优化技术-KV Cache](https://mp.weixin.qq.com/s/XRtU1cnn1GX2J3oCDHKOtA)
 
-**Flash Decoding**
 
-top_k llm token decoding
+$$
+\begin{align*}
+\text{Att}_1(Q, K, V) &= \text{softmax}(Q_1 K_1^T) V_1 \\
+\text{Att}_2(Q, K, V) &= \text{softmax}(Q_2 K_1^T) V_1 + \text{softmax}(Q_2 K_2^T) V_2 \\
+\text{Att}_3(Q, K, V) &= \text{softmax}(Q_3 K_1^T) V_1 + \text{softmax}(Q_3 K_2^T) V_2 + \text{softmax}(Q_3 K_3^T) V_3
+\end{align*}
+$$
+
+
+**MQA(multi query attention) / GQA(group query attention)**
+- 通过平均池化组内的所有原始头来构建
+
+
+**quantization 量化**
+- Post training quantization(PTQ)
+- Quantization aware training(QAT)
+
+
+**flash-attention**
+通过矩阵分块计算以及减少内存读写次数的方式，提高注意力分数的计算效率
+- 输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作.
+
+[图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/669926191)
+
+**paged-attention**
+针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
+
+[图解大模型计算加速系列之：vLLM核心技术PagedAttention原理 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/691038809)
+
+**蒸馏**
+
+**triton**
+- dynamic batching、concurrent execution、optimal model configuration、model ensemble、dali model 等策略来提升在线推理的性能
+
+
+### code
+**top_k LLM token decoding**
 ```python
 def top_k_sampling(logits, k=5):
-    """
-    Perform top-k sampling on the logits array.
-
-    Parameters:
-    logits (numpy array): Array of logits representing the probability distribution over tokens.
-    k (int): Number of top tokens to consider.
-
-    Returns:
-    sampled_token (int): The sampled token index.
-    """
+    """Perform top-k sampling on the logits array."""
 
     # Calculate the probabilities from logits
     probabilities = np.exp(logits) / np.sum(np.exp(logits))
@@ -229,24 +256,12 @@ def top_k_sampling(logits, k=5):
 
     # Sample a token from the top-k tokens based on their probabilities
     sampled_token = np.random.choice(top_k_indices, p=top_k_probs)
-
     return sampled_token
 
-# Example usage:
-logits = np.array([1.2, 0.8, 0.5, 2.0, 1.5])  # Example logits
+logits = np.array([1.2, 0.8, 0.5, 2.0, 1.5]) 
 sampled_token = top_k_sampling(logits, k=3)
 print("Sampled token index:", sampled_token)
 ```
-
-quantization 量化
-- Post training quantization(PTQ)
-- Quantization aware training(QAT)
-
-throughput 吞吐
-- 估算：单次推理时间 x 同时处理的请求数量
-
-**triton**
-- dynamic batching、concurrent execution、optimal model configuration、model ensemble、dali model 等策略来提升在线推理的性能
 
 
 ## 7. 应用与优化
@@ -255,6 +270,10 @@ throughput 吞吐
 - https://platform.openai.com/docs/guides/prompt-engineering
 - https://yiyan.baidu.com/learn
 - https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/
+
+**COT**
+
+**Few Shot**
 
 
 ### 7.2 in context learning
@@ -270,7 +289,7 @@ throughput 吞吐
 
 
 ### 7.4 Agents
-
+[LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
 
 ## 8. 问答
@@ -317,8 +336,12 @@ throughput 吞吐
 
 
 ## reference
+**精读**
 - [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
 - [MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies](https://arxiv.org/pdf/2404.06395)
+- [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://arxiv.org/pdf/2307.09288)
+
+**扩展**
 - A Survey of Large Language Models
 - A Comprehensive Survey on Pretrained Foundation Models A History from BERT to ChatGPT
 - [LLM推理优化技术综述：KVCache、PageAttention、FlashAttention、MQA、GQA](https://zhuanlan.zhihu.com/p/655325832)
@@ -346,9 +369,9 @@ throughput 吞吐
 - [LLM训练-pretrain - ybq的文章 - 知乎](https://zhuanlan.zhihu.com/p/718354385)
 - [LLM训练-sft - ybq的文章 - 知乎](https://zhuanlan.zhihu.com/p/809229182)
 - [https://github.com/princeton-nlp/LESS](https://github.com/princeton-nlp/LESS)
+- [https://github.com/yihedeng9/rlhf-summary-notes](https://github.com/yihedeng9/rlhf-summary-notes)
 
-
-**course**
+**课程**
 - https://github.com/mlabonne/llm-course
 - https://github.com/InternLM/Tutorial/tree/camp2
 - https://github.com/datawhalechina/llm-universe

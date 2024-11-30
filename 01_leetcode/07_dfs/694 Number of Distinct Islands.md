@@ -31,10 +31,12 @@ class Solution:
 
         return len(paths)
 ```
-时间复杂度：O() <br>
+时间复杂度：O(m * n) <br>
 空间复杂度：O()
 
 
 ## follow up
 
 [652. Find Duplicate Subtrees](../08_bfs/297%20Serialize%20and%20Deserialize%20Binary%20Tree.md)
+
+[711. Number of Distinct Islands II]()

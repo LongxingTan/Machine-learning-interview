@@ -1,5 +1,5 @@
 # AIGC
-自然语言处理见[LLM章节](./12_llm.md)，多模态见[多模态章节](./14_multimodal.md)
+自然语言生成见[LLM章节](./12_llm.md)，多模态见[多模态章节](./14_multimodal.md)
 
 
 ## 任务
@@ -12,7 +12,7 @@
 
 **扩散模型**
 存在一系列高斯噪声（T轮），将输入图片x0变为纯高斯噪声xt。模型则负责将xt复原回图片x0
-  
+
 
 ![](../.github/assets/02ml-sd.png)
 
@@ -34,3 +34,4 @@
 - [生成模型大道至简｜Rectified Flow基础概念｜代码 - 养生的控制人的文章 - 知乎](https://zhuanlan.zhihu.com/p/687740527)
 - [pytorch-stable-diffusion](https://github.com/hkproj/pytorch-stable-diffusion)
 - [Diffusion学习路径记录（2023年） - Kylin的文章 - 知乎](https://zhuanlan.zhihu.com/p/605973097)
+- [深入浅出完整解析Stable Diffusion（SD）核心基础知识 - Rocky Ding的文章 - 知乎](https://zhuanlan.zhihu.com/p/632809634)

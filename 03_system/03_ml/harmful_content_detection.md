@@ -25,7 +25,7 @@ harmful content/weapon ads, copyright检测
 - latency requirement
 
 
-## 2. pipeline
+## 2. ML task & pipeline
 - 先介绍几个大的方向, pros, cons
 - Multimodal input (text, image, video, speech, etc)
 - Multi-Label/Multi-Task classification
@@ -36,6 +36,7 @@ harmful content/weapon ads, copyright检测
 ## 3. data collection
 本题中，如何收集数据和label是比较关键的。可以先确认有没有annotated data，没有的话则先根据用户反馈(silver labels)，再根据人工审核(golden labels). 或者利用大模型进行合成或判断
 
+- 少量标注数据，大量未标注数据
 - platform: 人工审核
 - user feedback: report，dislike，comment, surfaced by user complaints
 - interaction: anomaly
@@ -78,7 +79,7 @@ harmful content/weapon ads, copyright检测
   - 很多场景，不是知道所有错误信息的(spam/fraud detection)。比较简单的方法，就是不做true recall. sample一些data做个partial recall, 还可以看自己业务设置其他类似recall的matrix
 
 
-## 7. deployment and prediction service
+## 7. deployment & prediction service
 
 - 有些环节offline, 有些online, serving就是online部分
 - Harmful content detection service
@@ -86,7 +87,7 @@ harmful content/weapon ads, copyright检测
 - violation service (prob of harm with high confidence)
 
 
-## 8. monitoring and maintenance
+## 8. monitoring & maintenance
 
 - 怎么部署这个系统，后续如何维护
 - How to roll out new model? AB test: 10% as holdout, others as factorial experiment design. 同一个factor内的level互斥, 不同factor之间正交. significant improvement 就可以推全, 留一小部分做reverse AB.

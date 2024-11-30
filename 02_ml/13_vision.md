@@ -1,20 +1,28 @@
 # 机器视觉
 
-
 ## 1. 模型
-- ConvNext
-- ViT
 
 ### 分类
+- ConvNext
+- ViT
+- 深度可分离卷积
 
 
 ### 检测
 参考[物体检测系统设计](../03_system/03_ml/object_detection.md)
 
+- 一阶段检测
+  - YOLO: 网格负责预测真实的bbox
+  - SSD
+  - RetinaNet
 - 二阶段检测
   - rcnn, fast-rcnn, faster-rcnn
-- 一阶段检测
-  - YOLO
+  - 特征抽取(feature extraction)，候选区域提取（Region proposal提取），边框回归（bounding box regression），分类（classification）
+- 多阶段
+  - Cascade-rcnn: 不同级采用不同 IoU 阈值来进行重新计算正负样本和采样策略来逐渐提高 bbox 质量
+
+- anchor_base or anchor_free
+- RPN
 - 旋转目标检测
 
 
@@ -25,7 +33,7 @@
 ### 视频
 
 
-### Transformer
+### Transformer模型的视觉应用
 **ViT**
 
 
@@ -131,6 +139,14 @@ def nms(boxes, scores, threshold):
 
     return keep
 ```
+
+
+## 3. 问答
+
+- 感受野
+- 深度可分离卷积
+- 数据增强
+
 
 ## 参考
 - [Randaugment: Practical automated data augmentation with a reduced search space](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w40/Cubuk_Randaugment_Practical_Automated_Data_Augmentation_With_a_Reduced_Search_Space_CVPRW_2020_paper.pdf)

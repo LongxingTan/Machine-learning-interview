@@ -5,18 +5,15 @@
 - 转化漏斗：曝光 —> 点击 —> 转化
 
 
-## 1. requirement
+## 1. requirements
 
 **场景类**
 - We have a bidding server which makes bids and produces logs. Also we have information about impressions and conversions (usually with some delays). We want to have a model which using this data will predict a probability of click (conversion)
-- What is the primary business objective of the click prediction system?
 - What types of ads are we predicting clicks for (e.g., display ads, video ads, sponsored content)?
 - Are there specific user segments or contexts we should consider (e.g., user demographics, browsing history)?
-- How will we define and measure the success of click predictions (e.g., click-through rate, conversion rate)?
-- Do we have negative feedback features (such as hide ad, block, etc)?
 - Do we have fatigue period (where ad is no longer shown to the users where there is no interest, for X days)?
 - What type of user-ad interaction data do we have access to can we use it for training our models?
-- Do we need continual training?
+- Do we have negative feedback features (such as hide ad, block, etc)?
 - How do we collect negative samples? (not clicked, negative feedback).
 
 **功能类**
@@ -24,9 +21,13 @@
 - diversity, 不能把相似广告放一起
 - explicit negative feedback, multi-task ranking增加一个head, label是hide block
 
-**非功能**
-- scale
-- latency
+**objective**
+- primary business objective: maximize revenue
+- How will we define and measure the success of click predictions (e.g., click-through rate, conversion rate)?
+
+**constraint**
+- scale: number of users
+- latency: 50ms to 100ms
 
 
 ## 2. ML task & pipeline
@@ -48,29 +49,35 @@
 4. recall
 5. ranking
 
+**特点**
+- Imbalance data
+
 
 ## 3. data collection
 
 Data Sources
 - Users
+  - demographics
 - Ads
-- User-ad interaction
-ML Data types
-Labelling
+  - category
+- user-ad interaction
+- user-user friend
+- Labelling
+  - negative sampling for imbalance
 
 
 ## 4. feature
+
+It is important for CTR prediction to learn implicit feature interactions behind user click behaviors.
 
 ![](../../.github/assets/03ml-adclick-user.png)
 
 ![](../../.github/assets/03ml-adclick-ad.png)
 
-It is important for CTR prediction to learn implicit feature interactions behind user click behaviors.
-
 
 ## 5. model
 
-广告算法主流模型. 广告算法基本都是point wise训练方式，因为广告是很少以列表的形式连续呈现
+广告算法主流模型. 广告算法基本都是point-wise训练方式，因为广告是很少以列表的形式连续呈现
 - Logistic regression (feature crossing)
 - GBDT
 - GBDT+LR
@@ -84,16 +91,19 @@ It is important for CTR prediction to learn implicit feature interactions behind
 - Wide and Deep
 
 uplift: 预测增量值(lift的部分), 预测某种干预对于个体状态或行为的因果效应(识别营销敏感人群)。
+
 $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 
 
 ## 6. evaluation
 **Offline metrics**
 - Log Loss
+- ROC-AUC
 
 **Online metrics**
+- CTR
 - Overall revenue (or ROI)
-- Spend
+- Time Spend
 
 
 ## 7. deployment & serving
@@ -103,7 +113,7 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 ## 8. monitoring & maintenance
 
 
-## 问答
+## 9. 优化与问答
 
 - bad ads
   - 侧重解决数据来源(人工标注), 以及数据量比较小的问题
@@ -120,9 +130,11 @@ $$ Lift = P(buy|treatment) - P(buy|no treatment) $$
 
 
 ## reference
+**精读**
 - [Unpacking How Ad Ranking Works at Pinterest](https://www.infoq.com/articles/pinterest-ad-ranking-ai/?topicPageSponsorship=ed11260b-6513-40ba-922f-aae7ac9f942c)
+- [Building an Ad Click Prediction Machine Learning System: Problem Statement and Metrics](https://www.linkedin.com/pulse/building-ad-click-prediction-machine-learning-3tlic/)
 
-扩展
+**扩展**
 - [On the Factory Floor: ML Engineering for Industrial-Scale Ads Recommendation Models](https://arxiv.org/abs/2209.05310)
 - [snap: Machine Learning for Snapchat Ad Ranking](https://eng.snap.com/machine-learning-snap-ad-ranking)
 - [架构设计之广告系统架构解密](https://zhuanlan.zhihu.com/p/300167370)

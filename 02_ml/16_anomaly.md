@@ -1,31 +1,31 @@
 # 异常检测
 
-异常类型：Point anomaly, Contextual anomaly, Collective anomaly
-具体类型：根据取值范围、常数波动、固定斜率波动、滑动聚合加方差、一阶差分
-任务类型：有监督，无监督
-模型类型：距离，分类
+- 异常类型：Point anomaly, Contextual anomaly, Collective anomaly
+- 具体类型：根据取值范围、常数波动、固定斜率波动、滑动聚合加方差、一阶差分、局部异常
+- 任务类型：有监督，无监督
+- 模型类型：距离，分类
 
 
 ## 模型
-正样本 autoencoder
-GAN：
-规则、经验
-
-3sigma
-
-DBSCAN
+**规则、经验**
+- remove outlier: Random sample consensus (RANSAC) is an iterative method to estimate parameters of a mathematical model from a set of observed data that contains outliers, when outliers are to be accorded no influence on the values of the estimates
 
 
-孤立森林
+**3sigma**
+- Z-score标准化，数据满足正态分布
 
+**PCA**
+- 降维
 
-PCA
+**孤立森林**
 
+**One-Class SVM**
 
-局部异常
+**DBSCAN**
 
+**autoencoder**
 
-Random sample consensus (RANSAC) is an iterative method to estimate parameters of a mathematical model from a set of observed data that contains outliers, when outliers are to be accorded no influence on the values of the estimates
+**GAN**
 
 
 ## reference

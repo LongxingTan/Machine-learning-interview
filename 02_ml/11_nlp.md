@@ -1,6 +1,6 @@
 # 自然语言处理
 
-NLP包括自然语言理解和自然语言生成，多个方向如文本分类、相似匹配、对话问答、机器翻译、序列标注、知识图谱、意图理解、词义消歧。
+NLP包括自然语言理解和自然语言生成，任务包括文本分类、相似匹配、对话问答、机器翻译、序列标注、知识图谱、意图理解、词义消歧。
 
 - 视觉和nlp最大的区别：语义稀疏性，域间差异性，无限粒度性
 - Transformer时代三类模型：bert（自编码）、gpt（自回归）、bart（编码-解码）
@@ -38,12 +38,12 @@ NLP包括自然语言理解和自然语言生成，多个方向如文本分类�
 
 **decoder**
 - GPT3
-- PALM，
+- PALM
 - LLaMA
 
 
 ### 2.1 tfidf / BM25
-- [geeksforgeeks](https://www.geeksforgeeks.org/tf-idf-model-for-page-ranking/)
+[geeksforgeeks](https://www.geeksforgeeks.org/tf-idf-model-for-page-ranking/)
 
 term-frequency: w represents a word, d means the document
 
@@ -178,6 +178,7 @@ perplexity
 
 BLEU
 - BLEU 根据精确率(Precision)衡量翻译的质量，而 ROUGE 根据召回率(Recall)衡量翻译的质量
+- 过于依赖参考，如果译文质量很好但部分字词在参考翻译中没有的话得分会很低；未考虑语法问题
 
 ROGUE (Recall-Oriented Understudy for Gisting Evaluation)
 - [基于召回率](https://zhuanlan.zhihu.com/p/647310970)
@@ -356,9 +357,11 @@ def get_positional_embedding(d_model, max_seq_len):
 
 
 ## 参考
-- [邱锡鹏: nlp-beginner](https://github.com/FudanNLP/nlp-beginner)
+**精读**
+- [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU)
+
+**扩展**
 - [NLP 任务中有哪些巧妙的 idea？ - 邱锡鹏的回答 - 知乎](https://www.zhihu.com/question/356132676/answer/901244271)
-- [CS224N](https://web.stanford.edu/class/cs224n/index.html#schedule)
 - [https://github.com/firechecking/CleanTransformer](https://github.com/firechecking/CleanTransformer)
 - [秒懂词向量Word2vec的本质 - 穆文的文章 - 知乎](https://zhuanlan.zhihu.com/p/26306795)
 - [https://github.com/deborausujono/word2vecpy](https://github.com/deborausujono/word2vecpy)
@@ -385,8 +388,11 @@ def get_positional_embedding(d_model, max_seq_len):
 - [Pytorch data Samplers & Sequence bucketing](https://www.kaggle.com/code/shahules/guide-pytorch-data-samplers-sequence-bucketing)
 - [Pytorch BERT beginner's room](https://www.kaggle.com/code/chumajin/pytorch-bert-beginner-s-room)
 - [https://transformers.run/c3/2022-03-18-transformers-note-6/](https://transformers.run/c3/2022-03-18-transformers-note-6/)
-- [Let's build GPT: from scratch, in code, spelled out.]()
-- [Let's reproduce GPT-2 (124M)]()
-- [Stanford CS25: V2 I Introduction to Transformers w/ Andrej Karpathy]()
+- [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 - [https://github.com/karpathy/minbpe](https://github.com/karpathy/minbpe)
 - [n-gram in hadoop map-reduce](https://github.com/cloudera/python-ngrams/tree/master/native/src/main/java)
+
+**课程**
+- [邱锡鹏: nlp-beginner](https://github.com/FudanNLP/nlp-beginner)
+- [CS224N](https://web.stanford.edu/class/cs224n/index.html#schedule)
+- [Stanford CS25: V2 I Introduction to Transformers w/ Andrej Karpathy]()

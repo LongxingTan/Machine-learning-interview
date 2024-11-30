@@ -22,10 +22,10 @@
 ## 6. evaluation
 
 
-## 7. deployment and serving
+## 7. deployment & serving
 
 
-## 8. monitor and maintenance
+## 8. monitor & maintenance
 
 
 ## reference

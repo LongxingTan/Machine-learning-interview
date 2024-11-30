@@ -4,11 +4,20 @@
 
 ## 1. requirements
 
+**constraint**
+- latency
+- Throughput
+- Availability
+- Scalability 
+
 
 ## 2. ML task & pipeline
 - indexing
 - retrieval
 - generation
+
+![](../../.github/assets/03ml-rag.jpeg)
+
 
 ## 3. data
 
@@ -24,8 +33,10 @@ generation
 - rouge-l, 关键词重合度
 - 主观评估：质量，准确性
 
+online
 
-## 问答
+
+## 优化与问答
 - 多轮对话的RAG
 - NL2SQL
 - 幻觉

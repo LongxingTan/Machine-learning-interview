@@ -3,12 +3,12 @@
 > 机器学习系统的核心，是训练一个**模型**来实现某个任务。如预测、分类、排序.
 >- 建模design, 包括优化目标，feature，data，模型结构，评价标准等
 >- 系统design, 偏重于在线serve模型，包括feature store, ANN, ETL pipeline, MLOps等
->- 如果是不熟悉的场景，一定先从头到尾把细节问清楚
+>- 不熟悉的场景，一定先从头到尾问清楚细节。没有通用解，只有更适合场景的solution，牢记trade-off
 
 
 ## 1. 面试过程
 
-- 心态和神态: 自信和大方的展现自己、良好的沟通能力是任何面试都看重的品质
+- 心态和神态: 自信大方的展现自己、良好的沟通能力是任何面试都看重的
 - **沟通：** 一边白板画框图，一边告知面试官要讲某几个部分. 每个部分move前可再次确认 `Is there anywhere that you feel I missed?`
 - **分层思维：** 整个过程，一层讲清楚主题前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
 - **深度和广度：** 每个部分，尤其是自己熟悉的方面，要主动讲，积极展现自己的知识宽度和深度
@@ -18,8 +18,9 @@
 ## 2. 回答框架
 
 - **明确需求 Requirement**
+  - functional和non-functional一定要确认清楚，否则是不合格signal
   - 场景，功能，目标(engagement or revenue)，约束
-  - scale of the system, user和item有哪些数据和量级
+  - scale of the system, user和item有哪些数据和量级  
 - **机器学习任务 ML Task**
   - 解释如何将需求转化为机器学习问题(如推荐转化为二分类模型和原因)
 - **数据 Data**
@@ -97,7 +98,7 @@
 - data pipeline怎么设计
 - serving
   - Online A/B testing
-    - Based on the online metrics we would select a significance level 𝛼 and power threshold 1 – 𝛽
+    - Based on online metrics we would select a significance level 𝛼 and power threshold 1 – 𝛽
     - Calculate the required sample size per variation: The required sample size depends on 𝛼, 𝛽, and the MDE Minimum Detectable Effect – the target relative minimum increase over the baseline that should be observed from a test
     - Randomly assign users into control and treatment groups (discuss with the interviewer whether we will split the candidates on the user level or the request level)
     - Measure and analyze results using the appropriate test. Also, we should ensure that the model does not have any biases.
@@ -122,16 +123,18 @@
 
 ## 参考
 **精读**
+- [ML Systems Design Interview Guide](http://patrickhalina.com/posts/ml-systems-design-interview-guide/)
+- [Meet Michelangelo: Uber’s Machine Learning Platform](https://www.uber.com/en-SG/blog/michelangelo-machine-learning-platform/)
 - [Machine Learning Engineering by Andriy Burkov](https://www.amazon.com/Machine-Learning-Engineering-Andriy-Burkov/dp/1999579577)
 - [https://github.com/chiphuyen/machine-learning-systems-design](https://github.com/chiphuyen/machine-learning-systems-design)
 
 **扩展**
+- [https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/ml-system-design.md](https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/ml-system-design.md)
 - [https://github.com/ByteByteGoHq/ml-bytebytego](https://github.com/ByteByteGoHq/ml-bytebytego)
 - [https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/](https://research.facebook.com/blog/2018/5/the-facebook-field-guide-to-machine-learning-video-series/)
 - [https://github.com/khangich/machine-learning-interview](https://github.com/khangich/machine-learning-interview)
 - [https://github.com/shibuiwilliam/ml-system-in-actions](https://github.com/shibuiwilliam/ml-system-in-actions)
 - [https://github.com/mercari/ml-system-design-pattern](https://github.com/mercari/ml-system-design-pattern)
-- [https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/ml-system-design.md](https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/ml-system-design.md)
 - [https://github.com/ibragim-bad/machine-learning-design-primer](https://github.com/ibragim-bad/machine-learning-design-primer)
 - [Grokking the Machine Learning Interview](https://www.educative.io/courses/grokking-the-machine-learning-interview)
 - [https://about.instagram.com/blog/engineering/designing-a-constrained-exploration-system](https://about.instagram.com/blog/engineering/designing-a-constrained-exploration-system)

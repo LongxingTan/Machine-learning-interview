@@ -5,13 +5,20 @@
 
 ## 1. requirements
 **BG & product**
-- homepage feed?
+- homepage or related item recommendation
 - user: follow
 - item: text, image, video
 - engagement: click, like, comment, share
 
+**objective**
+- increase the engagement
 
-## 2. pipeline
+**constraint**
+- scale of user and item
+- latency
+
+
+## 2. ML task & pipeline
 
 召回、精排、规则多样性重排、混排
 
@@ -23,10 +30,21 @@
 
 
 ## 3. data collection
+- user
+  - demographics
+- item
+  - text
+- engagement
+  - impression, engagement
+- context
+  - device
+  - time
+- label
 
 
 ## 4. feature
-
+- dense
+- sparse
 
 ## 5. model
 
@@ -47,12 +65,20 @@
 
 
 ## 6. evaluation
-
+- offline
+  - recall@k, hit_rate
+- online
+  - ctr
 
 ## 7. deploy & serving
+- batch service or online service
+- A/B testing
 
 
 ## 8. monitoring & maintenance
+
+
+## 9. 优化与问答
 
 
 ## reference

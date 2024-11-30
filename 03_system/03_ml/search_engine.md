@@ -7,7 +7,7 @@
 
 ## 1. requirements
 
-**产品/功能**
+**产品/功能/use cases**
 - Is it a generalized search engine (like google) or specialized (like amazon product)?
 - What are the specific use cases and scenarios where it will be applied?
 - What are the system requirements (such as response time, accuracy, scalability, and integration with existing systems or platforms)?
@@ -71,12 +71,17 @@ query understanding
 - The ranking was bad if the user clicked on the “next page” link.
 
 ## 4. feature
+- user
+- context
+- query
+- item
+- user-item
+- query-item
 
 
 ## 5. model
-
-
-### query reformulation
+- Point-wise LTR, pairwise LRT
+- rerank
 
 
 ## 6. evaluation
@@ -104,4 +109,5 @@ query understanding
 - Poly-encoders: Transformer Architectures and Pre-training Strategies for Fast and Accurate Multi-sentence Scoring，ICLR 2020
 - Approximate Nearest Neighbor Negative Contrastive Learning for Dense Text Retrieval, ICLR 2021
 - [Listing Embeddings in Search Ranking](https://medium.com/airbnb-engineering/listing-embeddings-for-similar-listing-recommendations-and-real-time-personalization-in-search-601172f7603e)
-- 
+- [COTA: Improving Uber Customer Care with NLP & Machine Learning](https://www.uber.com/en-SG/blog/cota/)
+- [Scaling Uber’s Customer Support Ticket Assistant (COTA) System with Deep Learning](https://www.uber.com/en-SG/blog/cota-v2/)

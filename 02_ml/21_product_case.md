@@ -36,7 +36,7 @@
 
 ## 2. 回答框架Framework
 
-### 目标
+### 2.1 目标
 以framework来说，第一步，也是最重要的，是订所谓的目标。目标有两种
 - 整个公司有一个大的overall business goal. 例如meta的愿景是让人们之间的距离缩短，并让人们有能力可以打造社群，也帮助企业成长盈利。这不是我发明的，是他们家的mission statement
 - 题目中涉及的产品也会有一个主要目标。例如增加某feature engagement
@@ -47,7 +47,7 @@
 FB mission (business goal) → Product goal (pain point solving / why are we doing this) → Hypothesis → Validation (Metrics and methodology i.e experiment design) → Analysis → Decision
 先从FB的愿景讲起--> 然后自定义产品的目标为何，这个目标也是要能够帮助到整体企业的目标--> 有哪些假说 → 要如何确定假说，metric and methodology (i.e experiment) → 如何分析结果--> 结果为如何的时候我们怎麽下决策
 
-### metrics
+### 2.2 metrics
 讲metric 的时候，要跟目标有所结合。不要随便乱丢metric
 Metrics有分成几种
 - Goal (success) metrics: 你想要提升的目标
@@ -59,15 +59,16 @@ Metrics有分成几种
 - Short term v.s long term （有些指标无法反映长期）
 - Engagement v.s safety （互动增加但可能伤害人与人之间的互动，例如耸动的新闻或假新闻）
 
-### insight analysis
+### 2.3 insight analysis
 提出假设
 
-### 实验
+### 2.4 实验
 请把A/B test的架构讲得清楚:
 - 实验组跟对照组各可以干嘛
 - Randomization unit. 为何选择这个，而不是另一个？最常回答的用user_id 来当作randomization unit,会有什麽pros and cons?
 - 如果A/B test 不可行的时候，该怎麽办？为什麽不可行？
 - 如何 identify network effect? How to mitigate the risk?
+
 
 ## 3. 案例- Analytical Reasoning: Restaurant Recommendations
 

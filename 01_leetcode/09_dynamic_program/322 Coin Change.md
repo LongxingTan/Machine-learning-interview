@@ -3,20 +3,34 @@
 
 
 ## solution
+> 为什么不能用贪心，尽量选面值最高的. 假设有以下硬币面值：[1, 3, 4]，需要找零6元
+
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [float('inf')] * (amount + 1)
+        dp[0] = 0
+
+        for i in range(1, amount+1):
+            for coin in coins:
+                if i - coin >= 0:
+                    dp[i] = min(dp[i], dp[i-coin]+1)
+        return dp[-1] if dp[-1] != float('inf') else -1
+```
 
 - 完全背包
-  - dp[j]：凑足总额为j所需钱币的最少个数为dp[j]
+  - dp[j]：凑足总额为j所需钱币的最少个数为dp[j]. 先物品在背包理解成, 
 
 ```python
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:        
-        dp = [float('inf') for _ in range(amount+1)]  # 恰好装满类的背包问题初始化
+        dp = [float('inf') for _ in range(amount + 1)]  # 恰好装满类的背包问题初始化
         dp[0] = 0
 
         for i in coins:  # 先物品
             for j in range(i, amount+1):  # 再背包(或者不能说背包，而是背包的约束), 背包大于物品
                 if dp[j-i] != float('inf'):
-                    dp[j] = min(dp[j], dp[j-i]+1)
+                    dp[j] = min(dp[j], dp[j-i] + 1)
 
         if dp[amount] == float('inf'):
             return -1
@@ -26,20 +40,15 @@ class Solution:
 空间复杂度：O(∣amount∣)
 
 
-- bfs
+- Recursion
 ```python
+# https://www.geeksforgeeks.org/coin-change-dp-7/
+# https://leetcode.com/problems/coin-change/solutions/77409/evolve-from-brute-force-to-optimal-a-review-of-all-solutions/
 
 ```
 时间复杂度：O() <br>
 空间复杂度：O()
 
-
-- dfs
-```python
-
-```
-时间复杂度：O() <br>
-空间复杂度：O()
 
 
 ## follow up

@@ -1,5 +1,5 @@
 # 机器学习
-> 面试的确需要一些技巧和准备，但功夫在诗外。平时注意构建知识体系，读论文和做实验不断为知识体系添砖加瓦。本章侧重理论与实践，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
+> 面试需要一些准备和技巧，但功夫在诗外。平时注意构建知识体系，论文和实验不断给体系添砖加瓦。本章侧重理论部分，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
 
 
 ## 1. 面试要求
@@ -7,18 +7,18 @@
 - 熟悉常见模型的**原理、代码、如何实际应用、优缺点、常见问题**等
   - 归纳偏置(Inductive Bias)，数据同分布(IID)
 
-- 考察范围包括**ML breadth, ML depth, ML application, coding**
-  - 可能持续被追问为什么? 某个trick为什么能起作用？
+- 考察范围包括**ML breadth, ML depth, ML application, coding**  
   - 算法背后的数学原理，写出主要数学公式，并能进行**白板推导介绍**
   - 一些较新的领域如[大模型](./12_llm.md)，会考察论文细节
+  - 可能被持续追问为什么? 某个trick为什么能起作用？
   - 每一个算法如何scale，如何将算法map-reduce化
   - 每一个算法的**复杂度、参数量、计算量**
 
-- [简历中的机器学习项目介绍](./22_project.md)
+- [简历中介绍自己的机器学习项目](./22_project.md)
 
 
 ## 2. 八股问题实例
-> 具体模型的细节与八股题见具体模型
+> 模型细节与八股见具体模型页面
 
 - Generative vs Discriminative
   - A generative model will learn categories of data while a discriminative model will simply learn the distinction between different categories of data. 
@@ -55,6 +55,7 @@
 
 - 怎么解决数据缺失的问题
   - [How to Handle Missing Data](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4)
+  - label data较少的情况
 
 - 怎么解决类别变量中的高基数特征 high-cardinality
   - Feature Hashing
@@ -74,7 +75,7 @@
     - batch normalization
   - 梯度爆炸
     - gradient clipping
-    - LSTM
+    - LSTM gate
 
 - 数据收集
   - production data, label
@@ -83,10 +84,16 @@
 - 分布不一致怎么解决
   - distribution有feature和label的问题。label尽量多收集data，还是balance data的问题
   - data distribution 改变，就是做auto train, auto deploy. 如果性能drop太多，人工干预重新训练
+  - 穿越特征也会造成分布不一致的表象，从避免穿越角度解决
 
 - 线上线下不一致
   - model behaviors in production: data/feature distribution drift, feature bug
   - model generalization: offline metrics alignment
+
+- curse of dimensionality
+  - Feature Selection
+  - PCA
+  - embedding
 
 - 怎么提升模型的latency
   - 小模型
@@ -105,14 +112,14 @@
 ## 3. 手写ML代码实例
 > [ML code challenge](https://www.deep-ml.com/)
 
-- [手写KNN](./07_knn.md)
-  - convolution layer的output size怎么算? 写出公式
+- [手写KNN](./07_knn.md)  
 - [手写K-means](./09_k_means.md)
 - 手写softmax的backpropagation
 - 手写AUC
 - 手写SGD
 - 手写两层fully connected网络
 - [手写CNN](./05_deep_learning.md)
+  - convolution layer的output size怎么算? 写出公式
 - 实现dropout，前向和后向
 - 实现focal loss
 - 手写LSTM
@@ -140,3 +147,5 @@
 - [Best Practices for ML Engineering](https://developers.google.com/machine-learning/guides/rules-of-ml)
 - [https://github.com/bitterengsci/algorithm](https://github.com/bitterengsci/algorithm/blob/master/royal%20algorithm/Machine%20Leanrning.md)
 - [Pros and cons of various Machine Learning algorithms](https://towardsdatascience.com/pros-and-cons-of-various-classification-ml-algorithms-3b5bfb3c87d6)
+- [10min pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
+- [60min pytorch](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)

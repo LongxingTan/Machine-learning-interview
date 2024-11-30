@@ -1,19 +1,18 @@
-# 决策树
+# 树模型
 
-决策树的角度和之前不同，优化思路也不同。其演化过程需要结合ensemble原理（bagging、boosting）。
+> 决策树的设计思路与优化思路不同，通过特征的分裂来拟合目标；演化过程可以结合ensemble原理（bagging、boosting）
 
 ## 1. 决策树
-优化目标: To find the best split that maximize the separation between different classes or reduces the impurity with each resulting node
+**优化目标**
+- To find the best split that maximize the separation between different classes or reduces the impurity with each resulting node
 
-分裂依据
+**分裂依据**
 
 ![](../.github/assets/02ml-tree.png)
 
 - 熵 Entropy
   - 熵、联合熵、条件熵、交叉熵、KL散度（相对熵）
   - KL(p|q) = cross entropy(p, q) - H(p)
-
-entropy公式：
 
 $$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
 
@@ -32,31 +31,32 @@ $$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
 ## 3. 随机森林
 - 有放回采样地选取n个样本，建立m个决策树分类器。多个分类器采用投票机制产生最终分类结果
 - 样本随机选择，特征随机选择
-- 损失函数：
+- 损失函数
 - 可以并行训练，不容易过拟合
 
 
 ## 4. 梯度提升树GBDT
-- GBDT拟合的是负梯度，下一棵树拟合的是前面的负梯度。当损失函数为平方损失的时候，负梯度正好为残差
+- GBDT拟合的是负梯度，下一棵树拟合的是前面的**负梯度**。当损失函数为平方损失时，负梯度正好为残差
 - 做分类任务时，GBDT内部每棵树是回归树，不论是回归还是分类任务
 - Importance is calculated for a single decision tree by the amount that each attribute split point improves the performance measure, weighted by the number of observations the node is responsible for
 - summing up how much splitting on each feature allowed you to reduce the impurity across all the splits in the tree
 
 
-## 5. xgboost
-- XGBoost使用二阶泰勒展开(taylor expansion)表示梯度，即每棵树拟合的是二阶泰勒的梯度，相比GBDT的一阶泰勒展开、对梯度的表示更准确
+## 4.1. xgboost
+- XGBoost使用**二阶泰勒展开**(taylor expansion)表示梯度，即每棵树拟合的是二阶泰勒的梯度，相比GBDT的一阶泰勒展开、对梯度的表示更准确
+$$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
+
 - 损失函数中显式加入了正则项，对叶子数目和叶子权重做惩罚
+- 每次分裂时，选择（每个特征的每个可能的分割值）能够最大化目标函数增益
 - 特征重要性
   - `Split` contains numbers of times the feature is used in a model. 作为划分属性的次数, 默认值(导致一些ID类基数大容易成为重要特征)
   - `Gain` result contains total gains of splits which use the feature. 特征在作为划分属性时loss的降低量
   - `cover`，特征在作为划分属性时对样本的覆盖度
 - 基于预排序方法加速
 
-$$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 
-
-## 6. lightgbm
-- 基于Histogram: lightgbm遍历每个特征寻找最优分裂点时，将每个特征进行了分桶，比如可指定分为64个桶，那么该特征所有的值都落入这64个桶中，遍历这个特征时，最多只需要遍历64次，则每次分裂的复杂度为O(特征数*桶数)，如果不分桶，则可能所有样本的值都不同，则复杂度为O(特征数*样本数)。
+## 4.2. lightgbm
+- 基于Histogram直方图统计: lightgbm遍历每个特征寻找最优分裂点时，将每个特征进行了分桶，比如可指定分为64个桶，那么该特征所有的值都落入这64个桶中，遍历这个特征时，最多只需要遍历64次，则每次分裂的复杂度为O(特征数*桶数)，如果不分桶，则可能所有样本的值都不同，则复杂度为O(特征数*样本数)。
 为什么能分桶：因为每棵树都是弱分类器，不需要非常精准，且分桶一定程度上提高了泛化能力，降低了误差
 - lightgbm的分枝模式为leaf-wise，即遍历当前所有待分枝节点，不需要一定在最下边一层，谁的分裂增益大就分谁。而XGBoost的分枝模式为level-wise，即分完一层再分下一层，可能一层中有些叶子分裂增益极小，但是仍然要花费时间和空间去分裂
 - 单边梯度采样（Gradient-based One-Side Sampling，GOSS）：使用GOSS可以减少大量只具有小梯度的数据实例，这样在计算信息增益的时候只利用剩下的具有高梯度的数据就可以了
@@ -64,11 +64,12 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - Cache命中率优化
 
 
-## 7. catboost
+## 4.3. catboost
 - 类别特征
+- 使用对称树，对称树是平衡的，不容易过拟合
 
 
-## 8. 特征重要性
+## 5. 特征重要性
 - 所有树中作为划分属性的次数
 - 使用特征在作为划分属性时loss平均的降低量
 - 作为划分属性时对样本的覆盖度
@@ -77,7 +78,7 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - SHAP
 
 
-## 9. 问答
+## 6. 问答
 
 - GBDT中的梯度与深度学习的梯度优化方法？
   - 二者都是借助梯度进行优化，GBDT是下一颗树拟合，深度学习是向后传播
@@ -109,18 +110,31 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - GBM中的gradient怎么定义
 
 
-## 10. 代码
-Decision Tree
+## 7. 代码
+[Decision Tree](https://github.com/eriklindernoren/ML-From-Scratch/blob/master/mlfromscratch/supervised_learning/decision_tree.py)
 
 
 ```python
 import numpy as np
 
-class Decision_node():
-    pass
-
-class Decision_tree():
-    pass
+class Decision_node(object):
+    def __init__(self, feature_i=None, threshold=None, value=None, true_branch=None, false_branch=None):
+        self.feature_i = feature_i          # Index for the feature that is tested
+        self.threshold = threshold          # Threshold value for feature
+        self.value = value                  # Value if the node is a leaf in the tree
+        self.true_branch = true_branch      # 'Left' subtree
+        self.false_branch = false_branch    # 'Right' subtree
+        
+class Decision_tree(object):
+    def __init__(self, min_samples_split=2, min_impurity=1e-7, max_depth=float("inf"), loss=None):
+        self.root = None  # Root node in dec. tree        
+        self.min_samples_split = min_samples_split  # Minimum n of samples to justify split        
+        self.min_impurity = min_impurity  # The minimum impurity to justify split        
+        self.max_depth = max_depth  # The maximum depth to grow the tree to        
+        self._impurity_calculation = None  # Function to calculate impurity (classif.=>info gain, reg=>variance reduct.)        
+        self._leaf_value_calculation = None  # Function to determine prediction of y at leaf       
+        self.one_dim = None   # If y is one-hot encoded (multi-dim) or not (one-dim)        
+        self.loss = loss  # If Gradient Boost
 ```
 
 回到损失函数，如xgboost中如何自定义损失函数

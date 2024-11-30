@@ -177,17 +177,19 @@ class Solution:
 ```python
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
+        # 209的做法: 固定右端点r，左边l是满足k的最大window. 此时l到r之间的元素都满足要求
+    
         res = 0
         prefix_prod = 1
         l = 0 
 
         for r, num in enumerate(nums):
             prefix_prod *= num
-
-            while l <= r and prefix_prod >= k:
+            
+            while prefix_prod >= k:
                 prefix_prod //= nums[l]
                 l += 1
             
-            res += r - l + 1  # 结果加上从l开始，以r结果的数量
+            res += r - l + 1  # 结果加上从l开始，以r结果的数量. 假设l=r此时有一个元素
         return res
 ```

@@ -5,6 +5,7 @@
   - latency sensitive的场景，要避免使用msg queue
 - 画出关系清晰的架构图，搞清楚service怎么划分
   - high level design
+  - `现在我们面临什么问题，解决这个问题有哪几种思路，其优略分别是什么，鉴于此我更倾向于那种设计`
 - 设计数据结构与存储、核心子服务、接口等，接上database
   - 技术选型：SQL vs No-SQL，Sync VS Async，RPC VS MQ等技术选择
 - 明确所设计系统的可扩展性、容错性、延迟要求等
@@ -68,6 +69,59 @@ web/mobile -> HAproxy/ELB -> API Gateway -> Nginx server/Kube deployment/REST ->
 client -> reverse proxy -> web service -> message queue -> application server -> cache -> DB
 
 
+## 基础
+
+### 数据库基础
+**数据库规范化(Normalization)**
+- Normalisation Form(NF)，其中包括第一范式、第二范式、第三范式、第四范式以及第五范式(1NF、2NF、3NF、4NF、5NF)
+- SQL provides ACID transaction
+
+**SQL**
+需要支持transaction和join的
+- SQL(ACID)
+- consistency
+- structured data (fixed schema)
+- transactions
+- joins
+
+**NoSQL**
+需要high TPS和灵活schema的
+- high performance
+- unstructured data (flexible schema)
+- availability
+- easy scalability, 分布式架构在 NoSQL 数据库中非常普遍
+
+
+### 网络基础
+
+Restful API
+
+HTTP/HTTPS
+- HTTP是基于TCP/IP协议的应用层协议，定义的是传输数据的内容规范
+
+RPC
+- 解决分布式系统中，服务之间的调用问题；远程调用时，让调用者感知不到远程调用的逻辑
+- RPC架构的核心组件: Client, Server, Client Stub, Server Stub, stub理解为存根
+
+socket
+- Socket不属于协议，而是一个调用接口（API），属于网络协议的传输层，是对TCP/IP协议的封装
+- socket长链接: 长连接多用于操作频繁，点对点的通讯，而且连接数不能太多情况；如推送，聊天，保持心跳长连接等
+
+TCP
+- 建立连接需要经过三次握手，断开连接需要经过四次分手
+
+
+### 分布式基础
+- load balancer
+- Horizontal scaling
+- caching
+  - redis
+- database sharding(partition)
+- horizontal scaling, sharded by userId, caching, etc
+- consistent hashing
+- paxos and raft
+
+
 ## 问题
 - How to do large scale batch processing
 - How to do model serving readiness
@@ -86,69 +140,16 @@ client -> reverse proxy -> web service -> message queue -> application server ->
 - 热点数据处理
 
 
-## 基础
-
-push and pull
-
-consistent hashing
-
-event sourcing
-
-paxos and raft
-
-cache
-
-redis
-
-数据库规范化(Normalization)
-- Normalisation Form(NF)，其中包括第一范式、第二范式、第三范式、第四范式以及第五范式(1NF、2NF、3NF、4NF、5NF)
-- SQL provides ACID transaction
-
-网络基础
-
-Restful API
-
-HTTP/HTTPS
-
-RPC
-
-### SQL and NoSQL
-
-需要支持transaction和join的，需要用SQL
-需要high TPS和灵活schema的，用NoSQL
-
-SQL(ACID)
-- consistency
-- structured data (fixed schema)
-- transactions
-- joins
-
-NOSQL
-- high performance
-- unstructured data (flexible schema)
-- availability
-- easy scalability
-
-
-### scale
-- load balancer
-- Horizontal scaling
-- caching
-- database sharding(partition)
-- horizontal scaling, sharded by userId, caching, etc
-
-
-
 ## Reference
 **精读**
 - [Jordan has no life](https://www.youtube.com/@jordanhasnolife5163/videos)
-- [https://blog.bytebytego.com/?sort=top](https://blog.bytebytego.com/?sort=top)
 - [grokking-the-system-design-interview](https://www.educative.io/courses/grokking-the-system-design-interview)
 - [system design primer](https://github.com/donnemartin/system-design-primer)
 - [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
 
 **扩展**
 - Web Application and Software Architecture 101
+- [https://blog.bytebytego.com/?sort=top](https://blog.bytebytego.com/?sort=top)
 - [Uber tech blog](https://www.uber.com/en-SE/blog/)
 - [pinterests tech blog](https://medium.com/pinterest-engineering)
 - [System design interview guide for Software Engineers](https://www.techinterviewhandbook.org/system-design/)
@@ -178,3 +179,5 @@ NOSQL
 - [Dynamo: Amazon’s Highly Available Key-value Store](https://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf)
 - [https://github.com/preslavmihaylov/booknotes/tree/master/system-design/system-design-interview](https://github.com/preslavmihaylov/booknotes/tree/master/system-design/system-design-interview)
 - [https://engineeringblog.yelp.com/](https://engineeringblog.yelp.com/)
+- https://github.com/luxu1220/redis_practice
+- [L6和L5系统设计面试区别](https://www.1point3acres.com/bbs/thread-1054990-1-1.html)

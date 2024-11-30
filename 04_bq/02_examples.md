@@ -26,6 +26,7 @@ The job I have applied is the software development position in Amazon Books, I a
 
 ## The biggest mistake you made and what did you learn from it?
 > earn trust, customer obsession
+> - negative question: star 的基础上加learns
 
 The biggest mistake I’ve made happened when I took on and led a project for the first time. I got a requirement from the client about updating parts of a certain workflow. So I documented the requirements, worked on them with the team, and released the update to the demo system on time, however, the client tried and didn’t like it.
 We diagnosed the feedback and system immediately, It turned out that we paid a lot of attention on the changes the client requested us to do, but didn’t do much evaluation on other features that are impacted by the change.
@@ -35,6 +36,8 @@ We then released a tentative version to the demo system before the deadline, wal
 
 ## Most challenging project
 > Deliver Results
+
+[如何在面试中展现适合staff职位的scope与能力](https://www.1point3acres.com/bbs/thread-1067764-1-1.html)
 
 I always strive to use the challenging project as a learning opportunity to enhance my skills and performance.
 The most challenging project I’ve done was an online collaborative coding platform, it’s like Leetcode but with collaborative feature. The most challenging part was to incorporate collaborative features with the code editor, that is, user in a same coding room can see the real-time cursor movements and typing actions of the other users.

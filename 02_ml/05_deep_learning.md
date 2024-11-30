@@ -1,9 +1,12 @@
 # 深度学习
 
-深度学习领域应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)
+> 深入的应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)，[强化学习](./10_reinforcement.md)
+
 
 ## 1. 优化
 ### 1.1 前向后向传播 
+[https://github.com/EurekaLabsAI/micrograd](https://github.com/EurekaLabsAI/micrograd)
+
 - pytorch和jax的backprop
 - 训练神经网络的一次迭代分三步：（1）前向传递计算损失函数；（2）后向传递计算梯度；（3）优化器更新模型参数
   - 前向传播，根据预测值和标签计算损失函数，以及损失函数对应的梯度。损失函数类的设计有正向值计算方法和梯度计算方法, 损失函数对y_hat的偏微分
@@ -52,27 +55,19 @@
 from numpy import asarray
 from numpy.random import rand
 
-# objective function
 def objective(x):
 	return x**2.0
 
-# derivative of objective function
 def derivative(x):
 	return x * 2.0
 
 def gradient_descent(objective, derivative, bounds, n_iter, step_size):
-	# generate an initial point
 	solution = bounds[:, 0] + rand(len(bounds)) * (bounds[:, 1] - bounds[:, 0])
 
-	# run the gradient descent
 	for i in range(n_iter):
-		# calculate gradient
 		gradient = derivative(solution)
-		# take a step
 		solution = solution - step_size * gradient
-		# evaluate candidate point
 		solution_eval = objective(solution)
-		# report progress
 		print('>%d f(%s) = %.5f' % (i, solution, solution_eval))
 	return [solution, solution_eval]
 
@@ -287,7 +282,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
 
 
 - attention
-  - $ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $
+  - $$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V $$
   - 通过使用key向量，模型可以学习到不同模块之间的相似性和差异性，即对于不同的query向量，它可以通过计算query向量与key向量之间的相似度，来确定哪些key向量与该query向量最相似。
   - kq的计算结果，形成一个（n，n）邻接矩阵，再与v相乘形成加权平均的消息传递
   - MLP-mixer提出的抽象，attention是token-mixing，ffn是channel-mixing
@@ -312,8 +307,8 @@ def conv2d(inputs, kernels, bias, stride, padding):
 - Positional Encoding/Embedding 区别
   - 学习式(learned)：直接将位置编码当作可训练参数，比如最大长度为 512，编码维度为 768，那么就初始化一个 512×768 的矩阵作为位置向量，让它随着训练过程更新。BERT、GPT 等模型所用的就是这种位置编码
   - 固定式(fixed)：位置编码通过三角函数公式计算得出
-    - $ \begin{aligned} PE_{(pos,2i)} & = sin(pos/10000^{2i/d_{model}})\ \end{aligned} $
-    - $ \begin{aligned} PE_{(pos,2i+1)} & = cos(pos/10000^{2i/d_{model}}) \ \end{aligned} $
+    - $$ \begin{aligned} PE_{(pos,2i)} & = sin(pos/10000^{2i/d_{model}})\ \end{aligned} $$
+    - $$ \begin{aligned} PE_{(pos,2i+1)} & = cos(pos/10000^{2i/d_{model}}) \ \end{aligned} $$
 
 - masking
   - Q*K结果上，加一个很大的负数，或乘？
@@ -464,7 +459,7 @@ def max_pooling(pools: np.array) -> np.array:
 ```
 
 ### 3.8 dropout
-- dropout根据binomial分布将一些节点置为0, 但保持该层的均值和方差不变, 乘了系数
+- 训练时，根据binomial分布随机将一些节点置为0，概率为p，剩神经元通过乘一个系数(1/(1-p))保持该层的均值和方差不变；预测时不丢弃神经元，所有神经元输出会被乘以(1-p)
 - 参考AlphaDropout，普通dropout+selu激活函数会导致在回归问题中出现偏差
 
 

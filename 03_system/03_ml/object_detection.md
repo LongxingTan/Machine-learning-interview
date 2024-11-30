@@ -4,20 +4,20 @@
 - Cloud based or device based deployment
 
 
-## 2. data collection
+## 2. ML task & pipeline
 
 
-## 3. feature
+## 3. data collection
 
 
 ## 4. model
 
-### 2-stage: region proposal and object classification
+### two-stage: region proposal and object classification
 - generates a set of potential object bounding boxes
 - takes the proposed regions from the RPN and classifies them into different object categories
 
 
-### 1-stage
+### one-stage
 - perform both region proposal and object classification in a single step
 
 
@@ -25,15 +25,14 @@
 
 
 ## 5. evaluation
-- Precision
-- calculated based on IOU threshold
+- Precision based on IOU threshold
 - AP: avg. across various IOU thresholds
 - mAP: mean of AP over C classes
 
 ## 6. deploy & serving
 
 
-## 问答
+## 7. 问答
 - 过杀和漏检：基于遗传算法的帕累托优化
 
 
@@ -44,3 +43,4 @@
 - [https://github.com/Charmve/Surface-Defect-Detection](https://github.com/Charmve/Surface-Defect-Detection)
 - [https://github.com/Sharpiless/Yolov5-Flask-VUE](https://github.com/Sharpiless/Yolov5-Flask-VUE)
 - [Meta (Facebook) Machine Learning Case Study: Illegal Items Detection](https://jayfeng.medium.com/meta-facebook-machine-learning-case-study-illegal-items-detection-b5e5a4e8afd0)
+- [基于多模态信息抽取的菜品知识图谱构建](https://mp.weixin.qq.com/s/0isxFC4iVrMuNseFil7xRQ)

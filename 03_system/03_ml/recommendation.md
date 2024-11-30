@@ -1,29 +1,24 @@
 # 推荐系统设计
 
-配合[推荐系统理论](../../02_ml/17_recommendation.md)，具体案例:
-- [ROI-nearby place推荐](./roi_recommendation.md)
-- [video 推荐](./video_recommendation.md)
-- [news feed推荐](./news_feed.md)
-
-**名词解释**
-- 曝光(impression): 文档被用户看到
-- 点击率(click-through-rate，CTR): 文档d曝光的前提下，用户点击d的概率
-- 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论；电商的加购物车、下单、付款
-
-推荐系统的重要性源自**信息过载**与**人们行为的长尾分布**. 目的是Link user with items in a reasonable way.
-- 长尾/热门
-  - 头部用户精细刻画，准确记忆；占比更大的稀疏长尾，需要很好地泛化
-- 记忆/探索
-- 稀疏/embedding
-
 推荐系统是经典的机器学习系统设计题目，注意把各个环节串联起来，形成框架性思考。
 例如大规模推荐，为什么需要召回加排序的漏斗结构？是因为召回能**快速**把大规模candidate显著减小，常见的双塔模型为什么能够快速召回呢？因为用户塔和物品塔无交叉，物品塔可离线计算，用户塔为了体现兴趣可以实时计算，但一次请求只需计算一个用户向量，通过ANN快速计算索引。
 因此也决定了召回模型是late fusion, 而排序模型是early fusion(较早进行特征融合能够提升预测精度).
 
 
-### Functional requirement
+配合[推荐系统理论](../../02_ml/17_recommendation.md)，针对不同领域，如电商、O2O，针对领域提出针对性的优化
+- 电商推荐业务：曝光->点击->购买
+- 地点约束，例如yelp的饭馆推荐涉及geolocation information
+- user的 graph network，例如facebook [newsfeed推荐](./news_feed.md)
+- 音乐、[视频](./video_recommendation.md)的embedding，例如spotify音乐推荐
+- Ins Story推荐，每条Story是独一无二的并且是有时间性的
+- O2O场景广告特点 1、移动化 2、本地化 3、场景化 4、多样性
+- [Point of interest](./poi_recommendation)
+
+
+## 1. requirements
 > 推荐系统的核心功能还是推荐的personalization accuracy，diversity
 
+**Functional/use cases**
 - what is the product for which we have to build a recommendation system, How are we different from XX? Who is the producer/consumer
 - Homepage recommendation, session based next item recommendation (short term interest), or related item recommendations
 - Explicit feedback or Implicit feedback （即使有explicit, 一般也会选择implicit）
@@ -35,7 +30,7 @@
 - 是否有friend, follow. 有的话可以作为一个召回通道
 
 
-### Non-Functional requirement
+**Non-Functional**
 > 一定要clarify: scalability, low latency. 因为这两个non-functional requirement决定了后面怎么设计
 
 - MVP and Non-MVP
@@ -43,22 +38,30 @@
 - reliability: data not get lost/ job not executed in parallel retention policy
 - security: store encoded personal data
 - consistency: read/ write heavy
+- dau/ qps / peak qps
 
 
-### Capacity planning
+## 2. ML task & MVP
 
-- dau
-- qps
-- peak qps
+**名词解释**
+- 曝光(impression): 文档被用户看到
+- 点击率(click-through-rate，CTR): 文档d曝光的前提下，用户点击d的概率
+- 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论；电商的加购物车、下单、付款
 
 
-## 结构
+推荐系统的重要性源自**信息过载**与**人们行为的长尾分布**. 目的是Link user with items in a reasonable way.
+- 长尾/热门
+  - 头部用户精细刻画，准确记忆；占比更大的稀疏长尾，需要很好地泛化
+- 记忆/探索
+- 稀疏/embedding
+
 
 ![](../../.github/assets/03ml-reco.png)
 
 ![](../../.github/assets/03ml-reco-cases.png)
 
-**数据层**
+
+## 3. data & labels
 - 关键：分布
 - 通过客户端以及服务端的实时数据，经过流处理的平台，把用户、商品、场景的信息以及端侧的信息全部都收集全
 - 再通过特征工程的很多方法，如归一化、离散化、非线性离散等很多的变换，把特征处理成下游模型处理的方式。
@@ -66,10 +69,12 @@
 - 样本
   - 不均衡
   - 置信度: skip-above(点击的item位置以上的展现可以当做负样本, 最深位置以后的样本过滤掉); 完全无正样本session(可能是碰巧唤醒)
+- labels
+  - explicit vs. implicit labels
 - 延迟转化 Delayed Feedback
 
 
-**特征**
+## 4. feature
 
 ![feature](../../.github/assets/03ml-reco-otto-sirus.png)
 
@@ -84,11 +89,18 @@
   - embedding
     - [电商场景下的itemid有上亿，embedding](https://zhuanlan.zhihu.com/p/397600084)
 
+- cross feature
+  - [特征工程中的特征交叉究竟是什么? - 谢陈龙的回答 - 知乎](https://www.zhihu.com/question/63593481/answer/3176327607)
+
+- sequence feature
+
 - 处理
   - 缺失
   - 标准化
   - 平滑与消偏
 
+
+## 5. model
 
 **召回**
 
@@ -114,6 +126,9 @@
     - con: 泛化能力弱；容易产生马太效应，推荐的都是头部和中部产品; Cannot handle fresh items; Hard to include side features for query/item
   - two power
     - arbitrary continuous and categorical features can be easily added to the model
+  - matrix factorization
+    - con: worse performance on tail users
+    - inability to add content-based features
   - embedding: graph, picture, text
 - 局部敏感哈希，KD树
 - similarity metrics
@@ -145,7 +160,12 @@
   - shared-bottom，MMoE，PLE
 
 
-### Diagram & API
+## 6. evaluation
+
+
+## 7. deploy & service
+- parameter server
+  - 本质是一个: 分布式键值存储系统
 
 - pagination + sort_key / video start timestamp / offset, page_size
 - user context/ client info(ios, network condition) diagram
@@ -156,13 +176,7 @@
 - data model/database: 1 master, 2 replica, primary key, user_id, timestamp, status
 
 
-### DataSchema & Scale
-
-- parameter server
-  - 本质是一个: 分布式键值存储系统
-
-
-### Monitoring & Metrics
+## 8. Monitoring & maintenance
 
 注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试
 - 电商：根据业务需要，在 GMV (商品交易总额) 主目标之外，通常还要兼顾 IPV、转化率、人均订单数等多个次目标
@@ -174,19 +188,7 @@
 - 淘宝主搜将 “全域成交 Hit rate” 作为粗排最重要的评价标准，提出两类评价指标，分别描述“粗排->精排损失”和“召回->粗排损失”
 
 
-## 特定情况
-
-针对不同领域，如电商、O2O，针对领域提出针对性的优化
-- 电商推荐业务：曝光->点击->购买
-- 地点约束，例如yelp的饭馆推荐涉及geolocation information
-- user的 graph network，例如facebook newsfeed推荐
-- 音乐、视频的embedding，例如spotify音乐推荐
-- Ins Story推荐，每条Story是独一无二的并且是有时间性的
-- O2O场景广告特点 1、移动化 2、本地化 3、场景化 4、多样性
-- Point of interest
-
-
-## 问答
+## 9. 优化与问答
 
 - 数据采集和处理
   - 如何建立index
@@ -236,6 +238,8 @@
     - item count取对数
     - 热门特征加入到偏差的网络中，预测时去掉
   - 流量调控
+- 稀疏
+  - [魔改结构什么时候有效 - 古德猫宁的文章 - 知乎](https://zhuanlan.zhihu.com/p/698600932)
 - 模型更新策略, retrain plan
   - 按天增量训练，实时训练(在线学习)，或者 在线学习+天级增量结合
   - embedding的更新

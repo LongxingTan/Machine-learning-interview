@@ -1,6 +1,6 @@
 # 线性回归
 
-基础假设：
+**基础假设**
 - There is a linear relationship between the independent variables(X) and the dependent variables (y)
 - Independence: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
 - Normality: The residuals of the linear regression model are assumed to be normally distributed.
@@ -137,7 +137,7 @@ $$ w=(X^TX+\lambda I)^{-1}X^TY $$
   - can under fit with small, high-dimensional data
 
 - 为什么需要对数值类型特征进行归一化
-  - 使用梯度下降优化的模型，归一化容易更快通过梯度下降找到最优解。包括线性回归、逻辑回归、支持向量机、神经网络。
+  - 使用梯度下降优化的模型，归一化容易更快通过梯度下降找到最优解，包括线性回归、逻辑回归、支持向量机、神经网络。
 
 - 如何判断是否该用线性回归模型
   - EDA画图
@@ -173,8 +173,7 @@ def update_weights(m, b, x, y, learning_rate):
         b_deriv += -2 * (y[i] - (m * x[i] + b))
     
     m -= (m_deriv / float(N)) * learning_rate
-    b -= (b_deriv / float(N)) * learning_rate
-    
+    b -= (b_deriv / float(N)) * learning_rate    
     return m, b
 ```
 
@@ -186,11 +185,10 @@ def update_weights(m, b, x, y, learning_rate):
 
 线性回归
 ```python
-# 2018.01.26 我学习机器学习的第一天，Learning_rate too large cause the gradient explosion
+# 2018.01.26 我学习机器学习的第一天，learning_rate too large cause the gradient explosion
 import numpy as np
 import matplotlib.pyplot as plt
 np.random.seed(1)
-
 
 class LinearRegression(object):
     def __init__(self):
@@ -228,15 +226,12 @@ class LinearRegression(object):
     def __str__(self):
         return 'weights\t:%s\n bias\t:%f\n' % (self.w, self.b)
 
-
 def generate_data():
     '''generate the examples to implement linear regression by numpy'''
     x = np.linspace(1, 30, num=30).reshape(-1, 3)
-    x1 = np.ones(10).reshape(-1, 1)
     y = np.linspace(1, 10, num=10) + np.random.random(10)
     y = y.reshape(-1, 1)
     return x,y
-
 
 if __name__ == "__main__":
     x, y = generate_data()
@@ -244,9 +239,6 @@ if __name__ == "__main__":
     lr.fit(x, y)
     y_hat = lr.predict(x)
     lr.plot(x, y, y_hat)
-    print(y)
-    print(y_hat)
-    print(lr)
 ```
 
 

@@ -4,8 +4,8 @@
 >- 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略)，从而给出足够的信号. selling your stories and zooming at the right things
 >- 体现impact/scope, data driven, 足够细节，使用`I`而不是`We`
 >- 目标级别高的话，重点强调自己cross-team/ cross functional的leadership
->- negative question: star + learns
 >- context之前先用一句话对故事进行总结，action分3-5点讲，同样每点先用一句话总结 总分的结构
+>- 过程中，观察面试官的反应，灵活调整每个部分的详略程度
 
 
 ## 1. BQ常见问题
@@ -58,8 +58,11 @@
 
 
 ## 2. 反问面试官的问题
+> ask about project, challenges, company's tech stack or missions to show your interest in joining the company
+
 - What are the engineering challenges that the company/team is facing?
 - What is your biggest concern towards me. I want to address it right away
+- Which part do you like most for this company
 
 
 ## 3. 复习资料

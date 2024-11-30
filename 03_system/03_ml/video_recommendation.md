@@ -156,7 +156,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - split the data
 
 
-## 7. deployment and prediction service
+## 7. deployment & prediction service
 
 - [Online predictions](https://cloud.google.com/vertex-ai/docs/predictions/overview#online_predictions)
   - are synchronous requests made to a model that is deployed to an endpoint. Therefore, before sending a request, you must first deploy the Model resource to an endpoint. This associates compute resources with the model so that it can serve online predictions with low latency. Use online predictions when you are making requests in response to application input or in situations that require timely inference.
@@ -172,7 +172,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - ranking service
 
 
-## 8. monitoring and maintenance
+## 8. monitoring & maintenance
 
 - User behavior is generally unpredictable, and videos can become viral during the day. Ideally, we want to train many times during the day to capture temporal changes
 
@@ -189,7 +189,6 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - bias
   - 向量召回过程中如何打压热门视频, popularity trap
     - youtube论文，训练时cosine(a, bi)-log(pi), 预测时cosine(a, bi)
-- further optimization
 
 
 ## 参考
@@ -198,6 +197,8 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://research.google/pubs/sampling-bias-corrected-neural-modeling-for-large-corpus-item-recommendations/)
 - [论文: Recommending What Video to Watch Next: A Multitask Ranking System](https://daiwk.github.io/assets/youtube-multitask.pdf)
 - [Netflix: System Architectures for Personalization and Recommendation](https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8)
+- [Improving Recommendation Quality in Google Drive](https://dl.acm.org/doi/pdf/10.1145/3394486.3403341)
+- [推荐系统-短视频推荐中的一些记录 - tangwang的文章 - 知乎](https://zhuanlan.zhihu.com/p/720272682)
 
 **扩展**
 - [alirezadir/Machine-Learning-Interviews](https://github.com/alirezadir/Machine-Learning-Interviews/blob/main/src/MLSD/mlsd-video-recom.md)
@@ -209,5 +210,4 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - [双塔模型Batch内负采样如何解决热度降权和SSB的问题](https://zhuanlan.zhihu.com/p/574752588)
 - [Mixed Negative Sampling for Learning Two-tower Neural Networks in Recommendations](https://research.google/pubs/pub50257/)
 - [System Design for Recommendations and Search // Eugene Yan // MLOps Meetup #78](https://www.youtube.com/watch?v=lh9CNRDqKBk)
-- [推荐系统-短视频推荐中的一些记录 - tangwang的文章 - 知乎](https://zhuanlan.zhihu.com/p/720272682)
 - [都说数据是上限，推荐系统ctr模型中，构造正负样本有哪些实用的trick？ - 傅聪Cong的回答 - 知乎](https://www.zhihu.com/question/324986054/answer/1771305509)
