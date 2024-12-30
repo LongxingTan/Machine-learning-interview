@@ -47,3 +47,4 @@
 - [https://learn.microsoft.com/en-us/azure/architecture/patterns/](https://learn.microsoft.com/en-us/azure/architecture/patterns/)
 - [https://www.youtube.com/@SDFC/videos](https://www.youtube.com/@SDFC/videos)
 - [https://systemdesign.one/categories/](https://systemdesign.one/categories/)
+- [https://bugfree.ai](https://bugfree.ai) A platform provided guided practice on system design problem and behavior questions like the way you do at Leetcode.
