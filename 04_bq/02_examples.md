@@ -1,4 +1,6 @@
 # 行为面试回答举例
+> 一些体现思维的地方，设置milestone、deadline, 拆分模块与任务, 主动约121会议, 主动找到xx, 数据得出结论, 做了prototype, 事后复盘认识到根本原因并进一步采取行动
+
 
 ## Introduce yourself
 > 通过介绍你的职业履历(company, title, # of years, major responsibility, achievement)来证明：自己很适合这个岗位
@@ -7,11 +9,14 @@
 
 
 ## why are you interested in company x? why now?
-- Amazon is a top internet retailing company with a strong focus on customer experience and obsession. Its motto-work hard, have fun, make history, and it’s vision, earth’s most customer centric company, inspires me. I’m a person who respect hard working and care a lot about customer experience, so the culture of Amazon attracts me a lot. Furthermore, the growth of this company is pretty impressive, it’s not only an online retail shop but also has a wide range of products like Alexa, Kindle, fire tablet and TV, Amazon cloud service, etc. Hundreds of thousands of talented engineers are working passionately here, building innovative system and solving problems at unprecedented scale. Therefore, this is a place where I can learn a lot, and use my skills and experience to make things happen with a team.
+> 一定透露出对面试公司浓厚的兴趣，先介绍对公司商业模式、愿景、价值的认同，表达出对公司和岗位的向往；结合公司的技术挑战和创新，加自己人生的故事(如喜欢这种挑战，自己之前做了什么这种挑战，所以自己很适合这个职位)
+> - Prompt: 作为面试者，你非常想加入xx公司，为了体现你对公司产品和文化的了解，你在面试中会如何回答: 你为什么想加入xx？
+- Amazon is a top internet retailing company with a strong focus on customer experience and obsession. Its motto-work hard, have fun, make history, and it’s vision, earth’s most customer-centric company, inspires me. I’m a person who respect hard working and care a lot about customer experience, so the culture of Amazon attracts me a lot. Furthermore, the growth of this company is pretty impressive, it’s not only an online retail shop but also has a wide range of products like Alexa, Kindle, fire tablet and TV, Amazon cloud service, etc. Hundreds of thousands of talented engineers are working passionately here, building innovative system and solving problems at unprecedented scale. Therefore, this is a place where I can learn a lot, and use my skills and experience to make things happen with a team.
 
 
 ## Why choose this position?
-The job I have applied is the software development position in Amazon Books, I am interested in this position because:
+> 介绍对position的认知，一方面自己能获得成长和impact，另一方面自己的能力能帮助团队make a difference. HR和BQ轮想好，你能给公司／team带来什么，公司／职位能给你带来什么
+- The job I have applied is the software development position in Amazon Books, I am interested in this position because:
 - First of all, Amazon Books uses innovative technology to merge physical and online worlds into one unique and delightful shopping experience. The concept is really cool and pioneering. I am really excited about learning and using new technologies to create new exceptional experiences that firmly obsess customers.
 - Secondly, I’d like to work with solutions from a full-stack point of view, by engaging with requirements, frontend, middle tier, backend, storage, and all the other stuff, I can understand problems and solutions thoroughly, and thus scale and optimize them with the best practices.
 - Thirdly, I’m happy to work in an environment with a lot of challenges so that I’ll never be boring. In Amazon, I can take ownership of the projects I am truly passionate about. I am sure I can take the challenges and provide successful solutions.
@@ -36,6 +41,7 @@ We then released a tentative version to the demo system before the deadline, wal
 
 ## Most challenging project
 > Deliver Results
+> - 注意BQ中问项目的话，一定要回答一个和JD职位强相关的项目。我自己由于做的东西很杂，第一次HM BQ就面失败了，感觉就是大段时间讲了和BJD毫无关系的项目
 
 [如何在面试中展现适合staff职位的scope与能力](https://www.1point3acres.com/bbs/thread-1067764-1-1.html)
 
@@ -52,7 +58,7 @@ I implemented it successfully within the given time, and my solution received a 
 Leaders are obligated to respectfully challenge decisions when they disagree, even when doing so is uncomfortable or exhausting. Leaders have conviction and are tenacious. They do not compromise for the sake of social cohesion. Once a decision is determined, they commit wholly.
 disagree with boss?
 
-If I have different idea with my manager or boss, I will try to collect data or make a prototype trying to convince him. If I have tried my best and he still disagree, then I would respect his decision and start committing for that.
+If I have different idea with my manager or boss, I will try to collect data or make a prototype trying to convince him. If I have tried my best and he still disagrees, then I would respect his decision and start committing for that.
 when we released the service for US Logistics. The client complaint that some invoices were missed. I checked around and found that Telamon Network blocked some of the emails sent by the client. I talked the problem to the network administrator and they couldn’t change the email restrictions due to the policy.
 Therefore, I brought this problem up to my manager and suggested to register another business mailbox provided by gmail or microsoft. The manager disagreed at first because he thought it was unprofessional if we didn’t use our own corporate email domain. I thought solving this problem was more important because our client would lose the trust on the quality of our data. In order to convince him, I showed him the data of email missing rate and the impacts on our client, and also I registered a good domain name composed by our company and department name, so we could still be professional on that part.
 Finally, the manager was convinced and agreed on my suggestion. We barely have any missed emails after we switched our mailbox. And because of the good result, we started to use the domain for other projects gradually.
@@ -67,6 +73,7 @@ Last year in T, I took on and led a project of developing a web application for 
 Therefore, it is challenging for me to come up with an intuitive and engineer-friendly design.
 In order to understand the process thoroughly, I made several appointments with the engineering team, going through the specification building process with them step by step in detail. Then, I did some field observations, looking at how engineers use their iPads and computers in the field and in the office, when and how they input the data to complete a detail specification. Based on what I’ve learned and observed, I was able to come up with data schemas, draft a working prototype, and bring it to the engineers to collect feedback.
 It turned out that the prototype was very helpful, it saved us around 10% time when implementing the web application. After the production was released, the engineers tried and loved it immediately. They said they took less time building a specification now with less error. The customer was obsessed with our professional process and result, and start to have more business with us.
+
 - case 2(customer obsession and ownership, highest standard)
 In Telamon, once I led the team to implement an AP processing service for one of our client - Hubert Corporation. We provide a customized AP processing system as well as a team of AP clerks to help Hubert process their invoices. Since invoices from different vendors might require different ways of processing and our client didn’t have a full instruction for that (they usually process invoices based on their knowledge and familiarity), we had to spend time emailing back and forth discussing about instructions whenever there was a special invoice processed incorrectly.
 I looked at the invoices reported and thought we could do better in managing different invoices, vendors and corresponding instructions, and thus reducing the communication effort put by the client and us.
@@ -200,8 +207,9 @@ once I argue with the manager about issue the corporate email, I want to registe
 
 
 ## What are your weaknesses?
-> Learn and Be Curious
+> Learn and Be Curious; negative question 最后需要有转折，需要说自己意识到之后改进了哪些
 
+[Tough Interview Question - What is your greatest weakness?](https://collegegrad.com/tough-interview-questions/what-is-your-greatest-weakness)
 我的一个弱点是，在处理多任务时有时会感到压力，尤其是在时间紧迫的情况下。这可能会导致我在短时间内难以集中注意力，从而影响我的工作效率。为了应对这个问题，我已经开始使用时间管理工具，如Trello和Asana，来帮助我更好地组织和优先处理任务。我还参加了时间管理培训课程，学习如何更有效地分配时间和资源。通过这些改进措施，我发现自己能够更好地处理多任务，并且在时间紧迫的情况下也能保持高效。我的团队也注意到我在处理复杂项目时的进步，这让我更有信心在未来面对类似的挑战。总的来说，我认识到在处理多任务时感到压力是我需要改进的地方。通过采取积极的措施，我不仅提高了我的工作效率，还增强了我的时间管理能力。我相信，这种持续改进的态度将帮助我在未来的职业生涯中不断成长和进步。
 
 
@@ -246,6 +254,7 @@ once I argue with the manager about issue the corporate email, I want to registe
 
 
 ## grow junior ICs
+- 流程、沟通
 - 循序渐进，分配好任务(能力范围内，又有助于成长的)，做好review
 - 准备好文档(业务、工具、流程)
 - 及时的feedback, 121会议交流
@@ -297,6 +306,9 @@ Eventually, I was able to lead the project to completion on time without comprom
 
 
 ## Describe a time when you insisted on doing something, and it turned out to be wrong. What is the mistake you have made.
+
+
+## 你认为一个leader最需要具备的素质是什么？
 
 
 ## 来源与参考

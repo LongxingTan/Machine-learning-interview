@@ -6,10 +6,14 @@ Users must be able to sign up to payment service
 Users must be able to link/unlink a bank accounts
 Users must be able to send/receive money to other payment service users
 Users must be able to send/receive money to their bank account
+- 用户通过这个system call 银行的api， 银行的api 返回response 给系统，系统还要notify user
+  - 数据如何consistent/加入银行server 不 available怎么处理，假如notification system不available怎么处理。如何设计数据库schema
+- 客户端(client)到服务端(server)的API call得是idempotent，也就是说，客户端多次重复call 付款API不会造成多次付款
 
 **Non-functional**
-Highly available, low latency
+Highly available, low latency(accuracy > latency)
 Have to achieve 100% accuracy <- our service will live and die based on this
+
 
 ## 2. 
 
@@ -133,3 +137,4 @@ response: 200 OK
 
 ## Reference
 - https://hackmd.io/@hambo/rkMygSWKs
+- [Avoiding Double Payments in a Distributed Payments System](https://medium.com/airbnb-engineering/avoiding-double-payments-in-a-distributed-payments-system-2981f6b070bb)

@@ -1,6 +1,6 @@
 # 深度学习
 
-> 深入的应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)，[强化学习](./10_reinforcement.md)
+> 应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)，[强化学习](./10_reinforcement.md)
 
 
 ## 1. 优化
@@ -50,33 +50,6 @@
   - batch size变大，步数整体变少，训练的步数更少，本来就波动就小，步数也少，同样本的情况下，你收敛的会更慢
 
 
-```python
-# example of gradient descent for a one-dimensional function
-from numpy import asarray
-from numpy.random import rand
-
-def objective(x):
-	return x**2.0
-
-def derivative(x):
-	return x * 2.0
-
-def gradient_descent(objective, derivative, bounds, n_iter, step_size):
-	solution = bounds[:, 0] + rand(len(bounds)) * (bounds[:, 1] - bounds[:, 0])
-
-	for i in range(n_iter):
-		gradient = derivative(solution)
-		solution = solution - step_size * gradient
-		solution_eval = objective(solution)
-		print('>%d f(%s) = %.5f' % (i, solution, solution_eval))
-	return [solution, solution_eval]
-
-bounds = asarray([[-1.0, 1.0]])
-n_iter = 30
-step_size = 0.1
-best, score = gradient_descent(objective, derivative, bounds, n_iter, step_size)
-```
-
 ### 1.3 学习率scheduler
 - LR与batch_size
   - 常用的heuristic 是 LR 应该与 batch size 的增长倍数的开方成正比，从而保证 variance 与梯度成比例的增长
@@ -103,29 +76,20 @@ warmup_steps = int(batches_per_epoch * 5)
 - cross entropy/ 对数损失
   - `nn.CrossEntropyLoss(pred, label) = nn.NLLLoss(torch.log(nn.Softmax(pred)), label)`
 
-$$ ce = - ylog(p) - (1-y)log(1-p) $$
+$$ 
+ce = - ylog(p) - (1-y)log(1-p) 
+$$
+
+$$
+Loss = -\frac{1}{N} \sum_{n=1}^{N} \sum_{i=1}^{C} y_{n,i} \log(p_{n,i})
+$$
+
 
 - [binary cross entropy](https://gombru.github.io/2018/05/23/cross_entropy_loss/)
 
 
 - Focal loss
   - 对CE loss增加了一个调制系数来降低容易样本的权重值，使得训练过程更加关注困难样本。增加的这个系数就是评价难易，也就是概率的gamma次方
-```python
-import torch
-from torch import nn
-
-class FocalLoss(nn.Module):
-    def __init__(self, gamma, eps=1e-7):
-        super().__init__()
-        self.gamma = gamma
-        self.eps = eps
-
-    def forward(self, preds, targets):
-        preds = preds.clamp(self.eps, 1 - self.eps)
-        loss = (1 - preds) ** self.gamma * targets * torch.log(preds)  + preds ** self.gamma * (1 - targets) * torch.log(1 - preds)
-
-        return -torch.mean(loss)
-```
 
 
 ## 3. 网络模型结构
@@ -139,7 +103,7 @@ class FocalLoss(nn.Module):
 ```python
 import numpy as np
 
-class Dense(Layer):
+class Dense:
     def __init__(self, input_size, output_size):
         self.weights = np.random.rand(input_size, output_size) - 0.5
         self.bias = np.random.rand(1, output_size) - 0.5
@@ -164,69 +128,11 @@ class Dense(Layer):
 - Kernel K is a set of learnable filters and is small spatially compared to the image but extends through the full depth of the input image.
 - **Dimension of the feature map** as a function of the input image size(W), feature detector size(F), Stride(S) and Zero Padding on image(P) is **(W−F+2P)/S+1**
 - **No. of parameters** = (Kernel size * Kernel size * Dimension )+1 = 28
-- 卷积等价于[一个大的矩阵一次性运算](Orthogonal Convolutional Neural Networks)
+- 感受野(Receptive Field)
+- 卷积等价于一个大矩阵一次性运算(Orthogonal Convolutional Neural Networks)
 - CNN的 Inductive Bias(归纳偏置) 多过 vision transformer, CNN的归纳偏置，分别是 locality （局部性）和 translation equivariance（平移等变性）
 - 在线卷积（Online Convolution）是在数据流式输入的情况下，实时计算卷积操作
 
-```python
-# https://github.com/openai/gpt-2/blob/master/src/model.py
-def conv1d(x, scope, nf, *, w_init_stdev=0.02):
-    with tf.variable_scope(scope):
-        *start, nx = shape_list(x)
-        w = tf.get_variable('w', [1, nx, nf], initializer=tf.random_normal_initializer(stddev=w_init_stdev))
-        b = tf.get_variable('b', [nf], initializer=tf.constant_initializer(0))
-        c = tf.reshape(tf.matmul(tf.reshape(x, [-1, nx]), tf.reshape(w, [-1, nf]))+b, start+[nf])
-        return c
-```
-
-```python
-import numpy as np
-
-def conv2D(image, kernel, padding=0, strides=1):
-    # Cross Correlation
-    kernel = np.flipud(np.fliplr(kernel))
-
-    # Gather Shapes of Kernel + Image + Padding
-    xKernShape = kernel.shape[0]
-    yKernShape = kernel.shape[1]
-    xImgShape = image.shape[0]
-    yImgShape = image.shape[1]
-
-    # Shape of Output Convolution
-    xOutput = int(((xImgShape - xKernShape + 2 * padding) / strides) + 1)
-    yOutput = int(((yImgShape - yKernShape + 2 * padding) / strides) + 1)
-    output = np.zeros((xOutput, yOutput))
-
-    # Apply Equal Padding to All Sides
-    if padding != 0:
-        imagePadded = np.zeros((image.shape[0] + padding*2, image.shape[1] + padding*2))
-        imagePadded[int(padding):int(-1 * padding), int(padding):int(-1 * padding)] = image
-    else:
-        imagePadded = image
-
-    # Iterate through image
-    for y in range(image.shape[1]):
-        for x in range(image.shape[0]):
-            output[x, y] = (kernel * imagePadded[x: x + xKernShape, y: y + yKernShape]).sum() + bias
-
-    return output
-
-def activation_fn(self, x):
-    """A method of FFL which contains the operation and definition of given activation function."""
-    if self.activation == 'relu':
-        x[x < 0] = 0
-        return x
-    if self.activation == None or self.activation == "linear":
-        return x
-    if self.activation == 'tanh':
-        return np.tanh(x)
-    if self.activation == 'sigmoid':
-        return 1 / (1 + np.exp(-x))
-    if self.activation == "softmax":
-        x = x - np.max(x)
-        s = np.exp(x)
-        return s / np.sum(s)
-```
 
 ```python
 import numpy as np
@@ -251,7 +157,6 @@ def conv2d(inputs, kernels, bias, stride, padding):
     W_out = 1 + (W + 2 * padding - WW) // stride
     outputs = np.zeros((F, H_out, W_out))
 
-    # 进行卷积操作
     for i in range(H_out):
         for j in range(W_out):  # 找到out图像对于的原始图像区域，然后对图像进行sum和bias
             inputs_slice = inputs_pad[:, i*stride:i*stride+HH, j*stride:j*stride+WW]
@@ -294,7 +199,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
     - kv cache: 空间换时间，自回归中每次生成一个token，前面的token计算存在重复性
     - Multi Query Attention: MQA 让所有的头之间共享同一份 Key 和 Value 矩阵，每个头只单独保留了一份 Query 参数，从而大大减少 Key 和 Value 矩阵的参数量
     - Group Query Attention: 将查询头分成N组，每个组共享一个Key 和 Value 矩阵
-    - Flash attention: 利用GPU硬件非均匀的存储器层次结构实现内存节省和推理加速
+    - Flash attention: 利用GPU硬件非均匀的存储器层次结构; compute attention by blocks to reduce global memory access
 
 - attention为什么除以根号d
   - 称为attention的temperature。如果输入向量的维度d比较大，那么内积的结果也可能非常大，这会导致注意力分数也变得非常大，可能会使得softmax函数的计算变得不稳定(接近one-hot, 梯度消失)，并且会影响模型的训练和推理效果。通过除以根号d，可以将注意力分数缩小到一个合适的范围内，从而使softmax函数计算更加稳定，并且更容易收敛。
@@ -341,7 +246,6 @@ def scaled_dot_product(q, k, v, softmax, attention_mask, attention_dropout):
     outputs = Dropout(rate=attention_dropout)(outputs)
     outputs = tf.matmul(outputs, v)  # shape: (m,Tx,depth), same shape as q,k,v
     return outputs
-
 
 # multi-head有多种写法: 变成4维的 (batch_size, -1, num_heads, d_k), 变成3维的(batch * num_heads, -1, d_k), 以及下面的循环
 class FullAttention(tf.keras.layers.Layer):
@@ -392,6 +296,7 @@ targets = (1 - label_smooth) * targets + label_smooth / num_classes
 - BN，当 batch 较小时不具备统计意义，而加大的 batch 又受硬件的影响；BN 适用于 DNN、CNN 之类固定深度的神经网络，而对于 RNN 这类 sequence 长度不一致的神经网络来说，会出现 sequence 长度不同的情况
 - 分布式训练时，BN的跨卡通信
   - [Implementing Synchronized Multi-GPU Batch Normalization](https://hangzhang.org/PyTorch-Encoding/tutorials/syncbn.html)
+- 注意在CV应用时，BM不仅仅在Batch_size维度上进行norm， 还在图像的(H, W) 或者时序的 sequence_length 维度上进行norm
 
 **Layer Norm**
 - layer normalization 有助于得到一个球体空间中符合0均值1方差高斯分布的 embedding， batch normalization不具备这个功能
@@ -432,6 +337,8 @@ def GroupNorm(x, gamma, beta, G, eps=1e-5):
 ### 3.7 pool
 
 ```python
+import numpy as np
+
 def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
     pools = []
 
@@ -439,7 +346,6 @@ def get_pools(img: np.array, pool_size: int, stride: int) -> np.array:
     for i in np.arange(img.shape[0], step=stride):
         # Iterate over all column blocks (single block has `stride` columns)
         for j in np.arange(img.shape[0], step=stride):
-            # Extract the current pool
             mat = img[i:i+pool_size, j:j+pool_size]
             # Make sure it's rectangular - has the shape identical to the pool size
             if mat.shape == (pool_size, pool_size):
@@ -463,32 +369,39 @@ def max_pooling(pools: np.array) -> np.array:
 - 参考AlphaDropout，普通dropout+selu激活函数会导致在回归问题中出现偏差
 
 
+## 4. 训练
+- 混合精度训练
+  - 一般用单精度(FP32)，半精度(FP16)可以降低内存消耗
+  - 训练时，权重、激活值和梯度都使用FP16进行计算，但是会保存FP32的权重值，在梯度更新时对**FP32**的权重进行更新。在下一步训练时将FP32的权重值转换为FP16再进行FWD和BWD的计算。因为使用FP16进行梯度更新的话，有一些梯度过小就会变成0，从而没有更新。还有权重值比梯度值大太多的时候，相减也会导致梯度消失。
+- 分布式训练
+  - 模型并行
+  - 数据并行: 同步(synchronous), 异步(asynchronous); Parameter Server, Ring-AllReduce
+- 梯度累积
+  - 多步前向之后才后向传播
+- Gradient-Checkpointing
+  - 计算梯度的时候，到某一层重新计算激活值，而不保存
+
+
 ## reference
 - [小白都能看懂的超详细Attention机制详解 - 雅正冲蛋的文章 - 知乎](https://zhuanlan.zhihu.com/p/380892265)
 - [https://github.com/tmheo/deep_learning_study](https://github.com/tmheo/deep_learning_study)
 - [https://zybuluo.com/hanbingtao/note/581764](https://zybuluo.com/hanbingtao/note/581764)
-- [Bert/Transformer 被忽视的细节（或许可以用来做面试题） - LiteAI的文章 - 知乎](https://zhuanlan.zhihu.com/p/613407791)
 - [深度网络loss除以10和学习率除以10是不是等价的？ - 走遍山水路的回答 - 知乎](https://www.zhihu.com/question/320377013/answer/2591409899)
+- [深度学习中，是否应该打破正负样本1:1的迷信思想？ - 密排六方橘子的回答 - 知乎](https://www.zhihu.com/question/654186093/answer/3483543427)
 - [为什么Layer Norm反向传播的梯度会接近零？ - JoJoJoJoya的回答 - 知乎](https://www.zhihu.com/question/570354498/answer/2788826325)
+- [对比pytorch中的BatchNorm和LayerNorm层 - 严昕的文章 - 知乎](https://zhuanlan.zhihu.com/p/656647661)
 - [LSTM如何来避免梯度弥散和梯度爆炸？ - Quokka的回答 - 知乎](https://www.zhihu.com/question/34878706/answer/665429718)
 - [NLP中的Transformer架构在训练和测试时是如何做到decoder的并行化的？ - 市井小民的回答 - 知乎](https://www.zhihu.com/question/307197229/answer/1859981235)
 - [碎碎念：Transformer的细枝末节 - 小莲子的文章 - 知乎](https://zhuanlan.zhihu.com/p/60821628)
 - [优化时该用SGD，还是用Adam？](https://blog.csdn.net/S20144144/article/details/103417502)
 - [对数损失函数](https://www.zhihu.com/question/27126057)
-- [关于Mixup方法的一个综述](https://zhuanlan.zhihu.com/p/439205252)
 - https://github.com/christianversloot/machine-learning-articles/blob/main/how-to-use-pytorch-loss-functions.md
 - https://www.kaggle.com/code/isbhargav/guide-to-pytorch-learning-rate-scheduling
-- [KV cache详解 图示，显存，计算量分析](https://zhuanlan.zhihu.com/p/646577898)
 - [详解深度学习中的梯度消失、爆炸原因及其解决方法 - DoubleV的文章 - 知乎](https://zhuanlan.zhihu.com/p/33006526)
 - [浅谈后向传递的计算量大约是前向传递的两倍 - 回旋托马斯x的文章 - 知乎](https://zhuanlan.zhihu.com/p/675517271)
 - [从 0 手撸一个 pytorch - 易迟的文章 - 知乎](https://zhuanlan.zhihu.com/p/675673150)
 - [如何理解Adam算法(Adaptive Moment Estimation)？ - Summer Clover的回答 - 知乎](https://www.zhihu.com/question/323747423/answer/2576604040)
 - [五、参数量、计算量FLOPS推导 - 小明的HZ的文章 - 知乎](https://zhuanlan.zhihu.com/p/676113501)
-- [史上最细节的自然语言处理NLP/Transformer/BERT/Attention面试问题与答案 - 海晨威的文章 - 知乎](https://zhuanlan.zhihu.com/p/348373259)
-- [Transformer学习笔记一：Positional Encoding（位置编码） - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/454482273)
 - [PyTorch 源码解读系列 - OpenMMLab的文章 - 知乎](https://zhuanlan.zhihu.com/p/328674159)
-- [对比pytorch中的BatchNorm和LayerNorm层 - 严昕的文章 - 知乎](https://zhuanlan.zhihu.com/p/656647661)
 - [万字综述，核心开发者全面解读PyTorch内部机制](https://mp.weixin.qq.com/s/8J-vsOukt7xwWQFtwnSnWw)
 - [一文搞懂混合精度训练原理 (常用O1) - APlayBoy的文章 - 知乎](https://zhuanlan.zhihu.com/p/701452410)
-- [一文讲明白大模型分布式逻辑（从GPU通信原语到Megatron、Deepspeed） - 然荻的文章 - 知乎](https://zhuanlan.zhihu.com/p/721941928)
-- [深度学习中，是否应该打破正负样本1:1的迷信思想？ - 密排六方橘子的回答 - 知乎](https://www.zhihu.com/question/654186093/answer/3483543427)

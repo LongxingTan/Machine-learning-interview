@@ -34,7 +34,7 @@ harmful content/weapon ads, copyright检测
 
 
 ## 3. data collection
-本题中，如何收集数据和label是比较关键的。可以先确认有没有annotated data，没有的话则先根据用户反馈(silver labels)，再根据人工审核(golden labels). 或者利用大模型进行合成或判断
+如何收集数据和label是比较关键的。先确认有没有annotated data，没有的话则先根据用户反馈(silver labels)，再根据人工审核(golden labels). 或者利用大模型进行合成或判断
 
 - 少量标注数据，大量未标注数据
 - platform: 人工审核
@@ -70,13 +70,14 @@ harmful content/weapon ads, copyright检测
 
 ## 6. evaluation
 
-- offline
-  - F1 score, PR-AUC, ROC-AUC
-  - 为什么我们选择auc-pr而不是auc-roc。因为auc-pr可以更好的处理imbalance data, harmful content本身就是少数
-- online
-  - AB test evaluated by online metric.
-  - prevalence (percentage of harmful posts didn't prevent over all posts), harmful impressions, percentage of valid (reversed) appeals, proactive rate (ratio of system detected over system + user detected)
-  - 很多场景，不是知道所有错误信息的(spam/fraud detection)。比较简单的方法，就是不做true recall. sample一些data做个partial recall, 还可以看自己业务设置其他类似recall的matrix
+**offline**
+- F1 score, PR-AUC, ROC-AUC
+- 为什么我们选择auc-pr而不是auc-roc。因为auc-pr可以更好的处理imbalance data, harmful content本身就是少数
+
+**online**
+- AB test evaluated by online metric.
+- prevalence (percentage of harmful posts didn't prevent over all posts), harmful impressions, percentage of valid (reversed) appeals, proactive rate (ratio of system detected over system + user detected)
+- 很多场景，不是知道所有错误信息的(spam/fraud detection)。比较简单的方法，就是不做true recall. sample一些data做个partial recall, 还可以看自己业务设置其他类似recall的matrix
 
 
 ## 7. deployment & prediction service

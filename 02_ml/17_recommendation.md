@@ -142,6 +142,7 @@ counterfactual evaluation（反事实评估）
 - Model tracking and Management systems (Kubeflow, MLFlow)
 
 
+
 ## 3. 问答
 
 ### How to scale
@@ -207,14 +208,8 @@ counterfactual evaluation（反事实评估）
 ## 4. 论文
 
 [Deep Neural Networks for YouTube Recommendations](https://cseweb.ucsd.edu/classes/fa17/cse291-b/reading/p191-covington.pdf)
-用户 U
-查询 Q
-这个查询返回的文档列表 D=(D1, D2, D3)
-用户的点击 Y=(Y1, Y2, Y3)
- , 这里如果用户点击了 Di
- ，那么 yi = 1
- ，否则 yi = 0
 
+用户 U; 查询 Q; 查询返回的文档列表 D=(D1, D2, D3); 用户的点击 Y=(Y1, Y2, Y3); 如果用户点击了 Di, 那么 yi = 1, 否则 yi = 0
 
 - 目标：观看时长 （为减少标题党推荐，是否会影响长短视频bias）
   - 通过改变样本权重来预测观看时长。正样本权重就是时长，负样本权重为1
@@ -284,4 +279,3 @@ counterfactual evaluation（反事实评估）
 - [特征工程](https://github.com/yangxudong/feature_engineering)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
 - [延迟反馈建模 - 基于样本回补的方案](https://mathmach.com/5f8a539b/)
-- 

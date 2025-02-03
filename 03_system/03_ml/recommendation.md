@@ -1,9 +1,9 @@
 # 推荐系统设计
 
-推荐系统是经典的机器学习系统设计题目，注意把各个环节串联起来，形成框架性思考。
-例如大规模推荐，为什么需要召回加排序的漏斗结构？是因为召回能**快速**把大规模candidate显著减小，常见的双塔模型为什么能够快速召回呢？因为用户塔和物品塔无交叉，物品塔可离线计算，用户塔为了体现兴趣可以实时计算，但一次请求只需计算一个用户向量，通过ANN快速计算索引。
-因此也决定了召回模型是late fusion, 而排序模型是early fusion(较早进行特征融合能够提升预测精度).
+经典机器学习系统设计题目，注意把各环节串联起来，形成框架性思考。
 
+例如大规模推荐，为什么需要召回加排序的漏斗结构？是因为item数量大，召回能**快速**把大规模candidate显著减小，常见的双塔模型为什么能够快速召回呢？因为用户塔和物品塔无交叉，物品塔可离线计算，用户塔为了体现兴趣可以实时计算，但一次请求只需计算一个用户向量，通过ANN快速计算索引。
+因此也决定了召回模型是late fusion, 而排序模型是early fusion(较早进行特征融合能够提升预测精度).
 
 配合[推荐系统理论](../../02_ml/17_recommendation.md)，针对不同领域，如电商、O2O，针对领域提出针对性的优化
 - 电商推荐业务：曝光->点击->购买
@@ -11,7 +11,7 @@
 - user的 graph network，例如facebook [newsfeed推荐](./news_feed.md)
 - 音乐、[视频](./video_recommendation.md)的embedding，例如spotify音乐推荐
 - Ins Story推荐，每条Story是独一无二的并且是有时间性的
-- O2O场景广告特点 1、移动化 2、本地化 3、场景化 4、多样性
+- O2O场景广告特点：移动化、本地化、场景化、多样性
 - [Point of interest](./poi_recommendation)
 
 
@@ -101,6 +101,7 @@
 
 
 ## 5. model
+> 熟练掌握模型: DNN, DeepFM, DIN, MMOE
 
 **召回**
 
@@ -161,11 +162,23 @@
 
 
 ## 6. evaluation
+- offline
+  - ranking: map, ndcg
+- online
+  - CTR
 
 
 ## 7. deploy & service
 - parameter server
   - 本质是一个: 分布式键值存储系统
+
+- 召回中user embedding为什么线上实时计算
+  - 用户的兴趣短时间内可能会发生显著变化
+  - 用户的行为数据通常是稀疏的
+  - 缓解用户冷启动
+- 召回中item embedding为什么离线计算好
+  - 量大，静态
+  - 实时性要求
 
 - pagination + sort_key / video start timestamp / offset, page_size
 - user context/ client info(ios, network condition) diagram
@@ -174,9 +187,12 @@
 - MQ or no mq
 - cache: consistency/ failure/ cold start
 - data model/database: 1 master, 2 replica, primary key, user_id, timestamp, status
+- embedding矩阵的lazy初始化和lazy更新
+- embedding矩阵对分布式通信的影响
 
 
 ## 8. Monitoring & maintenance
+[How to Monitor a Recommender System](https://code.tubitv.com/how-to-monitor-a-recommender-system-6d720c922c90)
 
 注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试
 - 电商：根据业务需要，在 GMV (商品交易总额) 主目标之外，通常还要兼顾 IPV、转化率、人均订单数等多个次目标
@@ -193,7 +209,7 @@
 - 数据采集和处理
   - 如何建立index
 - 召回
-  - faiss: faiss使用了PCA和PQ(Product quantization乘积量化)两种技术进行向量压缩和编码
+  - faiss: 使用PCA和PQ(Product quantization乘积量化)两种技术进行向量压缩和编码
   - 向量召回、排序没用实时行为序列特征
 - 怎么做counterfactual evaluation
 - 怎么deploy?
@@ -222,7 +238,7 @@
 - 用户长期兴趣和多兴趣怎么建模
 - 如何冷启动
   - 思路一: 尽可能应用side information/多模态进行推荐
-  - 思路二: 尽可能用小流量探索出新物料的真实质量
+  - 思路二: 尽可能用小流量探索出新物料的真实质量，扶持新item
   - [embedding 冷启动](https://zhuanlan.zhihu.com/p/351390011), embedding初始化采用default, 而不是random
 - bias
   - 如何解决 position bias
@@ -245,6 +261,8 @@
   - embedding的更新
   - 全量更新：可以每天更新一次，shuffle, 更新ID embedding 和全连接层，1 epoch。每次更新的还是上一天的全量的模型更新，而不是增量
   - 增量更新：不停做，可以几十分钟更新一次，online learning只更新ID embedding参数, 尽量实时追踪用户兴趣。但其实是有偏的
+    - Real-time Logging
+    - 在线学习所需的实时特征可通过在线inference系统实时输出
 - 怎么加user and item metadata
 - 线上评价，线上线性不一致
 - model debugging, offline online inconsistency, light ranking, ab test, heavy ranking, two tower
@@ -302,6 +320,8 @@
 - [都说数据是上限，推荐系统ctr模型中，构造正负样本有哪些实用的trick？ - 武侠超人的回答 - 知乎](https://www.zhihu.com/question/324986054/answer/1751584807)
 - [一文读懂「Parameter Server」的分布式机器学习训练原理 - 王喆的文章 - 知乎](https://zhuanlan.zhihu.com/p/82116922)
 - [Persia: An Open, Hybrid System Scaling Deep Learning-based Recommenders up to 100 Trillion Parameters](https://arxiv.org/pdf/2111.05897)
+- [推荐系统Serving架构分析 - Peter的文章 - 知乎](https://zhuanlan.zhihu.com/p/335116835)
+
 
 **代码**
 - [fun-rec](https://github.com/datawhalechina/fun-rec)
@@ -315,3 +335,13 @@
 - [Multitask-Recommendation-Library](https://github.com/easezyc/Multitask-Recommendation-Library)
 - [https://github.com/rixwew/pytorch-fm/tree/master/torchfm/model](https://github.com/rixwew/pytorch-fm/tree/master/torchfm/model)
 - [https://github.com/LongmaoTeamTf/deep_recommenders/tree/master](https://github.com/LongmaoTeamTf/deep_recommenders/tree/master)
+- TF1：Microsoft recommendation
+- TF2.5+：GitHub - ZiyaoGeng/RecLearn: Recommender Learning with Tensorflow2.x 
+- Pytorch：RecBole推荐系统框架
+- https://github.com/CheckChe0803/flink-recommandSystem-demo
+
+
+**部署**
+- MOBIUS: Towards the Next Generation of Query-Ad Matchingin Baidu’s Sponsored Search
+- COLD: Towards the Next Generation of Pre-Ranking System
+- [DeepRec](https://deeprec.readthedocs.io/zh/latest/index.html): 支持淘宝搜索、猜你喜欢、定向、直通车等核心业务，支撑着千亿特征、万亿样本超大规模的稀疏训练 

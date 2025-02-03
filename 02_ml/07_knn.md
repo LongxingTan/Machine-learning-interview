@@ -1,4 +1,4 @@
-# K近邻
+# KNN
 
 **应用场景**
 - 产品推荐和推荐引擎
@@ -83,3 +83,7 @@ def KNN(x_train, y_train, x_test, k):
     predict = dict[0][0]
     return predict
 ```
+
+
+## Reference
+- https://github.com/facebookresearch/faiss

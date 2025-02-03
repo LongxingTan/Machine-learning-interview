@@ -5,7 +5,7 @@
 
 
 ## 1. offline 刷题策略
-大厂的面试一般非常规范和模版化，严格按照标准评分，想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此需要尽量提高熟练度，并且踩对得分点和signal。
+大厂的面试一般非常规范和模版化，严格按照标准评分，想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此尽量提高熟练度，并踩对得分点和signal。
 
 - 1、初步掌握常见数据结构和算法，包括常见类型的解题模版
 - 2、按tag刷题，模版的基础上，不断强化练习。尝试多种解法实现
@@ -17,23 +17,21 @@
 快速给出bug free代码，面试过程中**沟通**和**思路介绍**同样非常重要。做题前的寒暄、个人和项目介绍不必随意展开(1~2min)，给做题留足时间。
 
 - (1) 面试官出题
-- (2) 面试者读题并提问 **clarification questions**
+- (2) 面试者读题并 **clarification question**
   - 有面试官会故意遗漏内容，不明白的地方一定问清楚，而不是随意假设。可以通过列举test case，确保真正理解问题并涵盖所有情况。
   - 需求确定好之后，确认输入输出的类型和边界，input/output type, 特殊情况找没找到的时候返回什么
-  - input element的范围
-    - 数字： 全是正数或者全是负数 或者返回必须正数或负数
-    - size 以及edge cases of null or empty
+  - 确认input/output
+    - 输入：数字全是正数或者全是负数， null or empty    
     - string：是不是都是English letters (A-Z)，有没有特殊符号，有的话，会有哪些出现
-    - input element 有无重复
+    - 输入是否有重复样本，输出是否允许重复
     - standard input, empty input, malformed input, long input, null input, other edge input
-  - 能不能改input (1D/2D array比较常见）
+    - 能不能改input (1D/2D array比较常见）
   - 时间空间复杂度要求
     - 需不需要in place
     - 有没有内存限制
   - 区分sub-arrays和subsequence等
-  - 输入是否有重复样本，输出是否允许重复
 - (3) 面试官回答问题保证面试者正确理解题目
-- (4) 面试者思考怎么做，有想法之后先和面试官讲明白思路，并得到认同
+- (4) 面试者思考怎么做，先和面试官讲明白思路，并得到认同
   - 从逻辑/模拟角度思考如何做这个任务(第一性原则出发)。没有思路时，想想更简单、数量更少时如何处理. 
   - Whenever coming across a solution, talk it out and discuss it with the interviewer
   - 2分钟内还没有思路，主动和面试官要提示(hint)
@@ -41,22 +39,22 @@
   - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最有可询问 "Could we have a better solution?"  
   - 熟悉的题目也可以先说一下穷举/暴力做法，然后简单分析下重复操作或者引入高效的数据结构，从而引入到最优解
   - 算法没有得到面试官认同前不要着急动手写代码
-- (5) 确认好思路后面试者写代码实现算法
-  - 用什么数据结构，什么算法。讲思路的时候，一定说清楚为什么选择这个数据结构，结合有代表性的test case说明
+- (5) 确认好思路后写代码实现算法
+  - 用什么数据结构，什么算法。讲思路的时候，说清楚为什么选择这个数据结构
   - During writing the code, whenever coming across edge cases, discuss with the interviewer about how to handle the edge case
-- (6) 跑测试实例验证代码正确
+- (6) 测试验证代码正确性
   - I just finished my coding, now I need to run several test cases to see if I covered all the edge cases and if there is any bugs I missed
   - 注意可能需要自己写tests，给出corner case test
   - **dry run**
-    - 选择能够覆盖各种边界情况和不同输入的例子
+    - 选择能够覆盖各种边界情况和不同输入的例子(test cases)
     - 列出你算法的所有变量的初始状态
     - 逐步执行算法，逐步更新这些变量的值
     - 每个关键点，检查你的变量是否符合预期
   - 空，一个数，两个一样的数(重复)
-- (7) 面试者讲述自己算法的时间、空间复杂度
+- (7) 讲述自己算法的时间、空间复杂度
 - (8) 面试官确认没问题后准备follow up题目或者下一道题目
   - 算法相关技术也可能被问到
-    - rate limiter
+    - [rate limiter](https://leetcode.com/discuss/interview-question/system-design/124558/Uber-or-Rate-Limiter)
     - 不同的cache机制
     - geo data (quad tree)
     - 文本搜索提示 (trie)
@@ -90,7 +88,7 @@
 > - [从面试官角度解答coding interview](https://www.1point3acres.com/bbs/thread-1023899-1-1.html)
 
 ### 4.1 参考刷题列表
-> 重点: 刷透高频题
+> 重点: 刷透高频题，也不要假设觉得哪种类别肯定不会考 (我之前总是跳过位运算，没想到一场遇见两题)
 
 - [blind75](https://leetcode.com/list/xi4ci4ig/)
 - [代码随想录](https://programmercarl.com/)
@@ -110,7 +108,13 @@
 - python里的list和dict是怎么实现的
 - python里的with怎么实现的
 - [异步与协程](https://zhuanlan.zhihu.com/p/25228075)
+  - [什么是协程？](https://zhuanlan.zhihu.com/p/172471249)
   - [也来谈谈协程 - invalid s的文章 - 知乎](https://zhuanlan.zhihu.com/p/147608872)
+  - [进程与线程](https://zhuanlan.zhihu.com/p/46368084)
+- 数据结构
+  - mutable(可变): list, dict, set
+  - immutable(不可变): int, float, str, tuple
+
 
 ### 4.3 Java
 - [java guide](https://javaguide.cn/home.html)

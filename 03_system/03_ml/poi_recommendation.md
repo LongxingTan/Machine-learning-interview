@@ -11,14 +11,18 @@
 
 ## 1. requirements
 **products/use cases**
+- User Search: Users search for restaurants based on location, cuisine, and preferences.
+- Real-Time Recommendations: Provide real-time recommendations based on user queries.
+- Cold Start: Handle new restaurants with limited data.
 
 **objective**
-- connect people with great local businesses
+- Connect Users with Local Businesses: Help users discover great local businesses
+- Increase Engagement: Encourage users to explore and interact with more POIs.
 
 **constraint**
-- data
-- volume
-- latency
+- Data Constraints: Limited data on new restaurants.
+- Volume: Handle a high volume of users and queries.
+- Latency: Provide real-time results with low latency (e.g., < 200ms).
 
 
 ## 2. ML task & pipeline
@@ -28,21 +32,51 @@
 - 停留时间(dwell time), 可转化为t/(t+1)来逼近sigmoid函数，t很大时接近1；很小时接近0
 
 
-## 3. data collection
-- user
+## 3. data
+**Data collection**
+- User Profiles: Demographics, preferences, and past interactions
+- POI Data: Location, cuisine, ratings, reviews, and other attributes
   - User location: For localized recommendations we need to consider only businesses near the city or neighborhood where the user is located
+  - Business Data: Restaurant location, cuisine type, user ratings, and reviews
+- Interaction Data: Past searches, clicks, and visits
+
+**Data Processing**
+- Data Cleaning: Handle missing data and outliers
+- Data Integration: Combine data from different sources into a unified format
+- Data Augmentation: Use techniques like synthetic data generation to handle cold start problems
 
 
 ## 4. feature
-- sparse
-- dense
+**sparse**
+
+**dense**
+
+**User Features**
+- Demographics: Age, location
+- Preferences: Favorite cuisines, price range
+- Behavior: Past searches, clicks, and visits
+
+**POI Features**
+- Location: Latitude, longitude, and proximity to the user
+- Attributes: Cuisine, price range, ratings, reviews
+- Popularity: Number of visits, ratings, and reviews
+
+**Context Features**
+- Time of Day: Recommendations may vary based on the time of day
+- Device: Recommendations may differ based on the device used (e.g., mobile vs. desktop)
 
 
 ## 5. model
+
 **retrieval**
 - 取决于filter
+- Collaborative Filtering: Recommend POIs based on similar users' preferences
+- Content-Based Filtering: Recommend POIs similar to those the user has interacted with in the past
+- Graph-Based Models: Use graph algorithms (e.g., Node2Vec, GraphSAGE) to capture spatial relationships between POIs
+
 
 **ranking**
+
 
 **rerank**
 
@@ -51,20 +85,20 @@
 - offline
   - NDCG
   - MAP
+  - precision, recall, and AUC-ROC
 - online: A/B testing holdout canary
 
 
 ## 7. deploy & serving
-- batch serving
-- online serving
-
+- Batch Serving: Periodically update restaurant recommendations.
+- Online Serving: Real-time requests for user queries.
 
 ## 8. monitor & maintenance
 
 
 ## 9. 优化与问答
-冷启动的item
-- 双塔可以采用default embedding, 而不是random initial
+- 冷启动的item
+  - 双塔可以采用default embedding, 而不是random initial
 
 
 ## reference

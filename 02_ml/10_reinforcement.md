@@ -42,6 +42,12 @@
 - DPO (off-policy) 为什么会在学习过程中training positive的概率和training negative的概率都同时下降？
   - 和采样的方式以及DPO loss组成相关. BT loss，maximize training set中positive和negative的gap
 
+- RLHF & DPO
+  - DPO did exclude some practical aspects of the RLHF method, e.g. pretraining gradients.
+  - the theoretical arguments of DPO equivalence make some assumptions that don’t necessarily apply in practice
+  - RLHF gives you a reusable reward model, which has practical uses and advantages. DPO doesn’t have useful intermediate product.
+  - DPO works off preference, whereas desirable RL objectives could have many forms
+
 
 ## reference
 - [https://spinningup.openai.com/en/latest/](https://spinningup.openai.com/en/latest/)
@@ -53,3 +59,4 @@
 - [强化学习应该怎么入门？ - Alex的回答 - 知乎](https://www.zhihu.com/question/622724204/answer/3220047569)
 - [为什么ppo优于policy gradient? - 程序员眼罩的回答 - 知乎](https://www.zhihu.com/question/357056329/answer/3392670236)
 - [https://datawhalechina.github.io/easy-rl/#/chapter1/chapter1](https://datawhalechina.github.io/easy-rl/#/chapter1/chapter1)
+- https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-fall21/schedule.html

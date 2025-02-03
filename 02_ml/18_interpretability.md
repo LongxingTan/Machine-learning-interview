@@ -15,8 +15,10 @@
 - 特征重要性
   - Boruta
   - LOFO
+  - Permutation Importance
 
 - SHAP
+  - https://github.com/shap/shap
   - Shapley值用于公平分配多个参与者在合作中所带来的收益，机器学习模型解释中，SHAP用于计算每个特征对模型预测结果的贡献
 
 - LIME
@@ -25,6 +27,23 @@
 
 - Eli5
   - 工具: https://github.com/eli5-org/eli5
+
+
+- permutation importance
+```python
+import numpy as np
+
+def permutation_importances(model, X, y, metric):
+    baseline = metric(model, X, y)
+    imp = []
+    for col in X.columns:
+        save = X[col].copy()
+        X[col] = np.random.permutation(X[col])
+        m = metric(model, X, y)
+        X[col] = save
+        imp.append(baseline - m)
+    return np.array(imp)
+```
 
 
 ## 参考

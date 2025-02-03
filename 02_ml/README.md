@@ -1,5 +1,5 @@
 # 机器学习
-> 面试需要一些准备和技巧，但功夫在诗外。平时注意构建知识体系，论文和实验不断给体系添砖加瓦。本章侧重理论部分，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
+> 熟悉八股和代码，面试需要一定准备和技巧，但功夫在诗外。平时注意构建知识体系，论文和实验不断给体系添砖加瓦。本章侧重理论部分，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
 
 
 ## 1. 面试要求
@@ -13,18 +13,24 @@
   - 可能被持续追问为什么? 某个trick为什么能起作用？
   - 每一个算法如何scale，如何将算法map-reduce化
   - 每一个算法的**复杂度、参数量、计算量**
+- 如果不知道答案，可以承认不知道，补充一下可以做什么找答案，不要乱编
+- don’t memorize the formula but demonstrate understanding
 
-- [简历中介绍自己的机器学习项目](./22_project.md)
+- [简历中介绍自己的机器学习项目](./24_project)
+- [ML code collections](./99_ml_code.md)
+- [ML code challenge](https://www.deep-ml.com/)
 
 
 ## 2. 八股问题实例
 > 模型细节与八股见具体模型页面
 
 - Generative vs Discriminative
+  - Discriminative model learns the predictive distribution p(y|x) directly while generative model learns the joint distribution p(x, y) then obtains the predictive distribution based on Bayes' rule
   - A generative model will learn categories of data while a discriminative model will simply learn the distinction between different categories of data. 
-  - Discriminative models will generally outperform generative models on classification tasks. Discriminative model learns the predictive distribution p(y|x) directly while generative model learns the joint distribution p(x, y) then obtains the predictive distribution based on Bayes' rule.
+  - Discriminative models will generally outperform generative models on classification tasks.
 
 - The bias-variance tradeoff
+  - track: Cross-Validation
   - Bias Variance Decomposition: Error = Bias ** 2 + Variance + Irreducible Error
   - Ideally, one wants to choose a model that both accurately captures the regularities in its training data, but also generalizes well to unseen data. Unfortunately, it is typically impossible to do both simultaneously. 
   - High-variance learning methods may be able to represent their training set well but are at risk of overfitting to noisy or unrepresentative training data. 
@@ -32,17 +38,17 @@
 
 - 怎么解决over-fitting
   - track: underfitting means large training error, large generalization error; overfitting means small training error, large generalization error
-  - 数据角度，收集更多训练数据(more data)；求其次，数据增强(Data augmentation)；或Pretrained model
+  - 数据角度，收集更多训练数据；数据增强(Data augmentation)；或Pretrained model
   - 特征角度，Feature selection
   - 模型角度
-    - 降低模型复杂度，如神经网络的层数、宽度，树模型的树深度、剪枝；
+    - 降低模型复杂度，如神经网络的层数、宽度，树模型的树深度、剪枝(pruning)；
     - 模型正则化(Regularization)，如正则约束L2，dropout
     - 集成学习方法，bagging
   - 训练角度，Early stop，weight decay
 
 - 怎么解决under-fitting
   - 特征角度，增加新特征
-  - 模型角度，增加模型复杂度，减少正则化系数
+  - 模型角度，增加模型复杂度，减少正则化
   - 训练角度，训练模型第一步就是要保证能够过拟合，增加epoch
 
 - 怎么解决样本不平衡问题
@@ -56,8 +62,10 @@
 - 怎么解决数据缺失的问题
   - [How to Handle Missing Data](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4)
   - label data较少的情况
+  - 数据填充
+  - 重要数据可通过额外建模进行预测
 
-- 怎么解决类别变量中的高基数特征 high-cardinality
+- 怎么解决类别变量中的高基数(high-cardinality)特征
   - Feature Hashing
   - Target Encoding
   - Clustering Encoding
@@ -65,21 +73,20 @@
 
 - 如何选择优化器
   - MSE, loglikelihood+GD
-  - SGD-training data太大量
+  - SGD-training data太大
   - ADAM-sparse input
 
 - 怎么解决Gradient Vanishing & Exploding
   - 梯度消失
-    - 激活函数activations, 如ReLU
-    - residual network
+    - stacking
+    - 激活函数activations, 如ReLU: sigmoid只有靠近0的地方有梯度
+    - LSTM (时间维度梯度)
+    - Highway network
+    - residual network (深度维梯度)
     - batch normalization
   - 梯度爆炸
     - gradient clipping
     - LSTM gate
-
-- 数据收集
-  - production data, label
-  - Internet dataset
 
 - 分布不一致怎么解决
   - distribution有feature和label的问题。label尽量多收集data，还是balance data的问题
@@ -96,7 +103,7 @@
   - embedding
 
 - 怎么提升模型的latency
-  - 小模型
+  - 小模型或剪枝(pruning)
   - 知识蒸馏
   - squeeze model to 8bit or 4bit
 
@@ -108,22 +115,29 @@
   - transformer
   - 在深度学习框架中，单个张量的乘法内部会自动并行
 
+- 冷启动
+  - 利用好已有信息(meta data)
+  - 选择适合的模型(two tower)
+  - 流量调控
+
+- Out-of-vocabulary
+  - unknown
+
 
 ## 3. 手写ML代码实例
-> [ML code challenge](https://www.deep-ml.com/)
 
-- [手写KNN](./07_knn.md)  
+- [手写KNN](./07_knn.md)
 - [手写K-means](./09_k_means.md)
-- 手写softmax的backpropagation
-- 手写AUC
+- [手写AUC](./01_metrics.md)
 - 手写SGD
-- 手写两层fully connected网络
+- 手写softmax的backpropagation
+- [手写两层MLP](./05_deep_learning.md)
 - [手写CNN](./05_deep_learning.md)
   - convolution layer的output size怎么算? 写出公式
 - 实现dropout，前向和后向
 - 实现focal loss
 - 手写LSTM
-  - 给一个LSTM network的结构，计算参数量
+  - 给定LSTM结构，计算参数量
 - NLP:
   - 手写n-gram
   - 手写tokenizer
@@ -131,7 +145,7 @@
     - [BPE tokenizer](https://huggingface.co/learn/nlp-course/chapter6/5?fw=pt)
   - 白板介绍位置编码
   - 手写multi head attention (MHA)
-- 视觉：
+- 视觉:
   - 手写iou/nms
 
 
@@ -147,5 +161,4 @@
 - [Best Practices for ML Engineering](https://developers.google.com/machine-learning/guides/rules-of-ml)
 - [https://github.com/bitterengsci/algorithm](https://github.com/bitterengsci/algorithm/blob/master/royal%20algorithm/Machine%20Leanrning.md)
 - [Pros and cons of various Machine Learning algorithms](https://towardsdatascience.com/pros-and-cons-of-various-classification-ml-algorithms-3b5bfb3c87d6)
-- [10min pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
-- [60min pytorch](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
+- https://defiant-show-3ca.notion.site/Deep-learning-specialization-b69a42ecb14446f39bd93fd0f15965d5

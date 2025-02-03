@@ -16,8 +16,10 @@ Non-Functional requirement
 - Durable — system should not lose jobs information in case of any failure
 - Latency — system should acknowledge the user as soon as the job is accepted. User doesn’t have to wait till job completion.
 
+
 ## Traffic & Storage Estimation
 Total submitted jobs daily = 100 M (or 1000 QPS)
+
 
 ## Domain Analysis: Concepts
 Job:
@@ -48,4 +50,4 @@ Can have Properties like:
 - [https://www.linkedin.com/pulse/system-design-distributed-job-scheduler-keep-simple-stupid-ismail/](https://www.linkedin.com/pulse/system-design-distributed-job-scheduler-keep-simple-stupid-ismail/)
 - [System Design: Designing a distributed Job Scheduler | Many interesting concepts to learn](https://leetcode.com/discuss/general-discussion/1082786/System-Design%3A-Designing-a-distributed-Job-Scheduler-or-Many-interesting-concepts-to-learn)
 - [如何设计一个海量任务调度系统](https://cloud.tencent.com/developer/article/2302428)
-- 
+- [Ace the System Design Interview: Job Scheduling System](https://towardsdatascience.com/ace-the-system-design-interview-job-scheduling-system-b25693817950)

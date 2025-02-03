@@ -1,7 +1,6 @@
 # 面向对象设计OOD
 
-SWE1岗位可能考察OOD
-- 考核关键是如何设计class，class的properties和methods定义好，掌握class的继承
+> 考核关键是如何设计class，class的properties和methods定义好，掌握class的继承
 
 
 ## 1. 面试过程
@@ -11,15 +10,15 @@ SWE1岗位可能考察OOD
 
 
 ## 2. 案例
-- 设计一个操作系统内存管理分页分段的API
-- parking lot
-- 电梯
+- [停车场](./parking_lot.md)
+- [电梯](./lift.md)
+- [design Linux file search utility](./unix_file.md)
 - drink sale system
-- design Linux file search utility
 - amazon locker
 - 酒店预订
 - vending machine
 - 中国象棋
+- 操作系统内存管理分页分段的API
 
 
 ## 3. 参考

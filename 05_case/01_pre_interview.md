@@ -1,21 +1,17 @@
 # 前期准备
-> 不灰心，不内耗，我们需要的只要一个满意的offer即可
-- [linkedin](https://www.linkedin.com/)
-- [Indeed](https://indeed.com/)
-- [glassdoor](https://www.glassdoor.com/)
-- [levels.fyi](https://www.levels.fyi/)
-- [一亩三分地](https://www.1point3acres.com/bbs/forum-145-1.html)
-
+> 不灰心，不内耗，不找借口，直面任何结果；降低单个面试的预期 (面试中绝对自信，面完就当被拒了，继续下一个)；拒多了也别沮丧，吃好喝好睡好，最终有一个满意的offer即可；
 
 ## 1. 简历
-- 关键词匹配job description，内容保持**30%以上match**
+[How to write a killer Software Engineering résumé](https://www.freecodecamp.org/news/writing-a-killer-software-engineering-resume-b11c91ef699d/)
+
+- 关键词匹配job description，内容保持**30%以上match**. HR面也牢记这些匹配点，并全程往上靠
 - 指标量化自己工作，start with action verbs and end with specific metrics
-- 当地虚拟电话号: WeTalk
-- 忽略部分公司存在冷冻期的影响，能投就投
+- 远程投递，考虑虚拟电话号WeTalk
+- 理性关注部分公司冷冻期的影响，能投就投
 
 
 ## 2. 内推
-求助校友，可以去[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)求助，Linkedin求助内推可可参考[聊聊如何在 Linkedin 上勾搭才能得到回复](https://www.1point3acres.com/bbs/thread-664124-1-1.html)
+求助校友，求助[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)，求助Linkedin内推-[如何在 Linkedin 上勾搭才能得到回复](https://www.1point3acres.com/bbs/thread-664124-1-1.html)
 
 Linkedin投递前可reach out hr/hm求好感
 ```text
@@ -47,17 +43,30 @@ Best regards,
 [attached Resume]
 ```
 
+找HR follow up模版
+```text
+Hi HR Name,
+
+I hope you’re doing well. Thank you again for coordinating my interview last week.
+ 
+I want to check in and see if there are any updates regarding my interview status. I’m excited about the possibility of contributing to the team and look forward to hearing from you.
+
+Best regards,
+Your Name
+```
+
 
 ## 3. Mock interview
 
-一方面找chatgpt聊天模拟，一方面自己录下视频来模拟和复盘. 后期可以找人mock或者互相mock
+一方面找chatgpt聊天模拟，一方面自己录下视频来模拟和复盘. 后期可以找人mock或者互相mock，面试中保持适当兴奋的状态，这样会给人一种“工作态度积极、年轻活力”的印象
 
-- chatgpt prompt
+- prompt
 ```text
-You are an excellent and experiences senior MLE candidate who has 20+ offers in hand, you always want to answer the question logically in an appropriate framework, and provide enough details to impressed your interviewers. Now answer the question: 
+You are an excellent staff MLE who has attended 50+ interviews and got 20+ offers from FLAG, you always answer the question logically with an appropriate framework, and provide enough details to impressed your interviewers. Now I'm your interviewers please answer my question: 
 ```
 
 - [pramp](https://www.pramp.com/#/)
+- meetapro
 
 
 ## 4. 极速版
@@ -81,4 +90,10 @@ You are an excellent and experiences senior MLE candidate who has 20+ offers in 
 - [招人看了不下几千封简历，抛砖引玉谈谈一些通病和怎么改](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=1028155)
 - [如何写求职简历的注意事项](https://www.1point3acres.com/bbs/thread-187005-1-1.html)
 - [科技行业NG找工作resume的一些参考建议碎碎念](https://www.1point3acres.com/bbs/thread-1096157-1-1.html)
-- [How to write a killer Software Engineering résumé](https://www.freecodecamp.org/news/writing-a-killer-software-engineering-resume-b11c91ef699d/)
+
+**工具网站**
+- [linkedin](https://www.linkedin.com/)
+- [Indeed](https://indeed.com/)
+- [glassdoor](https://www.glassdoor.com/)
+- [levels.fyi](https://www.levels.fyi/)
+- [一亩三分地](https://www.1point3acres.com/bbs/forum-145-1.html)

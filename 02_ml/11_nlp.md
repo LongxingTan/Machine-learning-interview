@@ -27,6 +27,9 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 - tfidf
 - word2vec
 - crf
+- n-gram
+  - [https://web.stanford.edu/~jurafsky/slp3/3.pdf](https://web.stanford.edu/~jurafsky/slp3/3.pdf)
+
 
 **encoder-decoder**
 - BART
@@ -42,79 +45,7 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 - LLaMA
 
 
-### 2.1 tfidf / BM25
-[geeksforgeeks](https://www.geeksforgeeks.org/tf-idf-model-for-page-ranking/)
-
-term-frequency: w represents a word, d means the document
-
-tf(w, d) = count(w, d) / total(d)
-
-```python
-def compute_term_frequency(text: str, vocabularies: dict[str, int]) -> dict:
-    """
-    calculate term frequency: 每个document中，一个词出现次数越多越重要
-    Args:
-        text (str): input text
-        vocabularies (dict[str, int]): vocabulary list from corpus
-
-    Returns:
-        dict: a dict containing the tf for each word
-    """
-    words = text.split(' ')
-    word_count_norm = copy.deepcopy(vocabularies)
-    for word in words:
-        if word in word_count_norm.keys():
-            word_count_norm[word] += 1
-        else:
-            # considering unknown words in testing
-            word_count_norm["[UNK]"] += 1
-    for word, count in word_count_norm.items():
-        word_count_norm[word] = count / len(words)
-    return word_count_norm  # 结果按vocab排序, 一个document可以根据tf转化为一个向量
-```
-
-Inverse Document Frequency: N is the total number of documents while df means the document frequency
-
-idf(w) = log(N / df(w))
-
-```python
-def compute_inverse_document_frequency(documents: List[str]) -> dict[str, float]:
-    """
-    calculate the idf: 一个单词出现在越多document中，证明这个单词越不重要
-    Args:
-        documents (List[str]): a list of documents
-
-    Returns:
-        dict[str, float]: idf
-    """
-    N = len(documents)
-    idf_dict = {}
-
-    for document in documents:
-        for word in set(document.split(' ')):
-            # Count how many documents appear this word
-            idf_dict[word] = idf_dict.get(word, 0) + 1
-
-    # Apply logarithmic function to the counts
-    idf_dict = {word: math.log(N / count)
-                for word, count in idf_dict.items()}
-    # Consider unknown words in the testing
-    idf_dict['[UNK]'] = math.log(N + 1 / 1)
-    return idf_dict
-```
-
-综合tfidf
-```python
-def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_frequency: dict[str, int]):      
-    tfidf = dict()
-    for word, tf_word in term_frequency.items():
-      tfidf[word] = tf_word * inverse_document_frequency[word]
-
-    tfidf_vector = np.array([tfidf_word for _, tfidf_word in tfidf.items()])
-    return tfidf_vector
-```
-
-### 2.2 word2vec/glove/fasttext
+### word2vec/glove/fasttext
 - word2vec: 本质上是词的共现
 - 缺点: 
   - 静态表征(contextless word embeddings). 训练完成做推理时, 每个token的表示与上下文无关
@@ -125,14 +56,7 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
   - 负样本中选取一部分来更新，而不是更新全部的权重
 
 
-### 2.3 LDA
-
-
-### 2.4 CRF
-- CRF 是一个序列化标注算法，接收一个输入序列，输出目标序列，可以被看作是一个 Seq2Seq 模型
-
-
-### 2.5 Transformer
+### Transformer
 - Transformer时代几大模型范式, BERT: encoder-only, GPT: decoder-only, T5: encoder-decoder, GLM: prefix-lm
 - 预训练任务：Masked Language Model 和 Next Sentence Predict(Autoregressive)
 - bert下游任务
@@ -143,6 +67,8 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
   - 绝对位置编码
   - 相对位置编码
   - 旋转位置编码RoPE
+    - [Rotary Embeddings: A Relative Revolution](https://blog.eleuther.ai/rotary-embeddings/)
+    - [ROUND AND ROUND WE GO! WHAT MAKES ROTARY POSITIONAL ENCODINGS USEFUL?](https://arxiv.org/pdf/2410.06205)
 
 **ERNIE**
 
@@ -162,14 +88,11 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
 - Loss: Embedding Layer Distillation, Transformer Layer Distillation, Prediction Layer Distillation
 
 
-### 2.6 GPT
+### GPT
 - 自回归模型
 - GPT3: Zero-Shot Learning
 - gpt的四个下游任务
 - Emergent Ability
-
-
-### 2.7 T5
 
 
 ## 3. 评价指标
@@ -190,7 +113,7 @@ BertScore
 
 
 ## 4. 应用
-对具体的应用方向应该建立和熟悉其发展脉络。
+> 对具体的应用方向应该建立和熟悉其发展脉络
 
 
 ### 4.1 文本分类
@@ -221,6 +144,7 @@ BertScore
 **实体识别 NER**
 - Nested NER/ Flat NER
 - lower layers of a pre-trained LLM tend to reflect “syntax” while higher levels tend to reflect “semantics”
+- CRF 是一个序列化标注算法，接收一个输入序列，输出目标序列，可以被看作是一个 Seq2Seq 模型
 
 
 **关系抽取 RE**
@@ -273,11 +197,15 @@ key phrase generation
 
 ## 6. 问答
 - 为啥文本不用batch norm要用layer norm
+  - BN: batch之间每一个element之间的分布，对Batch Size大小很敏感; LN: 每一个example序列之间的分布标准化
+  - [Rethinking Batch Normalization in Transformers](https://arxiv.org/abs/2003.07845)
 - transformer计算kvq的含义
 - 如何‌估计微调一个language model的成本是多少
 - quantization的概念，解释一下如何工作的
 - 如果文本非常长怎么处理
 - 如何克服固定context window的限制，能不能有100K的context window
+- Bert是怎么解决OOV问题
+  - 如果一个单词不在词表中，则按照subword的方式逐个拆分token，如果连逐个token都找不到，则直接分配为[unknown]; WordPiece广泛覆盖，这种情况较少发生
 - BERT/GPT的区别
   - decoder_only 模型通过逐步生成的方式处理信息，不会将信息**压缩**到单个表示中。
   - BERT 则通过 CLS token 将信息汇总到一个单一的表示中，这种压缩的方式用于处理下游任务。
@@ -293,83 +221,24 @@ key phrase generation
   - beam search: 累积概率最大的k个序列
 
 
-## 参考代码
-
-- tokenizer: BPE贪心
-```python
-# subword词表，之后编码和解码
-import re, collections
-
-def get_stats(vocab):
-    pairs = collections.defaultdict(int) # 设置字典，默认值为0
-    for word, freq in vocab.items():
-        symbols = word.split()          # 使用空格进行区分
-        for i in range(len(symbols)-1): # 连续字符组成一个字符对
-            pairs[symbols[i], symbols[i+1]] += freq # 频率
-    return pairs
-
-def merge_vocab(pair, v_in):
-    v_out = {}
-    bigram = re.escape(' '.join(pair))
-    p = re.compile(r'(?<!\S)' + bigram + r'(?!\S)')
-    for word in v_in:
-        w_out = p.sub(''.join(pair), word) # 合并字符对
-        v_out[w_out] = v_in[word]
-    return v_out
-
-# 设置待编码文本，key为字符，value为频率
-# 每个单词后面增加</w>, 可以知道每个单词的结束位置, 而不会统计到下一个单词中
-words = text.strip().split(" ")
-word_freq_dict = collections.defaultdict(int)
-for word in words:
-    word_freq_dict[' '.join(word) + ' </w>'] += 1
-
-vocab = {'l o w</w>' : 5, 'l o w e s t</w>' : 2, 'n e w e r</w>':6, 'w i d e r</w>':3}
-num_merges = 10 # 迭代次数
-for i in range(num_merges):
-    pairs = get_stats(vocab) # 字符字典
-    best = max(pairs, key=pairs.get) # 找到频率最高的字符对
-    vocab = merge_vocab(best, vocab)
-    print(best)
-```
-
-- positional encoding
-```python
-def get_positional_embedding(d_model, max_seq_len):
-    positional_embedding = torch.tensor([
-            [pos / np.power(10000, 2.0 * (i // 2) / d_model) for i in range(d_model)]  # i 的取值为 [0, d_model)
-            for pos in range(max_seq_len)]  # pos 的取值为 [0, max_seq_len)
-        )
-    positional_embedding[:, 0::2] = torch.sin(positional_embedding[:, 0::2])
-    positional_embedding[:, 1::2] = torch.cos(positional_embedding[:, 1::2])
-    return positional_embedding
-```
-
-- beam search
-```python
-
-```
-
-- n-gram
-```python
-
-```
-
-
 ## 参考
 **精读**
 - [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU)
 
 **扩展**
-- [NLP 任务中有哪些巧妙的 idea？ - 邱锡鹏的回答 - 知乎](https://www.zhihu.com/question/356132676/answer/901244271)
-- [https://github.com/firechecking/CleanTransformer](https://github.com/firechecking/CleanTransformer)
+- [n-gram in hadoop map-reduce](https://github.com/cloudera/python-ngrams/tree/master/native/src/main/java)
 - [秒懂词向量Word2vec的本质 - 穆文的文章 - 知乎](https://zhuanlan.zhihu.com/p/26306795)
+- [语言模型](https://zhuanlan.zhihu.com/p/90741508)
+- [NLP 任务中有哪些巧妙的 idea？ - 邱锡鹏的回答 - 知乎](https://www.zhihu.com/question/356132676/answer/901244271)
+- [Text clustering with K-means and tf-idf](https://medium.com/@MSalnikov/text-clustering-with-k-means-and-tf-idf-f099bcf95183)
+- [https://github.com/firechecking/CleanTransformer](https://github.com/firechecking/CleanTransformer)
+- [史上最细节的自然语言处理NLP/Transformer/BERT/Attention面试问题与答案 - 海晨威的文章 - 知乎](https://zhuanlan.zhihu.com/p/348373259)
 - [https://github.com/deborausujono/word2vecpy](https://github.com/deborausujono/word2vecpy)
 - [information-retrieval-book](https://nlp.stanford.edu/IR-book/information-retrieval-book.html)
 - [The Evolution of Tokenization – Byte Pair Encoding in NLP](https://www.freecodecamp.org/news/evolution-of-tokenization/)
 - [前处理 Tokenizer- Byte Pair Encoder](https://github.com/karpathy/minGPT/blob/master/mingpt/bpe.py)
 - [【LLM拆了再装】 Tokenizer篇 - coreyzhong的文章 - 知乎](https://zhuanlan.zhihu.com/p/700283095)
-- [Text clustering with K-means and tf-idf](https://medium.com/@MSalnikov/text-clustering-with-k-means-and-tf-idf-f099bcf95183)
+- [Transformer学习笔记一：Positional Encoding（位置编码） - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/454482273)
 - [https://github.com/wangle1218/KBQA-for-Diagnosis](https://github.com/wangle1218/KBQA-for-Diagnosis)
 - [https://github.com/wangle1218/faq-qa-sys-v2](https://github.com/wangle1218/faq-qa-sys-v2)
 - [beam search的简单实现（面试版） - lumino的文章 - 知乎](https://zhuanlan.zhihu.com/p/623540053)
@@ -377,7 +246,6 @@ def get_positional_embedding(d_model, max_seq_len):
 - [Generating N-grams from Sentences in Python](https://albertauyeung.github.io/2018/06/03/generating-ngrams.html/)
 - [超长文本综述：Effective Long Context Scaling of Foundation Models](https://arxiv.org/pdf/2309.16039.pdf)
 - [Climbing towards NLU: On Meaning, Form, and Understanding in the Age of Data](https://aclanthology.org/2020.acl-main.463/)
-- [语言模型](https://zhuanlan.zhihu.com/p/90741508)
 - [实体命名识别（NER）如何入门？ - 致Great的回答 - 知乎](https://www.zhihu.com/question/455063660/answer/2371455632)
 - [流水的NLP铁打的NER：命名实体识别实践与探索 - 王岳王院长的文章 - 知乎](https://zhuanlan.zhihu.com/p/166496466)
 - [Knowledge Graph & NLP Tutorial-(BERT,spaCy,NLTK)](https://www.kaggle.com/code/pavansanagapati/knowledge-graph-nlp-tutorial-bert-spacy-nltk)
@@ -390,7 +258,10 @@ def get_positional_embedding(d_model, max_seq_len):
 - [https://transformers.run/c3/2022-03-18-transformers-note-6/](https://transformers.run/c3/2022-03-18-transformers-note-6/)
 - [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY)
 - [https://github.com/karpathy/minbpe](https://github.com/karpathy/minbpe)
-- [n-gram in hadoop map-reduce](https://github.com/cloudera/python-ngrams/tree/master/native/src/main/java)
+- [Bert/Transformer 被忽视的细节（或许可以用来做面试题） - LiteAI的文章 - 知乎](https://zhuanlan.zhihu.com/p/613407791)
+- [在BERT已经成为NLP基础知识的当下，你会在面试中问关于BERT的什么问题? - Elesdspline的回答 - 知乎](https://www.zhihu.com/question/424003949/answer/2349589527)
+- [NLP领域，你推荐哪些综述性的文章？](https://www.zhihu.com/question/355125622)
+
 
 **课程**
 - [邱锡鹏: nlp-beginner](https://github.com/FudanNLP/nlp-beginner)

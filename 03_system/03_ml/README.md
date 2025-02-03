@@ -1,6 +1,6 @@
 # 机器学习系统设计
 
-> 机器学习系统的核心，是训练一个**模型**来实现某个任务。如预测、分类、排序.
+> 机器学习系统的核心，是训练一个**模型**来解决任务中的问题，如预测、分类、排序
 >- 建模design, 包括优化目标，feature，data，模型结构，评价标准等
 >- 系统design, 偏重于在线serve模型，包括feature store, ANN, ETL pipeline, MLOps等
 >- 不熟悉的场景，一定先从头到尾问清楚细节。没有通用解，只有更适合场景的solution，牢记trade-off
@@ -12,34 +12,34 @@
 - **沟通：** 一边白板画框图，一边告知面试官要讲某几个部分. 每个部分move前可再次确认 `Is there anywhere that you feel I missed?`
 - **分层思维：** 整个过程，一层讲清楚主题前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
 - **深度和广度：** 每个部分，尤其是自己熟悉的方面，要主动讲，积极展现自己的知识宽度和深度
-- **trade-off：** 不要对需求和场景做主观假设，注意讲清楚trade-off. trade-off从业务(比如预测准确性、长尾预测准确、冷启动效果)和技术角度(scale、latency)出发
+- **trade-off：** 不要对需求和场景做主观假设，注意讲清楚trade-off。trade-off从业务(比如预测准确性、长尾预测准确、冷启动效果)和技术角度(scale、latency)出发
 
 
 ## 2. 回答框架
 
 - **明确需求 Requirement**
-  - functional和non-functional一定要确认清楚，否则是不合格signal
-  - 场景，功能，目标(engagement or revenue)，约束
-  - scale of the system, user和item有哪些数据和量级  
+  - functional和non-functional一定一定确认清楚，否则是明显不合格signal. 提问非常能看出水平
+  - 场景，功能，目标(engagement or revenue, project goal, project metrics)，约束
+  - scale of the system, user和item有哪些数据和量级
 - **机器学习任务 ML Task**
   - 解释如何将需求转化为机器学习问题(如推荐转化为二分类模型和原因)
 - **数据 Data**
-  - 2方面identify data：training + label, testing + ground truth
-  - positive label and negative label
-  - 一些可做特征的数据是否有log  
-  - label来源: 从交互中收集, 人工标注, 人工标注加无监督辅助, 增强数据
+  - 两方面identify data：training + label, testing + ground truth
+  - 获取label: 从交互中收集, 人工标注, 人工标注加无监督辅助, 增强数据
+  - 分类任务的positive label, negative label
+  - 一些可做特征的数据是否有log
   - 数据探讨: bias, 非均衡, label质量
   - GDPR/privacy: 数据脱敏，数据加密
   - train/test data和product上distribution不一样怎么办, data distribution随时间改变怎么办
 - **特征 Feature**
   - user, item and cross, context
   - sparse and dense feature
-  - 实际工作中，每个ML组都有自己不同的embedding set. 互相使用别人的embedding set, 怎么pre-train, fine-train, 怎么combine feature非常重要
-  - feature的AB test怎么做？不同traffic做
+  - 每个ML组都有不同的embedding set. 互相用别人的embedding set, 怎么pre-train, fine-train, 怎么combine feature非常重要
+  - feature的AB test怎么做？不同traffic
 - **模型 Model**
-  - 总是从**简单的baseline**开始说起
-  - 模型选择，考虑系统方面的constraint. 比如prediction latency, memory. 怎么合理的牺牲模型的性能以换取constraint方面的benefit
+  - 总是从**简单baseline**开始
   - 每个design的选择，像平时写design doc一样比较不同选项的优劣
+  - 模型选择，考虑来自系统的constraint. 比如prediction latency, memory. 怎么合理的牺牲模型的性能以换取constraint方面的benefit  
   - 大多数场景，模型之外都需要额外的策略兜底
 - **评价 Evaluation**
   - offline and online
@@ -52,40 +52,41 @@
 - **服务 serving**
   - batch prediction or online prediction
 - **监控 monitoring**
-  - 监控latency，QPS，precision，recall等参数
+  - 监控latency，QPS，precision，recall等
   - Grafana, prometheus
 - **维护 maintain**
   - retrain strategy
+  - 全量训练 + 增量训练
 
 
 ## 3. 面试实例
 
-**例子**
-  - youtube recommendation, doordash search box, auto suggestion
-  - design youtube violent content detection system
-  - detecting unsafe content
-  - design a monitoring system to realtime measure ML models, including features, score distribution, qps
-  - abusive user detection
+- [youtube recommendation](./video_recommendation.md)
+- [search box](./video_search.md)
+- [design youtube violent content detection system](./harmful_content_detection.md)
+- [auto suggestion](./search_box.md)
+- design a monitoring system to realtime measure ML models, including features, score distribution, qps
+- abusive user detection
 
 **业务目标**
-  - improve engagement on a feed
-  - improve customer churn
-  - return items from search engine query
-  - cold-start/position bias/diversity
-  - multiple task
+- improve engagement on a feed
+- improve customer churn
+- return items from search engine query
+- cold-start/ position bias/ diversity
+- multiple task
 
 
 ## 4. 常见问答
 
 - how to scale
-  - Scaling general SW system (distributed servers, load balancer, sharding, replication, caching, etc)
+  - Scaling general SW system (distributed servers, load balancer, sharding, replication, caching)
   - Train data / KB partitioning
   - Distributed ML
   - Data parallelism (for training)
-  - Model parallelism (for training, inference)
-  - Asynchronous SGD
-  - Synchronous SGD
+  - Model parallelism (for training, inference)  
   - Distributed training
+    - Asynchronous SGD
+    - Synchronous SGD
   - Data parallel DT, RPC based DT
   - Scaling data collection
   - machine translation for 1000 languages
@@ -96,7 +97,12 @@
   - [推荐系统有哪些坑？](https://www.zhihu.com/question/28247353/answer/2126590086)
 - 不同的数据用什么方式存储
 - data pipeline怎么设计
+- deploy  
+  - 负载均衡和自动伸缩
+  - latency如何优化
+  - 这么多server如何deploy，以及如何push新的model version，在更新的时候如何保证qps不degrade
 - serving
+  - model serving是典型的low latency high qps
   - Online A/B testing
     - Based on online metrics we would select a significance level 𝛼 and power threshold 1 – 𝛽
     - Calculate the required sample size per variation: The required sample size depends on 𝛼, 𝛽, and the MDE Minimum Detectable Effect – the target relative minimum increase over the baseline that should be observed from a test
@@ -106,11 +112,6 @@
   - If we are serving real time features then they need to be fetched/derived at request time and we need to be aware of scalability or latency issues (load balancing), we may need to create a feature store to lookup features at serve time and maybe some caching depending on the use case.
   - Where to run inference: if we run the model on the user’s phone/computer then it would use their memory/battery but latency would be quick, on the other hand, if we store the model on our own service we increase latency and privacy concerns but removes the burden of taking up memory and battery on the user’s device.
   - how often we would retrain the model. Some models need to be retrained every day, some every week and others monthly/yearly. Always discuss the pros and cons of the retraining regime you choose
-- deploy
-  - model serving是典型的low latency high qps
-  - 负载均衡和自动伸缩
-  - latency如何优化
-  - 这么多server如何deploy，以及如何push新的model version，在更新的时候如何保证qps不degrade
 - Monitoring Performance
   - Latency (P99 latency every X minutes)
   - Biases and misuses of your model

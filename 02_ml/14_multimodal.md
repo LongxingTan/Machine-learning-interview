@@ -35,7 +35,11 @@ Diffusion
 
 
 ### vLLM (vision LLM)
-LLAVA
+- LLAVA
+
+
+## 语音
+- CTC
 
 
 ## 参考

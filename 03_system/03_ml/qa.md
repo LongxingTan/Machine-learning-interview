@@ -1,5 +1,6 @@
 # 问答系统
 
+> 传统智能客服系统需要为每种任务单独设计和维护特定模型
 - Information Retrieval: 基于问答库，利用信息检索(召回、排序)从问答库中选择查询问题与已有问题和答案中最相似的作为输出
 - Knowledge Based Question Answering: 基于知识库，围绕知识库的实体或者关系，把问题转化成数据库上的查询语句，然接查库获取答案
 - Task-Bot: 定义场景下一共需要哪些槽值（Slot），用户对话中提到了槽值，抽取记录下来，如果没提到的，就反问，直到槽值都填满了进行查询给出操作
@@ -24,6 +25,8 @@
 - 知识图谱：爬取的数据经过关系抽取存入Neo4j数据库
 - 基于本地知识的问答库，Bert微调，建立倒排 (inverted index)，特征向量余弦相似度
 - GPT
+- 安全
+
 
 ### 2.1 任务型
 管道方法
@@ -32,7 +35,8 @@
 - 自然语言生成
 
 
-端对端
+### 2.2 端对端LLM
+[How to train your own Large Language Models](https://blog.replit.com/llm-training)
 
 
 ## 3. data collection

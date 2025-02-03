@@ -1,16 +1,16 @@
 # 列表
 
 - 二次遍历
-  - 对于需要考虑后面信息的任务，经常需要二次遍历。第一次遍历得到某辅助指标
-
+  - 第一次遍历得到某辅助指标，第二次利用该指标完成任务
 - 相邻比较
 - 互换
 
 
 ## Python常用操作
 
-- 从列表list中找出目标值a **第一个匹配项的索引** 位置
+- 从列表list中找出目标值 **第一个匹配项的索引** 位置
 ```python
+a = 0
 list.index(a)
 ```
 
@@ -19,7 +19,7 @@ list.index(a)
 ```python
 import collections
 
-q = list.pop(0)  # index=0, 返回后，a=0, list=[剩余元素]
+q = list.pop(0)  # index=0, pop后，q=list[0], list=[剩余元素]
 # list.remove(element)
 # list.append(element)
 
@@ -33,6 +33,8 @@ q.extend(list)  # 两个list concat, 不返回
 
 - 往某个位置插入某个元素
 ```python
+# 手工翻转一个list通过不断往0位置插入
+# 时间复杂度是 O(n)，插入操作需要将列表中所有现有的元素向右移动一个位置，以便为新元素腾出空间
 list.insert(0, num)
 ```
 
@@ -42,10 +44,10 @@ l = sorted(l)
 l = sorted(l, key = lambda x: x[0])
 l = sorted(l, reverse=True)
 
-l.sort()  # 注意这是in-place
+l.sort()  # 注意这里是in-place
 
 # 多个key
-array.sort(key=lambda element: (element[1],element[2]), reverse=True) #多个sorting key
+array.sort(key=lambda element: (element[1], element[2]), reverse=True) # 多个sorting key
 
 # 双list排 或者直接 循环时排
 [x for _, x in sorted(zip(Y, X), key=lambda pair: pair[0])]
@@ -76,6 +78,7 @@ list[::2]  # 每间隔2个取
 - deque
 ```python
 # BFS常用
+# my_deque.reverse() 不会创建新的内存空间
 from collections import deque
 
 queue = deque([1,2,3])
@@ -97,30 +100,6 @@ matrix1 = [[0] * col for _ in range(row) ]
 
 ```
 
-- 字典按value排序
-```python
-dict(sorted(x.items(), key=lambda item: item[1]))
-# 注意如果返回sorted, 返回的是list[tuple], 如[(1, 3), (2, 2), (3, 1)]
-```
-
-- 字典获得key值
-```python
-dict.get(key, default)
-```
-
-- 删除键值
-```python
-del my_dict[key]
-
-value = my_dict.pop(key, None)
-```
-
-- 键或值转化为array
-```python
-list(frequency.keys())[:k]
-
-list(frequency.values())[:k]
-```
 
 - 个位是否为1
 ```python
@@ -183,13 +162,4 @@ float('-inf')
 ```python
 # 280. Wiggle Sort
 
-```
-
-- 位运算
-```python
-a & b
-a | b
-~a  # NOT
-a ^ b  # Exclusive OR 异或
-1 << bit  # 左移1位相当于乘2，x << n等价于x * (2 ^ n)
 ```

@@ -38,20 +38,20 @@
 根据需求转化为一个机器学习问题(类型，输入、输出-机器学习Label)，并给出high level的设计。
 
 ![03ml-youtube-reco-structure](../../.github/assets/03ml-youtube-reco-structure.png)
-- The reason for two stages is to make the system scale.
+
+The reason for two stages is to make the system scale.
 - [1] In this first stage, the system starts from a potentially huge corpus and generates a much smaller subset of candidates. For example, the candidate generator in YouTube reduces billions of videos down to hundreds or thousands. The model needs to evaluate queries quickly given the enormous size of the corpus. A given model may provide multiple candidate generators, each nominating a different subset of candidates.
 - [2] Next, another model scores and ranks the candidates in order to select the set of items (on the order of 10) to display to the user. Since this model evaluates a relatively small subset of items, the system can use a more precise model relying on additional queries.
 - [3] Finally, the system must take into account additional constraints for the final ranking. For example, the system removes items that the user explicitly disliked or boosts the score of fresher content. Re-ranking can also help ensure diversity, freshness, and fairness.
 
 
-## 3. data collection
+## 3. data
 
 - Collect data on ad impressions, clicks, conversions, and user interactions.
 - Capture user behavior data on your website or platform to understand post-click engagement.
 - Gather ad creative data, such as headlines, images, and ad copy.
 
 ### 3.1 前处理
-
 - Segment data by ad type, campaign, audience demographics, and other relevant factors to analyze performance at different levels.
 - Clean and preprocess data to remove anomalies, missing values, and outliers.
 - Removing duplicates
@@ -176,6 +176,8 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 
 - User behavior is generally unpredictable, and videos can become viral during the day. Ideally, we want to train many times during the day to capture temporal changes
 
+- retrain everyday + online learning
+
 
 ## 9. 优化与问答
 
@@ -197,6 +199,7 @@ Candidate generation is the first stage of recommendation. Given a query (also k
 - [论文: Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations](https://research.google/pubs/sampling-bias-corrected-neural-modeling-for-large-corpus-item-recommendations/)
 - [论文: Recommending What Video to Watch Next: A Multitask Ranking System](https://daiwk.github.io/assets/youtube-multitask.pdf)
 - [Netflix: System Architectures for Personalization and Recommendation](https://netflixtechblog.com/system-architectures-for-personalization-and-recommendation-e081aa94b5d8)
+  - [How does Netflix recommend movies? Matrix Factorization](https://www.youtube.com/watch?v=ZspR5PZemcs)
 - [Improving Recommendation Quality in Google Drive](https://dl.acm.org/doi/pdf/10.1145/3394486.3403341)
 - [推荐系统-短视频推荐中的一些记录 - tangwang的文章 - 知乎](https://zhuanlan.zhihu.com/p/720272682)
 

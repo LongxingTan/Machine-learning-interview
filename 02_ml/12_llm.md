@@ -1,5 +1,5 @@
 # 大语言模型LLM
-先了解和熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](11_nlp.md)
+了解和熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](11_nlp.md)、[分布式机器学习](20_distributed_ml.md)
 
 
 ## 1. scaling law
@@ -19,10 +19,14 @@
 - 数量(size)
 - 质量(quality)：重要
 
+- LLM-as-judge
+- 拒绝采样
+
 
 ## 3. 模型
 
 **LLaMa**
+- https://github.com/naklecha/llama3-from-scratch
 - llama的self-attention和mlp中没有bias
 - norm 使用 rmsnorm 而不是 layernorm，少计算了均值. 使用 pre-norm
 - 激活函数 使用[swiglu](https://arxiv.org/abs/2002.05202)
@@ -178,9 +182,12 @@ def lora_forward_matmul(x, W, W_A, W_B):
 
 
 ### 4.4 Long context
-- YaRN
-- HWFA
+**位置编码内插与外推**
+- Position Interpolation
 - NTK
+- YaRN
+
+**工程**
 - 序列并行（SP）: 将输入序列进行切分
 
 
@@ -191,6 +198,9 @@ def lora_forward_matmul(x, W, W_A, W_B):
 
 
 ## 6. 推理
+- [Towards Efficient Generative Large Language Model Serving](https://arxiv.org/pdf/2312.15234)
+- [Mastering LLM Techniques: Inference Optimization](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/)
+
 - [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling)，投机采样 (speculative sampling), lookahead decoding
   - 贪心选择每一步都选最大的，top_k和top_p从top中随机选择一个，beam search保留多个
   - [投机采样](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf)
@@ -200,6 +210,7 @@ def lora_forward_matmul(x, W, W_A, W_B):
 
 **KV cache**
 > 空间换时间，最新的token计算attention时，与前面的KV计算无关. 下面公式计算attention3时，用到的仍然是K1V1 和 K2V2
+> - [Transformers KV Caching Explained](https://medium.com/@joaolages/kv-caching-explained-276520203249)
 > - [LLM Inference Series: 3. KV caching explained](https://medium.com/@plienhar/llm-inference-series-3-kv-caching-unveiled-048152e461c8)
 > - [大模型推理优化技术-KV Cache](https://mp.weixin.qq.com/s/XRtU1cnn1GX2J3oCDHKOtA)
 
@@ -223,45 +234,22 @@ $$
 
 
 **flash-attention**
-通过矩阵分块计算以及减少内存读写次数的方式，提高注意力分数的计算效率
-- 输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作.
+> 通过矩阵分块计算以及减少内存读写次数的方式，提高注意力分数的计算效率
+> - [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/669926191)
 
-[图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/669926191)
+输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作.
+
 
 **paged-attention**
-针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
+> 针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
+> - [图解大模型计算加速系列之：vLLM核心技术PagedAttention原理 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/691038809)
 
-[图解大模型计算加速系列之：vLLM核心技术PagedAttention原理 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/691038809)
 
 **蒸馏**
 
+
 **triton**
 - dynamic batching、concurrent execution、optimal model configuration、model ensemble、dali model 等策略来提升在线推理的性能
-
-
-### code
-**top_k LLM token decoding**
-```python
-def top_k_sampling(logits, k=5):
-    """Perform top-k sampling on the logits array."""
-
-    # Calculate the probabilities from logits
-    probabilities = np.exp(logits) / np.sum(np.exp(logits))
-
-    # Get the indices of the top-k tokens
-    top_k_indices = np.argsort(probabilities)[-k:]
-
-    # Normalize probabilities of top-k tokens
-    top_k_probs = probabilities[top_k_indices] / np.sum(probabilities[top_k_indices])
-
-    # Sample a token from the top-k tokens based on their probabilities
-    sampled_token = np.random.choice(top_k_indices, p=top_k_probs)
-    return sampled_token
-
-logits = np.array([1.2, 0.8, 0.5, 2.0, 1.5]) 
-sampled_token = top_k_sampling(logits, k=3)
-print("Sampled token index:", sampled_token)
-```
 
 
 ## 7. 应用与优化
@@ -272,6 +260,8 @@ print("Sampled token index:", sampled_token)
 - https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/
 
 **COT**
+- 根据llm的self reflection做planning
+
 
 **Few Shot**
 
@@ -289,6 +279,8 @@ print("Sampled token index:", sampled_token)
 
 
 ### 7.4 Agents
+[https://www.anthropic.com/research/building-effective-agents](https://www.anthropic.com/research/building-effective-agents)
+
 [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
 
@@ -306,7 +298,6 @@ print("Sampled token index:", sampled_token)
   - 语料生成，格式构造，提示词
 - 如何处理训练中的loss spike
   - [adam在大模型预训练中的不稳定性分析及解决办法 - 丁晖的文章 - 知乎](https://zhuanlan.zhihu.com/p/675421518)
-- 分布式训练
 - 知识幻觉(track and solve hallucination)
   - 数据(数据重复、Bias、时效性， 一对多的映射关系)，训练（Imperfect representation learning、Parametric knowledge bias）
 - 复读机问题/ 文本生成的重复问题
@@ -340,10 +331,12 @@ print("Sampled token index:", sampled_token)
 - [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
 - [MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies](https://arxiv.org/pdf/2404.06395)
 - [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://arxiv.org/pdf/2307.09288)
+- [https://github.com/pytorch-labs/gpt-fast](https://github.com/pytorch-labs/gpt-fast)
+- [https://github.com/meta-llama/llama3](https://github.com/meta-llama/llama3)
 
 **扩展**
-- A Survey of Large Language Models
-- A Comprehensive Survey on Pretrained Foundation Models A History from BERT to ChatGPT
+- [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223)
+- [A Comprehensive Survey on Pretrained Foundation Models A History from BERT to ChatGPT](https://arxiv.org/abs/2302.09419)
 - [LLM推理优化技术综述：KVCache、PageAttention、FlashAttention、MQA、GQA](https://zhuanlan.zhihu.com/p/655325832)
 - [The Rise and Potential of Large Language Model Based Agents: A Survey]()
 - [SearchAnything](https://github.com/Immortalise/SearchAnything)
@@ -354,9 +347,10 @@ print("Sampled token index:", sampled_token)
 - [语言模型之Text embedding（思考篇） - 泽龙的文章 - 知乎](https://zhuanlan.zhihu.com/p/655310436)
 - [大模型词表扩充必备工具SentencePiece - 吃果冻不吐果冻皮的文章 - 知乎](https://zhuanlan.zhihu.com/p/630696264)
 - [十分钟读懂旋转编码（RoPE） - 绝密伏击的文章 - 知乎](https://zhuanlan.zhihu.com/p/647109286)
+- [大模型基础组件之位置编码-万字长文全面解读LLM中的位置编码与长度外推性（上） - OpenLLMAI的文章 - 知乎](https://zhuanlan.zhihu.com/p/626828066)
+- [KV cache详解 图示，显存，计算量分析](https://zhuanlan.zhihu.com/p/646577898)
 - [TH LLM Study Group 20231201](https://colab.research.google.com/drive/14Ls0gQktcuy4HYGQc0yY86X4sJ1lK2T8?usp=sharing#scrollTo=KMcHEPV-oAs0)
 - [大语言模型是如何在预训练的过程中学习超长文本的呢？ - 段淇源的回答 - 知乎](https://www.zhihu.com/question/621810553/answer/3287188454)
-- [大模型基础组件之位置编码-万字长文全面解读LLM中的位置编码与长度外推性（上） - OpenLLMAI的文章 - 知乎](https://zhuanlan.zhihu.com/p/626828066)
 - [让LLM更好地学会中文：大模型继续预训练实践纪录 - Lil2J的文章 - 知乎](https://zhuanlan.zhihu.com/p/677653373)
 - [如何解释大模型的重复生成现象？ - 慕谦或谦修的回答 - 知乎](https://www.zhihu.com/question/616130636/answer/3164017394)
 - [MOE多卡](https://github.com/facebookresearch/fairscale/issues/871)
@@ -370,9 +364,12 @@ print("Sampled token index:", sampled_token)
 - [LLM训练-sft - ybq的文章 - 知乎](https://zhuanlan.zhihu.com/p/809229182)
 - [https://github.com/princeton-nlp/LESS](https://github.com/princeton-nlp/LESS)
 - [https://github.com/yihedeng9/rlhf-summary-notes](https://github.com/yihedeng9/rlhf-summary-notes)
+- [Open Source and In-House: How Uber Optimizes LLM Training](https://www.uber.com/en-SG/blog/open-source-and-in-house-how-uber-optimizes-llm-training/)
+- [vLLM源码之PageAttention - 手抓饼熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/711304830)
 
 **课程**
 - https://github.com/mlabonne/llm-course
 - https://github.com/InternLM/Tutorial/tree/camp2
 - https://github.com/datawhalechina/llm-universe
 - https://github.com/rasbt/LLMs-from-scratch/tree/main
+- https://github.com/peremartra/Large-Language-Model-Notebooks-Course

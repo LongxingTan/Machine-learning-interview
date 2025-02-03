@@ -37,6 +37,8 @@
 
 
 ## 4. feature
+- dense
+- sparse
 
 
 ## 5. model
@@ -99,3 +101,4 @@ loss
 - [大众点评内容搜索算法优化的探索与实践](https://zhuanlan.zhihu.com/p/688404734)
 - [Under the hood: Photo Search](https://engineering.fb.com/2017/05/22/ml-applications/under-the-hood-photo-search/)
 - [万字浅析视频搜索系统中的多模态能力建设 - 徐土豆的文章 - 知乎](https://zhuanlan.zhihu.com/p/706294003)
+- 

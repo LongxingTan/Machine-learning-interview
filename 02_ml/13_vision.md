@@ -27,7 +27,10 @@
 
 
 ### 分割
+**语义分割**
 - Unet
+
+**实例分割**
 
 
 ### 视频
@@ -150,4 +153,5 @@ def nms(boxes, scores, threshold):
 
 ## 参考
 - [Randaugment: Practical automated data augmentation with a reduced search space](https://openaccess.thecvf.com/content_CVPRW_2020/papers/w40/Cubuk_Randaugment_Practical_Automated_Data_Augmentation_With_a_Reduced_Search_Space_CVPRW_2020_paper.pdf)
--
+- [关于Mixup方法的一个综述](https://zhuanlan.zhihu.com/p/439205252)
+- [https://github.com/kuangliu/pytorch-cifar](https://github.com/kuangliu/pytorch-cifar)

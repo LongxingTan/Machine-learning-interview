@@ -1,6 +1,6 @@
 # ML数学基础
 
-> 部分机器学习面试会直接考察统计与数学知识。即使不直接考察，在ML环节用数学佐证自己的观点也是很有裨益的。
+> 部分面试会直接考察统计与数学知识。即使不直接考察，在ML环节用数学佐证自己的观点也很有裨益。
 
 
 ## 1. 概率统计
@@ -16,12 +16,15 @@
   - 均值对比的假设检验方法主要有Z检验和T检验，Z检验面向总体数据和大样本数据，而T检验适用于小规模抽样样本
 
 - [t检验/t-test](https://en.wikipedia.org/wiki/Student%27s_t-test)
-  - t检验比z检验的普适性更强，z检验要求知道总体标准差，但实际研究中无法获知总体标准差，一般都会用t检验。且当样本量足够大的时候，数据接近正态分布，t检验几乎成为了z检验，z检验应该说t检验的一个特例
+  - t检验比z检验的普适性更强，z检验要求知道总体标准差，但实际研究中无法获知总体标准差，一般都会用t检验。且当样本量足够大的时候，数据接近正态分布，t检验几乎成为了z检验，z检验是t检验的一个特例
 
 - [F-test](https://en.wikipedia.org/wiki/F-test#:~:text=An%20F-test%20is%20any,which%20the%20data%20were%20sampled.)
 
 - P-value
   - 在假设原假设H0正确时，出现当前证据或更强的证据的概率
+  - the p-value represents the probability of obtaining a test value, which is as extreme as the one which had been observed originally. The underlying condition is that the null hypothesis is true.
+
+- Bayes theorem
 
 - confidence interval
 
@@ -34,6 +37,8 @@
 - ANOVA
 
 - 蒙特卡洛
+
+- simpson paradox
 
 
 ## 2. 矩阵
@@ -48,7 +53,7 @@
 
 ## 3. 微积分
 
-机器学习中使用的微积分主要在于优化和反向传播。
+机器学习中使用的微积分主要用于优化和反向传播
 
 
 ## 4. 问答
@@ -84,6 +89,7 @@
 - [Lets Python do AB testing analysis](https://github.com/tlentali/leab)
 - [https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra](https://github.com/kenjihiranabe/The-Art-of-Linear-Algebra)
 - [https://github.com/kojino/120-Data-Science-Interview-Questions](https://github.com/kojino/120-Data-Science-Interview-Questions)
+- [Statistics Interview Question and Answers](https://www.janbasktraining.com/interview-questions/statistics-questions-and-answers/)
 - [概率论——大数定律与中心极限定理](https://zhuanlan.zhihu.com/p/259280292)
 - [线性代数|机器学习 18.065 by Gilbert Strang](https://www.bilibili.com/video/BV1a7411M7wH/)
 - [矩阵求导术](https://zhuanlan.zhihu.com/p/24709748)
@@ -96,3 +102,5 @@
 - [如何通俗地理解协方差和相关系数？ - 马同学的文章 - 知乎](https://zhuanlan.zhihu.com/p/70644127)
 - A practical guide to quantitative finance interviews
 - [P-Value](https://zhuanlan.zhihu.com/p/23806765)
+- [dropbox 加速AB-test: 短期指标建模预测](https://dropbox.tech/machine-learning/accelerating-our-a-b-experiments-with-machine-learning-xr)
+- [https://github.com/sinclam2/fifty-challenging-problems-in-probability](https://github.com/sinclam2/fifty-challenging-problems-in-probability)

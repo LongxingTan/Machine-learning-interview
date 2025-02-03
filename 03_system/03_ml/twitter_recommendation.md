@@ -4,7 +4,7 @@
 
 
 ## 1. requirements
-**BG & product**
+**use case & product**
 - homepage or related item recommendation
 - user: follow
 - item: text, image, video
@@ -65,10 +65,12 @@
 
 
 ## 6. evaluation
-- offline
-  - recall@k, hit_rate
-- online
-  - ctr
+**offline**
+- recall@k, hit_rate
+
+**online**
+- ctr
+
 
 ## 7. deploy & serving
 - batch service or online service

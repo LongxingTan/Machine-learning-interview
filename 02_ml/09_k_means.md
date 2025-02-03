@@ -49,6 +49,9 @@ partitioning a dataset into k distinct clusters based on similarity measures. It
 - K-means 怎么初始化 K-means++
 - EM方法为什么是收敛的
 
+- Any acceleration algorithm for PCA
+  - PCA involves computing the eigenvectors and eigenvalues of the covariance matrix or performing Singular Value Decomposition (SVD), both of which can be time-intensive.
+
 
 ## code
 
@@ -85,7 +88,6 @@ class KMeans:
         # 生成随机中心点的索引
         center_index = [random.randint(0, X.shape[0]) for _ in np.arange(k)]
         center = X[center_index]
-        # print('init center: ', center)
 
         while n_iters > 0:
             # 记录上一个迭代的中心点坐标

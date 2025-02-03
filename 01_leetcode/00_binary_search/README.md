@@ -1,7 +1,7 @@
 # 二分查找
 
-- 二分查找将线性时间提升到了对数时间，大大缩短了搜索时间，二分查找的时间复杂度为 O(log n)
-- 对Java或C，start+end可能会overflow，需要用start + (end - start) // 2
+- 二分查找将线性时间提升到了对数时间，大大缩短了搜索时间，时间复杂度为 O(log n)
+- Java或C，start+end可能overflow，需要用start + (end - start) // 2
 
 ## 总结
 **确认点**
@@ -34,7 +34,7 @@
 - 2D查找
 
 
-```
+```python
 def binary_search(key, nums):
     left = 0
     right = len(nums)-1
@@ -49,7 +49,6 @@ def binary_search(key, nums):
         else:
             return mid
     return False
-
 
 if __name__ == '__main__':
     print(binary_search(5, [1, 2, 4, 5, 9]))

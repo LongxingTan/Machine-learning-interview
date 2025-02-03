@@ -11,3 +11,7 @@
 
 - 读：热门视频redis缓存，冷门去hive读出来再缓存
 - 写：先写缓存，异步写入hive，同时上传
+
+
+## Reference
+- [Scaling Facebook Live Videos to a Billion Users](https://www.youtube.com/watch?v=IO4teCbHvZw)

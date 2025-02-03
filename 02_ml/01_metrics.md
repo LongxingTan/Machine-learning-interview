@@ -1,48 +1,26 @@
 # 评价指标
 
-> 熟悉统计指标、metrics的意义和计算；同时对评价指标熟悉有助于找到优化方向。
+> 熟悉统计指标、metrics的意义和计算；对评价指标熟悉有助于找到优化方向
 
-**offline metrics**
-- regression
-  - MSE
-  - MAE
-  - MAPE
-- classification
-  - accuracy
-  - recall
-  - F1 score
-  - AUC
-- clustering
-  - mutual info
-  - rand index
-  - silhouette
-  - V-measure
-- ranking
-  - NDCG
-  - [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision)
-  - HR
-  - recall
 
-**online metrics**
-- ads
-  - ctr
-  - cost per acquisition
-  - ROAS
-- marketing
-  - CAC
-  - NPS
-  - CLTV
-  - shares
-- steaming
-  - DAU
-  - clicks
-  - time spent
-  - retention
-- finance
-  - ROI
-  - alpha
-  - beta
-  - GAGR
+**Offline Metrics**
+
+| Category       | Metric 1    | Metric 2                                                                               | Metric 3   | Metric 4  |
+|----------------|-------------|----------------------------------------------------------------------------------------|------------|-----------|
+| Regression     | MSE         | MAE                                                                                    | MAPE       |           |
+| Classification | Accuracy    | Recall                                                                                 | F1 Score   | AUC       |
+| Clustering     | Mutual Info | Rand Index                                                                             | Silhouette | V-measure | 
+| Ranking        | NDCG        | [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision) | HR         | recall    |
+
+
+**Online Metrics**
+
+| Category  | Metric 1 | Metric 2            | Metric 3     | Metric 4  |
+|-----------|----------|---------------------|--------------|-----------|
+| Ads       | CTR      | Cost Per Acquisition| ROAS         |           |
+| Marketing | CAC      | NPS                 | CLTV         | shares    |
+| Streaming | DAU      | Clicks              | Time Spent   | retention |
+| Finance   | ROI      | Alpha               | Beta         | GAGR      |
 
 
 ## 1. AB test
@@ -51,7 +29,7 @@
 - 不同element increase/decrease对power的影响
 
 
-## 2. 精确率Precision/ 召回率Recall/ F1 / AUC
+## 2. 精确率Precision/ 召回率Recall/ F1
 
 ![](../.github/assets/02ml-confusion.png)
 
@@ -66,9 +44,7 @@
 import numpy as np
 
 def f1(actual, predicted, label):
-    """ A helper function to calculate f1-score for the given `label`
-    F1 = 2 * (precision * recall) / (precision + recall)
-    """
+    """F1 = 2 * (precision * recall) / (precision + recall)"""
     tp = np.sum((actual==label) & (predicted==label))
     fp = np.sum((actual!=label) & (predicted==label))
     fn = np.sum((predicted!=label) & (actual==label))
@@ -78,9 +54,8 @@ def f1(actual, predicted, label):
     f1 = 2 * (precision * recall) / (precision + recall)
     return f1
 
-
 def f1_macro(actual, predicted):
-    # `macro` f1- unweighted mean of f1 per label
+    """macro f1- unweighted mean of f1 per label"""
     return np.mean([f1(actual, predicted, label)  for label in np.unique(actual)])
 ```
 
@@ -107,26 +82,51 @@ def f1_macro(actual, predicted):
 # 类似蒙特卡洛的逆？
 
 import numpy as np
-from numba import jit
 
-@jit
-def fast_auc(y_true, y_prob):
+def calculate_auc(y_true, y_prob):
     y_true = np.asarray(y_true)
-    y_true = y_true[np.argsort(y_prob)]
-    nfalse = 0
+    # Sort the indices based on predicted probabilities
+    sorted_indices = np.argsort(y_prob)
+    y_true_sorted = y_true[sorted_indices]
+
+    nfalse = 0  # 截至目前负样本0的累加数量
     auc = 0
-    n = len(y_true)
+    n = len(y_true_sorted)
+
     for i in range(n):
-        y_i = y_true[i]
-        nfalse += (1 - y_i)  # 截至目前负样本0的累加数量
-        auc += y_i * nfalse  # 每到一个正样本1，auc更新前面一共多少负样本。此时的数量就是每个正样本，其概率>负样本的概率的和
-    auc /= (nfalse * (n - nfalse))  # auc / (负样本数量 * 正样本数量), 分子是每一个正样本概率大于负样本的总和
+        y_i = y_true_sorted[i]
+        nfalse += (1 - y_i)
+        auc += y_i * nfalse  # 每遇到一个正样本1，auc更新前面一共多少负样本。此时的数量就是每个正样本，其概率>负样本的概率的和
+
+    n_positive = np.sum(y_true_sorted)
+    n_negative = n - n_positive
+    auc /= (n_negative * n_positive)  # auc / (负样本数量 * 正样本数量), 分子是每一个正样本概率大于负样本的总和
     return auc
+```
 
+另一种思路，直接使用tpr和fpr计算
+```python
+# https://stackoverflow.com/questions/39537443/how-to-calculate-a-partial-area-under-the-curve-auc
 
-def eval_auc(preds, dtrain):
-    labels = dtrain.get_label()
-    return 'auc', fast_auc(labels, preds), True
+import numpy as np
+
+def calculate_auc_tpr_fpr(y_true, y_prob):
+    # Sort by predicted probabilities in descending order
+    sorted_indices = np.argsort(y_prob)[::-1]
+    y_true_sorted = np.array(y_true)[sorted_indices]
+
+    tp = np.cumsum(y_true_sorted)  # Cumulative sum of positive samples (True Positives)
+    fp = np.cumsum(1 - y_true_sorted)  # Cumulative sum of negative samples (False Positives)
+    n_positive = np.sum(y_true)
+    n_negative = len(y_true) - n_positive
+
+    # TPR and FPR
+    tpr = tp / n_positive  # True Positive Rate
+    fpr = fp / n_negative  # False Positive Rate
+
+    # Calculate AUC using trapezoidal rule, the area under the curve is sum of trapezoids between consecutive points
+    auc = np.trapz(tpr, fpr)  # Integral approximation (Area under the ROC curve)
+    return auc
 ```
 
 
@@ -144,8 +144,6 @@ import numpy as np
 
 def average_precision_score(y_true, y_scores):
     """Calculate the average precision score.
-
-    Parameters:
     - y_true: 1D array-like, true binary labels (0 or 1).
     - y_scores: 1D array-like, predicted scores or probabilities for positive class.
     """
@@ -180,9 +178,16 @@ def average_precision_score(y_true, y_scores):
 - 准确率的局限性
   - 标签不平衡
 
+- F1 score为什么比直接的precision与recall平均要好？
+  - 在处理不平衡数据集时，精确率和召回率可能会出现极端值；如果精确率很高（接近1）但召回率很低（接近0），调和平均数会显著降低F1分数(penalty)，而算术平均数则可能掩盖这种不平衡
+
 - MAP与NDCG的比较，以及pros和cons
   - NDCG考虑位置权重，多级相关性（相关、部分相关、不相关），关注**相关性**程度的排序质量
   - MAP其实没有考虑order
+
+- PR相比NDCG
+  - 所有文章只被分为相关和不相关两档，分类太粗糙
+  - 没有考虑位置因素
 
 
 ## 参考
@@ -192,4 +197,3 @@ def average_precision_score(y_true, y_scores):
 - [图解AUC和GAUC - 千寻的文章 - 知乎](https://zhuanlan.zhihu.com/p/84350940)
 - [NDCG排序评估指标 - Satellite的文章 - 知乎](https://zhuanlan.zhihu.com/p/448686098)
 - [Evaluating recommendation systems (mAP, MMR, NDCG)](https://www.shaped.ai/blog/evaluating-recommendation-systems-map-mmr-ndcg)
--

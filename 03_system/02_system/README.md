@@ -9,14 +9,17 @@
 - 设计数据结构与存储、核心子服务、接口等，接上database
   - 技术选型：SQL vs No-SQL，Sync VS Async，RPC VS MQ等技术选择
 - 明确所设计系统的可扩展性、容错性、延迟要求等
-  - 扩展: 加缓存，数据库读写分离，数据库 sharding 等等
-  - 瓶颈: 一般都在数据库
+  - 扩展: 加缓存，数据库读写分离，数据库 sharding
+  - 瓶颈: 一般在数据库
 - 解决缺陷并处理可能遇到的问题
+  - consistency: Lock + Time To Live
+  - large traffic: Message queue
 
 
 ## Template
 - Functional requirement
 - NonFunctional requirement
+  - summarize系统重点: read or write heavy, consistency or availability more important
 - Capacity planning
 - Diagram + API 【接口和业务entity】
 - DataSchema + Scale
@@ -24,13 +27,15 @@
 
 
 ## 常见面试
-- Write Heavy System, Read Heavy System, Scheduler System, Strong Consistency System
-- AD Click Aggregator
-- Web Crawler (e.g. Google)
+> Write Heavy System or Read Heavy System, Strong Consistency System, consistency/ availability priority, Scheduler System
+- [Design a URL shortener (e.g. Bitly)](./tinyurl.md)
+- [AD Click Aggregator](./ad_click_aggregator.md)
+- [Web Crawler (e.g. Google)](./crawler.md)
+- [Design large scale rate limiter](./rate_limiter.md)
+- Design Auction system
 - Ticketmaster
 - LeetCode
 - Leaderboard
-- Design a URL shortener (e.g. Bitly)
 - Design a video watching website (e.g. YouTube)
 - Design a chatting service (e.g. Telegram, Slack, Discord)
 - Design a file sharing service (e.g. Google Drive, Dropbox)
@@ -39,9 +44,7 @@
 - Design an e-commerce website (e.g. Amazon, eBay)
 - Design a jobs portal (e.g. LinkedIn, Indeed)
 - Design AI自动写作系统设计
-- Design Auction system
 - Design search autocomplete system
-- Design large scale rate limiter
 - Design Netflix
 - Design Amazon inventory system
 - Design Venmo
@@ -121,34 +124,46 @@ TCP
 - consistent hashing
 - paxos and raft
 
+### 消息队列基础
+- [你就能明白kafka的工作原理了](https://zhuanlan.zhihu.com/p/68052232)
+- https://medium.com/@andrew_schofield/queues-for-kafka-29afa8aeed86
+
 
 ## 问题
+- How to do scale
+  - 数据分区（Sharding）
+  - 功能分区（Functional Partitioning）
+  - 添加副本（Replication）
+- 高并发系统
+  - 缓存
+  - 降级
+  - 限流: 计数器、漏桶和令牌桶
 - How to do large scale batch processing
 - How to do model serving readiness
 - How to do model rollout
 - 两个service要互相发消息，怎么解决
-- 高并发系统
-  - 缓存
-  - 降级
-  - 限流
-    - 计数器、漏桶和令牌桶
 - 负载均衡算法
   - 轮询、加权轮询、随机算法、一致性Hash
 - 消息队列
   - 解耦，异步处理，削峰/限流
 - 一致性
 - 热点数据处理
+- 幂等 Idempotent
 
 
 ## Reference
 **精读**
-- [Jordan has no life](https://www.youtube.com/@jordanhasnolife5163/videos)
 - [grokking-the-system-design-interview](https://www.educative.io/courses/grokking-the-system-design-interview)
 - [system design primer](https://github.com/donnemartin/system-design-primer)
 - [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
+- [youtube-System Design Interview](https://www.youtube.com/@SystemDesignInterview)
+- [youtube-System Design Guru](https://www.youtube.com/@newgpu-sys-design)
+- [一篇文章解决所有system design面试](https://www.1point3acres.com/bbs/thread-559285-1-1.html)
 
 **扩展**
+- [How Slack Works](https://www.youtube.com/watch?v=WE9c9AZe-DY&list=PLndbWGuLoHeYTBaqFu31Nac-19qsdUl_V)
 - Web Application and Software Architecture 101
+- [Jordan has no life](https://www.youtube.com/@jordanhasnolife5163/videos)
 - [https://blog.bytebytego.com/?sort=top](https://blog.bytebytego.com/?sort=top)
 - [Uber tech blog](https://www.uber.com/en-SE/blog/)
 - [pinterests tech blog](https://medium.com/pinterest-engineering)
@@ -167,10 +182,7 @@ TCP
 - [https://github.com/imkgarg/Awesome-Software-Engineering-Interview/blob/master/SystemDesign.md](https://github.com/imkgarg/Awesome-Software-Engineering-Interview/blob/master/SystemDesign.md)
 - [https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview](https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview)
 - [滴滴专车业务与技术流程](http://alexstocks.github.io/html/didi.html)
-- [从无到有：微信后台系统的演进之路](https://www.infoq.cn/article/the-road-of-the-growth-weixin-background/)
-- [如何设计微信的聊天系统? - 土汪的文章 - 知乎](https://zhuanlan.zhihu.com/p/34369396)
 - [https://blog.twitter.com/engineering/en_us/a/2014/building-a-complete-tweet-index](https://blog.twitter.com/engineering/en_us/a/2014/building-a-complete-tweet-index)
-- [在线广告系统----计算机王冠上的明珠](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=890389&ctid=9)
 - [RESTful Service API 设计](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=909427&ctid=9)
 - [我是如何准备系统设计的](https://www.1point3acres.com/bbs/thread-660847-1-1.html)
 - [题目类型](https://codemia.io/system-design)
@@ -181,3 +193,4 @@ TCP
 - [https://engineeringblog.yelp.com/](https://engineeringblog.yelp.com/)
 - https://github.com/luxu1220/redis_practice
 - [L6和L5系统设计面试区别](https://www.1point3acres.com/bbs/thread-1054990-1-1.html)
+- [System Design的个人见解和一些例子](https://www.1point3acres.com/bbs/thread-953468-1-1.html)

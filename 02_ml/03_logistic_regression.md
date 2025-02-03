@@ -4,11 +4,15 @@
 
 最小化cross entropy等价于最大化log softmax probability
 
-$$ y = \frac{1}{1+e^{-(w^{T} x + b)}} $$
+$$ 
+y = \frac{1}{1+e^{-(w^{T} x + b)}} 
+$$
 
 在二分类中，y_hat的含义是预测类别为1的概率为y_hat，相应的为0的概率为(1-y_hat)
 
-**对数损失函数log loss**
+sigmoid函数的导数为: `sigmoid(x) * (1 - sigmoid(x))`
+
+**对数损失函数log loss (注意负号)**
 - `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`
 - cross entropy: `cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))`
 
@@ -20,7 +24,9 @@ $$ y = \frac{1}{1+e^{-(w^{T} x + b)}} $$
 - 衡量两个分布的差异 
 - 交叉熵就是 KL 散度加信息熵，而信息熵是一个常数
 
-$$ D_{KL}(p||q)=\sum_{x\in X} p(x)\log\frac{p(x)}{q(x)}=-\sum_{x\in X} p(x)[\log q(x) - \log p(x)] $$
+$$ 
+D_{KL}(p||q)=\sum_{x\in X} p(x)\log\frac{p(x)}{q(x)}=-\sum_{x\in X} p(x)[\log q(x) - \log p(x)] 
+$$
 
 
 逻辑回归中，[损失函数对模型参数的梯度计算结果](https://www.python-unleashed.com/post/derivation-of-the-binary-cross-entropy-loss-gradient)形式上看起来与线性回归类似：
@@ -34,16 +40,22 @@ $$ D_{KL}(p||q)=\sum_{x\in X} p(x)\log\frac{p(x)}{q(x)}=-\sum_{x\in X} p(x)[\log
 最大似然与最小交叉熵损失函数等价，可以从最大似然推导出逻辑回归使用的交叉熵损失函数。
 - 假设样本服从[伯努利分布/二项分布 Bernoulli distribution](https://en.wikipedia.org/wiki/Bernoulli_distribution)
 
-$$ L(w)=\prod[p(x_{i})]^{y_{i}}[1-p(x_{i})]^{1-y_{i}}  $$
+$$ 
+L(w)=\prod[p(x_{i})]^{y_{i}}[1-p(x_{i})]^{1-y_{i}}  
+$$
 
-$$ L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} $$
+$$ 
+L(w)=\prod_{i=1}^{m}{p^{y}\cdot(1-p)^{1-y}} 
+$$
 
 
 ## 3. 最大熵法
 
 最大熵原理：对于概率模型，在所有可能分布的概率模型中，熵最大的模型是最好的模型。熵用来形容一个系统的无序程度
 
-$$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
+$$ 
+H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) 
+$$
 
 
 ## 4. 最大后验法
@@ -54,6 +66,7 @@ $$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
 ### 5.1 在线学习 FTRL
 [在线最优化求解(Online Optimization)-冯扬](https://github.com/wzhe06/Ad-papers/blob/master/Optimization%20Method/%E5%9C%A8%E7%BA%BF%E6%9C%80%E4%BC%98%E5%8C%96%E6%B1%82%E8%A7%A3%28Online%20Optimization%29-%E5%86%AF%E6%89%AC.pdf)
 
+- 论文: https://dl.acm.org/doi/pdf/10.1145/2487575.2488200
 - 问题: Lasso引入L1正则项使模型的训练结果具有稀疏性,稀疏不仅有变量选择的功能，同时大大减少线上预测运算量。在线学习场景,利用SGD进行权重参数(W)的更新,每次只使用一个样本，权重参数的更新具有很大的随机性,无法将权重参数准确地更新为0
 - 用ftrl优化可以得到稀疏权重，从而降低serving的复杂度
 
@@ -114,6 +127,9 @@ $$ H(X) = -\sum_{x \in X}p(x_i) \log p(x_i) $$
 - 一个分类器，有的 token 在 vocabulary 里面没出现导致概率是0怎么办
   - softmax，概率取对数再求指数
 
+- Multiclass versus multilabel classification
+  - multilabel: 每个label都当作一个二分类任务, BCE loss
+
 
 ## 8. 代码
 
@@ -142,7 +158,7 @@ class LogisticRegression(object):
     def _gradient_descent(self, x, y, learning_rate=10e-4, epoch=100):
         for i in range(epoch):
             y_pred = self.activate(np.dot(x, self.w) + self.b)
-            loss = np.mean(-y * np.log(y_pred+self.epsilon) - (1 - y) * np.log(1 - y_pred+self.epsilon))
+            loss = np.mean(-y * np.log(y_pred + self.epsilon) - (1 - y) * np.log(1 - y_pred + self.epsilon))
             w_gradient = np.dot(x.T, (y_pred - y))
             b_gradient = np.mean(y_pred - y)
             self.w = self.w - learning_rate * w_gradient
@@ -156,10 +172,10 @@ class LogisticRegression(object):
         return 'weights\t:%s\n bias\t:%f\n' % (self.w, self.b)
 
 def generate_data():
-    x0 = np.hstack((norm.rvs(2,size=40,scale=2), norm.rvs(8,size=40,scale=3)))
+    x0 = np.hstack((norm.rvs(2, size=40, scale=2), norm.rvs(8, size=40, scale=3)))
     x1 = np.hstack((norm.rvs(4, size=40, scale=2), norm.rvs(5, size=40, scale=2)))
     x = np.transpose(np.vstack((x0, x1)))
-    y = np.vstack((np.zeros((40,1)), np.ones((40,1))))    
+    y = np.vstack((np.zeros((40, 1)), np.ones((40, 1))))    
     return x,y
 
 if __name__ == "__main__":
@@ -174,3 +190,5 @@ if __name__ == "__main__":
 - [【机器学习】逻辑回归](https://zhuanlan.zhihu.com/p/74874291)
 - [Cross-entropy](https://en.wikipedia.org/wiki/Cross-entropy)
 - [逻辑回归为什么用Sigmoid？ - 雨林丶的文章 - 知乎](https://zhuanlan.zhihu.com/p/59137998)
+- [softmax,sigmoid函数在使用上的区别是什么？ - 初识CV的回答 - 知乎](https://www.zhihu.com/question/269431756/answer/1779010934)
+- [softmax derivative](https://towardsdatascience.com/derivative-of-the-softmax-function-and-the-categorical-cross-entropy-loss-ffceefc081d1)

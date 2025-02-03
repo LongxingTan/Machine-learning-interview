@@ -19,13 +19,18 @@ News is an inherently diverse category, spanning various topics and catering to 
 
 
 **目标类**
-- What is the primary business objective of the system? (increase user engagement)
-- 多样性
+- What is the primary business objective of the system?
+  - increase user engagement: clicks, time spent, shares
+- 多样性(Diversity)
+- Freshness
 
 **约束类/non-functional**
-- What types of data do the posts include? (text, image, video)?
+- What types of data do the posts include? 
+  - text, image, video
 - What is the scale of the system?
+  - millions of users and thousands of articles per second
 - How fast the system needs to be?
+  - < 200ms
 
 
 ## 2. ML task & pipeline
@@ -40,30 +45,43 @@ By observing user behavior, such as the articles they read and the time they spe
 
 ## 3. data collection
 
+**user**
+- Demographics, past interactions (clicks, likes, shares), and social graph data (if applicable)
+
+**item**
+- Articles, posts, videos, and images
+
+**engagement**
+-  Positive (clicks, likes) and negative (hides, blocks) feedback
+
+**context**
+
 
 ## 4.feature
 
-**retrieval**
-
-
-**ranking**
 
 
 ## 5. model
 
-**retrieval**
-
+**retrieval**: multiple channel retrieval
+- Collaborative Filtering
+- Content-Based Filtering
 
 **ranking**
+- GBDT
+- NN
 
 
 ## 6. evaluation
 - offline
 - online: A/B testing
   - DAU和留存
+  - CTR, spend time
 
 
 ## 7. deployment & serving
+- batch serving
+- online serving
 
 
 ## 8. monitor & maintenance
@@ -86,12 +104,13 @@ Additionally, asking users to list the specific topics they are interested in ca
 ### 9.3 混排
 - 多题材混排
   - 先各自排序，再混排
+  - listwise
 
 
 ## reference
 **精读**
 - [How machine learning powers Facebook’s News Feed ranking algorithm](https://engineering.fb.com/2021/01/26/ml-applications/news-feed-ranking/)
-
+- [Serving Billions of Personalized News Feeds with AI - Meihong Wang (Facebook)](https://www.youtube.com/watch?v=wcVJZwO_py0&t=80s)
 
 **扩展**
 - [Powered by AI: Instagram’s Explore recommender system](https://ai.meta.com/blog/powered-by-ai-instagrams-explore-recommender-system/)

@@ -1,6 +1,13 @@
 # 个性化标题生成
 
 ## 1. requirements
+**functional**
+- 语言
+- 长度
+
+**non-functional**
+- throughput
+- latency
 
 
 ## 2. ML task & pipeline
@@ -28,6 +35,14 @@
 
 
 ## 7. deploy & serving
+
+framework
+- vLLM + Huggingface TGI
+- TensorRT-LLM (especially for hardware supports float8 inference)
+  - Triton Inference Server with TensorRT-LLM
+- sglang
+- Triton Inference Server
+- lmdeploy
 
 
 ## 8. monitor & maintenance

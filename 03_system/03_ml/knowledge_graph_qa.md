@@ -1,4 +1,5 @@
 # 知识图谱问答
+> 2024年后，参考graphRAG回答
 
 ## 1. requirements
 

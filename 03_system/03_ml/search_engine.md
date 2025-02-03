@@ -80,6 +80,7 @@ query understanding
 
 
 ## 5. model
+- 多策略关键词挖掘(SPU挖掘/Searchable Product Unit)
 - Point-wise LTR, pairwise LRT
 - rerank
 
@@ -95,6 +96,7 @@ query understanding
 
 
 ## 7. deploy & serving
+A/B test
 
 
 ## 8. monitoring & maintenance
@@ -104,6 +106,7 @@ query understanding
 - [Architecture of Nautilus, the new Dropbox search engine](https://dropbox.tech/machine-learning/architecture-of-nautilus-the-new-dropbox-search-engine)
 - [腾讯搜索词推荐算法探索实践](https://mp.weixin.qq.com/s/4j3VZ8yNqwm6FJI9UFOlnw)
 - [美团搜索中查询改写技术的探索与实践](https://tech.meituan.com/2022/02/17/exploration-and-practice-of-query-rewriting-in-meituan-search.html)
+- [搜索广告召回技术在美团的实践](https://tech.meituan.com/2024/07/05/the-practice-of-search-advertising-recall-technology-in-meituan.html)
 - Ranking Relevance in Yahoo Search，KDD 2016
 - [Embedding-based Retrieval in Facebook Search, KDD 2020](https://arxiv.org/pdf/2006.11632)
 - Poly-encoders: Transformer Architectures and Pre-training Strategies for Fast and Accurate Multi-sentence Scoring，ICLR 2020
@@ -111,3 +114,4 @@ query understanding
 - [Listing Embeddings in Search Ranking](https://medium.com/airbnb-engineering/listing-embeddings-for-similar-listing-recommendations-and-real-time-personalization-in-search-601172f7603e)
 - [COTA: Improving Uber Customer Care with NLP & Machine Learning](https://www.uber.com/en-SG/blog/cota/)
 - [Scaling Uber’s Customer Support Ticket Assistant (COTA) System with Deep Learning](https://www.uber.com/en-SG/blog/cota-v2/)
+- [美团外卖搜索基于Elasticsearch的优化实践](https://tech.meituan.com/2022/11/17/elasicsearch-optimization-practice-based-on-run-length-encoding.html)

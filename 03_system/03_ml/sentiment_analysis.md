@@ -3,6 +3,11 @@
 ## 1. requirements
 
 
+**constraint**
+- latency: how long it takes a single request
+- throughput: how many request can be handled in a given amount of time
+
+
 ## 2. ML task & pipeline
 
 ![](../../.github/assets/03ml-sentiment-pipe.png)
@@ -22,7 +27,7 @@
 
 
 ## 5. model
-- 模型选择【传统的模型还是神经网络】
+- 模型选择: 传统模型还是神经网络
 - 考虑系统方面的constraint, 如prediction latency, memory. 怎么合理的牺牲模型的性能以换取constraint方面的benefit
 - 模型蒸馏
 
@@ -35,10 +40,23 @@
 
 
 ## 7. deploy & serving
+- GPU or CPU
+- 单机多进程 or Spark + Broadcast, KF-serving
 - dynamic batching
+- Dynamic Model Input (输入数据的长度)
+- quantization (cast)
+- distill/or smaller model
+- onnx
+  - 不同的硬件和推理引擎兼容
+  - 进一步优化: 算子融合、内存优化和硬件加速
+- caching responses to reduce the request
 
 
 ## 8. Monitor & maintenance
+- hardware usage
+- serving usage: qps
+- model performance
+- business object
 
 
 ## 9. 优化与问答
@@ -56,3 +74,5 @@
 - [How to Fine-Tune BERT for Text Classification?](https://arxiv.org/pdf/1905.05583)
 - [How We Scaled Bert To Serve 1+ Billion Daily Requests on CPUs](https://medium.com/@quocnle/how-we-scaled-bert-to-serve-1-billion-daily-requests-on-cpus-d99be090db26)
 - [FastFormers: Highly Efficient Transformer Models for Natural Language Understanding](https://arxiv.org/abs/2010.13382)
+- [Understanding Pins through keyword extraction](https://medium.com/pinterest-engineering/understanding-pins-through-keyword-extraction-40cf94214c18)
+- [华为云细粒度文本情感分析及应用](https://mp.weixin.qq.com/s/yeiODUxkTpvi2AsghjbeeQ)

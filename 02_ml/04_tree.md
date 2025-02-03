@@ -2,6 +2,7 @@
 
 > 决策树的设计思路与优化思路不同，通过特征的分裂来拟合目标；演化过程可以结合ensemble原理（bagging、boosting）
 
+
 ## 1. 决策树
 **优化目标**
 - To find the best split that maximize the separation between different classes or reduces the impurity with each resulting node
@@ -14,7 +15,9 @@
   - 熵、联合熵、条件熵、交叉熵、KL散度（相对熵）
   - KL(p|q) = cross entropy(p, q) - H(p)
 
-$$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
+$$ 
+H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) 
+$$
 
 - 信息增益 Information Gain `Gain(D|A) = H(D) - H(D|A)`
 
@@ -36,18 +39,32 @@ $$ H(X) = -\sum_{i=1}^{n} p(x_i) \log p(x_i) $$
 
 
 ## 4. 梯度提升树GBDT
-- GBDT拟合的是负梯度，下一棵树拟合的是前面的**负梯度**。当损失函数为平方损失时，负梯度正好为残差
-- 做分类任务时，GBDT内部每棵树是回归树，不论是回归还是分类任务
-- Importance is calculated for a single decision tree by the amount that each attribute split point improves the performance measure, weighted by the number of observations the node is responsible for
-- summing up how much splitting on each feature allowed you to reduce the impurity across all the splits in the tree
+- In Gradient Boosting Tree, there's only regression tree, 不论是回归还是分类任务
+- The labels become 1.0 for Yes and 0.0 for No for training; We sum up all the "raw scores" and then convert them to probabilities by applying sigmoid function.
+- GBDT拟合的是**负梯度**，下一棵树拟合的是前面的负梯度。当损失函数为平方损失MSE时，负梯度正好为残差
+
+$$
+L(y, f_t(x)) = L(y, f_{t-1}(x) + h_t(x))
+$$
+
+- 引入learning rate的概念
+- Importance is calculated for a single decision tree by the amount that each attribute split point improves the performance measure, weighted by the number of observations the node is responsible for summing up how much splitting on each feature allowed you to reduce the impurity across all the splits in the tree
 
 
 ## 4.1. xgboost
+[Introduction to Boosted Trees](https://xgboost.readthedocs.io/en/latest/tutorials/model.html)
+
+![](../.github/assets/02ml-xgboost.jpg)
+
 - XGBoost使用**二阶泰勒展开**(taylor expansion)表示梯度，即每棵树拟合的是二阶泰勒的梯度，相比GBDT的一阶泰勒展开、对梯度的表示更准确
-$$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
+- the first derivative (gradient) and the second derivative (hessian)
+
+$$ 
+f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 
+$$
 
 - 损失函数中显式加入了正则项，对叶子数目和叶子权重做惩罚
-- 每次分裂时，选择（每个特征的每个可能的分割值）能够最大化目标函数增益
+- 每次分裂时，选择（每个特征的每个可能的分割值）能够最大化目标函数增益，只有损失函数更小才会进行分裂
 - 特征重要性
   - `Split` contains numbers of times the feature is used in a model. 作为划分属性的次数, 默认值(导致一些ID类基数大容易成为重要特征)
   - `Gain` result contains total gains of splits which use the feature. 特征在作为划分属性时loss的降低量
@@ -86,12 +103,15 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
   - 深度学习中最后一层是针对样本的，其他layer每一层都有针对可训练的weights梯度
 - xgboost的cache awareness如何提高计算效率？
 - 如何并行
-    - Boosting算法的弱学习器是没法并行迭代的，但是单个弱学习器里面最耗时的是决策树的分裂过程，XGBoost针对这个分裂做了比较大的并行优化。在训练之前，预先对每个特征内部进行了排序找出候选切割点，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算可以多线程进行，即在不同的特征属性上采用多线程并行方式寻找最佳分割点。
+    - Boosting算法的弱学习器是没法并行迭代的，但是单个弱学习器里面最耗时的是决策树的分裂过程，XGBoost针对这个分裂做了比较大的并行优化。在训练之前，预先对每个特征内部进行了排序找出候选切割点，然后保存为block结构，后面的迭代中重复地使用这个block，减小计算量。进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算可以多线程进行，即在不同的特征属性上采用多线程并行方式寻找最佳分割点。
+    - In its distributed form, XGBoost is able to train models on large datasets by splitting the computation across multiple machines or workers
+    - "all-reduce" is a technique used to aggregate the results of computations across different machines (workers)
+    - data parallelism (splitting data across workers) and model parallelism (splitting model training tasks like tree construction across workers)
 
 - xgboost如何快速分裂
-
+  - xgboost基于分位数考虑分割点，lgb基于直方图分桶考虑
 - xgboost分类节点的依据
-
+  - 贪心寻找分裂点，目标函数的增益
 - xgboost如何处理缺失值
   - 寻找split point的时候，忽略缺失值，该特征为missing的样本不进行遍历统计，只统计non-missing的样本，这个工程技巧减少了为稀疏离散特征寻找split point的时间开销
   - 训练时，分别将特征missing的样本分配到左叶子结点和右叶子结点，分到那个子节点带来的增益大，默认的方向就是哪个子节点
@@ -108,6 +128,10 @@ $$ f(x+\Delta x) \approx f(x) + f'(x)\Delta x + \frac12 f''(x)\Delta x^2 $$
 - random forest每个node怎么做split
 
 - GBM中的gradient怎么定义
+
+- 决策树，要怎样部署在1000台机器上
+  - 决策树模型序列化Serialization (即保存为文件，Pickle，Joblib，pmml，onnx)
+  - 序列化后的模型文件上传到一个分布式文件系统（如HDFS、S3、GCS等），以便所有机器都能访问
 
 
 ## 7. 代码
@@ -137,7 +161,7 @@ class Decision_tree(object):
         self.loss = loss  # If Gradient Boost
 ```
 
-回到损失函数，如xgboost中如何自定义损失函数
+xgboost中如何自定义损失函数
 ```python
 
 ```
@@ -145,9 +169,11 @@ class Decision_tree(object):
 
 ## 参考
 - [从sklearn源码简析GBDT](https://mp.weixin.qq.com/s/iKxv9-fHJp2DFQyeWlvTgQ)
+- [梯度提升树(GBDT)原理小结](https://www.cnblogs.com/pinard/p/6140514.html)
 - [【机器学习】决策树（上）——ID3、C4.5、CART](https://zhuanlan.zhihu.com/p/85731206)
 - [【机器学习】决策树（中）——Random Forest、Adaboost、GBDT](https://zhuanlan.zhihu.com/p/86263786)
 - [【机器学习】决策树（下）——XGBoost、LightGBM](https://zhuanlan.zhihu.com/p/87885678)
 - [机器学习-LightGBM - 马一凡的文章 - 知乎](https://zhuanlan.zhihu.com/p/105954452)
 - [Productionizing Distributed XGBoost to Train Deep Tree Models with Large Data Sets at Uber](https://www.uber.com/en-HK/blog/productionizing-distributed-xgboost/)
 - [Use XGBoost with the SageMaker Python SDK](https://sagemaker.readthedocs.io/en/stable/frameworks/xgboost/using_xgboost.html)
+- [How leave's scores are calculated in this XGBoost trees?](https://stackoverflow.com/questions/41433209/how-leaves-scores-are-calculated-in-this-xgboost-trees)
