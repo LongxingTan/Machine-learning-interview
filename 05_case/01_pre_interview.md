@@ -4,10 +4,10 @@
 ## 1. 简历
 [How to write a killer Software Engineering résumé](https://www.freecodecamp.org/news/writing-a-killer-software-engineering-resume-b11c91ef699d/)
 
-- 关键词匹配job description，内容保持**30%以上match**. HR面也牢记这些匹配点，并全程往上靠
-- 指标量化自己工作，start with action verbs and end with specific metrics
-- 远程投递，考虑虚拟电话号WeTalk
+- **关键词匹配**job description，内容保持**30%以上match**. HR面也牢记这些匹配点，并全程往上靠
+- **指标量化**自己工作，start with action verbs (Led, Managed, Conducted, Developed) and end with specific metrics
 - 理性关注部分公司冷冻期的影响，能投就投
+- [简历中介绍自己的机器学习项目](../02_ml/24_project.md)
 
 
 ## 2. 内推
@@ -15,7 +15,7 @@
 
 Linkedin投递前可reach out hr/hm求好感
 ```text
-Title: [Full Name] - Seeking [Position Title] opportunities in []
+Title: [Full Name] - Seeking [Position Title] opportunities in [Company]
 
 Content:
 Hello, my name is [Your Name], and I am actively seeking a position as a [Position Title] within the [Industry/Field].
@@ -29,7 +29,6 @@ hearing from you soon.
 
 求内推模版
 ```text
-Content:
 Hello [Name of Referrer],
 
 This is [Your Name], hope this message finds you well. I noticed you are currently working at [Company], and I em excited to see there is an opening for [Job Title]/ I believe that I would be a great fit for the position.
@@ -45,7 +44,7 @@ Best regards,
 
 找HR follow up模版
 ```text
-Hi HR Name,
+Hi [HR Name],
 
 I hope you’re doing well. Thank you again for coordinating my interview last week.
  
@@ -69,7 +68,7 @@ You are an excellent staff MLE who has attended 50+ interviews and got 20+ offer
 - meetapro
 
 
-## 4. 极速版
+## 4. 极速准备版
 - [Grind 75](https://www.techinterviewhandbook.org/grind75/)
   - [Neetcode 150](https://neetcode.io/practice)  
 - [CS 229 Note](https://cs229.stanford.edu/main_notes.pdf)

@@ -19,7 +19,7 @@
 **Dimension reduction techniques**
 - Principal Component Analysis (PCA)
 - Independent Component Analysis (ICA)
-- T-sne
+- T-SNE
 
 
 ## 2. 深度学习自监督

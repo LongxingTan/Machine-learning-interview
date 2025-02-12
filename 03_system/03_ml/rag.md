@@ -1,6 +1,7 @@
 # RAG
 
-大模型相关系统设计可参考[Microsoft graphRAG](https://github.com/microsoft/graphrag) 和 [Google notebookLM](https://notebooklm.google/?location=unsupported)
+大模型相关系统设计可参考[Microsoft graphRAG](https://github.com/microsoft/graphrag)，[Google notebookLM](https://notebooklm.google/?location=unsupported)，deep research
+
 
 ## 1. requirements
 > freshness considered as correct answer may change over time
@@ -65,7 +66,10 @@
 - KV cache
 
 
-## 7. 优化与问答
+## 7. monitoring & maintenance
+
+
+## 8. 优化与问答
 
 - NL2SQL
 - 幻觉

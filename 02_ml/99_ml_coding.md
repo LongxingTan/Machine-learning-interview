@@ -1,7 +1,8 @@
-# 机器学习代码汇总
+# 机器学习面试代码
 - [10min pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
 - [60min pytorch](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
 - [Huggingface transformers course](https://huggingface.co/learn/nlp-course/en/chapter1/1)
+- [ML code challenge](https://www.deep-ml.com/)
 
 
 ## 1. 目标与评价

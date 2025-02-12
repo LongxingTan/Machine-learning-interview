@@ -1,7 +1,6 @@
 # System design
 
-> - 机器学习工程师MLE -> [机器学习系统设计](./03_ml)
-> - junior engineer -> [OOD设计](./01_ood)
+> 机器学习工程师MLE -> [机器学习系统设计](./03_ml)
 
 
 ## 1. 面试过程

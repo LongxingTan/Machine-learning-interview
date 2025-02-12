@@ -1,45 +1,44 @@
 # 机器学习系统设计
 
-> 机器学习系统的核心，是训练一个**模型**来解决任务中的问题，如预测、分类、排序
->- 建模design, 包括优化目标，feature，data，模型结构，评价标准等
->- 系统design, 偏重于在线serve模型，包括feature store, ANN, ETL pipeline, MLOps等
->- 不熟悉的场景，一定先从头到尾问清楚细节。没有通用解，只有更适合场景的solution，牢记trade-off
+> 机器学习系统的核心，是训练一个**模型**来解决商业任务，如预测、分类、排序
+>- 建模design：包括优化目标，feature，data，模型结构，评价标准等
+>- 系统design：偏重于在线serve模型，包括feature store, ANN, ETL pipeline, MLOps等
 
 
 ## 1. 面试过程
 
-- 心态和神态: 自信大方的展现自己、良好的沟通能力是任何面试都看重的
-- **沟通：** 一边白板画框图，一边告知面试官要讲某几个部分. 每个部分move前可再次确认 `Is there anywhere that you feel I missed?`
-- **分层思维：** 整个过程，一层讲清楚主题前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
-- **深度和广度：** 每个部分，尤其是自己熟悉的方面，要主动讲，积极展现自己的知识宽度和深度
-- **trade-off：** 不要对需求和场景做主观假设，注意讲清楚trade-off。trade-off从业务(比如预测准确性、长尾预测准确、冷启动效果)和技术角度(scale、latency)出发
+- 心态和神态: 自信大方的展现自己的能力，良好的沟通是任何面试都看重的
+- **沟通：** 一边白板画框图，一边告知面试官要讲某几个部分。每个部分move前可再次确认 `Is there anywhere that you feel I missed?`
+- **分层思维：** 过程中，一层主题讲清楚前，不要陷入任何一部分的细节挖掘。随着问题介绍，data和细节都会明确
+- **深度和广度：** 讲到具体部分，尤其是自己熟悉的方面，要主动讲，积极展现自己的知识宽度和深度
+- **trade-off：** 不要对需求和场景做主观假设，不熟悉的场景，一定先从头到尾问清楚细节，讲清楚trade-off是能力的重要体现。trade-off可以从从业务(比如预测准确性、长尾预测准确、冷启动效果)和技术角度(scale、latency)出发
 
 
 ## 2. 回答框架
 
 - **明确需求 Requirement**
-  - functional和non-functional一定一定确认清楚，否则是明显不合格signal. 提问非常能看出水平
+  - functional和non-functional一定确认清楚，否则是明显不合格signal。面试者提的问题往往就能看出水平
   - 场景，功能，目标(engagement or revenue, project goal, project metrics)，约束
   - scale of the system, user和item有哪些数据和量级
 - **机器学习任务 ML Task**
   - 解释如何将需求转化为机器学习问题(如推荐转化为二分类模型和原因)
 - **数据 Data**
-  - 两方面identify data：training + label, testing + ground truth
-  - 获取label: 从交互中收集, 人工标注, 人工标注加无监督辅助, 增强数据
-  - 分类任务的positive label, negative label
+  - identify data：training + label, testing + ground truth
+  - 获取label: 从交互中收集，人工标注，人工标注加无监督辅助，增强数据
+  - 分类任务的positive & negative label
   - 一些可做特征的数据是否有log
   - 数据探讨: bias, 非均衡, label质量
   - GDPR/privacy: 数据脱敏，数据加密
-  - train/test data和product上distribution不一样怎么办, data distribution随时间改变怎么办
+  - train/test data和product上distribution不一样怎么办，data distribution随时间改变怎么办
 - **特征 Feature**
   - user, item and cross, context
   - sparse and dense feature
-  - 每个ML组都有不同的embedding set. 互相用别人的embedding set, 怎么pre-train, fine-train, 怎么combine feature非常重要
+  - 每个ML组都有不同的embedding set。互相用别人的embedding set，怎么pre-train，fine-train，怎么combine feature非常重要
   - feature的AB test怎么做？不同traffic
 - **模型 Model**
   - 总是从**简单baseline**开始
   - 每个design的选择，像平时写design doc一样比较不同选项的优劣
-  - 模型选择，考虑来自系统的constraint. 比如prediction latency, memory. 怎么合理的牺牲模型的性能以换取constraint方面的benefit  
+  - 模型选择，考虑来自系统的constraint。比如prediction latency，memory。怎么合理的牺牲模型的性能以换取constraint方面的benefit  
   - 大多数场景，模型之外都需要额外的策略兜底
 - **评价 Evaluation**
   - offline and online
@@ -91,7 +90,7 @@
   - Scaling data collection
   - machine translation for 1000 languages
     - NLLB
-  - [embedding-> Deep Hash Embedding](https://zhuanlan.zhihu.com/p/397600084)
+  - [推荐系统embedding-> Deep Hash Embedding](https://zhuanlan.zhihu.com/p/397600084)
 - Auto ML (soft: HP tuning, hard: arch search (NAS))
 - 线上线下不一致
   - [推荐系统有哪些坑？](https://www.zhihu.com/question/28247353/answer/2126590086)

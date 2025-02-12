@@ -8,7 +8,7 @@
 
 ## Python常用操作
 
-- 从列表list中找出目标值 **第一个匹配项的索引** 位置
+- 从列表list中找出目标值 **第一个匹配项的索引**
 ```python
 a = 0
 list.index(a)
@@ -141,12 +141,12 @@ s.lower()
 
 
 - 多个条件判断时，条件是有先后顺序的。是否越界和是否符合条件可以写在一起
-```
-正确
-while s[l] == s[r] and l >= 0 and r < len(s)
+```python
+# 正确
+while s[l] == s[r] and l >= 0 and r < len(s):
 
-错误
-while l >= 0 and r < len(s) and s[l] == s[r]
+# 错误
+while l >= 0 and r < len(s) and s[l] == s[r]:
 ```
 
 - for循环：提前已知遍历的所有元素；while循环：根据循环过程来决定所有遍历元素

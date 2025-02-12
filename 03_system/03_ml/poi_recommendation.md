@@ -6,7 +6,7 @@
 > - Design a system to compute ETA for food delivery
 
 > 特点: 如果是event 推荐这种注重实效性、位置性的推荐，event发生后不存在了，所有item可以认为都是冷启动
-> 对于位置的挖掘可采用图特征或模型
+> - 对于位置的挖掘可采用图特征或模型
 
 
 ## 1. requirements

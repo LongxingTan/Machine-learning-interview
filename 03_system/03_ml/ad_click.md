@@ -43,7 +43,7 @@
 - 策略(bidding&strategy)：根据预估值，通过控制广告的出价、排序公式等，影响流量的最终分配
 
 
-业务过程：
+**业务过程**
 1. advertiser create ads
 2. ads indexing (inverted index, we can use elastic search)
    - 如何减少广告索引的latency，inverted index + db replica + cache
@@ -89,7 +89,7 @@ User-Ad Interaction Features
 
 ## 5. model
 
-广告算法主流模型. 广告算法基本都是point-wise训练方式，因为广告是很少以列表的形式连续呈现
+广告算法主流模型（广告算法基本都是point-wise训练方式，因为广告是很少以列表的形式连续呈现）
 - Logistic regression (feature crossing)
 - GBDT
 - GBDT+LR

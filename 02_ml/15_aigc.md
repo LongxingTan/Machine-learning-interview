@@ -7,7 +7,7 @@
 图像生成相关：文本生成图像，图像生成图像，文本生成视频，文本生成语音。GAN、扩散模型、图像生成、多模态生成等。
 
 
-## Stable Diffusion
+### Stable Diffusion
 [What are Diffusion Models?](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#forward-diffusion-process)
 
 **扩散模型**

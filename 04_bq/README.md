@@ -1,11 +1,11 @@
 # 行为面试 Behavior question
 
 > 行为面试不可掉以轻心，面试也是考察是否是值得合作的同事，有针对的准备BQ是**非常**有必要的，BQ主要考察沟通理解能力、文化匹配、资深程度
->- 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略)，从而给出足够的信号. selling your stories and zooming at the right things
->- 体现impact/scope, data driven, 足够细节，使用`I`而不是`We`
->- 目标级别高的话，重点强调自己cross-team/ cross functional的leadership
->- context之前先用一句话对故事进行总结，action分3-5点讲，同样每点先用一句话总结，总分的结构
->- 回答简洁，直击signal；观察面试官的反应，灵活调整每个部分的详略程度，模仿面试官的body language，让面试官感觉:“我乐意和这个人一起工作”
+>- 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略)，从而给出足够的信号。selling your stories and zooming at the right things
+>- 体现impact/scope、data driven、足够细节，使用`I`而不是`We`
+>- 目标级别高的话，重点强调自己cross-team/cross functional的leadership
+>- context之前先用一句话对故事进行总结，action分3-5点讲，同样每点先用一句话总结，总分结构
+>- 回答简洁，直击signal；观察面试官的反应，灵活调整每个部分的详略程度，模仿面试官的body language，让面试官感觉：“我乐意和这个人一起工作”
 >- 面试开始前一刻，一定把自己**自信、积极**那一面调动出来！除了技术交流、软实力、匹配程度外，还有重要的是对你这个人本身的印象，自信、积极非常重要
 
 

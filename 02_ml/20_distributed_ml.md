@@ -58,8 +58,11 @@ ZeRO：stage1 (optimizer state)，stage2 (+gradients)，stage3 (+model parameter
 [https://github.com/NVIDIA/Megatron-LM](https://github.com/NVIDIA/Megatron-LM)
 > 适用大模型pretrain
 
+https://github.com/huggingface/picotron
+
 
 ## 参考
+
 **精读**
 - [Using DeepSpeed and Megatron to Train Megatron-Turing NLG 530B, A Large-Scale Generative Language Model](https://arxiv.org/abs/2201.11990)
 - [Megatron-LM: Training Multi-Billion Parameter Language Models Using Model Parallelism](https://arxiv.org/abs/1909.08053)
@@ -67,7 +70,10 @@ ZeRO：stage1 (optimizer state)，stage2 (+gradients)，stage3 (+model parameter
 
 **扩展**
 - [图解大模型训练系列之：DeepSpeed-Megatron MoE并行训练（原理篇） - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/681154742)
+- [DDP系列第一篇：入门教程 - 996黄金一代的文章 - 知乎](https://zhuanlan.zhihu.com/p/178402798)
 - [图解大模型训练之：数据并行上篇(DP, DDP与ZeRO) - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/617133971)
 - [一文读懂「Parameter Server」的分布式机器学习训练原理 - 王喆的文章 - 知乎](https://zhuanlan.zhihu.com/p/82116922)
 - [tensorflow ML框架外接ps方案 - 彭红卿的文章 - 知乎](https://zhuanlan.zhihu.com/p/396804900)
 - [一文讲明白大模型分布式逻辑（从GPU通信原语到Megatron、Deepspeed） - 然荻的文章 - 知乎](https://zhuanlan.zhihu.com/p/721941928)
+- [LLM实践--支线：分布式训练框架的编程基础 - 真中合欢的文章 - 知乎](https://zhuanlan.zhihu.com/p/10091011992)
+- [torch.distributed](https://pytorch.org/docs/stable/distributed.html)

@@ -1,5 +1,5 @@
 # 机器学习
-> 熟悉八股和代码，面试需要一定准备和技巧，但功夫在诗外。平时注意构建知识体系，论文和实验不断给体系添砖加瓦。本章侧重理论部分，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
+> 面试要准备和技巧，但功夫在诗外。平时注意构建知识体系，论文和实验不断给体系添砖加瓦；面试前熟悉机器学习八股和代码。本章侧重理论部分，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
 
 
 ## 1. 面试要求
@@ -8,17 +8,13 @@
   - 归纳偏置(Inductive Bias)，数据同分布(IID)
 
 - 考察范围包括**ML breadth, ML depth, ML application, coding**  
-  - 算法背后的数学原理，写出主要数学公式，并能进行**白板推导介绍**
+  - 算法背后的数学原理，写出主要数学公式，并能进行**白板推导介绍**。don’t memorize the formula but demonstrate understanding
   - 一些较新的领域如[大模型](./12_llm.md)，会考察论文细节
   - 可能被持续追问为什么? 某个trick为什么能起作用？
   - 每一个算法如何scale，如何将算法map-reduce化
   - 每一个算法的**复杂度、参数量、计算量**
-- 如果不知道答案，可以承认不知道，补充一下可以做什么找答案，不要乱编
-- don’t memorize the formula but demonstrate understanding
-
-- [简历中介绍自己的机器学习项目](./24_project)
-- [ML code collections](./99_ml_code.md)
-- [ML code challenge](https://www.deep-ml.com/)
+  - 机器学习代码部分参见 [ML coding collections](./99_ml_coding.md)
+  - 如果不知道答案，可以承认不知道，补充做什么可以找答案，不要乱编
 
 
 ## 2. 八股问题实例
@@ -125,6 +121,7 @@
 
 
 ## 3. 手写ML代码实例
+> - [ML code collections](./99_ml_coding.md)
 
 - [手写KNN](./07_knn.md)
 - [手写K-means](./09_k_means.md)

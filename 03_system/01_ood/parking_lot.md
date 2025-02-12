@@ -3,7 +3,7 @@
 
 ## 代码
 
-```
+```java
 public abstract class Vehicle {
     protected String licensePlate;
     protected VehicleSize size;

@@ -20,8 +20,8 @@
 
 
 ## 2. ML task & pipeline
-任务：利用历史交互来推荐用户可能交互的item
-顶层设计：query转化为embedding, video可以转化为整体embedding 或分模态的多个embedding，根据对比学习进行为微调，推理时取最近临
+- 任务：利用历史交互来推荐用户可能交互的item
+- 顶层设计：query转化为embedding, video可以转化为整体embedding 或分模态的多个embedding，根据对比学习进行为微调，推理时取最近临
 
 ![](../../.github/assets/03ml-vsearch-pipe.png)
 

@@ -30,7 +30,6 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 - n-gram
   - [https://web.stanford.edu/~jurafsky/slp3/3.pdf](https://web.stanford.edu/~jurafsky/slp3/3.pdf)
 
-
 **encoder-decoder**
 - BART
 - T5
@@ -97,19 +96,19 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 
 ## 3. 评价指标
 
-perplexity
+**perplexity**
 
-BLEU
+**BLEU**
 - BLEU 根据精确率(Precision)衡量翻译的质量，而 ROUGE 根据召回率(Recall)衡量翻译的质量
 - 过于依赖参考，如果译文质量很好但部分字词在参考翻译中没有的话得分会很低；未考虑语法问题
 
-ROGUE (Recall-Oriented Understudy for Gisting Evaluation)
+**ROGUE (Recall-Oriented Understudy for Gisting Evaluation)**
 - [基于召回率](https://zhuanlan.zhihu.com/p/647310970)
 - ROUGE-N: N-gram拆分后，计算召回率
 - ROUGE-L: 最长公共子序列(非连续)
 - ROUGE-W: 连续匹配情况加权后的最长公共子序列长度
 
-BertScore
+**BertScore**
 
 
 ## 4. 应用
@@ -160,14 +159,13 @@ BertScore
 **Entity Linking**
 
 
-
 ### 4.3 文本摘要 Text summarization
 - 分为抽象式摘要（abstractive summarization）和抽取式摘要(extractive summarization)
 - 在抽象式摘要中，目标摘要所包含的词或短语会不在原文中，通常需要进行文本重写等操作进行生成；
 - 抽取式摘要，通过复制和重组文档中最重要的内容(一般为句子)来形成摘要。那么如何获取并选择文档中重要句子，就是抽取式摘要的关键。传统抽取式摘要方法包括Lead-3和TextRank，传统深度学习方法一般采用LSTM或GRU模型进行重要句子的判断与选择，可以采用预训练语言模型自编码BERT/自回归GPT进行抽取式摘要。
 
 
-常用指标
+**常用指标**
 - ROUGE
 - BLEU
 

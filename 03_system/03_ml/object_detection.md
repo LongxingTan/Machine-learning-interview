@@ -1,32 +1,67 @@
-# 2D目标检测
+# 目标检测
 
 ## 1. requirements
-- 检测对象? 
-  - cars, pedestrians, animals,
+**Functional Requirements**
+- 检测对象 Multi-class: cars, pedestrians, animals or weapon
 - Cloud based or device based
 
 **Non-functional**
-- accuracy/map
-- latency
-- scalability
+- Target mAP > 0.75 at IOU 0.5
+- Latency < 100ms per frame for real-time applications
+- Scalable to handle multiple concurrent requests
+- High availability (99.9%)
 
 
 ## 2. ML task & pipeline
-Object detection
+```text
+Input Stream -> Preprocessor -> Detection Model -> Post-processor -> Output
+     ↑                             ↑                    ↑
+     |                             |                    |
+Data Pipeline                Model Registry         NMS/Filtering
+```
 
 
-## 3. data collection
+## 3. data
 
-- 标签(labels)
-- 数据存储: MiniO
+**Data Collection**
+- Public datasets: COCO, Pascal VOC, OpenImages
+- Custom collected data for specific use cases
+- Synthetic data generation for rare cases (especially weapons)
 
-**preprocessing**
-- augmentation
-- normalization
+**Data Storage**
+- Raw images: MinIO object storage
+- Annotations: MongoDB (flexible schema for different annotation formats)
+- Features: Vector database (FAISS/Milvus)
+
+**Data Pipeline**
+- Preprocessing
+  - Resize: 640x640 or 1024x1024 based on model
+  - Normalization: mean subtraction, scaling to [0,1]
+  - Augmentation
+    - Geometric: rotation, flip, scale
+    - Photometric: brightness, contrast, noise
+    - Mosaic augmentation for small objects
+    - Mixup for regularization
+- Annotation
+  - Bounding box format: [x_center, y_center, width, height]
+  - Class labels
+  - Quality checks: IOU overlaps, size constraints
 
 
 ## 4. model
-YOLO, Faster R-CNN, SSD
+
+**Cloud Deployment:**
+- Primary: YOLOv7 or YOLOv8
+  - Better accuracy-speed trade-off
+  - Strong multi-scale detection
+  - Built-in data augmentation
+
+**Edge Deployment:**
+- Primary: YOLOv8-nano or SSD-MobileNetV3
+  - Optimized for mobile/edge
+  - Reduced parameter count
+  - TensorRT/ONNX compatible
+
 
 ### two-stage: region proposal and object classification
 - generates a set of potential object bounding boxes
@@ -41,15 +76,34 @@ YOLO, Faster R-CNN, SSD
 
 
 ## 5. evaluation
-- Precision based on IOU threshold
-- AP: avg. across various IOU thresholds
-- mAP: mean of AP over C classes
+
+**Primary Metrics:**
+- mAP@0.5: Overall detection performance
+- mAP@0.5:0.95: Stricter evaluation
+  - AP: avg. across various IOU thresholds
+- FPS: Runtime performance
+- Per-class AP for monitoring class-wise performance
+
+**Secondary Metrics:**
+- Precision-Recall curves
+  - Precision based on IOU threshold
+- F1 score at different confidence thresholds
+- Average inference time
+
 
 ## 6. deploy & serving
 - batch service or online service
 
 
-## 7. 问答
+## 7. Monitoring & maintenance
+**monitoring**
+- Data drift detection
+- A/B testing framework
+- Regular model retraining pipeline
+- Performance optimization based on real-world feedback
+
+
+## 8. 问答
 - 过杀和漏检：基于遗传算法的帕累托优化
 
 

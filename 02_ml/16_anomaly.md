@@ -10,7 +10,6 @@
 **规则、经验**
 - remove outlier: Random sample consensus (RANSAC) is an iterative method to estimate parameters of a mathematical model from a set of observed data that contains outliers, when outliers are to be accorded no influence on the values of the estimates
 
-
 **3sigma**
 - Z-score标准化，数据满足正态分布
 
@@ -58,6 +57,7 @@
 - Temperature Scaling: 深度学习的softmax
 - `from sklearn.calibration import calibration_curve, CalibratedClassifierCV`
 - [On Calibration of Modern Neural Networks](http://proceedings.mlr.press/v70/guo17a/guo17a.pdf)
+
 
 **指标**
 - psi、iv、ks、auc、lift

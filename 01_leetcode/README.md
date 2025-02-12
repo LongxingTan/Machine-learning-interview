@@ -1,44 +1,41 @@
 # LeetCode
-> LeetCode在面试时常被认为是衡量CS水平的重要指标，精刷大于泛刷，熟练度大于题量
-> - [https://blog.faangshui.com/p/how-to-talk-to-the-interviewer](https://blog.faangshui.com/p/how-to-talk-to-the-interviewer)
-> - [上百场算法面试的软实力经验分享](https://www.1point3acres.com/bbs/thread-1099499-1-1.html)
+> 好好刷题，LeetCode在面试时常被认为是衡量CS水平的重要指标。精刷大于泛刷，熟练度大于题量
 
 
 ## 1. offline 刷题策略
-大厂的面试一般非常规范和模版化，严格按照标准评分，想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此尽量提高熟练度，并踩对得分点和signal。
+大厂面试一般非常规范和模版化，严格按照标准评分。想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此尽量提高熟练度，并踩对得分点和signal。
 
-- 1、初步掌握常见数据结构和算法，包括常见类型的解题模版
+- 1、零基础的话刷题前先掌握常见数据结构和算法，包括常见类型的解题模版
 - 2、按tag刷题，模版的基础上，不断强化练习。尝试多种解法实现
 - 3、按热度刷题，参加周赛，刷题量达到满意要求。结合问题交流、复杂度分析、头脑测试
-- 4、练习边说边写，面试前，针对面试公司tag和最新面经进行重点练习
+- 4、练习边说边写。面试前，针对面试公司tag和最新面经重点练习
 
 
 ## 2. online 面试解题过程
-快速给出bug free代码，面试过程中**沟通**和**思路介绍**同样非常重要。做题前的寒暄、个人和项目介绍不必随意展开(1~2min)，给做题留足时间。
+面试过程中，重要的是: 快速给出bug free代码，良好的**沟通**和**思路介绍**。做题前的寒暄、个人和项目介绍不必随意展开(1~2min)，留够做题时间。
 
 - (1) 面试官出题
 - (2) 面试者读题并 **clarification question**
-  - 有面试官会故意遗漏内容，不明白的地方一定问清楚，而不是随意假设。可以通过列举test case，确保真正理解问题并涵盖所有情况。
-  - 需求确定好之后，确认输入输出的类型和边界，input/output type, 特殊情况找没找到的时候返回什么
-  - 确认input/output
-    - 输入：数字全是正数或者全是负数， null or empty    
-    - string：是不是都是English letters (A-Z)，有没有特殊符号，有的话，会有哪些出现
+  - 有面试官会故意遗漏内容，不明白的地方一定问清楚，而不是随意假设或略过。也可以通过列举test case，来确保理解问题并涵盖所有情况。
+  - 功能需求确定好之后，确认输入/输出的类型和边界(input/output type)
+    - 输入数字全是正数或者全是负数， null or empty    
+    - 输入string是不是都是English letters (A-Z)，有没有特殊符号
     - 输入是否有重复样本，输出是否允许重复
     - standard input, empty input, malformed input, long input, null input, other edge input
-    - 能不能改input (1D/2D array比较常见）
+    - 能不能改input，immutable or not (1D/2D array比较常见）
+    - 特殊情况输出返回什么
   - 时间空间复杂度要求
-    - 需不需要in place
+    - 要不要in place
     - 有没有内存限制
-  - 区分sub-arrays和subsequence等
+  - 区分sub-arrays or subsequence
 - (3) 面试官回答问题保证面试者正确理解题目
 - (4) 面试者思考怎么做，先和面试官讲明白思路，并得到认同
-  - 从逻辑/模拟角度思考如何做这个任务(第一性原则出发)。没有思路时，想想更简单、数量更少时如何处理. 
+  - 算法没有得到面试官认同前不要着急动手写代码。第一性原则出发，从逻辑/模拟角度思考如何解决问题。没有思路时，想想更简单、数量更少时如何处理
   - Whenever coming across a solution, talk it out and discuss it with the interviewer
   - 2分钟内还没有思路，主动和面试官要提示(hint)
-  - 可以询问：Am I in the right direction?
-  - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最有可询问 "Could we have a better solution?"  
-  - 熟悉的题目也可以先说一下穷举/暴力做法，然后简单分析下重复操作或者引入高效的数据结构，从而引入到最优解
-  - 算法没有得到面试官认同前不要着急动手写代码
+  - 可以询问: Am I in the right direction?
+  - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最优可询问: Could we have a better solution?
+  - 熟悉的题目也可以先说一下穷举/暴力做法，通过分析重复操作或引入高效的数据结构，从而引入最优解  
 - (5) 确认好思路后写代码实现算法
   - 用什么数据结构，什么算法。讲思路的时候，说清楚为什么选择这个数据结构
   - During writing the code, whenever coming across edge cases, discuss with the interviewer about how to handle the edge case
@@ -62,7 +59,8 @@
 
 ## 3. 公司特点
 
-> [OA真题](https://github.com/perixtar/2024-Tech-OA)
+> - [OA真题](https://github.com/perixtar/2024-Tech-OA)
+> - [大厂的面试的差异和重点](https://www.1point3acres.com/bbs/thread-1021931-1-1.html)
 
 **Google**
 - LeetCode: 非tag原题多，hard多(DP, DFS, Backtracking, Trie)，极其看重解决问题的思考过程，自己写test case。面经题仍有帮助
@@ -71,7 +69,7 @@
 - LeetCode: tag原题，35分钟两道题, 看重bug free和最优解
 - ML system design: recommendation, video search, harmful content detection
 
-**MicroSoft**
+**Microsoft**
 - LeetCode: 基础算法、数据结构的快速实现
 
 **Amazon**
@@ -80,15 +78,13 @@
 
 **Tiktok**
 - LeetCode: 不按tag
-- ML: 可能有国内面试习惯，深挖简历项目，讲清领域来龙去脉
+- ML: 可能有国内面试习惯，深挖简历项目，MLE讲清领域来龙去脉
 
 
-## 4. 准备
-> - [大厂的面试的差异和重点](https://www.1point3acres.com/bbs/thread-1021931-1-1.html)
-> - [从面试官角度解答coding interview](https://www.1point3acres.com/bbs/thread-1023899-1-1.html)
+## 4. 刷题
 
 ### 4.1 参考刷题列表
-> 重点: 刷透高频题，也不要假设觉得哪种类别肯定不会考 (我之前总是跳过位运算，没想到一场遇见两题)
+> 重点: 刷透高频题，不要假设哪种类别肯定不会考
 
 - [blind75](https://leetcode.com/list/xi4ci4ig/)
 - [代码随想录](https://programmercarl.com/)

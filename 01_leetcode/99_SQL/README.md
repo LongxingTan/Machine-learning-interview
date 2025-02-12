@@ -1,23 +1,22 @@
 # SQL
 
-数据科学岗位，需要好好刷SQL题。建议自己下载一个My SQL装到电脑上，模拟真实SQL环境来学习。
-
-对product和metrics的业务了解能够帮助我们更好的准备SQL面试，SQL面试都是围绕着**与business相关的metrics**展开。
+> 数据科学岗位，需要好好刷SQL题。建议下载安装一个My SQL，模拟真实SQL环境学习
+> - 对product和metrics的业务了解能够帮助我们更好的准备SQL面试，SQL面试都是围绕着**与business相关的metrics**展开。
 
 
 ## 知识点
 - 书写顺序: SELECT -> DISTINCT ->  FROM -> JOIN -> ON ->  WHERE -> GROUP BY -> HAVING -> ORDER BY -> LIMIT
 - 执行逻辑顺序: FROM -> JOIN -> ON -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> LIMIT
+- self-join
+- case when
+- aggregate function: SUM(), MAX(), MIN(), AVG()
+- WITH common_table_expression
 - explode
 - Windows function: `<窗口函数> over (partition by (分组的列名) order by (排序的列名)) AS name`
   - 解决组内排名问题，top N：找出每个部门排名前 N 的员工进行奖励
   - group by 分组汇总后改变了表的行数，一行只有一个类别; partition by 和 rank 函数不会减少原表中的行数
   - row number / rank / dense_rank
 - frame clause
-- self-join
-- case when
-- aggregate function: SUM(), MAX(), MIN(), AVG()
-- WITH common_table_expression
 - NULL value
 - TIMESTAMP
 - 数据库优化
@@ -38,11 +37,11 @@
 
 ## 常见问题
 - What is the difference between union and union all? where and having?
-- Question 1: List out the top 3 names of the users who have the most purchase amount on '2018-01-01'
-- Question 2: Sort the table by timestamp for each user. Create a new column named "cum amount" which calculates the cumulative amount of a certain user of purchase on the same day.
-- Question 3: For each day, calculate the growth rate of purchase amount compared to the previous day. if no result for a previous day, show 'Null'.
-- Question 4: For each day, calculate a 30day rolling average purchase amount.
-- Question: what was the friend request acceptance rate for requests sent out on 2018-01-01?
+- List out the top 3 names of the users who have the most purchase amount on '2018-01-01'
+- Sort the table by timestamp for each user. Create a new column named "cum amount" which calculates the cumulative amount of a certain user of purchase on the same day.
+- For each day, calculate the growth rate of purchase amount compared to the previous day. if no result for a previous day, show 'Null'.
+- For each day, calculate a 30day rolling average purchase amount.
+- What was the friend request acceptance rate for requests sent out on 2018-01-01?
 
 
 ## 实际

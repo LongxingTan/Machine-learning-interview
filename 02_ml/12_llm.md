@@ -180,8 +180,11 @@ def lora_forward_matmul(x, W, W_A, W_B):
 
 [https://github.com/OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)
 
+![](../.github/assets/02ml-rlhf.png)
+
 
 ### 4.4 Long context
+
 **位置编码内插与外推**
 - Position Interpolation
 - NTK
@@ -258,6 +261,7 @@ $$
 - https://platform.openai.com/docs/guides/prompt-engineering
 - https://yiyan.baidu.com/learn
 - https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/
+- https://huggingface.co/blog/chat-templates
 
 **COT**
 - 根据llm的self reflection做planning

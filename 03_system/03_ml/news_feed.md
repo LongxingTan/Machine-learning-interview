@@ -67,7 +67,7 @@ By observing user behavior, such as the articles they read and the time they spe
 - Collaborative Filtering
 - Content-Based Filtering
 
-**ranking**
+**ranking**: multiple object ranking
 - GBDT
 - NN
 

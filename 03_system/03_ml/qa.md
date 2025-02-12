@@ -88,3 +88,4 @@
 - [CMU11492-语音](https://espnet.github.io/espnet/notebook/)
 - [2018-从零开始搭建智能客服](https://www.sohu.com/a/228122295_355140)
 - [广告行业中那些趣事系列91：实践智能客服场景FAQ任务 - 数据拾光者的文章 - 知乎](https://zhuanlan.zhihu.com/p/9058753408)
+- [The Design and Implementation of XiaoIce, an Empathetic Social Chatbot](https://arxiv.org/pdf/1812.08989)

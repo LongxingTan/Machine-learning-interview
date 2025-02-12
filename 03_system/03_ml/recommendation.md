@@ -12,7 +12,7 @@
 - 音乐、[视频](./video_recommendation.md)的embedding，例如spotify音乐推荐
 - Ins Story推荐，每条Story是独一无二的并且是有时间性的
 - O2O场景广告特点：移动化、本地化、场景化、多样性
-- [Point of interest](./poi_recommendation)
+- [Point of interest](./poi_recommendation.md)
 
 
 ## 1. requirements
@@ -284,6 +284,7 @@
 
 **精读**
 - [Recommendations: What and Why?](https://developers.google.com/machine-learning/recommendation/overview)
+
 
 **扩展**
 - [Best Practices for Building and Deploying Recommender Systems](https://docs.nvidia.com/deeplearning/performance/recsys-best-practices/index.html)

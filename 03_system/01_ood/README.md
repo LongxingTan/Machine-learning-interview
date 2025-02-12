@@ -4,9 +4,9 @@
 
 
 ## 1. 面试过程
-- clarification，先理清`业务流程`
+- clarification: 先理清`业务流程`
 - 根据流程图，找到`core object`，明确`use case`
-- 完善整体设计`class diagram`，写出class和重点method
+- 完善整体设计`class diagram`，写出`class`和`重点method`
 
 
 ## 2. 案例

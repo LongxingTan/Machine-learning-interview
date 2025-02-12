@@ -133,6 +133,7 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
 
 
 ## 参考
+- [https://mlip-cmu.github.io/s2025/](https://mlip-cmu.github.io/s2025/)
 - [Open-source Workflow Management Tools: A Survey](https://ploomber.io/blog/survey/#ploomber)
 - [Global MLOps and ML tools landscape](https://www.mlreef.com/blog/global-mlops-and-ml-tools-landscape)
 - [mlops-zoomcamp](https://github.com/DataTalksClub/mlops-zoomcamp)
