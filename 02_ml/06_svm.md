@@ -23,7 +23,6 @@ hinge loss在训练后期天然偏重困难样本的损失，对于深度学习�
 
 KKT条件
 
-
 ## 2. 对偶
 
 - 当目标函数与约束函数法向量平行的时候，得到带约束目标函数的最小值。使用拉格朗日乘子法将带约束的目标函数求解问题转化成无约束条件的目标函数求解问题
@@ -34,16 +33,15 @@ $$
 \end{align*}
 $$
 
-
 ## 3. 核技巧
+
 - 内积：两个样本之间关系的度量
 - 多项式核函数：线性回归交叉特征
 - 高斯核函数： 映射到无限维空间，直观理解是设置几个landmark，然后计算每个点到这个landmark的距离。这里的距离是把landmark拉宽成一个高斯概率密度，然后计算RBF Kernel 是所有多项式核函数的线性组合
 
-
 ## 4. 软间隔
-引入松弛变量(slack variable)，松弛变量允许一部分变量越界，但是要付出代价的，新增一个超参数来决定惩罚力度，这里的惩罚和一般的损失函数一样，分类正确的惩罚为0，分类错误的开始有惩罚
 
+引入松弛变量(slack variable)，松弛变量允许一部分变量越界，但是要付出代价的，新增一个超参数来决定惩罚力度，这里的惩罚和一般的损失函数一样，分类正确的惩罚为0，分类错误的开始有惩罚
 
 ## 5. 问答
 
@@ -63,7 +61,6 @@ $$
   - Poor performance with Overlapped classes : Does not perform well in case of overlapped classes.
   - Selecting appropriate hyperparameters is important
   - Selecting the appropriate kernel function can be tricky.
-
 
 ## 6. 代码
 
@@ -182,8 +179,8 @@ if __name__ == "__main__":
     y_hat = svm.predict(x)
 ```
 
-
 ## 参考
+
 - [支持向量机（SVM）是什么意思](https://www.zhihu.com/question/21094489)
 - [https://github.com/LasseRegin/SVM-w-SMO](https://github.com/LasseRegin/SVM-w-SMO)
 - [对偶问题 Dual Problem 与支持向量机 SVM （可视化理解） - 锦恢的文章 - 知乎](https://zhuanlan.zhihu.com/p/675943229)

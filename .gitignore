@@ -82,10 +82,45 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
-# yuetan
-**/nohup.out
-/reference/
-/data/
-/weights/
+# custom
 /reference/*
 .pre-commit-config.yaml
+
+# Node modules (if using npm or yarn)
+node_modules/
+
+# Dependency lock files (optional, depends on how you manage versions)
+package-lock.json
+yarn.lock
+
+# Prettier / editor formatting cache
+.prettiercache
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# VS Code or JetBrains IDE settings
+.vscode/
+.idea/
+
+# Lint cache
+.eslintcache
+
+# Output folders (if you generate any docs)
+dist/
+build/
+out/
+
+# MarkdownLint config cache (if any, rare)
+.markdownlint-cli*
+
+# Temporary files
+*.tmp
+*.bak
+*~

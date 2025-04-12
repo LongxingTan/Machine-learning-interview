@@ -13,21 +13,24 @@
 - 用特殊符号的时候，不要用-， 以防是数字转换过来的，负数也带-
 
 - 判断非空
+
 ```python
 if substring:
   pass
 ```
 
 - 一个或多个空格的分割
+
 ```python
 string.split()
 ```
 
 - ASCII
+
 ```python
 ord('a')
 ```
 
-
 ## reference
+
 - [字符串匹配算法KMP小结](https://www.cnblogs.com/grandyang/p/6992403.html)

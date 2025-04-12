@@ -1,11 +1,10 @@
 # 大数据
 
 ## Design
+
 设计一个操作系统内存管理分页分段的API
 
-
-给一个分布式计算拓扑图，类似hadoop的map reduce，讨论怎么能improve efficiency，可以讨论的点包括task scheduler，failover，hash consistency，at least/at most/exactly once, 网络, etc. 
-
+给一个分布式计算拓扑图，类似hadoop的map reduce，讨论怎么能improve efficiency，可以讨论的点包括task scheduler，failover，hash consistency，at least/at most/exactly once, 网络, etc.
 
 ## Basic
 
@@ -17,8 +16,7 @@ Spark SQL: 计算统计类标签
 
 Azkaban: 定时执行计算任务
 
-
-## Simple RDD 
+## Simple RDD
 
 ```python
 class InMemoryRDD:
@@ -55,8 +53,8 @@ class InMemoryRDD:
         return InMemoryRDD(list(set(self.data)))
 ```
 
-
 ## Reference
+
 - [udemy-mastering databricks & apache spark-build ETL data pipeline](https://www.bilibili.com/video/BV1LU4y1s7ac/)
 - [请用通俗形象的语言解释下：Spark中的RDD到底是什么意思？ - 木鸟杂记的回答 - 知乎](https://www.zhihu.com/question/37437257/answer/2571373097)
 - [我终于看懂了HBase，太不容易了... - Java3y的文章 - 知乎](https://zhuanlan.zhihu.com/p/145551967)

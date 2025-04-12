@@ -2,14 +2,14 @@
 
 > 考核关键是如何设计class，class的properties和methods定义好，掌握class的继承
 
-
 ## 1. 面试过程
+
 - clarification: 先理清`业务流程`
 - 根据流程图，找到`core object`，明确`use case`
 - 完善整体设计`class diagram`，写出`class`和`重点method`
 
-
 ## 2. 案例
+
 - [停车场](./parking_lot.md)
 - [电梯](./lift.md)
 - [design Linux file search utility](./unix_file.md)
@@ -20,8 +20,8 @@
 - 中国象棋
 - 操作系统内存管理分页分段的API
 
-
 ## 3. 参考
+
 - Grokking the Object Oriented Design Interview
 - https://github.com/ycwkatie/OOD-Object-Oriented-Design
 - https://github.com/rajat19/system-design

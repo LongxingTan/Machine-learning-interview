@@ -1,13 +1,13 @@
 # 行为面试 Behavior question
 
-> 行为面试不可掉以轻心，面试也是考察是否是值得合作的同事，有针对的准备BQ是**非常**有必要的，BQ主要考察沟通理解能力、文化匹配、资深程度
->- 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略)，从而给出足够的信号。selling your stories and zooming at the right things
->- 体现impact/scope、data driven、足够细节，使用`I`而不是`We`
->- 目标级别高的话，重点强调自己cross-team/cross functional的leadership
->- context之前先用一句话对故事进行总结，action分3-5点讲，同样每点先用一句话总结，总分结构
->- 回答简洁，直击signal；观察面试官的反应，灵活调整每个部分的详略程度，模仿面试官的body language，让面试官感觉：“我乐意和这个人一起工作”
->- 面试开始前一刻，一定把自己**自信、积极**那一面调动出来！除了技术交流、软实力、匹配程度外，还有重要的是对你这个人本身的印象，自信、积极非常重要
-
+> 有针对的准备BQ是**非常**有必要的。BQ主要考察沟通理解能力、文化匹配、资深程度。系统设计和BQ往往决定了offer上限
+>
+> - 故事的重点是体现自己的认知，不光是做了什么，而是为什么这样做 (系统、全局、策略、high level thinking)，从而给出足够的信号。selling your stories and zooming at the right things
+> - 体现impact/scope、data driven、足够细节，使用`I`而不是`We`
+> - 目标级别高的话，重点强调自己cross-team/cross functional的leadership
+> - context之前先用一句话对故事进行总结，action分3-5点讲，同样每点先用一句话总结，总分结构
+> - 回答简洁，直击signal；观察面试官的反应，灵活调整每个部分的详略程度，模仿面试官的body language，让面试官感觉：“我乐意和这个人一起工作”
+> - 面试开始前一刻，一定把自己**自信、积极**那一面调动出来！除了技术交流、软实力、匹配程度外，还有重要的是对你这个人本身的印象，自信、积极非常重要
 
 ## 1. BQ常见问题
 
@@ -21,10 +21,10 @@
   - data-driven的方式来说服合作者和领导，强调自己主动沟通
   - 你和manager意见不一致的时候怎么办，是尽量讨论并做一些trade-off还是无条件服从经理的命令? 答案: 无条件服从经理的命令
 - 怎么说服别人同意你的意见
-    - 不要以自己的身份和地位去压别人，而是摆事实，讲道理
-    - 就事论事，不要上升到人
-    - 意识到自己的错误了，及时承认
-    - confluence without authority
+  - 不要以自己的身份和地位去压别人，而是摆事实，讲道理
+  - 就事论事，不要上升到人
+  - 意识到自己的错误了，及时承认
+  - confluence without authority
 - challenging project
 - think differently
 - simple solution to solve a problem
@@ -46,8 +46,8 @@
   - 稳扎稳打，技术路线选择上要务实，要深入理解
 - Most ambiguous(模糊) work and how you deal with it
 
-
 ## 2. 反问面试官的问题
+
 > ask about project, challenges, company's tech stack or missions to show your interest in joining the company
 
 - What are the **engineering challenges** that the company/team is facing?
@@ -56,18 +56,21 @@
 - HR面: sponsorship，compensation range，recruiting process／timeline
 
 **雷区**
+
 - 不要问面试表现：你觉得我还有哪里可以提高？你觉得我表现怎么样？
 - 不要问题目：这道题的正确解法是什么？
 
-
 ## 3. 复习资料
+
 **精读**
+
 - [https://dev.to/theinterviewsage/series/12638](https://dev.to/theinterviewsage/series/12638)
 - [A Senior Engineer's Guide to the Amazon Leadership Principles Interview](https://interviewing.io/guides/amazon-leadership-principles)
 - [Dan Croitor @youtube](https://www.youtube.com/c/DanCroitor/videos)
 - [彻底击碎行为问题-可能是对你最有帮助的BQ教程](https://www.1point3acres.com/bbs/thread-895663-1-1.html)
 
 **扩展**
+
 - [U-shape: Man in a hole](https://youtu.be/hU6BVxtGd5g)
 - [https://www.youtube.com/@SelfMadeMillennial](https://www.youtube.com/@SelfMadeMillennial)
 - [Career School @youtube](https://www.youtube.com/@CareerSchool)

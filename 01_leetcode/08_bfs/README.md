@@ -1,6 +1,7 @@
 # 广度优先搜索
 
 常见的BFS用来解决什么问题？
+
 - 简单树/图（有向无向皆可）的最短路径长度，注意是长度而不是具体的路径
 - 拓扑排序
   - 一般用于解决有方向的图，non-directed graph不能用， 需要用union find或者普通的DFS/BFS
@@ -10,19 +11,19 @@
   - The time complexity will be O(V+E), each vertex will become a source only once and each edge will be accessed and removed once.
   - The space complexity will be O(V+E), since we are storing all of the edges for each vertex in an adjacency list
 
-
 **基础**
+
 - BFS基本模板（需要记录层数或者不需要记录层数）
 - BFS和DFS都是一种N叉树的遍历，图有必要的时间记录是否被visited。**加入队列的时候**，立刻标记为被访问过
 - 多数情况下时间复杂度空间复杂度都是O（N+M），N为节点个数，M为边的个数
 - 有些题目既可以DFS也可以BFS，此时"用BFS更好还是DFS更好取决于树的形状是又高又窄还是又矮又宽"
 
-
 ## 一些trick
+
 - 通过去掉leave nodes来实现图的bfs
 
-
 ## 基于树的BFS
+
 不需要专门一个set来记录访问过的节点
 
 ```python
@@ -34,6 +35,7 @@ for k in range(K):
 ```
 
 ## 基于图的bfs
+
 - [207 Course Schedule](./207%20Course%20Schedule.md)
 - [210. Course Schedule II](./210.%20Course%20Schedule%20II.md)
 
@@ -47,6 +49,7 @@ collections.deque()
 ```
 
 [1971. Find if Path Exists in Graph](https://leetcode.com/problems/find-if-path-exists-in-graph/description/)
+
 ```python
 class Solution:
     def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
@@ -74,7 +77,43 @@ class Solution:
         return False
 ```
 
+[Find Longest Path in DAG](https://www.geeksforgeeks.org/find-longest-path-directed-acyclic-graph/)
+
+```python
+def topological_sort(V, adj):
+    in_degree = [0] * V
+    for u in range(V):
+        for neighbor, _ in adj[u]:
+            in_degree[neighbor] += 1
+
+    queue = deque([i for i in range(V) if in_degree[i] == 0])
+    top_order = []
+
+    while queue:
+        u = queue.popleft()
+        top_order.append(u)
+        for neighbor, _ in adj[u]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+
+    return top_order
+
+def longest_path(V, adj, s):
+    top_order = topological_sort(V, adj)  # Get topological order iteratively
+    dist = [float('-inf')] * V
+    dist[s] = 0
+
+    for u in top_order:
+        if dist[u] != float('-inf'):
+            for neighbor, weight in adj[u]:
+                dist[neighbor] = max(dist[neighbor], dist[u] + weight)
+
+    print(" ".join(str(d) if d != float('-inf') else "INF" for d in dist))
+```
+
 ## follow up
+
 - graph类的BFS如何scale
 - [BFS｜宽度优先搜索 题型技巧分类总结](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=909366&ctid=9)
 - [How to trace the path in a Breadth-First Search?](https://stackoverflow.com/questions/8922060/how-to-trace-the-path-in-a-breadth-first-search)

@@ -1,16 +1,16 @@
 # 大语言模型LLM
-了解和熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](11_nlp.md)、[分布式机器学习](20_distributed_ml.md)
 
+了解和熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](11_nlp.md)、[分布式机器学习](15_distributed_ml)
 
 ## 1. scaling law
+
 [Transformer Math 101](https://blog.eleuther.ai/transformer-math/)
 
-- C(计算量) = 6 N(模型参数量) * D(数据集大小)
+- C(计算量) = 6 N(模型参数量) \* D(数据集大小)
 - 基础：1个字节8比特，全精度(fp32)下，**1个参数** 32 byte = **4个字节**，半精度下1个参数等于2个字节
 - 1B 模型代表 1 billion参数，如果全精度，共需要 4 billion显存，也就是4G. 半精度需要2G显存。
 - 全量微调: 参数，梯度，优化器. 微调1B模型，全精度：参数4G, 梯度4G, 优化器状态（adam带二阶状态）8G = 16G. 半精度Adam微调需要 8G
 - LoRA微调: 主干网络前向和梯度显存消耗不变，节省的显存主要在优化器状态，优化器只有LoRA权重部分
-
 
 ## 2. 数据
 
@@ -22,10 +22,10 @@
 - LLM-as-judge
 - 拒绝采样
 
-
 ## 3. 模型
 
 **LLaMa**
+
 - https://github.com/naklecha/llama3-from-scratch
 - llama的self-attention和mlp中没有bias
 - norm 使用 rmsnorm 而不是 layernorm，少计算了均值. 使用 pre-norm
@@ -35,8 +35,8 @@
 
 **Mistral**
 
-
 **MOE**
+
 ```python
 import torch
 from torch import  nn
@@ -49,8 +49,8 @@ class MoeLayer(nn.Module):
         self.gate = gate
         self.args = moe_args
 
-    def forward(self, inputs: torch.Tensor):        
-        inputs_squashed = inputs.view(-1, inputs.shape[-1]) # (m, seq_len, dim) --> (m * seq_len, dim)        
+    def forward(self, inputs: torch.Tensor):
+        inputs_squashed = inputs.view(-1, inputs.shape[-1]) # (m, seq_len, dim) --> (m * seq_len, dim)
         gate_logits = self.gate(inputs_squashed) # (m * seq_len, num_experts)
         # (m * seq_len, num_experts_per_tok),
         weights, selected_experts = torch.topk(
@@ -100,7 +100,7 @@ class Rotary(torch.nn.Module):
 
 def rotate_half(x):
     x1, x2 = x[..., : x.shape[-1] // 2], x[..., x.shape[-1] // 2 :]
-    return torch.cat((-x2, x1), dim=x1.ndim - 1) 
+    return torch.cat((-x2, x1), dim=x1.ndim - 1)
 
 
 @torch.jit.script
@@ -108,7 +108,6 @@ def apply_rotary_pos_emb(q, k, cos, sin):
     # q, k: [seq, batch, heads, hdim]
     return (q * cos) + (rotate_half(q) * sin), (k * cos) + (rotate_half(k) * sin)
 ```
-
 
 ## 4. 训练
 
@@ -123,26 +122,31 @@ def apply_rotary_pos_emb(q, k, cos, sin):
   - use smaller models (this reduces weights to train)
 
 ### 4.1 pretrain
+
 > 数据清洗方法、pretrain数据配比、pretrain超参数、退火阶段
 
-
 ### 4.2 SFT
+
 > task种类、sft数据量级、合成数据
 
 **高效参数微调 PEFT**
 
 - Prompt tuning
+
   - 固定模型前馈层参数，仅仅更新部分embedding参数即可
 
 - Adapter Tuning
+
   - 所有参数微调较为低效，只微调下游的几层效果不佳。因此设计了adapter结构，在原结构中稍微增加了参数，只微调该部分，效果接近full-finetune
   - down-project层将高维度特征映射到低维特征，过一个非线形层之后，再 up-project 结构将低维特征映射回原来的高维特征. skip-connection 结构，确保在最差的情况下退化为 identity
 
 - Prefix Tuning 前缀微调
+
   - 问题：最终的性能对人工设计的template的特别敏感，加一个词或者少一个词，或者变动位置，都会造成很大的变化
   - 使用连续的virtual token embedding来代替离散的token. 将一个连续的特定于任务的向量序列添加到输入，称之为前缀. Prefix是可以学习的“隐式”的提示，训练的时候只更新Prefix部分的参数，而Transformer中的预训练参数固定
 
 - p-tuning
+
   - 自然语言的离散模版转化为可训练的隐式prompt
 
 - LoRA 低秩自适应
@@ -172,35 +176,38 @@ def lora_forward_matmul(x, W, W_A, W_B):
 ```
 
 ### 4.3 RLHF
+
 > - RLHF 与 RLAIF: better align with human preferences and reduce undesired outcomes in scenarios
 > - SFT负责Instruction following，RL强化helpfulness、honesty、safety偏好
 > - SFT不具备向后看的能力，只能看到当Token前面的句子；RLHF的critic model和reward model都能看到当前位置后面的句子，所以RLHF能看到整个句子
 > - SFT给的都是正例，没有负反馈；RLHF通过给序列一个低分给模型负反馈，减少生成某个token的概率
+> - online RL 的训练数据是当场采集而来，一边造数据，一边训练模型
 > - dpo / ppo 训练技巧, 相关模型参考[强化学习](./10_reinforcement.md)
 
 [https://github.com/OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)
 
 ![](../.github/assets/02ml-rlhf.png)
 
-
 ### 4.4 Long context
 
 **位置编码内插与外推**
+
 - Position Interpolation
 - NTK
 - YaRN
 
 **工程**
+
 - 序列并行（SP）: 将输入序列进行切分
 
-
 ## 5. 评测
+
 - rouge
 - BLEU
 - perplexity
 
-
 ## 6. 推理
+
 - [Towards Efficient Generative Large Language Model Serving](https://arxiv.org/pdf/2312.15234)
 - [Mastering LLM Techniques: Inference Optimization](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/)
 
@@ -210,13 +217,15 @@ def lora_forward_matmul(x, W, W_A, W_B):
 - dynamic batching, continuous batching, flash attention, quantization
 - throughput 吞吐
   - 估算：单次推理时间 x 同时处理的请求数量
+- 推理prefill阶段是compute bound，算力利用充分；decode阶段是memory bound，算力卡在内存访问上
 
 **KV cache**
+
 > 空间换时间，最新的token计算attention时，与前面的KV计算无关. 下面公式计算attention3时，用到的仍然是K1V1 和 K2V2
+>
 > - [Transformers KV Caching Explained](https://medium.com/@joaolages/kv-caching-explained-276520203249)
 > - [LLM Inference Series: 3. KV caching explained](https://medium.com/@plienhar/llm-inference-series-3-kv-caching-unveiled-048152e461c8)
 > - [大模型推理优化技术-KV Cache](https://mp.weixin.qq.com/s/XRtU1cnn1GX2J3oCDHKOtA)
-
 
 $$
 \begin{align*}
@@ -226,69 +235,82 @@ $$
 \end{align*}
 $$
 
-
 **MQA(multi query attention) / GQA(group query attention)**
+
 - 通过平均池化组内的所有原始头来构建
 
-
 **quantization 量化**
+
 - Post training quantization(PTQ)
+  - OBS(Optimal Brain Surgeon) -> OBQ(Optimal Brain Quantization) -> **GPTQ**
 - Quantization aware training(QAT)
 
-
 **flash-attention**
+
 > 通过矩阵分块计算以及减少内存读写次数的方式，提高注意力分数的计算效率
+>
 > - [图解大模型计算加速系列：FlashAttention V1，从硬件到计算逻辑 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/669926191)
 
 输入QKV分块，保证每个块能够在SRAM（一级缓存）上完成注意力操作，并将结果更新回HBM(高带宽内存)，从而降低对HBM的读写操作.
 
-
 **paged-attention**
-> 针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
-> - [图解大模型计算加速系列之：vLLM核心技术PagedAttention原理 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/691038809)
 
+> 针对增量解码阶段，对于 KV 缓存进行分块存储，并优化了计算方式，增大了并行计算度，从而提高了计算效率
+>
+> - [图解大模型计算加速系列之：vLLM核心技术PagedAttention原理 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/691038809)
 
 **蒸馏**
 
-
 **triton**
+
 - dynamic batching、concurrent execution、optimal model configuration、model ensemble、dali model 等策略来提升在线推理的性能
 
+**框架**
 
 ## 7. 应用与优化
 
+![Uber Figure: Resource scheduling for LLM workflows.](../.github/assets/02ml-llm-resource.png)
+
 ### 7.1 prompt
+
 - https://platform.openai.com/docs/guides/prompt-engineering
 - https://yiyan.baidu.com/learn
 - https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/
 - https://huggingface.co/blog/chat-templates
 
 **COT**
-- 根据llm的self reflection做planning
 
+- 根据llm的self reflection做planning
 
 **Few Shot**
 
-
 ### 7.2 in context learning
+
 - 通过展示数据形式，来激活预训练模型的能力
 - examples采样：从训练数据中选择与query语义相近的示例，效果会比较好
 
-
 ### 7.3 RAG
+
 - 主要针对大语言模型的幻觉、数据时效性、数据安全问题
 - LangChain
 
 ![](../.github/assets/02ml-llm-rag.png)
 
-
 ### 7.4 Agents
+
 [https://www.anthropic.com/research/building-effective-agents](https://www.anthropic.com/research/building-effective-agents)
 
 [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
+### 7.5 大规模部署
+
+- 容器化 + k8s
+- 负载均衡和路由算法
+- 自动扩容/缩容
+- 状态检测
 
 ## 8. 问答
+
 - 一个给定任务，如何优化LLM的效果
   - 从prompt engineering开始
   - RAG
@@ -304,6 +326,7 @@ $$
   - [adam在大模型预训练中的不稳定性分析及解决办法 - 丁晖的文章 - 知乎](https://zhuanlan.zhihu.com/p/675421518)
 - 知识幻觉(track and solve hallucination)
   - 数据(数据重复、Bias、时效性， 一对多的映射关系)，训练（Imperfect representation learning、Parametric knowledge bias）
+- conflation
 - 复读机问题/ 文本生成的重复问题
   - 多样性训练数据
   - 引入噪声
@@ -329,9 +352,10 @@ $$
 - reducing LLM latency at inference time
 - SwiGLU
 
-
 ## reference
+
 **精读**
+
 - [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
 - [MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies](https://arxiv.org/pdf/2404.06395)
 - [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://arxiv.org/pdf/2307.09288)
@@ -339,6 +363,7 @@ $$
 - [https://github.com/meta-llama/llama3](https://github.com/meta-llama/llama3)
 
 **扩展**
+
 - [A Survey of Large Language Models](https://arxiv.org/abs/2303.18223)
 - [A Comprehensive Survey on Pretrained Foundation Models A History from BERT to ChatGPT](https://arxiv.org/abs/2302.09419)
 - [LLM推理优化技术综述：KVCache、PageAttention、FlashAttention、MQA、GQA](https://zhuanlan.zhihu.com/p/655325832)
@@ -372,8 +397,10 @@ $$
 - [vLLM源码之PageAttention - 手抓饼熊的文章 - 知乎](https://zhuanlan.zhihu.com/p/711304830)
 
 **课程**
+
 - https://github.com/mlabonne/llm-course
 - https://github.com/InternLM/Tutorial/tree/camp2
 - https://github.com/datawhalechina/llm-universe
 - https://github.com/rasbt/LLMs-from-scratch/tree/main
 - https://github.com/peremartra/Large-Language-Model-Notebooks-Course
+- https://hanlab.mit.edu/courses/2024-fall-65940

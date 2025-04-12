@@ -2,7 +2,6 @@
 
 尤其是一些矩阵运算与随机数的
 
-
 ## 随机
 
 ```python
@@ -19,6 +18,7 @@ random.shuffle(cards)
 ```
 
 Fisher–Yates shuffle
+
 ```text
 -- To shuffle an array a of n elements (indices 0..n-1):
 for i from n−1 down to 1 do
@@ -28,7 +28,7 @@ for i from n−1 down to 1 do
 
 ```python
 from random import randint
- 
+
 def randomize (arr, n):
     # Start from the last element and swap one by one. We don't need to run for the first element that's why i > 0
     for i in range(n - 1, 0, -1):
@@ -36,7 +36,6 @@ def randomize (arr, n):
         arr[i], arr[j] = arr[j], arr[i]
     return arr
 ```
-
 
 ## 位运算
 
@@ -59,11 +58,11 @@ def randomize (arr, n):
 - radix sort
 - int 转化为 bit字符串 `bin(x)[2:]` 或 `format(n, '08b')`
 
-| Operation    | Code                                 | Example                                       | Note                                        |
-|--------------|--------------------------------------|-----------------------------------------------|---------------------------------------------|
-| union        | `a \| b`                             | `1010 \| 0110 == 1110`                        |                                             |
-| difference   | `a & ~b`                             | `1010 & ~0110 == 1000`                        |                                             |
-| intersection | `a & b`                              | `1010 & 0110 == 0010`                         |                                             |
+| Operation    | Code                                 | Example                                       | Note                                          |
+| ------------ | ------------------------------------ | --------------------------------------------- | --------------------------------------------- |
+| union        | `a \| b`                             | `1010 \| 0110 == 1110`                        |                                               |
+| difference   | `a & ~b`                             | `1010 & ~0110 == 1000`                        |                                               |
+| intersection | `a & b`                              | `1010 & 0110 == 0010`                         |                                               |
 | add          | `a                     \|= 1 << idx` | `1010                      \| 1 << 2 == 1110` | `idx` 2 is 0-indexed from the right e.g. 3210 |
 | discard      | `a &= ~(1 << idx)`                   | `1010 & ~(1 << 3) == 0010`                    | `idx` 3 is 0-indexed from the right e.g. 3210 |
 | contains?    | `bool(a & (1 << idx))`               | `1010 & (1 << 3) == True`                     | `idx` 3 is 0-indexed from the right e.g. 3210 |

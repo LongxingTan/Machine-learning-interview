@@ -1,11 +1,13 @@
 # SQL
 
 > 数据科学岗位，需要好好刷SQL题。建议下载安装一个My SQL，模拟真实SQL环境学习
+>
 > - 对product和metrics的业务了解能够帮助我们更好的准备SQL面试，SQL面试都是围绕着**与business相关的metrics**展开。
-
+> - [LeetCode SQL Top 50](https://leetcode.com/studyplan/top-sql-50/)
 
 ## 知识点
-- 书写顺序: SELECT -> DISTINCT ->  FROM -> JOIN -> ON ->  WHERE -> GROUP BY -> HAVING -> ORDER BY -> LIMIT
+
+- 书写顺序: SELECT -> DISTINCT -> FROM -> JOIN -> ON -> WHERE -> GROUP BY -> HAVING -> ORDER BY -> LIMIT
 - 执行逻辑顺序: FROM -> JOIN -> ON -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> LIMIT
 - self-join
 - case when
@@ -20,6 +22,7 @@
 - NULL value
 - TIMESTAMP
 - 数据库优化
+
   - 创建并使用正确的索引
   - 只返回需要的字段
   - 减少交互次数（批量提交）
@@ -27,6 +30,7 @@
   - EXPLAIN 关键字 是 MySQL 中用来分析和优化 SQL 查询的重要工具
 
 - where和having之后都是筛选条件
+
   - where在group by前， having在group by 之后
   - 聚合函数（avg、sum、max、min、count），不能作为条件放在where之后，但可以放在having之后
 
@@ -34,8 +38,8 @@
   - Hive是基于Hadoop的数据仓库, 能处理 PB 级别的数据, HDFS存储数据, 数据模型列存储, 批处理和分析型查询
   - MySQL关系型数据库, 行式存储模型, 实时查询和小规模数据处理
 
-
 ## 常见问题
+
 - What is the difference between union and union all? where and having?
 - List out the top 3 names of the users who have the most purchase amount on '2018-01-01'
 - Sort the table by timestamp for each user. Create a new column named "cum amount" which calculates the cumulative amount of a certain user of purchase on the same day.
@@ -43,9 +47,10 @@
 - For each day, calculate a 30day rolling average purchase amount.
 - What was the friend request acceptance rate for requests sent out on 2018-01-01?
 
-
 ## 实际
+
 关键配置参数
+
 - innodb_buffer_pool_size、sync_binlog、innodb_log_file_siz
 - SQL explain 优化
 - python\scala 三个连续双引号表示跨行字符串，`.format()`
@@ -53,15 +58,10 @@
   - 跟踪和捕获数据库中数据变更，变更数据同步到其他系统（如数据仓库、缓存、搜索索引等）
 - ORM
 
-
 ## Reference
-- SQL ZOO 
-- w3schools.com/sql
-- udemy: SQL - MySQL for Data Analytics and Business Intelligence 和The Ultimate MySQL Bootcamp
-- sqlbolt.com
-- mode.com/sql-tutorial
-- sqlteaching.com
-- selectstarsql.com
+
+- [SQL ZOO](https://www.sqlzoo.net/wiki/SQL_Tutorial)
+- [w3schools.com/sql](https://www.w3schools.com/sql/)
 - https://github.com/oleg-agapov/data-engineering-book/blob/master/book/2-beginner-path/2-2-sql-for-beginners/sql-1.md
 - 18 best sql online learning resources
 - [数据分析人员需要掌握sql到什么程度？ - 无眠的回答 - 知乎](https://www.zhihu.com/question/379694223/answer/1118850805)
@@ -71,3 +71,9 @@
 - Mosh SQL course
 - [platform.stratascratch.com](platform.stratascratch.com)
 - [SQL 窗口函数 ( window function ) - 子皿三吉的文章 - 知乎](https://zhuanlan.zhihu.com/p/390381181)
+- udemy: SQL - MySQL for Data Analytics and Business Intelligence
+- The Ultimate MySQL Bootcamp
+- sqlbolt.com
+- mode.com/sql-tutorial
+- sqlteaching.com
+- selectstarsql.com

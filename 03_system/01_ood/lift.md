@@ -10,8 +10,8 @@ db -> app
 app -> client
 ```
 
-
 ## 代码
+
 ```python
 # https://leetcode.com/discuss/interview-question/1612174/OOD-Elevator
 from enum import Enum
@@ -22,12 +22,12 @@ class Direction(Enum):
     down = 'DOWN'
     idle = 'IDLE'
 
-    
+
 class RequestType(Enum):
     external = 'EXTERNAL'
     internal = 'INTERNAL'
 
-    
+
 class Request:
     def __init__(self, origin, target, typeR, direction):
         self.target = target
@@ -35,12 +35,12 @@ class Request:
         self.origin = origin
         self.direction = direction
 
-        
+
 class Button:
     def __init__(self, floor):
         self.floor = floor
 
-        
+
 class Elevator:
     def __init__(self, currentFloor):
         self.direction = Direction.idle

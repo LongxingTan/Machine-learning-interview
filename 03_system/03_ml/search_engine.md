@@ -4,10 +4,10 @@
 
 有的业务场景中，通过q2i的用户反馈信息进行排序，进一步提升业务指标。
 
-
 ## 1. requirements
 
 **产品/功能/use cases**
+
 - Is it a generalized search engine (like google) or specialized (like amazon product)?
 - What are the specific use cases and scenarios where it will be applied?
 - What are the system requirements (such as response time, accuracy, scalability, and integration with existing systems or platforms)?
@@ -17,15 +17,16 @@
 - Are there specific search-related challenges unique to the use case (e-commerce)? such as handling product availability, pricing, and customer reviews?
 
 **目标类**
+
 - What is the primary (business) objective of the search system?
 - Personalized? not required
 
 **约束类**
+
 - Is their any data available? What format?
 - response time, accuracy, scalability (50M DAU)
 - budget limitations, hardware limitations, or legal and privacy constraints
 - What is the expected scale of the system in terms of data and user interactions?
-
 
 ## 2. ML task & pipeline
 
@@ -37,8 +38,8 @@
 
 ![](../../.github/assets/03ml-search-engine-pipe.png)
 
-
 query understanding
+
 - 预处理，无效字符、表情直接丢掉，截取前n个字等
 - 纠错，包括错误检测和自动纠错，目前的方法有：噪声信道模型、序列标注模型、seq2seq模型
 - 分词&词性标注，一般都是现成的分词工具+用户词典来做了
@@ -49,8 +50,8 @@ query understanding
 - 丢词，因为目前的搜索引擎更多的是还是以文本匹配的方式进行文档召回，所以如果query中有一些语义不重要的词，那就会丢弃了，并且往往会有多次丢词，比如：北京著名的温泉，在进行召回的时候，会先丢弃“的”字，以“北京、著名、温泉”三个词去和文档集求交集，如果没有好的结果，这三个词会继续丢词，以“北京、温泉”和文档集求交集，这里一般也是用序列标注来做
 - Query改写，其实丢词&纠错也都算改写的一种，不过这里的改写是指找到原始Query的一些等价或者近似Query，规则的方法比较多，也有用seq2seq的
 
-
 整个搜索召回的流程大致如下，以搜索“北京著名的温泉”为例：
+
 1. 对输入的查询进行预处理，比如特殊字符处理、全半角转换。
 2. 查询分词和词性标注，“北京”是地名、“著名”是形容词、“的”是助词、“温泉”是名词。
 3. 基于词表的一次丢词，“的”作为停用词被丢弃。
@@ -63,14 +64,14 @@ query understanding
 10. 由于无合作POI的文本字段也不包含“著名”，二次召回也无结果，因此基于Chunk丢弃品类修饰词“著名”，然后进行三次检索。
 11. 最终返回搜索结果列表，“顺景温泉”、“九华山庄”等北京著名温泉。
 
-
 ## 3. data collection
 
-- The ranking was good if the user clicked on some link and spent significant time reading the page. 
-- The ranking was not so good if the user clicked on a link to a result and then hit “back” quickly. 
+- The ranking was good if the user clicked on some link and spent significant time reading the page.
+- The ranking was not so good if the user clicked on a link to a result and then hit “back” quickly.
 - The ranking was bad if the user clicked on the “next page” link.
 
 ## 4. feature
+
 - user
 - context
 - query
@@ -78,31 +79,31 @@ query understanding
 - user-item
 - query-item
 
-
 ## 5. model
+
 - 多策略关键词挖掘(SPU挖掘/Searchable Product Unit)
 - Point-wise LTR, pairwise LRT
 - rerank
 
-
 ## 6. evaluation
+
 **offline**
 
 **online**
+
 - 相关性
 - 内容质量
 - 时效性
 - 个性化
 
-
 ## 7. deploy & serving
-A/B test
 
+A/B test
 
 ## 8. monitoring & maintenance
 
-
 ## reference
+
 - [Architecture of Nautilus, the new Dropbox search engine](https://dropbox.tech/machine-learning/architecture-of-nautilus-the-new-dropbox-search-engine)
 - [腾讯搜索词推荐算法探索实践](https://mp.weixin.qq.com/s/4j3VZ8yNqwm6FJI9UFOlnw)
 - [美团搜索中查询改写技术的探索与实践](https://tech.meituan.com/2022/02/17/exploration-and-practice-of-query-rewriting-in-meituan-search.html)

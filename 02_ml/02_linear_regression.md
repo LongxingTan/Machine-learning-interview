@@ -1,12 +1,12 @@
 # 线性回归
 
 **基础假设**
+
 - There is a linear relationship between the independent variables(X) and the dependent variables (y)
 - Independence: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
 - Normality: The residuals of the linear regression model are assumed to be normally distributed.
 - Homoscedasticity: Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
 - No Multi-collinearity between features
-
 
 ## 1. 最小二乘法 ordinary least squares
 
@@ -18,25 +18,25 @@
 
 以下向量定义为列向量，注意不同步骤需要清楚定义**谁被看作是谁的函数**
 
-$$ 
-y=w^Tx +b 
+$$
+y=w^Tx +b
 $$
 
 这里，有一个转置T，是为了求两个向量的点积。
 
-$$ 
-w=\mathop {argmin} _{w}Loss(w) 
+$$
+w=\mathop {argmin} _{w}Loss(w)
 $$
 
-Loss function: 
+Loss function:
 
-$$ 
-L(w)=\frac{1}{n}\sum_{i=1}^{n}{(y-\hat{y})^2} 
+$$
+L(w)=\frac{1}{n}\sum_{i=1}^{n}{(y-\hat{y})^2}
 $$
 
 从标准量中计算其梯度(只有一个样本，多样本加连加符号):
 
-$$ 
+$$
 \frac{\partial{L(w)}}{\partial{w_j}} = {(\hat{y} - y)}{x_j}
 $$
 
@@ -45,17 +45,17 @@ $$
 
 其矩阵形式如下:
 
-$$ 
-L= (y-XW)^{T}(y-XW) 
+$$
+L= (y-XW)^{T}(y-XW)
 $$
 
-$$ 
-L=y^Ty-y^TXW-W^TX^Ty+W^TX^TXW 
+$$
+L=y^Ty-y^TXW-W^TX^Ty+W^TX^TXW
 $$
 
 继续化简需要用到矩阵求导的几个规律：
 
-$$ 
+$$
 \frac{\partial{L}}{\partial{w}}=2X^TXw-2X^Ty
 $$
 
@@ -65,24 +65,24 @@ $$
 
 Normal Equation: 解析解-> 导数为0:
 
-$$ 
+$$
 W=(X^TX)^{-1}X^Ty
 $$
 
-
 ## 2. 最大似然法 Maximum likelihood estimation
+
 最小二乘与最大似然等价，同属于频率派(Frequentists)；最大后验则属于贝叶斯派(Bayesians)
 
 什么是似然(likelihood)？在似然中，所有数据对(x, y) 的集合，被看成是一个随机变量X，但X已经被观察到了，已经固定。以最常见的抛硬币模型举例，硬币出现正面或反面就是一个随机变量，一个正常硬币出现正面的概率为1/2。而似然的定义是给定一个硬币，我们抛了10次之后出现了1次正面，出现1/10正面这个事件已经被观察到了并固定，这个硬币是正常硬币的可能性就被称为似然。
 
-$$ 
-w,b=argmax(logP(x|w)) 
+$$
+w,b=argmax(logP(x|w))
 $$
 
 在线性回归中，贝叶斯公式可以写成:
 
-$$ 
-P(w|X)=\frac{P(X|W).P(w)}{P(X)} 
+$$
+P(w|X)=\frac{P(X|W).P(w)}{P(X)}
 $$
 
 - P(X|w)是似然函数，
@@ -105,28 +105,27 @@ $$
 
 误差满足高斯分布，而误差是真值和预测的差值，所以：
 
-$$ 
-P(\hat{y}-xw) \sim N(0，\sigma^2) 
+$$
+P(\hat{y}-xw) \sim N(0，\sigma^2)
 $$
 
 由于误差是均值为0，方差$\sigma^2$的高斯分布，则y的预测值是满足均值为wx，方差为$\sigma^2$的高斯分布。在似然中的x其实代表的是一个样本，即（x,y)数据对，而在特征已知的情况下，似然函数可以进一步表示为：
 
-$$ 
-P(\hat{y}|x,w) 
+$$
+P(\hat{y}|x,w)
 $$
 
 因此，似然也可以表达成一个高斯分布
 
-$$ 
-P(y|x,w) \sim N(w^Tx,\sigma^2) 
+$$
+P(y|x,w) \sim N(w^Tx,\sigma^2)
 $$
 
 可以转化为：
 
-$$ 
+$$
 P(y|x,w)=\frac{1}{\sqrt{2\pi}\sigma}exp(-\frac{(y-w^Tx)^2}{2\sigma^2})
 $$
-
 
 ## 3. 最大后验法与正则 Maximum a posteriori estimation
 
@@ -138,8 +137,8 @@ $$
 
 L1与L2理论涉及到朗格朗日优化。
 
-$$ 
-w=argmax(P(w|X))=argmax(P(X|w).P(w)) 
+$$
+w=argmax(P(w|X))=argmax(P(X|w).P(w))
 $$
 
 从损失函数的角度，加了一个针对w大小的惩罚。
@@ -150,43 +149,50 @@ $$
 - 在损失函数中引入了绝对值，绝对值的导数是不连续的。可采用坐标下降法优化，即每次更新一个w的分量
 
 ### L2正则
+
 - 假设w的先验服从零均值正态分布
 - 解析解变为
 
-$$ 
-w=(X^TX+\lambda I)^{-1}X^TY 
+$$
+w=(X^TX+\lambda I)^{-1}X^TY
 $$
 
 ## 4. 贝叶斯线性回归与高斯过程回归
+
 贝叶斯线性回归要预测出一个关于y的分布来。稍微拓展一下贝叶斯线性回归到高斯过程回归(Gaussian Process Regression)
 
 贝叶斯线性回归最大的不同在于预测的不是关于w的点估计，而是w的分布，即w的期望和协方差。
 
-
 ## 5. 问答
 
 - pros:
+
   - explainable method
   - interpretable results by its output coefficients
   - faster to train than other machine learning models
 
 - cons:
+
   - assumes linearity between inputs and outputs
   - sensitive to outliers
   - can under fit with small, high-dimensional data
 
 - 为什么需要对数值类型特征进行归一化
+
   - 使用梯度下降优化的模型，归一化容易更快通过梯度下降找到最优解，包括线性回归、逻辑回归、支持向量机、神经网络。
 
 - 如何判断是否该用线性回归模型
+
   - EDA画图
   - 检查预测值与真实值的residual残差是否为高斯分布
 
 - Lasso regression如何导致参数稀疏
+
   - 可用于特征筛选
   - 原因: 直观上可以从图像切点理解，数学上可以通过朗格朗日优化解释
 
 - 异常点如何处理
+
   - 检测并去除
   - Huber Loss is a loss function that combines MSE and MAE. It is less sensitive to outliers than a squared error loss and has the advantage of not needing to remove outlier data from the dataset
 
@@ -196,9 +202,10 @@ $$
   - 可以尝试l2正则；可以使用PCA，将特征转为独立的变量
   - feature selection, ridge regression, PCA
 
-
 ## 6. 代码
+
 梯度下降
+
 - 对多元函数的参数求∂偏导数，把求得的各个参数的偏导数以向量的形式写出来，就是梯度
 - 从几何意义上讲，梯度就是函数变化增加最快的方向。减梯度就是朝着减小的方向
 
@@ -210,19 +217,22 @@ def update_weights(w, b, x, y, learning_rate):
     for i in range(N):
         w_grad += -2 * x[i] * (y[i] - (w * x[i] + b))
         b_grad += -2 * (y[i] - (w * x[i] + b))
-    
+
     w -= (w_grad / float(N)) * learning_rate
-    b -= (b_grad / float(N)) * learning_rate    
+    b -= (b_grad / float(N)) * learning_rate
     return w, b
 ```
 
 牛顿法
+
 - 在现有极小点估计值的附近对 f(x) 做二阶泰勒展开，进而找到极小点的下一个估计值
+
 ```python
 # https://www.stat.cmu.edu/~cshalizi/350/lectures/26/lecture-26.pdf
 ```
 
 线性回归
+
 ```python
 # 2018.01.26 我学习机器学习的第一天写的代码，learning_rate too large cause the gradient explosion
 import numpy as np
@@ -280,8 +290,8 @@ if __name__ == "__main__":
     lr.plot(x, y, y_hat)
 ```
 
-
 ## 参考
+
 - [wikipedia-linear regression](https://en.wikipedia.org/wiki/Linear_regression)
 - [stat.cmu.edu/~cshalizi/mreg/15/lectures/04/lecture-04](https://www.stat.cmu.edu/~cshalizi/mreg/15/lectures/04/lecture-04.pdf)
 - [Courses/ml/ppt/04_LinearRegression](http://dengcai.zjulearning.org.cn/Courses/ml/ppt/04_LinearRegression.pdf)

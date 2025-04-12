@@ -2,8 +2,8 @@
 
 > 机器学习工程师MLE -> [机器学习系统设计](./03_ml)
 
-
 ## 1. 面试过程
+
 > - Think like a Tech Lead
 > - Tell the interviewer what you plan to do next
 
@@ -12,12 +12,12 @@
 - 讲述时采用框架思维，在每一块都尽量展现自己思维的广度和深度，tell the interviewer what you plan to do next
 - 主动给出多个选项和自己的倾向，比较不同的 options trade-off，然后再提出自己的 proposal，利用这个过程传达出strong signal
 
-
 ## 2. 基础知识
+
 - [Latency Numbers Every Programmer Should Know](https://gist.github.com/jboner/2841832)
 
-
 ### 操作系统
+
 - [Operating Systems and System Programming - UC Berkeley CS 162](https://github.com/Berkeley-CS162)
 - [Operating System Engineering - MIT 6.828](https://pdos.csail.mit.edu/6.828/)
 - [编码：隐匿在计算机软硬件背后的语言](https://book.douban.com/subject/4822685/)
@@ -27,18 +27,18 @@
 - [Operating Systems: Three Easy Pieces](https://book.douban.com/subject/19973015/)
 - [Operating System Concepts](https://book.douban.com/subject/10076960/)
 
-
 ### Web开发与系统设计
+
 - [Introduction to Computer Networking - Stanford](https://lagunita.stanford.edu/courses/Engineering/Networking-SP/SelfPaced/about)
 
-
 ### 分布式
+
 - [Distributed Systems - MIT 6.824](https://pdos.csail.mit.edu/6.824/schedule.html)
 - [Talent Plan | PingCAP University](https://university.pingcap.com/talent-plan/)
 - [数据密集型应用系统设计](https://book.douban.com/subject/30329536/)
 
-
 ## 3. 复习资料
+
 - [CMU 15213 Introduction to Computer Systems](https://www.cs.cmu.edu/~213/)
 - [MIT 6.824 Distributed Systems](https://pdos.csail.mit.edu/6.824/)
 - [CMU 15721: advance database](https://15721.courses.cs.cmu.edu/)

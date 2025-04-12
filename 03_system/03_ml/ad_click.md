@@ -1,13 +1,14 @@
 # Design ad click prediction system
 
 广告系统是广告与用户流量的匹配。
+
 - 定向，粗排，精排，检索，bidding，新广告，中长尾广告，排期，保量，波动分析，多广告位拍卖，DPA，素材优化，自动化审核，用户择优
 - 转化漏斗：曝光 —> 点击 —> 转化
-
 
 ## 1. requirements
 
 **场景类**
+
 - We have a bidding server which makes bids and produces logs. Also, we have information about impressions and conversions (usually with some delays). We want to have a model which using this data will predict a probability of click (conversion转化)
 - What types of ads are we predicting clicks for (display ads, video ads, searched ads, sponsored content)?
 - Are there specific user segments or contexts we should consider (demographics, location, browsing history)?
@@ -17,20 +18,22 @@
 - How do we collect negative samples (not clicked, negative feedback)?
 
 **功能类**
+
 - personalization
 - diversity, 不能把相似广告放一起
 - explicit negative feedback, multi-task ranking增加一个head, label是hide block
 
 **objective**
+
 - primary business objective: maximize revenue
 - How will we define and measure the success of click predictions (click-through rate, conversion rate)?
 - personalization, diversity, Handle explicit negative feedback
 
 **constraint**
+
 - scale: number of users
 - latency: 50ms to 100ms
 - Imbalanced Data: Click events are sparse relative to impressions, requiring techniques to address imbalance.
-
 
 ## 2. ML task & pipeline
 
@@ -42,8 +45,8 @@
 - 排序(rank)：对于给定的广告候选子集，给出相应的预估值。
 - 策略(bidding&strategy)：根据预估值，通过控制广告的出价、排序公式等，影响流量的最终分配
 
-
 **业务过程**
+
 1. advertiser create ads
 2. ads indexing (inverted index, we can use elastic search)
    - 如何减少广告索引的latency，inverted index + db replica + cache
@@ -52,12 +55,13 @@
 5. ranking
 
 **特点**
-- Imbalance data
 
+- Imbalance data
 
 ## 3. data collection
 
 Data Sources
+
 - Users
   - demographics
 - Ads
@@ -66,7 +70,6 @@ Data Sources
 - user-user friend
 - Labelling
   - negative sampling for imbalance
-
 
 ## 4. feature
 
@@ -77,19 +80,21 @@ It is important for CTR prediction to learn implicit feature interactions behind
 ![](../../.github/assets/03ml-adclick-ad.png)
 
 Contextual Features
+
 - Time: Time of day, day of the week.
 - Device: Mobile vs. desktop, OS, browser.
 - Location: User’s current location.
 
 User-Ad Interaction Features
+
 - Collaborative Filtering: Similar users clicked on similar ads.
 - Real-time Signals: Recent interactions, session data.
 - Implicit Feedback: Hover time, scroll depth.
 
-
 ## 5. model
 
 广告算法主流模型（广告算法基本都是point-wise训练方式，因为广告是很少以列表的形式连续呈现）
+
 - Logistic regression (feature crossing)
 - GBDT
 - GBDT+LR
@@ -103,35 +108,38 @@ User-Ad Interaction Features
 - Wide and Deep
 - Multi-task learning
 
-
 ## 6. evaluation
+
 **Offline metrics**
+
 - Log Loss
 - ROC-AUC
 
 **Online metrics**
+
 - CTR
 - Overall revenue (or ROI)
 - Time Spend
 
-
 ## 7. deployment & serving
+
 - A/B testing
 - Real-Time Inference
   - low-latency serving framework (e.g., TensorFlow Serving) to generate predictions within 50-100ms
   - Cache frequently requested user-ad pairs to reduce latency
 
-
 ## 8. monitoring & maintenance
+
 Detecting Issues
+
 - Performance Degradation: Monitor CTR, revenue, and latency in real-time.
 - Data Drift: Compare feature distributions (e.g., user demographics) over time.
 
 Continuous Improvement
+
 - Retrain models periodically with fresh data.
 - Incorporate new features (e.g., video ad engagement signals).
 - Experiment with advanced architectures (e.g., transformer-based models).
-
 
 ## 9. 优化与问答
 
@@ -149,18 +157,20 @@ Continuous Improvement
 - gdpr、dma这些rule对广告的影响
 - uplift: 预测增量值(lift的部分), 预测某种干预对于个体状态或行为的因果效应(识别营销敏感人群)。
 
-$$ 
-Lift = P(buy|treatment) - P(buy|no treatment) 
+$$
+Lift = P(buy|treatment) - P(buy|no treatment)
 $$
 
-
 ## reference
+
 **精读**
+
 - [Unpacking How Ad Ranking Works at Pinterest](https://www.infoq.com/articles/pinterest-ad-ranking-ai/?topicPageSponsorship=ed11260b-6513-40ba-922f-aae7ac9f942c)
 - [Building an Ad Click Prediction Machine Learning System: Problem Statement and Metrics](https://www.linkedin.com/pulse/building-ad-click-prediction-machine-learning-3tlic/)
 - [Google Ads Ad Rank Explained - Ad Rank Formula, Thresholds, & How to Improve](https://www.youtube.com/watch?v=osdreLTPbJE)
 
 **扩展**
+
 - [On the Factory Floor: ML Engineering for Industrial-Scale Ads Recommendation Models](https://arxiv.org/abs/2209.05310)
 - [snap: Machine Learning for Snapchat Ad Ranking](https://eng.snap.com/machine-learning-snap-ad-ranking)
 - [架构设计之广告系统架构解密](https://zhuanlan.zhihu.com/p/300167370)
@@ -179,3 +189,4 @@ $$
 - [Hulu：视频广告系统中的算法实践 - DataFunTalk的文章 - 知乎](https://zhuanlan.zhihu.com/p/78955633)
 - [On the Factory Floor: ML Engineering for Industrial-Scale Ads Recommendation Models](https://arxiv.org/pdf/2209.05310)
 - [在线广告系统-计算机王冠上的明珠](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=890389&ctid=9)
+- [Instagram ML Question - Design a Ranking Model (Full Mock Interview with Senior Meta ML Engineer)](https://www.youtube.com/watch?v=7_E4wnZGJKo)

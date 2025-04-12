@@ -5,8 +5,8 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 - 视觉和nlp最大的区别：语义稀疏性，域间差异性，无限粒度性
 - Transformer时代三类模型：bert（自编码）、gpt（自回归）、bart（编码-解码）
 
-
 ## 1. Tokenizer
+
 - tokenizer: 大致经历了从word/char到subword的进化
 - word level
   - 词表的长尾效应非常大，OOV问题，单词的形态关系和词缀关系(old, older)
@@ -14,15 +14,16 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
   - 无法承载丰富的语义，序列长度长
 - sub-word level: BPE, Bytes BPE, WordPiece, Uni-gram, SentencePiece
   - 常用词保持原状，生僻词应该拆分成子词以共享token压缩空间
-  - BPE:  byte-pair encoding 无监督分词，自底向上的策略。初始化将每个字符为词典，统计词频，迭代(合并频率最高的词对，更新词频)
+  - BPE: byte-pair encoding 无监督分词，自底向上的策略。初始化将每个字符为词典，统计词频，迭代(合并频率最高的词对，更新词频)
   - wordpiece: 无监督分词，自顶向下的贪心拆分策略，最大似然估计确定最佳分割点(基于概率生成新subword)，词频更新词典
   - SentencePiece库: 基于BPE和uni-gram,根据不同任务或语料库需求，自定义分词模型，更好处理未登录或稀有词
   - chatGPT训练中文: BPE算法在中文上训，最小单元不再是汉字，而是 byte，UTF-8 编码中，一个汉字相当 3 个字节
   - 解决OOV(out-of-vocabulary)问题，even if a word is not seen during training, the model can still understand and generate text based on its constituent parts
 
-
 ## 2. 模型
-**传统** 
+
+**传统**
+
 - BOW
 - tfidf
 - word2vec
@@ -31,22 +32,25 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
   - [https://web.stanford.edu/~jurafsky/slp3/3.pdf](https://web.stanford.edu/~jurafsky/slp3/3.pdf)
 
 **encoder-decoder**
+
 - BART
 - T5
 
 **encoder**
+
 - BERT
 - XLNet
 
 **decoder**
+
 - GPT3
 - PALM
 - LLaMA
 
-
 ### word2vec/glove/fasttext
+
 - word2vec: 本质上是词的共现
-- 缺点: 
+- 缺点:
   - 静态表征(contextless word embeddings). 训练完成做推理时, 每个token的表示与上下文无关
   - 一词多义：disambiguate words with multiple meanings
 - Hierarchical Softmax: 霍夫曼树， n分类变成 log(n) 次二分类
@@ -54,8 +58,8 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
   - 基于词频的采样，w^(0.75)
   - 负样本中选取一部分来更新，而不是更新全部的权重
 
-
 ### Transformer
+
 - Transformer时代几大模型范式, BERT: encoder-only, GPT: decoder-only, T5: encoder-decoder, GLM: prefix-lm
 - 预训练任务：Masked Language Model 和 Next Sentence Predict(Autoregressive)
 - bert下游任务
@@ -72,37 +76,40 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 **ERNIE**
 
 **RoBERTa**
+
 - 调了更好的版本的BERT
 - 预训练，无NSP任务
 - 动态Mask: 训练数据复制多份，每份采用不同的随机挑选 token 进行掩码
 - 更大的词汇表
 
 **XLNet**
+
 - 自回归
 
 **UniLM**
 
-
 **TinyBERT**
+
 - Loss: Embedding Layer Distillation, Transformer Layer Distillation, Prediction Layer Distillation
 
-
 ### GPT
+
 - 自回归模型
 - GPT3: Zero-Shot Learning
 - gpt的四个下游任务
 - Emergent Ability
-
 
 ## 3. 评价指标
 
 **perplexity**
 
 **BLEU**
+
 - BLEU 根据精确率(Precision)衡量翻译的质量，而 ROUGE 根据召回率(Recall)衡量翻译的质量
 - 过于依赖参考，如果译文质量很好但部分字词在参考翻译中没有的话得分会很低；未考虑语法问题
 
 **ROGUE (Recall-Oriented Understudy for Gisting Evaluation)**
+
 - [基于召回率](https://zhuanlan.zhihu.com/p/647310970)
 - ROUGE-N: N-gram拆分后，计算召回率
 - ROUGE-L: 最长公共子序列(非连续)
@@ -110,14 +117,14 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 
 **BertScore**
 
-
 ## 4. 应用
-> 对具体的应用方向应该建立和熟悉其发展脉络
 
+> 对具体的应用方向应该建立和熟悉其发展脉络
 
 ### 4.1 文本分类
 
 知识点
+
 - word2vec
   - HS是怎么做的？负采样怎么做的？
   - 负采样：加速了模型计算,保证了模型训练的效果。模型每次只需要更新采样的词的权重，不用更新所有的权重，那样会很慢。中心词其实只跟它周围的词有关系，位置离着很远的词没有关系，也没必要同时训练更新。采样 ，词频越大，被采样的概率就越大。
@@ -130,70 +137,69 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 - roberta
   - 动态mask，ratio
 
-
 ### 4.2 实体识别
 
 **信息抽取（Information Extraction）**
+
 - 序列标注（Sequence Labeling）
 - 指针网络（Pointer Network）
   - PointerNet
   - UIE: 基于 prompt 的指针网络
 
-
 **实体识别 NER**
+
 - Nested NER/ Flat NER
 - lower layers of a pre-trained LLM tend to reflect “syntax” while higher levels tend to reflect “semantics”
 - CRF 是一个序列化标注算法，接收一个输入序列，输出目标序列，可以被看作是一个 Seq2Seq 模型
 
-
 **关系抽取 RE**
+
 - spert/ CasRel/[TPLinker](https://arxiv.org/abs/2010.13415)/GPLinker
 - 关系抽取后的结果：保存Neo4j
 - 嵌套->GP, 非连续->W2ner, 带prompt->UIE
 
-
 **事件抽取 EE**
-- djhee 和 plmee
 
+- djhee 和 plmee
 
 **Entity Linking**
 
-
 ### 4.3 文本摘要 Text summarization
+
 - 分为抽象式摘要（abstractive summarization）和抽取式摘要(extractive summarization)
 - 在抽象式摘要中，目标摘要所包含的词或短语会不在原文中，通常需要进行文本重写等操作进行生成；
 - 抽取式摘要，通过复制和重组文档中最重要的内容(一般为句子)来形成摘要。那么如何获取并选择文档中重要句子，就是抽取式摘要的关键。传统抽取式摘要方法包括Lead-3和TextRank，传统深度学习方法一般采用LSTM或GRU模型进行重要句子的判断与选择，可以采用预训练语言模型自编码BERT/自回归GPT进行抽取式摘要。
 
-
 **常用指标**
+
 - ROUGE
 - BLEU
-
 
 ### 4.4 关键词提取
 
 key phrase generation
+
 - https://www.zhihu.com/question/21104071
 
 - NPChunker
 
 ### 4.5 文本生成
+
 - beam search
-
-
 
 ## 5. 解决问题
 
 ### 5.1 多语言模型 Multilingual
 
 语言模型
+
 - 语言模型的常用评价指标是困惑度perplexity
 - 为多语言训练SentencePiece (SPM)
 
 ### 5.2 长序列
 
-
 ## 6. 问答
+
 - 为啥文本不用batch norm要用layer norm
   - BN: batch之间每一个element之间的分布，对Batch Size大小很敏感; LN: 每一个example序列之间的分布标准化
   - [Rethinking Batch Normalization in Transformers](https://arxiv.org/abs/2003.07845)
@@ -218,12 +224,14 @@ key phrase generation
 - 生成
   - beam search: 累积概率最大的k个序列
 
-
 ## 参考
+
 **精读**
+
 - [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU)
 
 **扩展**
+
 - [n-gram in hadoop map-reduce](https://github.com/cloudera/python-ngrams/tree/master/native/src/main/java)
 - [秒懂词向量Word2vec的本质 - 穆文的文章 - 知乎](https://zhuanlan.zhihu.com/p/26306795)
 - [语言模型](https://zhuanlan.zhihu.com/p/90741508)
@@ -260,8 +268,8 @@ key phrase generation
 - [在BERT已经成为NLP基础知识的当下，你会在面试中问关于BERT的什么问题? - Elesdspline的回答 - 知乎](https://www.zhihu.com/question/424003949/answer/2349589527)
 - [NLP领域，你推荐哪些综述性的文章？](https://www.zhihu.com/question/355125622)
 
-
 **课程**
+
 - [邱锡鹏: nlp-beginner](https://github.com/FudanNLP/nlp-beginner)
 - [CS224N](https://web.stanford.edu/class/cs224n/index.html#schedule)
 - [Stanford CS25: V2 I Introduction to Transformers w/ Andrej Karpathy]()

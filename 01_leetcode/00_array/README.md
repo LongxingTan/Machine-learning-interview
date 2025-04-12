@@ -5,10 +5,10 @@
 - 相邻比较
 - 互换
 
-
 ## Python常用操作
 
 - 从列表list中找出目标值 **第一个匹配项的索引**
+
 ```python
 a = 0
 list.index(a)
@@ -32,6 +32,7 @@ q.extend(list)  # 两个list concat, 不返回
 ```
 
 - 往某个位置插入某个元素
+
 ```python
 # 手工翻转一个list通过不断往0位置插入
 # 时间复杂度是 O(n)，插入操作需要将列表中所有现有的元素向右移动一个位置，以便为新元素腾出空间
@@ -39,6 +40,7 @@ list.insert(0, num)
 ```
 
 - 列表排序
+
 ```python
 l = sorted(l)
 l = sorted(l, key = lambda x: x[0])
@@ -62,11 +64,13 @@ cars.sort(reverse=True, key=myFunc)
 ```
 
 - 索引倒序遍历
+
 ```python
 range(len(nums) - 1, -1, -1)
 ```
 
 - 列表索引
+
 ```python
 # 左闭右开
 # 从右边取，注意为0会取全体值是否是想要的
@@ -76,6 +80,7 @@ list[::2]  # 每间隔2个取
 ```
 
 - deque
+
 ```python
 # BFS常用
 # my_deque.reverse() 不会创建新的内存空间
@@ -87,6 +92,7 @@ queue.popleft()
 ```
 
 - 定义二维列表
+
 ```python
 matrix = [[0 for _ in range(col)] for _ in range(row)]
 matrix1 = [[0] * col for _ in range(row) ]
@@ -96,17 +102,19 @@ matrix1 = [[0] * col for _ in range(row) ]
 ```
 
 - 二维列表转置
+
 ```python
 
 ```
 
-
 - 个位是否为1
+
 ```python
 x % 10 == 1
 ```
 
 - heapq 堆的操作
+
 ```python
 import heapq
 
@@ -117,6 +125,7 @@ print(heapq.heappop(data))
 ```
 
 - 链表循环内容涉及两个节点判断时
+
 ```python
 # 根据head / head.next / head & head.next 来决定迭代终点
 while head is not None and head.next is not None:
@@ -124,11 +133,13 @@ while head is not None and head.next is not None:
 ```
 
 - 字符串前的空格
+
 ```python
 s.strip()
 ```
 
 - 字符串
+
 ```python
 # ord
 ord(s[0])/ s[0].isdigit()
@@ -139,8 +150,8 @@ s.lower()
 
 - 两层循环中的break，break的是相应层的循环
 
-
 - 多个条件判断时，条件是有先后顺序的。是否越界和是否符合条件可以写在一起
+
 ```python
 # 正确
 while s[l] == s[r] and l >= 0 and r < len(s):
@@ -159,6 +170,7 @@ float('-inf')
 ```
 
 - flag来交替
+
 ```python
 # 280. Wiggle Sort
 

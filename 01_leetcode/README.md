@@ -1,41 +1,41 @@
 # LeetCode
-> 好好刷题，LeetCode在面试时常被认为是衡量CS水平的重要指标。精刷大于泛刷，熟练度大于题量
 
+> LeetCode在面试时常被认为是衡量CS水平的重要指标。**精刷大于泛刷，熟练度大于题量**
 
 ## 1. offline 刷题策略
-大厂面试一般非常规范和模版化，严格按照标准评分。想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此尽量提高熟练度，并踩对得分点和signal。
 
-- 1、零基础的话刷题前先掌握常见数据结构和算法，包括常见类型的解题模版
-- 2、按tag刷题，模版的基础上，不断强化练习。尝试多种解法实现
-- 3、按热度刷题，参加周赛，刷题量达到满意要求。结合问题交流、复杂度分析、头脑测试
-- 4、练习边说边写。面试前，针对面试公司tag和最新面经重点练习
+大厂面试一般相对规范和模版化，按照标准评分(communication, problem solving, coding, verification)。想到某个方向可以加多少分，写出一个实现可以加多少分，有bug扣多少分，答错复杂度扣多少分等，因此尽量提高熟练度，并踩对得分点和signal。
 
+- 1、如果零基础，先掌握常见的数据结构和算法，包括常见类型的解题模版
+- 2、按tag刷题，熟悉模版的基础上，不断强化练习，并尝试多种解法实现
+- 3、按热度刷题，参加周赛，刷题量达到满意要求。练习边说边写，结合题目交流、复杂度分析、头脑测试
+- 4、面试前，针对面试公司tag和最新面经重点练习
 
 ## 2. online 面试解题过程
+
 面试过程中，重要的是: 快速给出bug free代码，良好的**沟通**和**思路介绍**。做题前的寒暄、个人和项目介绍不必随意展开(1~2min)，留够做题时间。
 
 - (1) 面试官出题
 - (2) 面试者读题并 **clarification question**
-  - 有面试官会故意遗漏内容，不明白的地方一定问清楚，而不是随意假设或略过。也可以通过列举test case，来确保理解问题并涵盖所有情况。
+  - 不明白的地方一定问清楚，而不是随意假设或略过，有面试官会故意遗漏内容。可以通过列举test case，来确保理解问题并涵盖所有情况。
   - 功能需求确定好之后，确认输入/输出的类型和边界(input/output type)
-    - 输入数字全是正数或者全是负数， null or empty    
+    - 输入数字全是正数或者全是负数， null or empty
     - 输入string是不是都是English letters (A-Z)，有没有特殊符号
     - 输入是否有重复样本，输出是否允许重复
     - standard input, empty input, malformed input, long input, null input, other edge input
     - 能不能改input，immutable or not (1D/2D array比较常见）
     - 特殊情况输出返回什么
-  - 时间空间复杂度要求
+  - 确认时间空间复杂度要求
     - 要不要in place
     - 有没有内存限制
-  - 区分sub-arrays or subsequence
 - (3) 面试官回答问题保证面试者正确理解题目
-- (4) 面试者思考怎么做，先和面试官讲明白思路，并得到认同
-  - 算法没有得到面试官认同前不要着急动手写代码。第一性原则出发，从逻辑/模拟角度思考如何解决问题。没有思路时，想想更简单、数量更少时如何处理
+- (4) 面试者思考怎么做，先和面试官讲明白思路，并得到认同。思路未得到认同前不要急于写代码
   - Whenever coming across a solution, talk it out and discuss it with the interviewer
+  - 第一性原则出发，从逻辑/模拟角度思考如何解决问题。没有思路时，想想更简单、数量更少时如何处理
   - 2分钟内还没有思路，主动和面试官要提示(hint)
   - 可以询问: Am I in the right direction?
   - 想不到最优的方法也可以先跑一个可行解再优化，不确定是否最优可询问: Could we have a better solution?
-  - 熟悉的题目也可以先说一下穷举/暴力做法，通过分析重复操作或引入高效的数据结构，从而引入最优解  
+  - 熟悉的题目也可以先说一下穷举/暴力做法，通过分析重复操作或引入高效的数据结构，从而引入最优解
 - (5) 确认好思路后写代码实现算法
   - 用什么数据结构，什么算法。讲思路的时候，说清楚为什么选择这个数据结构
   - During writing the code, whenever coming across edge cases, discuss with the interviewer about how to handle the edge case
@@ -50,12 +50,6 @@
   - 空，一个数，两个一样的数(重复)
 - (7) 讲述自己算法的时间、空间复杂度
 - (8) 面试官确认没问题后准备follow up题目或者下一道题目
-  - 算法相关技术也可能被问到
-    - [rate limiter](https://leetcode.com/discuss/interview-question/system-design/124558/Uber-or-Rate-Limiter)
-    - 不同的cache机制
-    - geo data (quad tree)
-    - 文本搜索提示 (trie)
-
 
 ## 3. 公司特点
 
@@ -63,27 +57,33 @@
 > - [大厂的面试的差异和重点](https://www.1point3acres.com/bbs/thread-1021931-1-1.html)
 
 **Google**
+
 - LeetCode: 非tag原题多，hard多(DP, DFS, Backtracking, Trie)，极其看重解决问题的思考过程，自己写test case。面经题仍有帮助
+- [Googleyness & Leadership Interview Questions](https://igotanoffer.com/blogs/tech/googleyness-leadership-interview-questions#googleyness)
 
 **Meta**
+
 - LeetCode: tag原题，35分钟两道题, 看重bug free和最优解
 - ML system design: recommendation, video search, harmful content detection
 
 **Microsoft**
+
 - LeetCode: 基础算法、数据结构的快速实现
 
 **Amazon**
+
 - LeetCode: Grind75， 15分钟一道题，原题，Graph
 - BQ: 每一轮BQ占30分钟+， 2个LP
 
 **Tiktok**
+
 - LeetCode: 不按tag
 - ML: 可能有国内面试习惯，深挖简历项目，MLE讲清领域来龙去脉
-
 
 ## 4. 刷题
 
 ### 4.1 参考刷题列表
+
 > 重点: 刷透高频题，不要假设哪种类别肯定不会考
 
 - [blind75](https://leetcode.com/list/xi4ci4ig/)
@@ -96,8 +96,8 @@
 - [时间复杂度-Abdul Bari's Algorithm Playlist](https://www.youtube.com/playlist?list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O)
 - [Data Structures Easy to Advanced Course - Full Tutorial from a Google Engineer and ACM ICPC World Finalist](https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu)
 
-
 ### 4.2 Python
+
 - 垃圾回收机制gc
 - 全局锁GIL
   - 因为引用计数所以需要全局锁，因为全局锁所以影响多线程
@@ -111,16 +111,16 @@
   - mutable(可变): list, dict, set
   - immutable(不可变): int, float, str, tuple
 
-
 ### 4.3 Java
+
 - [java guide](https://javaguide.cn/home.html)
 
-
 ### 4.4 CPP
+
 - [Containers library](https://en.cppreference.com/w/cpp/container)
 
-
 ### 4.5 CS基础与DSA
+
 - [Introduction to Computer Science - Harvard CS50x](https://cs50.harvard.edu/x/)
 - [Structure and Interpretation of Computer Programs - UC Berkeley CS 61A](https://cs61a.org/)
 - [How to Design Programs](https://book.douban.com/subject/30175977/)

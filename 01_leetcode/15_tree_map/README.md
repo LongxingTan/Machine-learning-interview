@@ -6,4 +6,4 @@
 from sortedcontainers import SortedList
 ```
 
-- JAVA can use TreeSet or TreeMap. 
+- JAVA can use TreeSet or TreeMap.

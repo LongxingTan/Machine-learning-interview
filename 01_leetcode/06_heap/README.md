@@ -1,17 +1,18 @@
 # Heap／Priority Queue
 
 ## 基础
-  - **完全二叉树** (complete binary tree)
-  - list[建堆复杂度](https://zhuanlan.zhihu.com/p/676546653)为O(n)，获得最大值复杂度为O(1)，pop取出最大值或插入任意值复杂度为O(log(n))，因为heapify的复杂度为log(n)
-    - https://stackoverflow.com/questions/51735692/python-heapify-time-complexity
-  - python中只有小顶堆（min heap），最小的元素总是在根结点：heap[0]，父节点元素始终小于或等于所有子节点元素
-    - 小顶堆pop时，把最小的先弹出去
-  - 大顶堆可以通过所有元素变为其负数
-  - heap中的item可以是多元素，例如包括其频次，从而记录其状态
-  - 求Top K/Median问题时，及时联想到heap
 
+- **完全二叉树** (complete binary tree)
+- list[建堆复杂度](https://zhuanlan.zhihu.com/p/676546653)为O(n)，获得最大值复杂度为O(1)，pop取出最大值或插入任意值复杂度为O(log(n))，因为heapify的复杂度为log(n)
+  - https://stackoverflow.com/questions/51735692/python-heapify-time-complexity
+- python中只有小顶堆（min heap），最小的元素总是在根结点：heap[0]，父节点元素始终小于或等于所有子节点元素
+  - 小顶堆pop时，把最小的先弹出去
+- 大顶堆可以通过所有元素变为其负数
+- heap中的item可以是多元素，例如包括其频次，从而记录其状态
+- 求Top K/Median问题时，及时联想到heap
 
 ## 代码
+
 ```python
 # 创建一个堆，可以使用list来初始化为 [] ，或者通过函数 heapify() ，把一个list转换成堆
 import heapq
@@ -23,10 +24,11 @@ print(heapq.heappushpop(raw, -1))  # 先push 再pop
 ```
 
 - find_Kth_smallest_number
+
 ```python
 # 可以排序法，二分查找法，优先队列, quick select
 
-def find_Kth_smallest_number(nums, k): 
+def find_Kth_smallest_number(nums, k):
     heap = []
     for num in nums:
         if len(heap) < k:
@@ -44,14 +46,14 @@ def find_Kth_smallest_number(nums, k):
     # put first k numbers in the max heap
     for i in range(k):
         heappush(maxHeap, -nums[i])
-    
+
     # go through the remaining numbers of the array, if the number from the array is smaller than the
     # top(biggest) number of the heap, remove the top number from heap and add the number from array
     for i in range(k, len(nums)):
         if -nums[i] > maxHeap[0]:
           heappop(maxHeap)
           heappush(maxHeap, -nums[i])
-    
+
     # the root of the heap has the Kth smallest number
     return -maxHeap[0]
 ```

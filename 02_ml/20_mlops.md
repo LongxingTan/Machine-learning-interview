@@ -2,19 +2,17 @@
 
 MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration和automation
 
-- feature pipelines, training pipelines, and inference pipelines
-- data/model version: DVC
-- feature store: feast
-- model version: MLFlow
+- feature pipelines, training pipelines, inference pipelines
+- data/model version: [DVC](https://dvc.org/)
+- feature store: [feast](https://docs.feast.dev/)
+- model version: [MLFlow](https://mlflow.org/docs/latest/index.html)
 - feature caching, data sharding, real-time feature aggregation and serving
-
 
 ## 1. ML部署
 
->- low latency 
->- high qps
->- throughput
-
+> - low latency
+> - high qps
+> - throughput
 
 ### 1.1 strategies
 
@@ -26,14 +24,15 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
 - Blue-green deployment strategy
 - Canary deployment strategy
 
-
 ### 1.2 pipelines
 
 - feature processing
+
   - batch serving: Apache Hive or Spark
   - real-time serving: Kafka, Flink, Spark Streaming
 
 - Training pipeline
+
   - Scheduled Triggering: Apache Airflow, Kubeflow Pipelines
   - Event-Driven Triggering: AWS Lambda or Azure Functions can be set up to monitor certain metrics and trigger the training pipeline
 
@@ -42,8 +41,8 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
     - [Batch Inference at Scale with Amazon SageMaker](https://aws.amazon.com/blogs/architecture/batch-inference-at-scale-with-amazon-sagemaker/)
   - Real-Time Inference: Kafka, Flink, or an HTTP-based API (TensorFlow Serving, TorchServe)
 
-
 ### 1.2 工具
+
 - [tf-serving](https://github.com/tensorflow/serving)
   - 支持热部署，不会使服务失效
   - TF-Serving 默认使用系统的内存分配器（如 glibc 的 malloc）。通过结合 TCMalloc，可以提升高并发场景下部署性能
@@ -51,7 +50,7 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
   - I/O Binding: copy the data onto the GPU
 - [kubeflow](https://github.com/kubeflow/examples/tree/master)
 - [Flyte](https://github.com/flyteorg/flyte)
-- [MLFlow](https://github.com/mlflow/mlflow)
+- [MLFlow](https://mlflow.org/docs/latest/getting-started/intro-quickstart)
 - flask / fastapi / sanic
   - 压力测试 jmeter
 - 模型
@@ -63,12 +62,12 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
 
 - 量化
 
-
 - 高性能
+
   - C++重写inference，配上模型加速措施(剪枝，蒸馏，量化)，高并发请求
 
-
 - LLM推理
+
   - GEMV 是大模型中的核心操作，其耗时主要源于巨大的计算量、频繁调用和硬件瓶颈
   - attention: flash attention, paged attention
   - MOE
@@ -78,39 +77,41 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
 
 - gpu多实例部署
 
-
 ## 2. 模型压缩
 
 - 蒸馏
+
   - 如何设计合适的学生模型和损失函数
 
 - 量化
+
   - 减少每个参数和激活的位数（如32位浮点数转换为8位整数)，来压缩模型的大小和加速模型的运算
 
 - 低秩分解近似
 
 - 剪枝 pruning
 
-
 ## 3. retrain
+
 > - develop a strategy to trigger model invalidations and retrain models when performance degrades.
 > - because of data drift, model bias, and explainability divergence
 
 ![](../.github/assets/02ml-retraining.png)
 
 什么时候触发新的训练？
+
 - amount of additional data becomes available
 - model’s performance is degrading
 
-
 ## 4. Monitoring
+
 - 模型性能: 准确性指标，延迟和吞吐性能
 - 数据：drift
 - 系统：资源使用情况
 - 日志
 
-
 ## 5. 问答
+
 - 模型部署后，怎么检测模型流量: 日志记录
 - 如何将决策树模型部署在1000台机器上
   - 模型序列化: JSON、Pickle 或 Protobuf
@@ -131,8 +132,8 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
   - AWS lambda
   - MLflow, DVC, Neptune, or Weights & Biases
 
-
 ## 参考
+
 - [https://mlip-cmu.github.io/s2025/](https://mlip-cmu.github.io/s2025/)
 - [Open-source Workflow Management Tools: A Survey](https://ploomber.io/blog/survey/#ploomber)
 - [Global MLOps and ML tools landscape](https://www.mlreef.com/blog/global-mlops-and-ml-tools-landscape)
@@ -170,3 +171,5 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
 - https://fullstackdeeplearning.com/course/2022/
 - https://github.com/visenger/awesome-mlops
 - [From MLOps to ML Systems with Feature/Training/Inference Pipelines](https://www.hopsworks.ai/post/mlops-to-ml-systems-with-fti-pipelines)
+- https://github.com/GokuMohandas/Made-With-ML
+- [reward-serving碎碎念 - haotian的文章 - 知乎](https://zhuanlan.zhihu.com/p/32318287230)

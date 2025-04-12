@@ -1,22 +1,24 @@
 # 推荐系统
+
 配合 [机器学习系统设计：推荐系统](../03_system/03_ml/recommendation.md)
 
-
 ## 1. 业务
+
 推荐系统是一个**优化**过程，设定目标，通过优化使目标最大化。常见推荐系统大多是i2u，即把物品推荐给用户，不过也有friend recommendation这种u2u的推荐。
+
 - 整体流程一般是: 召回、排序(粗排、精排)、策略
 
 **推荐与搜索的区别：**
+
 - 搜索是用户的主动行为，带query，返回结果与query的相关性非常重要. 第一是保证相关性，第二才是增强个性化
 
-
 **广告和推荐的区别：**
+
 - 广告除了平台和用户，多了广告主一方。因此需要关注平台、广告主ROI、用户体验的平衡
 - 搜索可以认为有正确答案的，人主动找item；广告是item找人; 推荐是人被动接收信息
 - 广告点击率更低，正样本非常少
 - 推荐注重相对顺序(precision/auc)，广告注重score本身(logloss)
 - 广告侧变动比较快，为了收益更快更新候选，在线召回. 推荐往往只需离线算出候选集(候选集低频更新时)然后在线ranking
-
 
 ## 2. 模型
 
@@ -25,6 +27,7 @@
 ![retrieval](../.github/assets/03ml-retrieval.png)
 
 从**海量**物品库里**快速**找出用户可能感兴趣的物品 （亿 -> 千）
+
 - 多通道召回(multiple source), Negative Sampling
 - 统计类，热度，LBS，如：全城热搜、区域热搜；行为，如：看过、买过、看了又看、搜了又搜；
 - 协同过滤类，UserCF、ItemCF
@@ -35,8 +38,8 @@
 - U2I，如DSSM、YouTube DNN、Sentence Bert
   - 向量召回
 
-
 **双塔**
+
 - 用户塔特征 user feature+context feature，商品塔的特征商品属性及基础特征
 - 训练时cosine similarity, 服务时ANN搜索
 - 正样本：热度非均匀采样；负样本：简单负样本(全量item抽取)，困难负样本（粗排 精排筛选掉的），不能包含曝光未点击(可能有兴趣)
@@ -44,10 +47,10 @@
 - point-wise，pair-wise, list-wise
 - 物料由于数量非常大，特性相对稳定，存入向量数据库。用户兴趣可能快速变化，embed根据权重重新计算，并从物料向量数据库中knn搜索
 
-
 **评价指标**
 
 离线:
+
 - 召回精度：衡量召回链路Top-N召回的准确性。
   - 一般采用Recall@K、Precision@K、F1@K、Hit-rate@K, AUC, MRR(Mean Reciprocal Rank), GAUC(计算同一个广告不同用户的auc加权平均)
   - Hit Ratio (HR, 命中率)
@@ -62,7 +65,8 @@
 - 召回新颖性：衡量召回链路能否给用户推荐没有过行为的item。
   - 计算召回item的平均流行度，平均流行度如果越低，那么可以认为召回的新颖度越高
 
-在线: 
+在线:
+
 - ctr、cvr、gmv(商品交易总额), pctr, pGMV, discovery=(#new categories)/(#all categories)，discovery分母是用户每天点击的总类别数，而分子是过去15天里头的新类别
 - 日/月活跃用户（DAU/MAU），用户互动量/率（包括转赞评），用户停留时长
 - A/B Test：观测效率指标，曝光占比、点击率、多样性、新颖性等指标
@@ -72,8 +76,8 @@
   - 对于效果差的链路，可分人群观测下效果，进一步精细化召回
 
 counterfactual evaluation（反事实评估）
-- 考虑“如果...将会...”的情景来评估推荐结果的可信度和解释的质量
 
+- 考虑“如果...将会...”的情景来评估推荐结果的可信度和解释的质量
 
 **优化**
 
@@ -90,13 +94,13 @@ counterfactual evaluation（反事实评估）
   - 面向后链路的一致性建模
   - 各种工业经验trick，包括但不限于特征、结构、loss
 
-
 ### 2.2 排序
 
 - 特征工程，多目标排序，复杂网络
 - learning to rank 流程三大模式（point-wise、pair-wise、list-wise），主要是特征工程和CTR模型预估。pairwise在搜索排序中提出，在推荐排序中效果有可能比pointwise差。
 - 常见的特征挖掘（user、item、context，以及相互交叉）
 - 粗排：**双塔**, 小规模神经网络
+
   - 一种是级联粗排，拟合精排的结果，正样本选择精排的topk，负样本选择精排的尾部（排序结果最后几名）或者从召回的结果随机选择一些；
   - 另一种和精排一样，直接拟合真实的用户行为。学习样本的ground truth上限更高，但和精排的一致性可能没那么好，粗排的结果可能精排不给通过
 
@@ -108,14 +112,15 @@ counterfactual evaluation（反事实评估）
 - light ranking/ heavy ranking
 
 **评价指标**
+
 - 排序模型的评估指标，比较常见的有NDCG(Normalized Discounted Cumulative Gain)、MRR、MAP、PNR
 - counterfactual evaluation (offline policy evaluation):
   - [Counterfactual Evaluation of Slate Recommendations with Sequential Reward Interactions](https://arxiv.org/abs/2007.12986)
 
 **优化**
+
 - 特征工程: 添加更多特征表征，cross feature, sequence feature
 - 在线学习 (continual online training)
-
 
 ### 2.3 重排
 
@@ -127,11 +132,9 @@ counterfactual evaluation（反事实评估）
 - 插入广告
 - removing potentially harmful content
 
-
 ### 2.4 探索与发现
 
 - bandit(多臂老虎机)、Q-Learning、DQN
-
 
 ### 2.5 Infra
 
@@ -141,17 +144,15 @@ counterfactual evaluation（反事实评估）
 - Serving systems (TFX)
 - Model tracking and Management systems (Kubeflow, MLFlow)
 
-
-
 ## 3. 问答
 
 ### How to scale
+
 - the component of retrieval and ranking is already designed for scale
 - read the code from [dlrm](https://github.com/facebookresearch/dlrm/blob/f06d3deed5a15710fb28e0ede0af31ebd53789cb/data_loader_terabyte.py#L350)
 - parameter server
 
 ### Serve personalized recommendations at a low latency
-
 
 ### Bias
 
@@ -168,9 +169,10 @@ counterfactual evaluation（反事实评估）
 - [CTR/推荐系统中Debias应用概述文章汇总](https://zhuanlan.zhihu.com/p/518175104)
 - [推荐系统领域有啥巧妙的idea？ - 搬砖人的回答 - 知乎](https://www.zhihu.com/question/362190044/answer/2313113364)
 
-
 ### 冷启动
+
 冷启动推荐效果不佳，主要在于交互数量少，ID embedding学的不够好
+
 - 框架: 全链路优化（包括召回、排序），流量调控（流量怎么在新物品、老物品中分配）
 - user冷启动影响留存，item冷启动影响生态。关键是利用好side info
   - Airbnb根据side information人工将user/item分群的方式
@@ -180,19 +182,16 @@ counterfactual evaluation（反事实评估）
     - 新物品统一使用一个共享的default embedding
     - 利用相似物品的embedding
 
-
 ### 长尾问题
 
-
 ### 多任务
-
 
 ### 模型更新方案
 
 - 按天增量训练 或者 实时训练（在线学习）
 
-
 ### 线上线下不一致 offline online inconsistency
+
 - 线上链路和特征一致性，通过线上线下采用同一个特征工程包
 - 特征穿越，缺失
 - 实验流量是否均匀、是否置信
@@ -201,9 +200,7 @@ counterfactual evaluation（反事实评估）
   - 对齐样本空间。拿较长周期的历史样本回溯训练新模型
   - 模型热启动。从老模型参数基础上热启训练新模型，尤其是embedding
 
-
 ### ab test
-
 
 ## 4. 论文
 
@@ -212,9 +209,11 @@ counterfactual evaluation（反事实评估）
 用户 U; 查询 Q; 查询返回的文档列表 D=(D1, D2, D3); 用户的点击 Y=(Y1, Y2, Y3); 如果用户点击了 Di, 那么 yi = 1, 否则 yi = 0
 
 - 目标：观看时长 （为减少标题党推荐，是否会影响长短视频bias）
+
   - 通过改变样本权重来预测观看时长。正样本权重就是时长，负样本权重为1
 
 - 召回
+
   - 抽象成一个海量类别的多分类问题。对于一个用户，在当前的上下文场景下，观看每个视频的概率
   - 模型：单塔 embed -> avg -> concat embed -> MLP
   - 训练：超多分类通过sample negative classes, in-batch loss 随机采样
@@ -230,7 +229,6 @@ counterfactual evaluation（反事实评估）
   - 特征
     - 连续特征进行规范化：神经网络对数据的数值范围和分布十分敏感
 
-
 [Sampling-Bias-Corrected Neural Modeling for Large Corpus Item Recommendations]()
 
 - 召回
@@ -241,11 +239,10 @@ counterfactual evaluation（反事实评估）
 
 [Real-time Personalization using Embeddings for Search Ranking at Airbnb]()
 
-
 [DIN-Deep Interest Network for Click-Through Rate Prediction](https://arxiv.org/abs/1706.06978)
 
-
 ## 参考
+
 - [Recommender Systems: The Most Valuable Application of Machine Learning (Part 1)](https://towardsdatascience.com/recommender-systems-the-most-valuable-application-of-machine-learning-part-1-f96ecbc4b7f5)
 - [https://github.com/guyulongcs/Awesome-Deep-Learning-Papers-for-Search-Recommendation-Advertising](https://github.com/guyulongcs/Awesome-Deep-Learning-Papers-for-Search-Recommendation-Advertising)
 - [https://github.com/tangxyw/RecSysPapers](https://github.com/tangxyw/RecSysPapers)

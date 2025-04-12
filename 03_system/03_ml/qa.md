@@ -1,13 +1,14 @@
 # 问答系统
 
 > 传统智能客服系统需要为每种任务单独设计和维护特定模型
+
 - Information Retrieval: 基于问答库，利用信息检索(召回、排序)从问答库中选择查询问题与已有问题和答案中最相似的作为输出
 - Knowledge Based Question Answering: 基于知识库，围绕知识库的实体或者关系，把问题转化成数据库上的查询语句，然接查库获取答案
 - Task-Bot: 定义场景下一共需要哪些槽值（Slot），用户对话中提到了槽值，抽取记录下来，如果没提到的，就反问，直到槽值都填满了进行查询给出操作
 - generative/Seq2seq Bot: 完全生成式模型
 
-
 ## 1. requirements
+
 - 闲聊还是任务(业务型，知识型)
 - Close-domain QA 还是 Open-domain QA (海量文档，来回答一个事实性问题factoid questions)
 - 单轮(single-turn)还是多轮(multi-turn)
@@ -16,8 +17,8 @@
 - 多语言
 - non-functional requirement: **latency** 和 **throughput**
 
-
 ## 2. ML task & pipeline
+
 - 检索式（Retrieval），生成式（Generative），任务式
   - 检索式：主要思路是从对话语料库中找出与输入语句最匹配的回复，这些回复通常是预先存储的数据。
   - 生成式：主要思路是基于深度学习的Encoder-Decoder架构，从大量语料中习得语言能力，根据问题内容及相关实时状态信息直接生成回答话术。
@@ -27,53 +28,50 @@
 - GPT
 - 安全
 
-
 ### 2.1 任务型
+
 管道方法
+
 - 自然语言理解(领域识别 domain，意图识别 intents，语意槽填充 slots)
 - 对话管理 Dialogue Management(状态追踪，对话策略优化，知识库与API)
 - 自然语言生成
 
-
 ### 2.2 端对端LLM
+
 [How to train your own Large Language Models](https://blog.replit.com/llm-training)
 
-
 ## 3. data collection
-
 
 ## 4. model
 
 ### 4.1 问题理解
+
 - 领域/意图识别
 - 实体识别
 - 槽位填充
 
-
 ### 4.2 召回
+
 - 倒排索引（Inverted Index）和近似近邻搜索（ApproximateNearest Neighbor Search）进行快速检索
 
-
-
 ## 5. evaluation
+
 - 传统生成指标n-gram based metrics (BLEU、ROUGE)
 - 基于语义距离的指标 BERT-Score
 - MT-bench和Chatbot Arena进行人工排序
 - 使用GPT4等模型进行打分
 
-
 ## 6. deploy & serving
-
 
 ## 7. monitoring & maintenance
 
-
 ## 8. 优化与问答
+
 - 如何处理业务对话系统中的unexpected intent
   - 可继续阅读参考rasa中的：Unexpected Intent Policy
 
-
 ## 参考
+
 - [对话系统与四大天王 - 王岳王院长的文章 - 知乎](https://zhuanlan.zhihu.com/p/358001553)
 - [QA survey](https://github.com/BDBC-KG-NLP/QA-Survey-CN)
 - [美团智能客服核心技术与实践](https://tech.meituan.com/2021/09/30/artificial-intelligence-customer-service.html)

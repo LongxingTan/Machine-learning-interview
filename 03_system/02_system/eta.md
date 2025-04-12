@@ -1,6 +1,5 @@
 # ETA
 
-
 - They represent the physical map as a graph
 
 - They compute ETA by finding the shortest path in the directed weighted graph
@@ -17,6 +16,6 @@
 
 - They use the Kalman filter and Viterbi algorithm for map matching
 
-
 ## reference
+
 - [https://newsletter.systemdesign.one/p/uber-eta](https://newsletter.systemdesign.one/p/uber-eta)

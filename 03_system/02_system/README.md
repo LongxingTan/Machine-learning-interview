@@ -15,8 +15,8 @@
   - consistency: Lock + Time To Live
   - large traffic: Message queue
 
-
 ## Template
+
 - Functional requirement
 - NonFunctional requirement
   - summarize系统重点: read or write heavy, consistency or availability more important
@@ -25,9 +25,10 @@
 - DataSchema + Scale
 - Monitoring/Metrics
 
-
 ## 常见面试
+
 > Write Heavy System or Read Heavy System, Strong Consistency System, consistency/ availability priority, Scheduler System
+
 - [Design a URL shortener (e.g. Bitly)](./tinyurl.md)
 - [AD Click Aggregator](./ad_click_aggregator.md)
 - [Web Crawler (e.g. Google)](./crawler.md)
@@ -61,8 +62,8 @@
 - Design large scale devices location tracker
 - Top K
 
-
 ## High level design
+
 > 瓶颈，scale, tradeoff
 
 client -> load balancer -> web service/API -> memory cache -> DB
@@ -71,16 +72,18 @@ web/mobile -> HAproxy/ELB -> API Gateway -> Nginx server/Kube deployment/REST ->
 
 client -> reverse proxy -> web service -> message queue -> application server -> cache -> DB
 
-
 ## 基础
 
 ### 数据库基础
+
 **数据库规范化(Normalization)**
+
 - Normalisation Form(NF)，其中包括第一范式、第二范式、第三范式、第四范式以及第五范式(1NF、2NF、3NF、4NF、5NF)
 - SQL provides ACID transaction
 
 **SQL**
 需要支持transaction和join的
+
 - SQL(ACID)
 - consistency
 - structured data (fixed schema)
@@ -89,32 +92,36 @@ client -> reverse proxy -> web service -> message queue -> application server ->
 
 **NoSQL**
 需要high TPS和灵活schema的
+
 - high performance
 - unstructured data (flexible schema)
 - availability
 - easy scalability, 分布式架构在 NoSQL 数据库中非常普遍
-
 
 ### 网络基础
 
 Restful API
 
 HTTP/HTTPS
+
 - HTTP是基于TCP/IP协议的应用层协议，定义的是传输数据的内容规范
 
 RPC
+
 - 解决分布式系统中，服务之间的调用问题；远程调用时，让调用者感知不到远程调用的逻辑
 - RPC架构的核心组件: Client, Server, Client Stub, Server Stub, stub理解为存根
 
 socket
+
 - Socket不属于协议，而是一个调用接口（API），属于网络协议的传输层，是对TCP/IP协议的封装
 - socket长链接: 长连接多用于操作频繁，点对点的通讯，而且连接数不能太多情况；如推送，聊天，保持心跳长连接等
 
 TCP
+
 - 建立连接需要经过三次握手，断开连接需要经过四次分手
 
-
 ### 分布式基础
+
 - load balancer
 - Horizontal scaling
 - caching
@@ -125,11 +132,12 @@ TCP
 - paxos and raft
 
 ### 消息队列基础
+
 - [你就能明白kafka的工作原理了](https://zhuanlan.zhihu.com/p/68052232)
 - https://medium.com/@andrew_schofield/queues-for-kafka-29afa8aeed86
 
-
 ## 问题
+
 - How to do scale
   - 数据分区（Sharding）
   - 功能分区（Functional Partitioning）
@@ -150,9 +158,10 @@ TCP
 - 热点数据处理
 - 幂等 Idempotent
 
-
 ## Reference
+
 **精读**
+
 - [grokking-the-system-design-interview](https://www.educative.io/courses/grokking-the-system-design-interview)
 - [system design primer](https://github.com/donnemartin/system-design-primer)
 - [DDIA-Designing Data-Intensive Application](https://github.com/Vonng/ddia)
@@ -161,6 +170,7 @@ TCP
 - [一篇文章解决所有system design面试](https://www.1point3acres.com/bbs/thread-559285-1-1.html)
 
 **扩展**
+
 - [How Slack Works](https://www.youtube.com/watch?v=WE9c9AZe-DY&list=PLndbWGuLoHeYTBaqFu31Nac-19qsdUl_V)
 - Web Application and Software Architecture 101
 - [Jordan has no life](https://www.youtube.com/@jordanhasnolife5163/videos)

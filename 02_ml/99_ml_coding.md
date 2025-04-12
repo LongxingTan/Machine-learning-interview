@@ -1,13 +1,14 @@
 # 机器学习面试代码
+
 - [10min pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
 - [60min pytorch](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html)
 - [Huggingface transformers course](https://huggingface.co/learn/nlp-course/en/chapter1/1)
 - [ML code challenge](https://www.deep-ml.com/)
 
-
 ## 1. 目标与评价
 
 **损失函数**
+
 ```python
 import numpy as np
 
@@ -53,6 +54,7 @@ class CrossEntropyLoss2:
 ```
 
 - focal loss
+
 ```python
 import torch
 from torch import nn
@@ -69,26 +71,26 @@ class FocalLoss(nn.Module):
         return -torch.mean(loss)
 ```
 
-
 **指标**
 
 - AUC
+
 ```python
 
 ```
 
 **cross validation**
+
 ```python
 
 ```
-
 
 ## 2. 统计学习模型
 
 **线形回归: native**
 
-
 **线性回归: numpy**
+
 ```python
 
 ```
@@ -96,12 +98,13 @@ class FocalLoss(nn.Module):
 **逻辑回归: native**
 
 **逻辑回归: numpy**
+
 ```python
 
 ```
 
-
 **决策树分类**
+
 ```python
 import numpy as np
 
@@ -114,17 +117,14 @@ class DecisionTree:
         pass
 ```
 
-
 **决策树回归**
-
 
 **Xgboost回归**
 
-
 **Xgboost分类**
 
-
 **K-means**
+
 ```python
 import numpy as np
 
@@ -180,17 +180,17 @@ class KMeansCluster:
 
 **KNN**
 
-
 **PCA**
+
 ```python
-from numpy.linalg import svd 
+from numpy.linalg import svd
 
 ```
-
 
 ## 3. 深度学习模型
 
 **MLP-numpy**
+
 ```python
 import numpy as np
 
@@ -209,7 +209,7 @@ class Dense:
     def backward(self, accum_gradient, lr):
         # accum_gradient是loss对 layer_output的gradient, 形状相同
         grad_weight = np.matmul(self.layer_input.T, accum_gradient)  # (input_dim, output_dim)
-        grad_bias = np.sum(accum_gradient, axis=0, keepdims=True) 
+        grad_bias = np.sum(accum_gradient, axis=0, keepdims=True)
 
         grad_input = np.matmul(accum_gradient, self.weight.T)  # (1, output_dim), weight更新前计算
 
@@ -221,7 +221,9 @@ class Dense:
 **MLP-torch**
 
 **CNN-numpy**
+
 - option1: native
+
 ```python
 import numpy as np
 
@@ -289,11 +291,12 @@ class Conv2D:
 ```
 
 - option2: 转化为一个大矩阵运算, 加快训练速度
+
 ```python
 import numpy as np
 
 def image2col():
-    return 
+    return
 
 def col2image():
     return
@@ -329,6 +332,7 @@ def conv2D(image, kernel, padding=0, strides=1):
 ```
 
 **CNN-torch**
+
 ```python
 
 ```
@@ -347,21 +351,25 @@ def conv1d(x, scope, nf, *, w_init_stdev=0.02):
 ```
 
 **LSTM-numpy**
+
 ```python
 
 ```
 
 **LSTM-torch**
+
 ```python
 
 ```
 
 **Attention-numpy**
+
 ```python
 
 ```
 
 **Attention-torch**
+
 ```python
 # https://nlp.seas.harvard.edu/annotated-transformer/
 
@@ -385,7 +393,6 @@ class MultiHeadAttention(nn.Module):
         self.q_proj = nn.Linear(d_model, d_model)
         self.k_proj = nn.Linear(d_model, d_model)
         self.v_proj = nn.Linear(d_model, d_model)
-
         self.out_proj = nn.Linear(d_model, d_model)
 
     def forward(self, q, k, v, mask=None):
@@ -393,7 +400,7 @@ class MultiHeadAttention(nn.Module):
         k_state = self.k_proj(k)
         v_state = self.v_proj(v)
 
-        batch_size = q_state.size(0) 
+        batch_size = q_state.size(0)
         # view只适合对满足连续性条件（contiguous）的tensor
         q_state = q_state.view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
         k_state = k_state.view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
@@ -409,12 +416,9 @@ class MultiHeadAttention(nn.Module):
 
 **Dropout**
 
-
 **BatchNorm**
 
-
 **Activation**
-
 
 ## 4. 领域-NLP
 
@@ -422,15 +426,12 @@ class MultiHeadAttention(nn.Module):
 
 ```python
 # https://web.stanford.edu/~jurafsky/slp3/3.pdf
-# 
 
 ```
-
 
 **tfidf**
 
 [geeksforgeeks](https://www.geeksforgeeks.org/tf-idf-model-for-page-ranking/)
-
 
 ```python
 # term-frequency: w represents a word, d means the document
@@ -488,7 +489,7 @@ def compute_inverse_document_frequency(documents: List[str]) -> dict[str, float]
 ```
 
 ```python
-def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_frequency: dict[str, int]):      
+def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_frequency: dict[str, int]):
     tfidf = dict()
     for word, tf_word in term_frequency.items():
       tfidf[word] = tf_word * inverse_document_frequency[word]
@@ -497,19 +498,17 @@ def calculate_feature_vector(term_frequency: dict[str, int], inverse_document_fr
     return tfidf_vector
 ```
 
-
 **word2vec**
 
 **Bayes文本分类器**
+
 ```python
 
 ```
 
 **kv-cache**
 
-
 **bert-summary**
-
 
 **tokenizer: BPE贪心**
 
@@ -551,6 +550,7 @@ for i in range(num_merges):
 ```
 
 **positional encoding**
+
 ```python
 import numpy as np
 import torch
@@ -566,12 +566,14 @@ def get_positional_embedding(d_model, max_seq_len):
 ```
 
 **beam search**
+
 ```python
 # https://zhuanlan.zhihu.com/p/114669778
 
 ```
 
 **top_k LLM token decoding**
+
 ```python
 import numpy as np
 
@@ -589,40 +591,37 @@ def top_k_sampling(logits, k=5):
     sampled_token = np.random.choice(top_k_indices, p=top_k_probs)
     return sampled_token
 
-logits = np.array([1.2, 0.8, 0.5, 2.0, 1.5]) 
+logits = np.array([1.2, 0.8, 0.5, 2.0, 1.5])
 sampled_token = top_k_sampling(logits, k=3)
 print("Sampled token index:", sampled_token)
 ```
 
-
 ## 5. 领域-CV
-
 
 ## 6. pipeline
 
 **XGBoost**
 
-
 **torch**
 
-
 **PySpark**
-
 
 ## 7. 特征工程
 
 **前处理-转换**
+
 ```python
 
 ```
 
 **数量特征-pandas**
 
-
 **数量特征-SQL**
-
 
 **类别特征-pandas**
 
-
 **类别特征-SQL**
+
+## Reference
+
+- [https://github.com/eriklindernoren/ML-From-Scratch](https://github.com/eriklindernoren/ML-From-Scratch)

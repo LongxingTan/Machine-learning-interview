@@ -6,6 +6,7 @@
 因此也决定了召回模型是late fusion, 而排序模型是early fusion(较早进行特征融合能够提升预测精度).
 
 配合[推荐系统理论](../../02_ml/17_recommendation.md)，针对不同领域，如电商、O2O，针对领域提出针对性的优化
+
 - 电商推荐业务：曝光->点击->购买
 - 地点约束，例如yelp的饭馆推荐涉及geolocation information
 - user的 graph network，例如facebook [newsfeed推荐](./news_feed.md)
@@ -14,11 +15,12 @@
 - O2O场景广告特点：移动化、本地化、场景化、多样性
 - [Point of interest](./poi_recommendation.md)
 
-
 ## 1. requirements
+
 > 推荐系统的核心功能还是推荐的personalization accuracy，diversity
 
 **Functional/use cases**
+
 - what is the product for which we have to build a recommendation system, How are we different from XX? Who is the producer/consumer
 - Homepage recommendation, session based next item recommendation (short term interest), or related item recommendations
 - Explicit feedback or Implicit feedback （即使有explicit, 一般也会选择implicit）
@@ -29,8 +31,8 @@
 - Ranking / Localization
 - 是否有friend, follow. 有的话可以作为一个召回通道
 
-
 **Non-Functional**
+
 > 一定要clarify: scalability, low latency. 因为这两个non-functional requirement决定了后面怎么设计
 
 - MVP and Non-MVP
@@ -40,39 +42,37 @@
 - consistency: read/ write heavy
 - dau/ qps / peak qps
 
-
 ## 2. ML task & MVP
 
 **名词解释**
+
 - 曝光(impression): 文档被用户看到
 - 点击率(click-through-rate，CTR): 文档d曝光的前提下，用户点击d的概率
 - 交互行为(engagement): 在点击的前提下, 文档的点赞、收藏、转发、关注作者、评论；电商的加购物车、下单、付款
 
-
 推荐系统的重要性源自**信息过载**与**人们行为的长尾分布**. 目的是Link user with items in a reasonable way.
+
 - 长尾/热门
   - 头部用户精细刻画，准确记忆；占比更大的稀疏长尾，需要很好地泛化
 - 记忆/探索
 - 稀疏/embedding
 
-
 ![](../../.github/assets/03ml-reco.png)
 
 ![](../../.github/assets/03ml-reco-cases.png)
 
-
 ## 3. data & labels
+
 - 关键：分布
 - 通过客户端以及服务端的实时数据，经过流处理的平台，把用户、商品、场景的信息以及端侧的信息全部都收集全
 - 再通过特征工程的很多方法，如归一化、离散化、非线性离散等很多的变换，把特征处理成下游模型处理的方式。
-- 处理完后一般会放在特征存储中，如 KV 存储:  Redis、阿里的 iGraph 等
+- 处理完后一般会放在特征存储中，如 KV 存储: Redis、阿里的 iGraph 等
 - 样本
   - 不均衡
   - 置信度: skip-above(点击的item位置以上的展现可以当做负样本, 最深位置以后的样本过滤掉); 完全无正样本session(可能是碰巧唤醒)
 - labels
   - explicit vs. implicit labels
 - 延迟转化 Delayed Feedback
-
 
 ## 4. feature
 
@@ -85,11 +85,13 @@
   - 分箱，可以根据业务分箱，分箱思路：等频，等宽，卡方
     - 分桶交叉特征提升泛化能力
 - sparse feature
+
   - onehot
   - embedding
     - [电商场景下的itemid有上亿，embedding](https://zhuanlan.zhihu.com/p/397600084)
 
 - cross feature
+
   - [特征工程中的特征交叉究竟是什么? - 谢陈龙的回答 - 知乎](https://www.zhihu.com/question/63593481/answer/3176327607)
 
 - sequence feature
@@ -99,8 +101,8 @@
   - 标准化
   - 平滑与消偏
 
-
 ## 5. model
+
 > 熟练掌握模型: DNN, DeepFM, DIN, MMOE
 
 **召回**
@@ -121,12 +123,13 @@
   - 规则：热度高，同一作者、tag
   - content based
     - The model doesn't need any data about other users
-  - itemCF    
+  - itemCF
     - ItemCF基于item之间的共现关系计算相似度，item行为越多，就会与更多的item发生共现，进而获得更多的曝光，即推荐系统中的马太效应或长尾效应
     - pro: 无需训练，长于记忆；效果好
     - con: 泛化能力弱；容易产生马太效应，推荐的都是头部和中部产品; Cannot handle fresh items; Hard to include side features for query/item
   - two power
-    - arbitrary continuous and categorical features can be easily added to the model
+    - arbitrary continuous and categorical features can be easily added to the model, 还有图片、文本等多模态都很容易加到双塔模型
+    - 更容易scalable, 处理大规模数据
   - matrix factorization
     - con: worse performance on tail users
     - inability to add content-based features
@@ -134,8 +137,8 @@
 - 局部敏感哈希，KD树
 - similarity metrics
 
-
 **排序**
+
 - 粗排、精排、重排
 - multi-task deep learning
 - 粗排一致性
@@ -160,16 +163,17 @@
   - 不好的地方是: 优化，尤其是想优化某个task变得更难
   - shared-bottom，MMoE，PLE
 
-
 ## 6. evaluation
+
 - offline
   - ranking: map, ndcg
 - online
   - CTR
 
-
 ## 7. deploy & service
+
 - parameter server
+
   - 本质是一个: 分布式键值存储系统
 
 - 召回中user embedding为什么线上实时计算
@@ -177,6 +181,7 @@
   - 用户的行为数据通常是稀疏的
   - 缓解用户冷启动
 - 召回中item embedding为什么离线计算好
+
   - 量大，静态
   - 实时性要求
 
@@ -190,11 +195,12 @@
 - embedding矩阵的lazy初始化和lazy更新
 - embedding矩阵对分布式通信的影响
 
-
 ## 8. Monitoring & maintenance
+
 [How to Monitor a Recommender System](https://code.tubitv.com/how-to-monitor-a-recommender-system-6d720c922c90)
 
 注意区分statistical metric和business metric。后者意义更大，但经常无法直接optimize，只能通过ab-testing测试
+
 - 电商：根据业务需要，在 GMV (商品交易总额) 主目标之外，通常还要兼顾 IPV、转化率、人均订单数等多个次目标
 - ctr（点击率）和 CVR (Conversion Rate) 转化率
 - impression per second
@@ -202,7 +208,6 @@
 - budget burn rate
 - 通用metrics：cpu, qps, latency
 - 淘宝主搜将 “全域成交 Hit rate” 作为粗排最重要的评价标准，提出两类评价指标，分别描述“粗排->精排损失”和“召回->粗排损失”
-
 
 ## 9. 优化与问答
 
@@ -279,14 +284,14 @@
 - 多场景
   - 不同用户群体（如新老用户）、APP不同频道模块、不同客户端等
 
-
 ## Reference
 
 **精读**
+
 - [Recommendations: What and Why?](https://developers.google.com/machine-learning/recommendation/overview)
 
-
 **扩展**
+
 - [Best Practices for Building and Deploying Recommender Systems](https://docs.nvidia.com/deeplearning/performance/recsys-best-practices/index.html)
 - [https://github.com/Doragd/Algorithm-Practice-in-Industry](https://github.com/Doragd/Algorithm-Practice-in-Industry)
 - [超详细：完整的推荐系统架构设计](https://xie.infoq.cn/article/e1db36aecf60b4da29f56eeb4)
@@ -323,8 +328,8 @@
 - [Persia: An Open, Hybrid System Scaling Deep Learning-based Recommenders up to 100 Trillion Parameters](https://arxiv.org/pdf/2111.05897)
 - [推荐系统Serving架构分析 - Peter的文章 - 知乎](https://zhuanlan.zhihu.com/p/335116835)
 
-
 **代码**
+
 - [fun-rec](https://github.com/datawhalechina/fun-rec)
 - [facebook-DLRM](https://github.com/pytorch/torchrec/blob/main/torchrec/models/dlrm.py)
 - [torch-rechub](https://github.com/datawhalechina/torch-rechub/tree/main)
@@ -337,12 +342,12 @@
 - [https://github.com/rixwew/pytorch-fm/tree/master/torchfm/model](https://github.com/rixwew/pytorch-fm/tree/master/torchfm/model)
 - [https://github.com/LongmaoTeamTf/deep_recommenders/tree/master](https://github.com/LongmaoTeamTf/deep_recommenders/tree/master)
 - TF1：Microsoft recommendation
-- TF2.5+：GitHub - ZiyaoGeng/RecLearn: Recommender Learning with Tensorflow2.x 
+- TF2.5+：GitHub - ZiyaoGeng/RecLearn: Recommender Learning with Tensorflow2.x
 - Pytorch：RecBole推荐系统框架
 - https://github.com/CheckChe0803/flink-recommandSystem-demo
 
-
 **部署**
+
 - MOBIUS: Towards the Next Generation of Query-Ad Matchingin Baidu’s Sponsored Search
 - COLD: Towards the Next Generation of Pre-Ranking System
-- [DeepRec](https://deeprec.readthedocs.io/zh/latest/index.html): 支持淘宝搜索、猜你喜欢、定向、直通车等核心业务，支撑着千亿特征、万亿样本超大规模的稀疏训练 
+- [DeepRec](https://deeprec.readthedocs.io/zh/latest/index.html): 支持淘宝搜索、猜你喜欢、定向、直通车等核心业务，支撑着千亿特征、万亿样本超大规模的稀疏训练
