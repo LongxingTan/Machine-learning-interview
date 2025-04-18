@@ -1,4 +1,4 @@
-# Hardware cuda/triton
+# Hardware + cuda/triton
 
 > 熟悉 C++, GPU kernels, CUDA, Triton, CUTLASS
 

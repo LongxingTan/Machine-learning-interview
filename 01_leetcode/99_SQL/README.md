@@ -1,6 +1,6 @@
 # SQL
 
-> 数据科学岗位，需要好好刷SQL题。建议下载安装一个My SQL，模拟真实SQL环境学习
+> 建议下载安装一个My SQL，模拟真实SQL环境学习，尤其数据科学岗位
 >
 > - 对product和metrics的业务了解能够帮助我们更好的准备SQL面试，SQL面试都是围绕着**与business相关的metrics**展开。
 > - [LeetCode SQL Top 50](https://leetcode.com/studyplan/top-sql-50/)

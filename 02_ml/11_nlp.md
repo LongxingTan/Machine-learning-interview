@@ -28,8 +28,7 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 - tfidf
 - word2vec
 - crf
-- n-gram
-  - [https://web.stanford.edu/~jurafsky/slp3/3.pdf](https://web.stanford.edu/~jurafsky/slp3/3.pdf)
+- [n-gram](https://web.stanford.edu/~jurafsky/slp3/3.pdf)
 
 **encoder-decoder**
 

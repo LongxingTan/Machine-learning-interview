@@ -64,6 +64,7 @@
 - [auto suggestion](./search_box.md)
 - design a monitoring system to realtime measure ML models, including features, score distribution, qps
 - abusive user detection
+- predict app install
 
 **业务目标**
 

@@ -1,7 +1,7 @@
 # k-means
 
-partitioning a dataset into k distinct clusters based on similarity measures. It aims to minimize the within-cluster sum of squares (WCSS) or the average squared distance between data points and their assigned cluster centroids
-通过样本间的相似性对数据集进行聚类，使类内差距最小化，类间差距最大化
+> - partitioning a dataset into k distinct clusters based on similarity measures. It aims to minimize the within-cluster sum of squares (WCSS) or the average squared distance between data points and their assigned cluster centroids
+> - 通过样本间的相似性对数据集进行聚类，使类内差距最小化，类间差距最大化
 
 ## 过程
 

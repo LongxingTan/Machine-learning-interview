@@ -10,6 +10,8 @@
 - [youngforest-从北京到都柏林 一名程序员的润欧之旅](https://zhuanlan.zhihu.com/p/603300157)
 - [上海BAT硕5P7，如何肉身在国内面海外工作](https://www.xiaohongshu.com/explore/64a8cbed000000000f00cd76)
 - [Sicheng-我所经历的欧美科技公司的面试](https://www.zhihu.com/question/23921846/answer/2337072383)
+- [2年国内经验码农的UK求职上岸历程](https://www.1point3acres.com/bbs/thread-1031661-1-1.html)
+
 
 **海外代表性案例**
 
@@ -20,4 +22,3 @@
 - [layoff期间拿到超多面试及offer经验分享](https://www.1point3acres.com/bbs/thread-991886-1-1.html)
 - [Guide to ML Engineer Job Hunting](https://www.yuan-meng.com/posts/mle_interviews/)
 - [2024找工总结与发现](https://www.1point3acres.com/bbs/thread-1098907-1-1.html)
-- [2年国内经验码农的UK求职上岸历程](https://www.1point3acres.com/bbs/thread-1031661-1-1.html)

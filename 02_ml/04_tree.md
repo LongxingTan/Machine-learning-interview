@@ -96,7 +96,15 @@ $$
 - permutation
 - SHAP
 
-## 6. 问答
+## 6. 分布式
+**训练**
+
+**部署**
+- [sagemaker](https://aws.amazon.com/cn/blogs/china/the-lightgbm-algorithm-framework-runs-on-amazon-sagemaker/)
+- [spark](https://xgboost.readthedocs.io/en/stable/tutorials/spark_estimator.html)
+- [dask](https://ml.dask.org/xgboost.html)
+
+## 7. 问答
 
 - GBDT中的梯度与深度学习的梯度优化方法？
   - 二者都是借助梯度进行优化，GBDT是下一颗树拟合，深度学习是向后传播
@@ -138,11 +146,9 @@ $$
   - 决策树模型序列化Serialization (即保存为文件，Pickle，Joblib，pmml，onnx)
   - 序列化后的模型文件上传到一个分布式文件系统（如HDFS、S3、GCS等），以便所有机器都能访问
 
-## 7. 代码
+## 8. 代码
 
 ```python
-import numpy as np
-
 class Decision_node(object):
     def __init__(self, feature_i=None, threshold=None, value=None, true_branch=None, false_branch=None):
         self.feature_i = feature_i          # Index for the feature that is tested

@@ -1,15 +1,15 @@
 # 评价指标
 
-> 对常用评价指标metrics需要非常熟悉其意义和计算
+> 非常熟悉常用评价指标metrics的意义和计算
 
 **Offline Metrics**
 
-| Category       | Metric 1    | Metric 2                                                                               | Metric 3   | Metric 4  |
-| -------------- | ----------- | -------------------------------------------------------------------------------------- | ---------- | --------- |
-| Regression     | MSE         | MAE                                                                                    | MAPE       |           |
-| Classification | Accuracy    | Recall                                                                                 | F1 Score   | AUC       |
-| Clustering     | Mutual Info | Rand Index                                                                             | Silhouette | V-measure |
-| Ranking        | NDCG        | [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision) | HR         | recall    |
+| Category       | Metric 1    | Metric 2                                                                                | Metric 3   | Metric 4  |
+| -------------- | ----------- |-----------------------------------------------------------------------------------------| ---------- | --------- |
+| Regression     | MSE         | MAE                                                                                     | MAPE       |           |
+| Classification | Accuracy    | Recall                                                                                  | F1 Score   | AUC       |
+| Clustering     | Mutual Info | Rand Index                                                                              | Silhouette | V-measure |
+| Ranking        | NDCG        | [MAP](https://www.kaggle.com/code/debarshichanda/understanding-mean-average-precision)  | HR         | recall    |
 
 **Online Metrics**
 

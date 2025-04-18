@@ -1,6 +1,6 @@
 # 模型解释性
 
-> 在很多实际应用中，模型可解释性(interpretability)是非常重要的。
+> 很多实际应用中，模型可解释性(interpretability)非常重要
 
 ## 方法
 

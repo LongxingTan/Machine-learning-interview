@@ -1,8 +1,6 @@
 # 深度学习
 
-> 应用参考[自然语言处理](./11_nlp.md)，[大语言模型](./12_llm.md)，[视觉](./13_vision.md)，[多模态](./14_multimodal.md)，[无监督/自监督](./08_unsuperwised.md)，[强化学习](./10_reinforcement.md)
-
-## 1. 优化
+## 1. 优化 Optimizer
 
 ### 1.1 前向后向传播
 
@@ -101,7 +99,7 @@ $$
 
 ## 3. 网络模型结构
 
-### 3.1 MLP
+### 3.1 多层感知机 MLP
 
 向量内积
 
@@ -129,7 +127,7 @@ class Dense:
         return input_error
 ```
 
-### 3.2 CNN
+### 3.2 卷积神经网络 CNN
 
 - CNN的归纳偏置Inductive Bias：locality（局部性）和translation equivariance（平移等变性）
 - Convolution is a mathematical operation trying to learn the values of filter(s) using backprop, where we have an input I, and an argument, kernel K to produce an output that expresses how the shape of one is modified by another.
@@ -173,7 +171,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
     return outputs
 ```
 
-### 3.3 RNN/LSTM/GRU
+### 3.3 循环神经网络 RNN
 
 - RNN的归纳偏置inductive bias：sequentiality和time invariance，即序列顺序上的time-steps有联系，和**时间变换的不变性**（rnn权重共享）
 - 梯度爆炸与梯度消失
@@ -188,7 +186,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
 
 ### 3.4 Transformer
 
-- 结构
+- 模型结构
 
   - encoder: embed + layer(self-attention, skip-connect, ln, ffn, skip-connect, ln) \* 6
   - decoder: embed + layer(self-attention, cross-attention, ffn, skip-connect, ln) \* 6
@@ -203,7 +201,7 @@ def conv2d(inputs, kernels, bias, stride, padding):
   - 时间和空间复杂度
     - sequence length n, vector representations d. QK矩阵相乘复杂度为O(n^2 d), softmax与V相乘复杂度O(n^2 d)
     - FFN复杂度：O(n d^2)
-  - 优化：kv-cache，MQA，GQA
+  - 优化：kv-cache，MQA，GQA，MLA
     - kv cache: 空间换时间，自回归中每次生成一个token，前面的token计算存在重复性
     - Multi Query Attention: MQA 让所有的头之间共享同一份 Key 和 Value 矩阵，每个头只单独保留了一份 Query 参数，从而大大减少 Key 和 Value 矩阵的参数量
     - Group Query Attention: 将查询头分成N组，每个组共享一个Key 和 Value 矩阵
@@ -308,7 +306,7 @@ targets = (1 - label_smooth) * targets + label_smooth / num_classes
 - 激活函数引入非线性
 - sigmoid, relu, mish
 
-### 3.7 Norm
+### 3.7 标准化 Norm
 
 **Batch Norm**
 
@@ -327,6 +325,7 @@ targets = (1 - label_smooth) * targets + label_smooth / num_classes
 - 加速模型的训练。由于输入已经被归一化，不同特征之间的尺度差异较小，因此优化过程更容易收敛，加快了模型的训练速度。
 - 为什么不用batch norm? BN广泛用于CV，针对同一特征、跨样本开展归一。样本之间仍然具有可比较性，但特征与特征之间不再具有可比较性。NLP中关键的不在于样本中同一特征的可比较
 - 由于BN需要统计不同样本统计值，因此分布式训练需要sync BatchNorm, Layer Norm则不需要
+- PreNorm/PostNorm
 
 ```python
 # layer norm: https://www.kaggle.com/code/cpmpml/graph-transfomer?scriptVersionId=24171638&cellId=18
@@ -340,6 +339,7 @@ if self.center:
     outputs += self.beta
 ```
 
+**GroupNorm**
 ```python
 def GroupNorm(x, gamma, beta, G, eps=1e-5):
     # x: input features with shape [N,C,H,W]
@@ -353,7 +353,7 @@ def GroupNorm(x, gamma, beta, G, eps=1e-5):
     return x * gamma + beta
 ```
 
-[RMSNorm - Root Mean Square Layer Normalization](https://arxiv.org/pdf/1910.07467.pdf)
+[**RMSNorm** - Root Mean Square Layer Normalization](https://arxiv.org/pdf/1910.07467.pdf)
 
 - RMSNorm舍弃了中心化操作(re-centering)，归一化过程只实现缩放(re-scaling)，缩放系数是均方根(RMS)
 

@@ -1,19 +1,21 @@
 # 前期准备
 
-> 不灰心，不内耗，不找借口，直面任何结果；降低单个面试的预期 (面试中绝对自信，面完就当被拒了，继续下一个)；拒多了也别沮丧，吃好喝好睡好，最终有一个满意的offer即可；
+> - 不灰心，不内耗，不找借口，直面结果；
+> - 降低单个面试预期 (面试中要绝对自信，面完就当被拒了，继续下一个!)；
+> - 吃好喝好睡好，最终有一个满意的offer即可
 
 ## 1. 简历
 
 [How to write a killer Software Engineering résumé](https://www.freecodecamp.org/news/writing-a-killer-software-engineering-resume-b11c91ef699d/)
 
-- **关键词匹配**job description，内容保持**30%以上match**. HR面也牢记这些匹配点，并全程往上靠
+- **关键词匹配JD**，保持**30%以上内容match**。面试过程中也全程往这些匹配点上靠
 - **指标量化**自己工作，start with action verbs (Led, Managed, Conducted, Developed) and end with specific metrics
-- 理性关注部分公司冷冻期的影响，能投就投
-- [简历中介绍自己的机器学习项目](../02_ml/98_project)
+- 理性对待部分公司冷冻期的影响，能投就投
+- [简历中介绍自己的机器学习项目](../02_ml/98_project.md)
 
 ## 2. 内推
 
-求助校友，求助[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)，求助Linkedin内推-[如何在 Linkedin 上勾搭才能得到回复](https://www.1point3acres.com/bbs/thread-664124-1-1.html)
+> 求助校友，求助[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)，求助Linkedin内推-[如何在 Linkedin 上勾搭才能得到回复](https://www.1point3acres.com/bbs/thread-664124-1-1.html)
 
 Linkedin投递前可reach out hr/hm求好感
 
@@ -61,7 +63,7 @@ Your Name
 
 ## 3. Mock interview
 
-一方面找chatgpt聊天模拟，一方面自己录下视频来模拟和复盘. 后期可以找人mock或者互相mock，面试中保持适当兴奋的状态，这样会给人一种“工作态度积极、年轻活力”的印象
+一方面找chatgpt聊天模拟，一方面自己录视频模拟和复盘。后期可以找人mock或者互相mock，面试中保持适当兴奋的状态，这样会给人一种**工作态度积极、年轻活力**的印象
 
 - prompt
 
@@ -72,7 +74,7 @@ You are an excellent staff MLE who has attended 50+ interviews and got 20+ offer
 - [pramp](https://www.pramp.com/#/)
 - meetapro
 
-## 4. 极速准备版
+## 4. MLE极速准备版
 
 - [Grind 75](https://www.techinterviewhandbook.org/grind75/)
   - [Neetcode 150](https://neetcode.io/practice)

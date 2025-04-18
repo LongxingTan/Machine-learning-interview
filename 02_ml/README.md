@@ -1,26 +1,26 @@
 # 机器学习
 
-> 面试需要准备和技巧，但功夫在诗外。注意平时构建知识体系，读论文和做实验不断给体系添砖加瓦；面试前巩固机器学习**理论**和[代码](./99_ml_coding.md)
+> 面试要有准备和技巧，但功夫在诗外。注意平时构建知识体系，读论文和做实验不断给体系添砖加瓦；面试前巩固机器学习**理论**和[代码](./99_ml_coding.md)
 >
-> - 本章侧重理论部分，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
+> - 本章侧重理论，系统设计参考[3.3 机器学习系统设计](../03_system/03_ml/README.md)
 
 ## 1. 面试要求
 
-- 熟悉常见ML模型的**原理、代码、如何实际应用、优缺点、常见问题**
+- 熟悉常见机器学习模型的**原理、代码、如何实际应用、优缺点、常见问题**
 
   - 归纳偏置(Inductive Bias)，数据同分布(IID)
 
-- 考察范围如**ML breadth, ML depth, ML application, coding**。如果不知道答案不要乱编，可以承认不知道，并补充相关理解、做什么可以找答案
+- 考察范围如**ML breadth, ML depth, ML application, coding**。如果不知道答案不要乱编，承认不知道，并补充相关理解、做什么可以找到答案
   - 理解算法背后的原理，主要数学公式，并进行**白板推导介绍** (don’t memorize the formula but demonstrate understanding)
   - 可能被持续追问为什么? 某个trick为什么能起作用？
-  - 每一个算法如何scale，如何将算法map-reduce化
   - 每一个算法的**复杂度、参数量、计算量**
+  - 每一个算法如何scale，如何将算法map-reduce化  
   - 较新的领域如[大模型](./12_llm.md)，会考察最新论文细节
   - 机器学习代码部分见 [ML coding collections](./99_ml_coding.md)
 
 ## 2. 八股问题实例
 
-> 模型细节与具体问题见模型子页面
+> 模型细节与具体问题见模型子页面。以下实例回答注意如何安框架分条陈述
 
 - Generative vs Discriminative
 
@@ -31,7 +31,7 @@
 
 - The bias-variance tradeoff
 
-  - how to track: Cross-Validation
+  - how to track the tradeoff: Cross-Validation
   - Bias Variance Decomposition: Error = Bias \*\* 2 + Variance + Irreducible Error
   - Ideally, one wants to choose a model that both accurately captures the regularities in its training data, but also generalizes well to unseen data. Unfortunately, it is typically impossible to do both simultaneously.
   - High-variance learning methods may be able to represent their training set well but are at risk of overfitting to noisy or unrepresentative training data.
@@ -67,8 +67,9 @@
 
   - [How to Handle Missing Data](https://towardsdatascience.com/how-to-handle-missing-data-8646b18db0d4)
   - label data较少的情况: semi-supervised, few-shot
-  - 数据填充
-  - 重要数据可通过额外建模进行预测
+  - 特征列缺失：
+    - 数据填充: mean, median, nan
+    - 重要特征可通过额外建模进行预测
 
 - 怎么解决类别变量中的高基数(high-cardinality)特征
 
@@ -135,6 +136,7 @@
   - 流量调控
 
 - Out-of-vocabulary
+
   - unknown
 
 ## 3. 手写ML代码实例

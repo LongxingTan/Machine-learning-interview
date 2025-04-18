@@ -1,6 +1,6 @@
 # 大语言模型LLM
 
-了解和熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](11_nlp.md)、[分布式机器学习](15_distributed_ml)
+熟悉[深度学习](./05_deep_learning.md)、[自然语言理解](./11_nlp.md)、[分布式机器学习](./15_distributed_ml.md)
 
 ## 1. scaling law
 
@@ -34,6 +34,11 @@
 - Multi-query Attention 和 [Grouped-Query Attention](https://arxiv.org/abs/2305.13245)
 
 **Mistral**
+
+**QWen**
+
+**Deepseek**
+- MLA, MOE, RMSNorm, DeepGEMM
 
 **MOE**
 
@@ -196,9 +201,14 @@ def lora_forward_matmul(x, W, W_A, W_B):
 - NTK
 - YaRN
 
+
 **工程**
 
 - 序列并行（SP）: 将输入序列进行切分
+- RingAttention Ulysses
+- KV量化
+
+### 4.5 reasoning
 
 ## 5. 评测
 
@@ -210,14 +220,17 @@ def lora_forward_matmul(x, W, W_A, W_B):
 
 - [Towards Efficient Generative Large Language Model Serving](https://arxiv.org/pdf/2312.15234)
 - [Mastering LLM Techniques: Inference Optimization](https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/)
-
-- [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling)，投机采样 (speculative sampling), lookahead decoding
-  - 贪心选择每一步都选最大的，top_k和top_p从top中随机选择一个，beam search保留多个
-  - [投机采样](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf)
-- dynamic batching, continuous batching, flash attention, quantization
 - throughput 吞吐
   - 估算：单次推理时间 x 同时处理的请求数量
 - 推理prefill阶段是compute bound，算力利用充分；decode阶段是memory bound，算力卡在内存访问上
+- [解码方式](https://huggingface.co/blog/how-to-generate): 贪心搜索 (Greedy search)、波束搜索 (Beam search)、Top-K 采样 (Top-K sampling) 以及 Top-p 采样 (Top-p sampling)，投机采样 (speculative sampling), lookahead decoding
+  - 贪心选择每一步都选最大的，top_k和top_p从top中随机选择一个，beam search保留多个
+  - [投机采样 Speculative Decoding](https://proceedings.mlr.press/v202/leviathan23a/leviathan23a.pdf)
+- dynamic batching, continuous batching
+- flash attention, paged attention
+- quantization: fp8, bf16, gptq, awq
+- 算子优化: gemm，transpose，mha，rmsnorm，gemv，rope
+
 
 **KV cache**
 

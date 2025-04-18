@@ -8,7 +8,7 @@ MLops负责机器学习模型的自动化: CI/CD/CT，pipeline的orchestration�
 - model version: [MLFlow](https://mlflow.org/docs/latest/index.html)
 - feature caching, data sharding, real-time feature aggregation and serving
 
-## 1. ML部署
+## 1. 模型部署
 
 > - low latency
 > - high qps
