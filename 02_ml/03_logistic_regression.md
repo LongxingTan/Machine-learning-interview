@@ -1,5 +1,12 @@
 # 逻辑回归
 
+## Sigmoid function
+Also known as **Logistic function**
+
+$$
+g(z) = \frac{1}{1+e^{-z}} \space\space\space\space 0 < g(z) <1
+$$
+
 ## 1. 最小经验损失函数
 
 最小化cross entropy等价于最大化log softmax probability
@@ -12,6 +19,18 @@ $$
 
 sigmoid函数的导数为: `sigmoid(x) * (1 - sigmoid(x))`
 
+### Logistic loss function
+$$
+\mathcal{L}(f(x), y) =
+\left\{
+  \begin{array}{ll}
+    -\log(f(x)) & \text{if } y = 1 \\
+    -\log(1 - f(x)) & \text{if } y = 0
+  \end{array}
+\right.
+$$
+
+![Plot: Binary Logistic Loss Function](../.github/assets/02ml-binary_logistic_loss.png)
 **对数损失函数log loss (注意负号)**
 
 - `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`

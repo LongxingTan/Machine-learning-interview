@@ -14,8 +14,9 @@
   - [**特征值与特征向量 / Eigenvalue \& Eigenvector**](#特征值与特征向量--eigenvalue--eigenvector)
   - [**迹 / Trace**](#迹--trace)
 - [3. 微积分](#3-微积分)
-  - [**Jacobian Matrix**](#jacobian-matrix)
-  - [**Hessian Matrix**](#hessian-matrix)
+  - [Jacobian Matrix](#jacobian-matrix)
+  - [Hessian Matrix](#hessian-matrix)
+  - [**Gradient Decent**](#gradient-decent)
 - [4. 问答](#4-问答)
 - [Reference](#reference)
 
@@ -73,11 +74,36 @@
 
 机器学习中使用的微积分主要用于优化和反向传播
 
-### **Jacobian Matrix**
+### Jacobian Matrix
 First-Order Derivatives, for vector-valued functions (multiple outputs) with respect to multiple inputs.
 
-### **Hessian Matrix**
+### Hessian Matrix
 Second-Order Derivatives, for scalar-valued functions (one output) with respect to multiple inputs — second-order derivatives.
+
+### **Gradient Decent**
+
+How to check Gradient Decent for convergence:
+- Plot the loss function for each iteration - **Learning curve**
+- The curve decreased quickly at early stage of iterations and goes flatly, indicating likely converged.
+- (_Alternative_) Automatic convergence test
+
+Identify problems with Gradient Decent:
+- Check the learning curve of loss fuction, if the shape is fluctuant or going up, it indicates a bug or the learning rate $\alpha$ is too large.
+
+
+How to optimize Gradient Decent computing:
+
+1. Feature scaling: 
+   - Max normalization: $\frac{x}{\text{max}}$
+   - Mean normalization: $\frac{x - \mu}{\text{max} - \text{min}}$
+   - Z-score normalization: $\frac{x - \mu}{\sigma}$
+2. Find range of learning rate $\alpha$ - Try differnet values of $\alpha$ step by step: 
+   - first 0.001, then 0.003
+   - next 0.01, then 0.03
+   - next 0.1, then 0.3
+   - next 1 ...
+   - Choose the largest learning rate or the one that's slightly smaller than the largest
+
 
 
 ## 4. 问答
