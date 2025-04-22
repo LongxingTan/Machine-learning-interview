@@ -1,14 +1,48 @@
-# 线性回归
+# 线性回归 <!-- omit in toc -->
 
-**基础假设**
+- [0. 基础假设](#0-基础假设)
+- [1. 最小二乘法 Ordinary least squares](#1-最小二乘法-ordinary-least-squares)
+- [2. 最大似然法 Maximum likelihood estimation](#2-最大似然法-maximum-likelihood-estimation)
+- [3. 最大后验法与正则 Maximum a posteriori estimation](#3-最大后验法与正则-maximum-a-posteriori-estimation)
+  - [L1正则](#l1正则)
+  - [L2正则](#l2正则)
+- [4. 贝叶斯线性回归与高斯过程回归](#4-贝叶斯线性回归与高斯过程回归)
+- [5. 问答](#5-问答)
+- [6. 代码](#6-代码)
+- [参考](#参考)
 
-- There is a linear relationship between the independent variables(X) and the dependent variables (y)
-- Independence: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
-- Normality: The residuals of the linear regression model are assumed to be normally distributed.
-- Homoscedasticity: Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
-- No Multi-collinearity between features
+## 0. 基础假设
 
-## 1. 最小二乘法 ordinary least squares
+**Linearity**: There is a linear relationship between the independent variables(X) and the dependent variables (y)
+  - ✅ Tip: Check with scatter plots or residual vs fitted plots.
+
+**Independence of Errors**: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
+  - ✅ Tip: Use Durbin-Watson test for autocorrelation.
+
+**Normality of Errors**: The residuals of the linear regression model are assumed to be normally distributed.
+  - ✅ Tip: Use Q-Q plots or the Shapiro-Wilk test.
+
+**Homoscedasticity** (Constant Variance of Errors): Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
+  - ✅ Tip: Check with a residual plot (should look like random scatter).
+
+**No Multicollinearity**: No Multi-collinearity between features
+  - ✅ Tip: Check Variance Inflation Factor (VIF).
+    VIF > 5 (or 10) suggests problematic multicollinearity.
+
+**IID (Independent and Identically Distributed)**: an underlying assumption of linear regression — but more specifically, it's an assumption about the error terms (residuals), not the raw data itself.
+  - Residuals are not correlated with each other.
+  - Residuals have the same variance.
+  - (Often) Residuals are normally distributed (not strictly required for prediction, but essential for inference like p-values or confidence intervals).
+- ✅ Tip: IID Assumption Checks
+
+  | Check                       | Tool/Test                  | Good Sign                   |
+  |----------------------------|----------------------------|-----------------------------|
+  | **Independence**           | Durbin-Watson              | Value ≈ 2                   |
+  | **Identical distribution** | Residual vs Fitted plot, Breusch-Pagan test | Random scatter, p > 0.05    |
+  | **Normality**              | Q-Q plot, Shapiro-Wilk test| Diagonal line, p > 0.05     |
+
+
+## 1. 最小二乘法 Ordinary least squares
 
 > 最小二乘法对线性回归的基础假设是：误差（residual）符合正态分布。
 

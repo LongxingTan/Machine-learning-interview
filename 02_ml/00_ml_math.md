@@ -1,32 +1,51 @@
-# ML数学基础
+# ML数学基础 <!-- omit in toc -->
 
 > 部分面试会直接考察统计与数学知识。即使不直接考察，在ML环节用数学佐证自己的观点也很有裨益
 
+<!-- TOC -->
+- [1. 概率统计](#1-概率统计)
+  - [**中心极限定理 / Central Limit Theorem**](#中心极限定理--central-limit-theorem)
+  - [**假设检验 / Hypothesis Testing**](#假设检验--hypothesis-testing)
+  - [**P值 / P-value**](#p值--p-value)
+  - [**z检验**](#z检验)
+  - [**t检验/t-test**](#t检验t-test)
+  - [**F-test**](#f-test)
+- [2. 矩阵论](#2-矩阵论)
+  - [**特征值与特征向量 / Eigenvalue \& Eigenvector**](#特征值与特征向量--eigenvalue--eigenvector)
+  - [**迹 / Trace**](#迹--trace)
+- [3. 微积分](#3-微积分)
+  - [**Jacobian Matrix**](#jacobian-matrix)
+  - [**Hessian Matrix**](#hessian-matrix)
+- [4. 问答](#4-问答)
+- [Reference](#reference)
+
+
 ## 1. 概率统计
 
-**中心极限定理 / Central Limit Theorem**
+### **中心极限定理 / Central Limit Theorem**
+给定一个任意分布的总体，每次从总体中随机抽取n个样本，一共抽m次。然后把这m组抽样分别求平均值，这些平均值的分布接近正态分布。
 
-- 给定一个任意分布的总体，每次从总体中随机抽取n个样本，一共抽m次。然后把这m组抽样分别求平均值，这些平均值的分布接近正态分布。
+其表示的是样本均值分布的特征。
 
-**[Hypothesis testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing)**
+### **假设检验 / [Hypothesis Testing](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing)**
 
 - 通过样本来推测总体是否具备某种性质
 - 和最大似然类似？做出某个假设之后，依据其分布计算出，给出在这个分布下观察到这个现象的概率
 
-**P-value**
+### **P值 / P-value**
 
 - 在假设原假设H0正确时，出现当前证据或更强的证据的概率
 - the p-value represents the probability of obtaining a test value, which is as extreme as the one which had been observed originally. The underlying condition is that the null hypothesis is true.
 
-**[z检验](https://en.wikipedia.org/wiki/Z-test)**
+### **[z检验](https://en.wikipedia.org/wiki/Z-test)**
 
 - 均值对比的假设检验方法主要有Z检验和T检验，Z检验面向总体数据和大样本数据，而T检验适用于小规模抽样样本
 
-**[t检验/t-test](https://en.wikipedia.org/wiki/Student%27s_t-test)**
+### **[t检验/t-test](https://en.wikipedia.org/wiki/Student%27s_t-test)**
 
 - t检验比z检验的普适性更强，z检验要求知道总体标准差，但实际研究中无法获知总体标准差，一般都会用t检验。且当样本量足够大的时候，数据接近正态分布，t检验几乎成为了z检验，z检验是t检验的一个特例
 
-**[F-test](https://en.wikipedia.org/wiki/F-test#:~:text=An%20F-test%20is%20any,which%20the%20data%20were%20sampled.)**
+### **[F-test](https://en.wikipedia.org/wiki/F-test#:~:text=An%20F-test%20is%20any,which%20the%20data%20were%20sampled.)**
 
 **Bayes theorem**
 
@@ -40,11 +59,11 @@
 
 ## 2. 矩阵论
 
-**特征值与特征向量**
+### **特征值与特征向量 / Eigenvalue & Eigenvector**
 
 - 矩阵理解为不同坐标系下的变换。几何上看，特征向量是矩阵变换后方向不变的向量，而特征值则是该向量在变换中被拉伸或压缩的比例。
 
-**迹(trace)**
+### **迹 / Trace**
 
 - 主对角线上的元素之和
 - 矩阵的迹与特征值之和有关
@@ -54,13 +73,28 @@
 
 机器学习中使用的微积分主要用于优化和反向传播
 
+### **Jacobian Matrix**
+First-Order Derivatives, for vector-valued functions (multiple outputs) with respect to multiple inputs.
+
+### **Hessian Matrix**
+Second-Order Derivatives, for scalar-valued functions (one output) with respect to multiple inputs — second-order derivatives.
+
+
 ## 4. 问答
 
 - What is p-value? What is confidence interval? Explain them to a product manager or non-technical person.
+
+  > Answer:
+
+
 - How do you understand the "Power" of a statistical test?
+
 - If a distribution is right-skewed, what's the relationship between medium, mode, and mean?
+
 - When do you use T-test instead of Z-test? List some differences between these two.
+
 - Dice problem-1: How will you test if a coin is fair or not? How will you design the process(有时会要求编程实现)? what test would you use?
+
 - Dice problem-2: How to simulate a fair coin with one unfair coin?
 - 3 door questions.
 - Bayes Questions:Tom takes a cancer test and the test is advertised as being 99% accurate: if you have cancer you will test positive 99% of the time, and if you don't have cancer, you will test negative 99% of the time. If 1% of all people have cancer and Tom tests positive, what is the prob that Tom has the disease? (非常经典的cancer screen的题，做会这一道，其他都没问题了)

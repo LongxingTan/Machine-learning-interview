@@ -1,6 +1,14 @@
-# 评价指标
+# 评价指标 <!-- omit in toc -->
 
 > 非常熟悉常用评价指标metrics的意义和计算
+
+- [1. AB test](#1-ab-test)
+- [2. 精确率Precision/ 召回率Recall/ F1](#2-精确率precision-召回率recall-f1)
+- [3. AUC(Area Under Curve) / ROC(Receiver Operating Characteristics)曲线](#3-aucarea-under-curve--rocreceiver-operating-characteristics曲线)
+- [4. KS](#4-ks)
+- [5. average precision](#5-average-precision)
+- [6. 问答](#6-问答)
+- [参考](#参考)
 
 **Offline Metrics**
 
