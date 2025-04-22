@@ -20,17 +20,20 @@ $$
 sigmoid函数的导数为: `sigmoid(x) * (1 - sigmoid(x))`
 
 ### Logistic loss function
+
 $$
 \mathcal{L}(f(x), y) =
-\left\{
-  \begin{array}{ll}
-    -\log(f(x)) & \text{if } y = 1 \\
-    -\log(1 - f(x)) & \text{if } y = 0
-  \end{array}
-\right.
+\begin{cases}
+-\log(f(x)) & \text{if } y = 1 \\
+-\log(1 - f(x)) & \text{if } y = 0
+\end{cases}
 $$
 
-![Plot: Binary Logistic Loss Function](../.github/assets/02ml-binary_logistic_loss.png)
+<div align="center">
+<img src="../.github/assets/02ml-binary_logistic_loss.png" alt="Plot: Binary Logistic Loss Function" width="350" height="300"/>
+</div>
+
+
 **对数损失函数log loss (注意负号)**
 
 - `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`
