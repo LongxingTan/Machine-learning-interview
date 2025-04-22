@@ -19,7 +19,13 @@ $$
 
 sigmoid函数的导数为: `sigmoid(x) * (1 - sigmoid(x))`
 
-### Logistic loss function
+### 对数损失函数 / Logistic loss function
+
+<div align="center">
+<img src="../.github/assets/02ml-binary_logistic_loss.png" alt="Plot: Binary Logistic Loss Function" width="350" height="300"/>
+</div>
+
+**Log loss is convex (注意负号)** 
 
 $$
 \mathcal{L}(f(x), y) =
@@ -29,16 +35,27 @@ $$
 \end{cases}
 $$
 
-<div align="center">
-<img src="../.github/assets/02ml-binary_logistic_loss.png" alt="Plot: Binary Logistic Loss Function" width="350" height="300"/>
-</div>
+**Simplified loss function**
 
+$$
+\mathcal{L}(f(x), y) = - \left[ y \cdot \log(f(x)) + (1 - y) \cdot \log(1 - f(x)) \right]
+$$
+**Simplified cost function**
+$$
+\begin{align*}
+J(w, b) &= \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(f(x^{(i)}), y^{(i)}) \\
+       &= -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(f(x^{(i)})) + \left(1 - y^{(i)}\right) \log\left(1 - f(x^{(i)})\right) \right]
+\end{align*}
+$$
 
-**对数损失函数log loss (注意负号)**
+Codes
+```python
+# log loss
+log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
 
-- `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`
-- cross entropy: `cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))`
-
+# cross entropy
+cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))
+```
 **softmax loss**
 
 - 多分类损失函数
