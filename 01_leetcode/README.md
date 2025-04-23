@@ -118,6 +118,7 @@
 ### 4.4 CPP
 
 - [Containers library](https://en.cppreference.com/w/cpp/container)
+- [C++ 并发编程](https://paul.pub/cpp-concurrency/)
 
 ### 4.5 CS基础与DSA
 

@@ -1,14 +1,18 @@
-# 线性回归
+# 线性回归 <!-- omit in toc -->
 
-**基础假设**
+## 0. 基础假设
 
-- There is a linear relationship between the independent variables(X) and the dependent variables (y)
-- Independence: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
-- Normality: The residuals of the linear regression model are assumed to be normally distributed.
-- Homoscedasticity: Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
-- No Multi-collinearity between features
+- **Linearity**: There is a linear relationship between the independent variables(X) and the dependent variables (y)
 
-## 1. 最小二乘法 ordinary least squares
+- **Independence of Errors**: Independence assumes that there is no relationship or correlation between the errors (residuals) of different observations.
+
+- **Normality of Errors**: The residuals of the linear regression model are assumed to be normally distributed.
+
+- **Homoscedasticity** (Constant Variance of Errors): Homoscedasticity assumes that the variability of the errors (residuals) is constant across all levels of the independent variables.
+
+- **No Multicollinearity**: No Multi-collinearity between features
+
+## 1. 最小二乘法 Ordinary least squares
 
 > 最小二乘法对线性回归的基础假设是：误差（residual）符合正态分布。
 
@@ -31,7 +35,7 @@ $$
 Loss function:
 
 $$
-L(w)=\frac{1}{n}\sum_{i=1}^{n}{(y-\hat{y})^2}
+L(w)=\frac{1}{n}\sum_{i=1}^{n}{(\hat{y}-y)^2}
 $$
 
 从标准量中计算其梯度(只有一个样本，多样本加连加符号):

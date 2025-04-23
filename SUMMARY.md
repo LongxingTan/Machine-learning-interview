@@ -368,7 +368,7 @@
   - [大语言模型 LLM](02_ml/12_llm.md)
   - [机器视觉 CV](02_ml/13_vision.md)
   - [多模态 MM](02_ml/14_multimodal.md)
-  - [分布式机器学习](02_ml/15_distributed_ml)
+  - [分布式机器学习](02_ml/15_distributed_ml.md)
   - [推荐系统](02_ml/17_recommendation.md)
   - [异常检测与风控](02_ml/16_anomaly.md)
   - [模型解释性](02_ml/18_interpretability.md)

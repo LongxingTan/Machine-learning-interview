@@ -11,6 +11,7 @@
 - scope, product customer
 - agent功能
 - 多轮 multi turn follow-up
+- 多跳 multi hop
 - 是否提供reference
 - personalization
 
@@ -53,6 +54,7 @@
 - multimodal
 - Long context
 
+
 ## 3. data
 
 - document chunk
@@ -60,6 +62,7 @@
 - query rewrite
 
 ## 4. model
+> DeepSearch 可以被视作一个配备了各类网络工具（比如搜索引擎和网页阅读器）的 LLM Agent。这个 Agent 通过分析当前的观察结果以及过往的操作记录，来决定下一步的行动方向：是直接给出答案，还是继续在网络上探索。这就构建了一种状态机架构，其中 LLM 负责控制状态间的转换。在每一个决策点，你都有两种可选方案：你可以精心设计提示词，让标准的生成模型产生特定的操作指令；或者，也可以利用像 Deepseek-r1 这样专门的推理模型，来自然而然地推导出下一步应该采取的行动。然而，即使使用了 r1，你也需要定期中断它的生成过程，将工具的输出结果（比如搜索结果、网页内容）注入到上下文之中，并提示它继续完成推理过程。
 
 **retrieval**
 
@@ -119,3 +122,4 @@
 - [Building a RAG Batch Inference Pipeline with Anyscale and Union](https://www.anyscale.com/blog/anyscale-union-batch-inference-pipeline)
 - [Creating a Modern OCR Pipeline Using Computer Vision and Deep Learning](https://dropbox.tech/machine-learning/creating-a-modern-ocr-pipeline-using-computer-vision-and-deep-learning)
 - [How we built Text-to-SQL at Pinterest](https://medium.com/pinterest-engineering/how-we-built-text-to-sql-at-pinterest-30bad30dabff)
+- [DeepSearch 与 DeepResearch 的设计和实现 - Jina AI的文章 - 知乎](https://zhuanlan.zhihu.com/p/26560000573)

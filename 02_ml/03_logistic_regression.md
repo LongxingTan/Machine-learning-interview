@@ -2,21 +2,55 @@
 
 ## 1. 最小经验损失函数
 
+在二分类中，y_hat的含义是预测类别为1的概率为y_hat，相应的为0的概率为(1-y_hat)
+
 最小化cross entropy等价于最大化log softmax probability
 
 $$
 y = \frac{1}{1+e^{-(w^{T} x + b)}}
 $$
 
-在二分类中，y_hat的含义是预测类别为1的概率为y_hat，相应的为0的概率为(1-y_hat)
+sigmoid function
+
+$$
+g(z) = \frac{1}{1+e^{-z}} \space\space\space\space 0 < g(z) <1
+$$
 
 sigmoid函数的导数为: `sigmoid(x) * (1 - sigmoid(x))`
 
-**对数损失函数log loss (注意负号)**
+### 对数损失函数 / Logistic loss function
 
-- `log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))`
-- cross entropy: `cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))`
+**Log loss is convex (注意负号)** 
 
+$$
+\mathcal{L}(f(x), y) =
+\begin{cases}
+-\log(f(x)) & \text{if } y = 1 \\
+-\log(1 - f(x)) & \text{if } y = 0
+\end{cases}
+$$
+
+**Simplified loss function**
+
+$$
+\mathcal{L}(f(x), y) = - \left[ y \cdot \log(f(x)) + (1 - y) \cdot \log(1 - f(x)) \right]
+$$
+**Simplified cost function**
+$$
+\begin{align*}
+J(w, b) &= \frac{1}{m} \sum_{i=1}^{m} \mathcal{L}(f(x^{(i)}), y^{(i)}) \\
+       &= -\frac{1}{m} \sum_{i=1}^{m} \left[ y^{(i)} \log(f(x^{(i)})) + \left(1 - y^{(i)}\right) \log\left(1 - f(x^{(i)})\right) \right]
+\end{align*}
+$$
+
+Codes
+```python
+# log loss
+log_loss = -np.mean(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred))
+
+# cross entropy
+cross_entropy = -np.mean(np.sum(y_true * np.log(y_pred), axis=1))
+```
 **softmax loss**
 
 - 多分类损失函数

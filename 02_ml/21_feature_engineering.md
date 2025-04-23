@@ -1,8 +1,8 @@
 # 特征工程
 
-> 基于业务理解 + 基于常用套路 + 基于EDA
->
-> - 我个人喜欢基于类似[OOD设计](../03_system/01_ood/README.md)的ER图进行思考
+> Using intuition to design **new features**, 基于业务理解 + 基于常用套路 + 基于EDA
+> 
+> 我个人喜欢基于类似[OOD设计](../03_system/01_ood/README.md)的ER图进行思考
 
 - numerical feature
 - categorical feature
