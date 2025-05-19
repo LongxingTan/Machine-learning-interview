@@ -7,6 +7,7 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
 
 ## 1. Tokenizer
 
+
 - tokenizer: 大致经历了从word/char到subword的进化
 - word level
   - 词表的长尾效应非常大，OOV问题，单词的形态关系和词缀关系(old, older)
@@ -19,6 +20,9 @@ NLP包括自然语言理解和自然语言生成，任务包括文本分类、�
   - SentencePiece库: 基于BPE和uni-gram,根据不同任务或语料库需求，自定义分词模型，更好处理未登录或稀有词
   - chatGPT训练中文: BPE算法在中文上训，最小单元不再是汉字，而是 byte，UTF-8 编码中，一个汉字相当 3 个字节
   - 解决OOV(out-of-vocabulary)问题，even if a word is not seen during training, the model can still understand and generate text based on its constituent parts
+- 手写
+  - [BPE tokenizer](https://colab.research.google.com/drive/1QLlQx_EjlZzBPsuj_ClrEDC0l8G-JuTn?usp=sharing#scrollTo=Nnjv2FLnX3rr)
+  - [BPE tokenizer](https://huggingface.co/learn/nlp-course/chapter6/5?fw=pt)
 
 ## 2. 模型
 

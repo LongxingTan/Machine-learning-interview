@@ -39,6 +39,7 @@
 
 - [刀功：谈推荐系统特征工程中的几个高级技巧 - 石塔西的文章 - 知乎](https://zhuanlan.zhihu.com/p/448680238)
 - [Feature Store 101](https://medium.com/data-for-ai/feature-store-101-b964373891c4)
+- [有哪些精彩的特征工程案例？ - 冯国添的回答 - 知乎](https://www.zhihu.com/question/400064722/answer/1911094226)
 
 **代码**
 
