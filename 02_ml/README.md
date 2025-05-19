@@ -1,4 +1,4 @@
-# 机器学习
+# 机器学习面试指南
 
 > 面试要有准备和技巧，但功夫在诗外。注意平时构建知识体系，读论文和做实验不断给体系添砖加瓦；面试前巩固机器学习**理论**和[代码](./99_ml_coding.md)
 >
@@ -22,14 +22,14 @@
 
 > 模型细节与具体问题见模型子页面。以下实例回答注意如何安框架分条陈述
 
-- Generative vs Discriminative
+- 生成模型 vs 判别模型
 
   - Discriminative model learns the predictive distribution **p(y|x)** directly.
   - Generative model learns the joint distribution **p(x, y)** then obtains the predictive distribution based on Bayes' rule.
   - A generative model will learn categories of data while a discriminative model will simply learn the distinction between different categories of data.
   - Discriminative models will generally outperform generative models on classification tasks.
 
-- The bias-variance tradeoff
+- 偏差-方差权衡
 
   - how to track the tradeoff: Cross-Validation
   - Bias Variance Decomposition: Error = Bias \*\* 2 + Variance + Irreducible Error

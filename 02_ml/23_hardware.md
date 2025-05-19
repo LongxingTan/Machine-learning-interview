@@ -12,3 +12,4 @@
 - [Triton tutorial](https://triton-lang.org/main/getting-started/tutorials/index.html)
 - [https://github.com/cuda-mode/lectures](https://github.com/cuda-mode/lectures)
 - [CUDA-MODE 课程笔记 第一课: 如何在 PyTorch 中 profile CUDA kernels - BBuf的文章 - 知乎](https://zhuanlan.zhihu.com/p/706469164)
+- [https://github.com/xlite-dev/LeetCUDA](https://github.com/xlite-dev/LeetCUDA)

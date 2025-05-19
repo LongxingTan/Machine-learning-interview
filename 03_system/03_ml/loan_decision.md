@@ -47,6 +47,7 @@ binary classification, multi class classification or multi label classification
 ## 4. feature
 
 > feature engineering is the art
+
 > ![](../../.github/assets/03ml-loan-feature.png)
 
 **user**

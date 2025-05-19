@@ -1,20 +1,12 @@
 # 机器学习｜数据科学｜软件工程
 
-📗中文面试指南，针对海外、外企、大厂CS相关岗。
+📚中文面试指南，针对海外、外企、大厂CS岗位。
 
 - 适用岗位：软件工程师(SDE)、机器学习工程师(MLE)、数据科学家(DS)、应用科学家(AS)、AI工程师、数据工程师
-- 面试沟通: **逻辑通顺，框架思维，突出重点**
+- 面试沟通要点：**逻辑通顺，框架思维，突出重点**
 - 免费在线书籍：[https://longxingtan.gitbook.io/ml-interview/](https://longxingtan.gitbook.io/ml-interview/)
 
-## 面试内容
-
-### 准备
-
-| Chapter    | Content                                       |
-| ---------- | --------------------------------------------- |
-| Chapter 0  | [简历与准备工作](05_case/01_pre_interview.md) |
-| Appendix 1 | [案例分享](05_case/README.md)                 |
-| Appendix 2 | [面试前必看](05_case/02_cheat_sheet.md)       |
+## 📖 面试内容
 
 ### 机器学习工程师 / 数据科学家(模型)
 

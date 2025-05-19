@@ -41,7 +41,7 @@
 - MLA, MOE, RMSNorm, DeepGEMM
 
 **MOE**
-
+- 稀疏激活: 前向传播时只激活一小部分专家
 ```python
 import torch
 from torch import  nn
@@ -315,6 +315,18 @@ $$
 
 [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/)
 
+**tool usage**
+```python
+import re
+
+def extract_action_and_input(text):
+  action_pattern = r"Action: (.+?)\n"
+  input_pattern = r"Action Input: \"(.+?)\""
+  action = re.findall(action_pattern, text)
+  action_input = re.findall(input_pattern, text)
+  return action, action_input
+```
+
 ### 7.5 大规模部署
 
 - 容器化 + k8s
@@ -374,6 +386,7 @@ $$
 - [Llama 2: Open Foundation and Fine-Tuned Chat Models](https://arxiv.org/pdf/2307.09288)
 - [https://github.com/pytorch-labs/gpt-fast](https://github.com/pytorch-labs/gpt-fast)
 - [https://github.com/meta-llama/llama3](https://github.com/meta-llama/llama3)
+- [https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools)
 
 **扩展**
 

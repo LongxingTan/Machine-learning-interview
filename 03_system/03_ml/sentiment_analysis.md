@@ -74,3 +74,4 @@
 - [FastFormers: Highly Efficient Transformer Models for Natural Language Understanding](https://arxiv.org/abs/2010.13382)
 - [Understanding Pins through keyword extraction](https://medium.com/pinterest-engineering/understanding-pins-through-keyword-extraction-40cf94214c18)
 - [华为云细粒度文本情感分析及应用](https://mp.weixin.qq.com/s/yeiODUxkTpvi2AsghjbeeQ)
+- [ML System Design Mock Interview - Build an ML System That Classifies Which Tweets Are Toxic](https://www.youtube.com/watch?v=ZjNoipQAqRM)

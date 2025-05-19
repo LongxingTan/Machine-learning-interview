@@ -2,29 +2,28 @@
 
 对于数据科学家，需要对产品案例分析刷题和总结。
 
-- 注意framework，按框架回答，而不是想到什么说什么
-- 听清楚考官在问什麽。不要一上来就ab test，quasi-experimentation
-- 提出你有的疑问，质疑每一句考官问你的话，不要他说什麽你都接受
-- 考官问完后，请你跟他说你需要一点时间，统整你的思路跟回答
 - 把自己想成该产品的owner
-- 每一项回答，背后都要有“理由”。为什麽这样，不那样？为什么选这个metric,不是其他？
-- 每一项回答，都想清楚背后的取舍。把 trade-off讲清楚, 是能否拿到senior的关键。Junior pursues right or wrong; Senior looks for trade-offs
+- 按框架回答，不要想到什么说什么
+- clarification考官的问题。不要一上来就ab test，quasi-experimentation
+- 考官问完后，跟他说你需要一点时间，整理思路和回答
+- 每一项回答，背后都要有“理由”。为什么这样，不那样？为什么选这个metric,不是其他？
+- 每一项回答，都想清楚背后的取舍。把trade-off讲清楚, 是能否拿到senior的关键。Junior pursues right or wrong; Senior looks for trade-offs
 
 ## 1. 范围
 
-结合纵向和横向去做题目分类总结。例如，我们模拟一下FB groups 可以大致问：
+结合纵向和横向去做题目分类总结。例如，FB groups 可以大致问：
 
-- 我们想要新增某个feature 让用户可以在回文的时候使用表情包，该不该做？
-- 我们想要improve comments per post, 该怎麽做？
-- 我们看到comments per post下降了，该怎麽办
-- 我们想要build a model 让FB groups的贴文出现在个人的newsfeed, 该怎麽做？
+- 我们想要新增某个feature，让用户可以在回复的时候使用表情包，该不该做？
+- 我们想要improve comments per post, 怎么做？
+- 我们看到comments per post下降了，怎么办？
+- 我们想要build a model 让FB groups的贴文出现在个人的newsfeed, 怎么做？
 
 ### 1.1 纵向-题目类型
 
 - Launch or not: 公司想要针对产品某部分优化，开发某种新功能，该不该做？
-- Investigation: 某个产品的表现不如预期，某指标下降，该怎麽调查釐清？
+- Investigation: 某个产品的表现不如预期，某指标下降，该怎么调查清楚？
 - How to measure: 如何衡量某个产品的好坏
-- Want to know something: 想要了解某件事情，例如有多少百分比的帐号是假帐号，怎麽知道有人有多个帐号？
+- Want to know something: 想要了解某件事情，例如有多少百分比的帐号是假帐号，怎么知道有人有多个帐号？
 - How to build a model: Meta的某些产品题目是直接涉及到model building, 例如餐厅推荐，侦测假帐号。这种题目较为niche, 但仍要准备。
 
 ### 1.2 横向-产品线
@@ -39,16 +38,16 @@
 
 ### 2.1 目标
 
-以framework来说，第一步，也是最重要的，是订所谓的目标。目标有两种
+framework第一步，也是最重要的，是确定目标。目标有两种
 
-- 整个公司有一个大的overall business goal. 例如meta的愿景是让人们之间的距离缩短，并让人们有能力可以打造社群，也帮助企业成长盈利。这不是我发明的，是他们家的mission statement
+- 整个公司有一个大的overall business goal. 例如meta的愿景是让人们之间的距离缩短，并让人们有能力可以打造社群，也帮助企业成长盈利。
 - 题目中涉及的产品也会有一个主要目标。例如增加某feature engagement
 
 所有你提出的策略，跟产品的目标，再到公司的大目标，彼此都是环环相扣。
-在准备不同公司的时候，都仔细想想这家公司是做什麽的，有哪些产品，然后请你产生出自己对于该公司独家的framework.
+在准备不同公司的时候，都仔细想想这家公司是做是那么的，有哪些产品，然后产出对于该公司独家的framework.
 
 FB mission (business goal) → Product goal (pain point solving / why are we doing this) → Hypothesis → Validation (Metrics and methodology i.e experiment design) → Analysis → Decision
-先从FB的愿景讲起--> 然后自定义产品的目标为何，这个目标也是要能够帮助到整体企业的目标--> 有哪些假说 → 要如何确定假说，metric and methodology (i.e experiment) → 如何分析结果--> 结果为如何的时候我们怎麽下决策
+先从FB的愿景讲起--> 然后自定义产品的目标为何，这个目标也是要能够帮助到整体企业的目标--> 有哪些假说 → 要如何确定假说，metric and methodology (i.e experiment) → 如何分析结果--> 结果为如何的时候我们怎么下决策
 
 ### 2.2 metrics
 
@@ -73,9 +72,9 @@ Metrics有分成几种
 
 请把A/B test的架构讲得清楚:
 
-- 实验组跟对照组各可以干嘛
-- Randomization unit. 为何选择这个，而不是另一个？最常回答的用user_id 来当作randomization unit,会有什麽pros and cons?
-- 如果A/B test 不可行的时候，该怎麽办？为什麽不可行？
+- 实验组跟对照组分别做什么
+- Randomization unit. 为何选择这个，而不是另一个？最常回答的用user_id 来当作randomization unit, pros and cons?
+- 如果A/B test 不可行的时候，该怎么办？为什么不可行？
 - 如何 identify network effect? How to mitigate the risk?
 
 ## 3. 案例- Analytical Reasoning: Restaurant Recommendations

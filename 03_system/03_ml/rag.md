@@ -57,6 +57,7 @@
 
 ## 3. data
 
+- document: structure and unstructured data
 - document chunk
 - data augmentation (e.g. query expansion)
 - query rewrite
@@ -111,6 +112,13 @@
   - 历史记录重写查询: 基于多轮的会话记录与当前问题，调用大模型生成一个新问题. llamaindex提供了CondenseQuestionChatEngine, ContextChatEngine
   - memory 模块
 - 召回结果中有相互排斥的信息
+- 如何输出参考引用来源
+  - 为LLM提供来源 ID（如文档编号、段落ID、chunk哈希），模型在生成时可引用;
+  - 将生成内容与原始文本 chunk 做后处理匹配
+- 是否需要调用 RAG判断
+  - 置信度驱动触发机制，模型输出每条回答的置信度，低于阈值则触发RAG检索
+  - Self-Ask 模式，“我是否需要外部知识回答这个问题？”
+  - 训练二分类器判断是否需检索外部知识
 
 ## Reference
 
