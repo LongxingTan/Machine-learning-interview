@@ -1,6 +1,6 @@
 # Table of contents
 
-- [面试指南](README.md)
+- [前言](README.md)
 
 - [数据结构与算法](01_leetcode)
 
@@ -427,6 +427,6 @@
   - [问答举例](04_bq/02_examples.md)
 
 - [案例分享](05_case)
-  - [准备工作](05_case/01_pre_interview.md)
-  - [面试小抄](05_case/02_cheat_sheet.md)
+  - [找工准备](05_case/01_pre_interview.md)
+  - [面试前必读](05_case/02_cheat_sheet.md)
   - [面试之后](05_case/03_post_interview.md)

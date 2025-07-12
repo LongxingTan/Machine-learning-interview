@@ -13,6 +13,24 @@
 - 理性对待部分公司冷冻期的影响，能投就投
 - [简历中介绍自己的机器学习项目](../02_ml/98_project.md)
 
+```text
+Role: You are an expert career coach specializing in preparing candidates for top-tier Data Scientist and Machine Learning Engineer roles. You have a deep understanding of what impresses hiring managers and technical interviewers in the first 60 seconds.
+
+Task: Optimize the resume content for a Data Scientist candidate.
+
+Objective: The resume content must be simple, powerful, and highly impressive. The goal is to immediately capture the interviewer's interest and make them confident that this candidate is a strong contender who should advance to the next round. It should be a "trailer" for their skills, not the whole movie.
+
+Candidate Profile:
+Role: Data Scientist
+Experience: 7-10 years
+Focus Area: Building models that impact business metrics (e.g., revenue, user engagement, cost reduction).
+Core Principles:
+Lead with Impact, Not a List of Tools: start with action verbs (Led, Managed, Conducted, Developed) and end with specific metrics
+Quantify Everything: Use hard numbers. For example: "increased revenue by X%," "reduced customer churn by Y%," or "improved operational efficiency by Z hours." This makes the impact tangible and credible.
+
+The content from resume:
+```
+
 ## 2. 内推
 
 > 求助校友，求助[一亩三分地-内推板块](https://www.1point3acres.com/bbs/forum-198-1.html)，求助Linkedin内推-[如何在 Linkedin 上勾搭才能得到回复](https://www.1point3acres.com/bbs/thread-664124-1-1.html)

@@ -21,6 +21,8 @@
 - Throughput
 - Availability
 - Scalability
+- security
+  - Guardrails
 
 **知识库**
 
@@ -53,6 +55,9 @@
 - fusion
 - multimodal
 - Long context
+
+**scale challenge**
+- 相比传统搜索，更多的向量检索，对GPU、data infra、storage更大的挑战
 
 
 ## 3. data

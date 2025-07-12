@@ -5,6 +5,12 @@
 - exploration和exploitation的平衡
 - Q-learning，DQN，TRPO, PPO, soft actor critic
 
+## 基本概念
+- RL: 一个智能体（Agent）采取行动（Action）从而改变自己的状态（State）获得奖励（Reward）与环境（Environment）发生交互的循环过程
+- rollout: 指的是从一个特定的状态按照某个策略进行一系列动作和状态转移
+- Actor: 也就是Agent，Actor对于特定的任务，有自己的一个策略π，策略π用一个神经网络表示，其参数为θ. LLM语境下，即由prompt输出response
+
+
 ## 理论
 
 贝尔曼最优方程
@@ -16,6 +22,7 @@
   - Value Based: 状态+动作学习到一个value, value直接反应reward
   - Policy Based: 由状态学习到动作的分布，根据分布进行决策
   - Actor-Critic: Actor通过状态学习动作的分布，Critic根据动作和新的状态学习value评价
+    - 为什么要有Critic? 强化学习的算法稳定性问题。加Critic，使用State-value function或者Action-value function稳定策略梯度的计算过程。更高级的算法是采用Advantage Function，也就是加上Baseline，增加梯度计算的稳定性。
 
 ## DQN
 
@@ -31,6 +38,10 @@
 - 两个网络，分别是Actor和Critic
 
 ## DPO
+
+## GRPO
+- 相比PPO: 省去Critic模型，仅依赖组内奖励统计量
+
 
 ## 问答
 

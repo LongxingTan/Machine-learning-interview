@@ -596,6 +596,12 @@ sampled_token = top_k_sampling(logits, k=3)
 print("Sampled token index:", sampled_token)
 ```
 
+**prefix cache**
+```python
+
+```
+
+
 ## 5. 领域-CV
 
 ## 6. pipeline

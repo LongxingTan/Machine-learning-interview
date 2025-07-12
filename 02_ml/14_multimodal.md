@@ -46,3 +46,4 @@ Diffusion
 - [大模型 | CLIP | BLIP | 损失函数代码实现 - 有点晕的文章 - 知乎](https://zhuanlan.zhihu.com/p/699507603)
 - [Meta Chameleon](https://github.com/facebookresearch/chameleon)
 - [Mono-InternVL](https://arxiv.org/abs/2410.08202)
+- [张祥雨访谈 多模态大模型研究的挣扎史和未来 - hzwer 黄哲威的文章 - 知乎](https://zhuanlan.zhihu.com/p/1913614732318995171)

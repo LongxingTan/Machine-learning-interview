@@ -327,6 +327,8 @@
 - [一文读懂「Parameter Server」的分布式机器学习训练原理 - 王喆的文章 - 知乎](https://zhuanlan.zhihu.com/p/82116922)
 - [Persia: An Open, Hybrid System Scaling Deep Learning-based Recommenders up to 100 Trillion Parameters](https://arxiv.org/pdf/2111.05897)
 - [推荐系统Serving架构分析 - Peter的文章 - 知乎](https://zhuanlan.zhihu.com/p/335116835)
+- [推荐系统(10):样本拼接工程实践 - yanianthe的文章 - 知乎](https://zhuanlan.zhihu.com/p/594275446)
+
 
 **代码**
 

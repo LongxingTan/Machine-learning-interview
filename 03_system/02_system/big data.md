@@ -70,3 +70,4 @@ class InMemoryRDD:
 - [spark slides](https://www.slideshare.net/slideshow/apache-spark-41998200/41998200#6)
 - [Apache Spark @Scale: A 60 TB+ production use case](https://engineering.fb.com/2016/08/31/core-infra/apache-spark-scale-a-60-tb-production-use-case/)
 - [Apache Flink和Apache Spark发展前景分别怎样？ - chauncy的回答 - 知乎](https://www.zhihu.com/question/30151872/answer/640568211)
+- https://github.com/DataTalksClub/data-engineering-zoomcamp

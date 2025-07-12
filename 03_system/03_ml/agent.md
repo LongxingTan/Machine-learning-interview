@@ -70,6 +70,10 @@ For each function call, return a json object with function name and arguments wi
 
 ## 7. monitor & maintain
 
+## QA
+- 如何训练function call?
+  - 数据集SFT 或 强化学习
+
 
 ## Reference
 - https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf
@@ -78,3 +82,7 @@ For each function call, return a json object with function name and arguments wi
 - [developers.generativeai.google](https://developers.generativeai.google/develop/sample-apps/wordcraft)
 - [generative-ai-docs](https://github.com/google/generative-ai-docs/tree/main/demos/palm/python/docs-agent)
 - [Infrastructure for a RAG-capable generative AI application](https://cloud.google.com/architecture/rag-capable-gen-ai-app-using-vertex-ai)
+
+**course**
+- [CS294/194-196 Large Language Model Agents](https://rdi.berkeley.edu/llm-agents/f24)
+- 

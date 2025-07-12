@@ -430,3 +430,4 @@ def extract_action_and_input(text):
 - https://github.com/rasbt/LLMs-from-scratch/tree/main
 - https://github.com/peremartra/Large-Language-Model-Notebooks-Course
 - https://hanlab.mit.edu/courses/2024-fall-65940
+- https://stanford-cs336.github.io/spring2025/

@@ -69,6 +69,9 @@
 
 - 如何处理业务对话系统中的unexpected intent
   - 可继续阅读参考rasa中的：Unexpected Intent Policy
+- 如何确定chunk策略
+  - 句子截断（固定、overlap、recursive分割、small2big、特殊的表格分割）和语义截断
+
 
 ## 参考
 

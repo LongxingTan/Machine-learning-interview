@@ -66,9 +66,14 @@ binary classification, multi class classification or multi label classification
 
 ![](../../.github/assets/03ml-loan-feature2.png)
 
+**稳定性**
+- SHAP 是一种解释模型输出的方法，能展示某个变量对预测值的贡献。检查：变量的值是否与模型输出呈合理的趋势；是否存在“非预期拐点”或“跳跃”（可能是过拟合的信号）。
+- 某些变量和风险标签的关系应该是单调的（如负债率↑，违约概率↑），否则可能存在逻辑问题、数据问题，或模型过拟合。建模阶段通过分析变量与 label 的WOE 图（Weight of Evidence）或 KS 图判断是否具有单调关系
+
+
 ## 5.model
 
-> 解释性
+> 可解释性和稳定性（stability）。模型不仅要在当前样本上表现好，还要对未来数据、不同时间段、不同人群具有鲁棒性，也就是稳定性。
 
 ![](../../.github/assets/03ml-loan-train.png)
 

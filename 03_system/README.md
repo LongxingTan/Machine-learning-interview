@@ -15,6 +15,9 @@
 ## 2. 基础知识
 
 - [Latency Numbers Every Programmer Should Know](https://gist.github.com/jboner/2841832)
+- 精确一次性（Exactly-once）
+- 幂等性
+
 
 ### 操作系统
 

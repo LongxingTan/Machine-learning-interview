@@ -27,6 +27,8 @@
 ## 问答
 
 - high cardinality
+- feature backfill
+  - [How Pinterest Accelerates ML Feature Iterations via Effective Backfill](https://medium.com/pinterest-engineering/how-pinterest-accelerates-ml-feature-iterations-via-effective-backfill-d67ea125519c)
 
 ## 参考
 

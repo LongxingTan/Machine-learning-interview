@@ -1,6 +1,6 @@
 # 面试之后
 
-> 面试成功只是第一步，更长的路还在后面；dream company也可能有大坑
+> 面试成功只是第一步，更长的路还在后面；dream company也可能是大坑
 
 ## 1. competition offer
 
