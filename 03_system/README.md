@@ -52,3 +52,4 @@
 - [https://www.youtube.com/@SDFC/videos](https://www.youtube.com/@SDFC/videos)
 - https://github.com/systemdesignfightclub/SDFC/
 - [https://systemdesign.one/categories/](https://systemdesign.one/categories/)
+- [高并发系统设计 40 问](https://zq99299.github.io/note-architect/hc/)

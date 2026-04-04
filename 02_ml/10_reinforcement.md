@@ -91,3 +91,5 @@ for prompts in dataloader:
 - [https://datawhalechina.github.io/easy-rl/#/chapter1/chapter1](https://datawhalechina.github.io/easy-rl/#/chapter1/chapter1)
 - https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-fall21/schedule.html
 - [人人都能看懂的RL-PPO理论知识 - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/7461863937)
+- [RL老训崩？训推差异是基石 - 萧轩的文章 - 知乎](https://zhuanlan.zhihu.com/p/1959976628290590602)
+- [Easy-RL](https://datawhalechina.github.io/easy-rl/#/)

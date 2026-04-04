@@ -187,6 +187,7 @@ def lora_forward_matmul(x, W, W_A, W_B):
 > - SFT不具备向后看的能力，只能看到当Token前面的句子；RLHF的critic model和reward model都能看到当前位置后面的句子，所以RLHF能看到整个句子
 > - SFT给的都是正例，没有负反馈；RLHF通过给序列一个低分给模型负反馈，减少生成某个token的概率
 > - online RL 的训练数据是当场采集而来，一边造数据，一边训练模型
+> - 策略梯度存在的两个问题: 绝对优势问题, 信用分配粒度粗
 > - dpo / ppo 训练技巧, 相关模型参考[强化学习](./10_reinforcement.md)
 
 [https://github.com/OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)

@@ -202,6 +202,7 @@ class MXFaceDataset(Dataset):
 
 **扩展**
 
+- https://docs.pytorch.org/tutorials/beginner/dist_overview.html
 - [LLM实践--支线：分布式训练框架的编程基础 - 真中合欢的文章 - 知乎](https://zhuanlan.zhihu.com/p/10091011992)
 - [从零开始的verl框架解析 - Nasusu的文章 - 知乎](https://zhuanlan.zhihu.com/p/30876678559)
 - [图解大模型训练系列之：DeepSpeed-Megatron MoE并行训练（原理篇） - 猛猿的文章 - 知乎](https://zhuanlan.zhihu.com/p/681154742)

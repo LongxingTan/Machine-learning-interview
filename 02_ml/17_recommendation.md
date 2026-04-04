@@ -144,6 +144,13 @@ counterfactual evaluation（反事实评估）
 - Serving systems (TFX)
 - Model tracking and Management systems (Kubeflow, MLFlow)
 
+
+### 生成式推荐
+- Meta HSTU 
+- 快手 OneRec
+- Pinterest PinRec
+
+
 ## 3. 问答
 
 ### How to scale

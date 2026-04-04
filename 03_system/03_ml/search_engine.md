@@ -116,3 +116,4 @@ A/B test
 - [COTA: Improving Uber Customer Care with NLP & Machine Learning](https://www.uber.com/en-SG/blog/cota/)
 - [Scaling Uber’s Customer Support Ticket Assistant (COTA) System with Deep Learning](https://www.uber.com/en-SG/blog/cota-v2/)
 - [美团外卖搜索基于Elasticsearch的优化实践](https://tech.meituan.com/2022/11/17/elasicsearch-optimization-practice-based-on-run-length-encoding.html)
+- [Reimagining LinkedIn’s search tech stack](https://www.linkedin.com/blog/engineering/search/reimagining-linkedins-search-stack)

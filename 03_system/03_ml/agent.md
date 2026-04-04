@@ -37,6 +37,8 @@ Service:
 ## 3. Data
 
 
+
+
 ## 4. Model
 ```text
 <|im_start|>system
@@ -85,6 +87,8 @@ For each function call, return a json object with function name and arguments wi
 - speculative decoding
 - Flash attention
 - 模型量化
+- Manus 的 Append-only (KV Cache) 策略
+- Cursor 的实践表明，不一次性加载所有工具，而是根据当前任务只提供相关工具，能显著减少初始化Prompt的 Token 消耗。让 Agent 先用 tail 命令预览，需要时再完整读取，从而避免了因粗暴截断而丢失重要信息的问题。当任务可以分解时，可以引入 sub-agent来实现上下文隔离。
 
 
 ## 7. monitor & maintain
@@ -97,6 +101,13 @@ For each function call, return a json object with function name and arguments wi
 - 如何解决幻觉?
 
 - 如何解决工具调用，调用失败或返回异常数据？
+
+- 如何缓解上下文增长？
+  - 压缩 COT：长/短/空 COT 混合训练，或引入类似 KIMI 的过度思考惩罚策略
+  - 滑窗机制：仅保留最近几轮的 Obs & Results。
+  - 记忆剪枝：摒弃单纯的 Append-only。引入 Working Memory 和 Episodic Memory，每隔 K 步生成 State Summary 替换原始对话历史。
+  - 文件外挂：类似 Manus 的策略，将较长的输出 Offload 到 Notebook 或文件中，建模为工具调用，而非占用 Prompt Token（AgentMem, FoldGRPO et al.）
+  - Tool Search，不再一开始就加载所有工具定义，而是按需发现工具
 
 
 ## Reference
